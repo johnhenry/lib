@@ -1,0 +1,8 @@
+.appear-on-space {
+  --on-space: var(--key-pressed-Space, 0);
+  opacity: var(--on-space);
+}
+
+.diss.appear-on-space {
+  opacity: calc(1 - var(--on-space, 0));
+}

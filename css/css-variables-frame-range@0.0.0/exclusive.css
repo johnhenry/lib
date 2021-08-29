@@ -1,0 +1,11 @@
+.var--in-frame-range_exclusive {
+  --in-frame-range_exclusive: max(
+    0,
+    min(
+      1,
+      calc(var(--frame-min) - var(--frame-current)) *
+        (var(--frame-current) - var(--frame-max))
+    )
+  );
+  --not-in-frame-range_exclusive: calc(1 - var(--in-frame-range_exclusive));
+}
