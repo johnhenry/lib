@@ -1,3 +1,0 @@
-[↑](../../readme.md)
-
-# Transform strings
