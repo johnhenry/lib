@@ -3,18 +3,18 @@ import tester, { equal, ok, notok } from "../tester@0.0.0/index.mjs";
 
 // import library
 import "./string-prototype-warn.mjs";
-import { negater, scale, concat, equal as strEqual, abs } from "./index.mjs";
+import { negater, scale, concat, equal as strEqual, abs, r } from "./index.mjs";
 
 await tester("Normal Strings", function* () {
   const SAMPLE_STRING = "sample string";
-  yield ok(SAMPLE_STRING.rep, "string has rep property");
+  yield ok(SAMPLE_STRING[r], "string has rep property");
   yield ok(
-    SAMPLE_STRING.rep.every(([char, sign]) => !sign),
+    SAMPLE_STRING[r].every(([char, sign]) => !sign),
     'all characters are "positive".'
   );
   yield equal(
     SAMPLE_STRING,
-    SAMPLE_STRING.rep.map(([char]) => char).join(""),
+    SAMPLE_STRING[r].map(([char]) => char).join(""),
     'all characters have proper "absolute value".'
   );
 });

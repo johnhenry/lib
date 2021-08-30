@@ -31,8 +31,10 @@
           const result = concat(fscaled, sscaled);
           log(result.toString("~"));
           log(...result.consoleIterator(NEGATIVE_COLOR, POSITIVE_COLOR));
-          window.document.getElementById("linear-combinations").append(...textToNodes(`"${(f.toString(...negativeMarkup))}" × ${factor0} +
-            "${(s.toString(...negativeMarkup))} × ${factor1}"
+          window.document.getElementById("linear-combinations").append(...textToNodes(`
+            <hr />
+            "${(f.toString(...negativeMarkup))}" × ${factor0} +
+            "${(s.toString(...negativeMarkup))}" × ${factor1}
             <hr />
             "${(fscaled.toString(...negativeMarkup))}" +
             "${(sscaled.toString(...negativeMarkup))}"
@@ -40,11 +42,12 @@
             "${(result.toString(...negativeMarkup))}"`));
         };
 
+        const str ="Hello World!"
         LinearCombinations( {
-          str0: "Hello World!",
-          factor0: 1,
-          str1: scale("Hello World!", -1).toString("~"),
-          factor1: 1,
+          str0: str,
+          factor0: 2,
+          str1: scale(str, -1).toString("~"),
+          factor1: 2,
         });
       </script>
       <div id="linear-combinations"></div>

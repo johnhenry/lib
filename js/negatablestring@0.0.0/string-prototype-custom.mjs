@@ -1,10 +1,10 @@
-import { NegatableString } from "./index.mjs";
+import { NegatableString, r } from "./index.mjs";
 const setPrototype = (level = 2, prototype = String.prototype) => {
   try {
     prototype.consoleIterator = function (...args) {
       return NegatableString.prototype.consoleIterator.apply(this, args);
     };
-    Object.defineProperty(prototype, "rep", {
+    Object.defineProperty(prototype, r, {
       get: function () {
         return this.split("").map((char) => [char, false]);
       },

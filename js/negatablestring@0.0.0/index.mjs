@@ -1,33 +1,34 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 const COLOR = "white";
 const NCOLOR = "red";
+export const r = Symbol.for("negative string representation");
 
 export const NegatableString = class {
   constructor(rep = []) {
-    this.rep = rep;
-    Object.freeze(this.rep);
-    this.rep.forEach(Object.freeze);
+    this[r] = rep;
+    Object.freeze(this[r]);
+    this[r].forEach(Object.freeze);
   }
   consoleIterator(nColor = NCOLOR, pColor = COLOR, color = COLOR) {
     return consoleIterator(this, nColor, pColor, color);
   }
   toString(nStart = "", nEnd = "", pStart = "", pEnd = "") {
-    return this.rep
+    return this[r]
       .map(([x, negative]) =>
         negative ? `${nStart}${x}${nEnd}` : `${pStart}${x}${pEnd}`
       )
       .join("");
   }
   charAt(index) {
-    return new NegatableString([this.rep[index]]);
+    return new NegatableString([this[r][index]]);
   }
   get length() {
-    return this.rep.length;
+    return this[r].length;
   }
 };
 export const invert = (string) =>
   new NegatableString(
-    string.rep.map(([x, negative]) => [x, !negative]).reverse()
+    string[r].map(([x, negative]) => [x, !negative]).reverse()
   );
 
 export const equal = (a, b) => {
@@ -35,7 +36,7 @@ export const equal = (a, b) => {
     return false;
   }
   for (let i = 0; i < a.length; i++) {
-    if (a.rep[i][0] !== b.rep[i][0] || a.rep[i][1] !== b.rep[i][1]) {
+    if (a[r][i][0] !== b[r][i][0] || a[r][i][1] !== b[r][i][1]) {
       return false;
     }
   }
@@ -94,8 +95,8 @@ export const concat = (alpha, beta, drop) => {
   let last;
   let first;
   do {
-    last = a.rep[a.rep.length - 1 - index];
-    first = b.rep[index];
+    last = a[r][a[r].length - 1 - index];
+    first = b[r][index];
     index++;
     if (first && last) {
       if (last[0] === first[0] && last[1] === !first[1]) {
@@ -121,27 +122,37 @@ export const concat = (alpha, beta, drop) => {
 };
 
 export const flip = (string) =>
-  new NegatableString(string.rep.map(([x, s]) => [x, !s]));
+  new NegatableString(string[r].map(([x, s]) => [x, !s]));
 export const abs = (string) =>
-  new NegatableString(string.rep.map(([x, s]) => [x, false]));
+  new NegatableString(string[r].map(([x, s]) => [x, false]));
 export const nAbs = (string) =>
-  new NegatableString(string.rep.map(([x, s]) => [x, true]));
+  new NegatableString(string[r].map(([x, s]) => [x, true]));
 export const flushPositive = (string) =>
-  new NegatableString(string.rep.filter(([x, s]) => s));
+  new NegatableString(string[r].filter(([x, s]) => s));
 export const flushNegative = (string) =>
-  new NegatableString(string.rep.filter(([x, s]) => !s));
+  new NegatableString(string[r].filter(([x, s]) => !s));
 
 export const scale = (string, scalar = 1) => {
   const pScalar = Math.abs(scalar);
   const pScalarRounded = Math.round(pScalar);
-  const { rep } = string;
+  const rep = string[r];
+
   let newRep = [];
   for (let i = 0; i < pScalarRounded; i++) {
     newRep.push(rep);
   }
   newRep = newRep.flat();
-  const len = (pScalar - pScalarRounded) * rep.length;
-  newRep = newRep.concat(rep.slice(0, len));
+
+  const len = Math.floor((pScalar - pScalarRounded) * rep.length);
+  console.log({ scalar, len });
+  if (len > 0) {
+    newRep = newRep.concat(rep.slice(0, len));
+  } else if (len < 0) {
+    for (let i = 0; i < -len; i++) {
+      newRep.pop();
+    }
+  }
+
   const result = new NegatableString(newRep);
   return scalar < 0 ? invert(result) : result;
 };
@@ -153,7 +164,7 @@ export const consoleIterator = (
   color = COLOR
 ) => {
   const colors = [];
-  const string = str.rep
+  const string = str[r]
     .map(([x, negative]) => {
       colors.push(`color:${negative ? nColor : pColor}`);
       return `%c${x}`;

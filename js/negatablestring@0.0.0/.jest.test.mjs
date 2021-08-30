@@ -1,20 +1,20 @@
 import "./string-prototype-warn.mjs";
-import { negater, scale, concat, equal as strEqual, abs } from "./index.mjs";
+import { negater, scale, concat, equal as strEqual, abs, r } from "./index.mjs";
 
 describe("Normal strings", () => {
   const SAMPLE_STRING = "sample string";
 
   test("String has 'rep' property", () => {
-    expect(SAMPLE_STRING.rep).toBeTruthy();
+    expect(SAMPLE_STRING[r]).toBeTruthy();
   });
 
   test("All characters are positive.'", () => {
-    SAMPLE_STRING.rep.every(([char, sign]) => expect(sign).toBeFalsy());
+    SAMPLE_STRING[r].every(([char, sign]) => expect(sign).toBeFalsy());
   });
 
   test("All characters are positive.'", () => {
     expect(SAMPLE_STRING).toEqual(
-      SAMPLE_STRING.rep.map(([char]) => char).join("")
+      SAMPLE_STRING[r].map(([char]) => char).join("")
     );
   });
 });
