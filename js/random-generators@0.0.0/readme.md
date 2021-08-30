@@ -1,7 +1,3 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-
-<Meta title="Notes/Random Generators" />
-
 # Random Generators
 
 These are methods of generating a sample, _x_, for a given random variable, _X_.

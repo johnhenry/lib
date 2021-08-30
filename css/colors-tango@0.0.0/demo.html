@@ -1,51 +1,128 @@
-import { html } from "lit-html";
-import "./index.css";
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import "./index.css";
+      @import "./rick-morty.css";
 
-export default {
-  title: "CSS Library/Tango Colors/Demo",
-  argTypes: {
-    name: {
-      options: [
-        "butter",
-        "orange",
-        "chocolate",
-        "chameleon",
-        "sky",
-        "plum",
-        "scarlet",
-        "aluminium",
-        "slate",
-        "",
-      ],
-      control: {
-        type: "select",
-      },
-    },
-  },
-};
+      .ball .normal {
+        fill: var(--n-color, #ff0000);
+      }
+      .ball .highlight {
+        fill: var(--h-color, #00ff00);
+      }
+      .ball .shadow {
+        fill: var(--s-color, #0000ff);
+      }
+      .rick-and-morty {
+        --border-color: var(--n-color, #4f5352);
+        --rick-skin-color: var(--h-color, #ebe6e3);
+        --morty-skin-color: var(--h-color, #f1daca);
+        --rick-hair-color: var(--s-color, #bdcccf);
+        --morty-hair-color: var(--s-color, #a68564);
+      }
+      .key * {
+        background-color: var(--n-color);
+        height: 32px;
+        width: 128px;
+        vertical-align: middle;
+        height: 100%;
+        padding: 2px;
+      }
+      .key *::before {
+        content: "*";
+        color: var(--n-color-c);
+      }
+      .key .highlight {
+        background-color: var(--h-color);
+      }
+      .key .highlight::before {
+        content: "highlight";
+        color: var(--h-color-c);
+      }
+      .key .shadow {
+        background-color: var(--s-color);
+      }
+      .key .shadow::before {
+        content: "shadow";
+        color: var(--s-color-c);
+      }
+    </style>
+    <script type="module">
+      globalThis.snapshot = (name) => {
+        window.document.body.style.setProperty(
+          "--n-color",
+          getComputedStyle(window.document.body).getPropertyValue(
+            `--color-tango-${name}-shadow`
+          )
+        );
+        window.document.body.style.setProperty(
+          "--h-color",
+          getComputedStyle(window.document.body).getPropertyValue(
+            `--color-tango-${name}-highlight`
+          )
+        );
+        window.document.body.style.setProperty(
+          "--s-color",
+          getComputedStyle(window.document.body).getPropertyValue(
+            `--color-tango-${name}`
+          )
+        );
+        window.document.body.style.setProperty(
+          "--n-color-c",
+          getComputedStyle(window.document.body).getPropertyValue(
+            `--color-tango-${name}-complement`
+          )
+        );
+        window.document.body.style.setProperty(
+          "--h-color-c",
+          getComputedStyle(window.document.body).getPropertyValue(
+            `--color-tango-${name}-highlight-complement`
+          )
+        );
+        window.document.body.style.setProperty(
+          "--s-color-c",
+          getComputedStyle(window.document.body).getPropertyValue(
+            `--color-tango-${name}-shadow-complement`
+          )
+        );
+      };
+    </script>
+  </head>
 
-export const Ball = ({ name = "butter" } = { name: "butter" }) => {
-  return html`<style>
-      .ball {
-        fill: var(--color-tango-${name});
-      }
-      .ball.highlight {
-        fill: var(--color-tango-${name}-highlight);
-      }
-      .ball.shadow {
-        fill: var(--color-tango-${name}-shadow);
-      }</style
-    ><svg
+  <body>
+    <select onchange="snapshot(event.target.value)">
+      <option></option>
+      <option>butter</option>
+      <option>orange</option>
+      <option>chocolate</option>
+      <option>chameleon</option>
+      <option>sky</option>
+      <option>plum</option>
+      <option>scarlet</option>
+      <option>aluminium</option>
+      <option>slate</option>
+    </select>
+    <div class="key">
+      <div class="highlight"></div>
+      <div></div>
+      <div class="shadow"></div>
+    </div>
+    <svg
       xmlns:dc="http://purl.org/dc/elements/1.1/"
       xmlns:cc="http://creativecommons.org/ns#"
       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
       xmlns:svg="http://www.w3.org/2000/svg"
       xmlns="http://www.w3.org/2000/svg"
-      width="128mm"
-      height="128mm"
+      width="64px"
+      height="64px"
       viewBox="0 0 128 128"
       version="1.1"
-      id="svg8"
+      class="ball"
     >
       <defs id="defs2" />
       <metadata id="metadata5">
@@ -64,75 +141,25 @@ export const Ball = ({ name = "butter" } = { name: "butter" }) => {
           cy="64"
           rx="63.86771"
           ry="63.867714"
-          class="ball"
+          class="normal"
         />
         <path
           id="path837"
           d="M 113.75741,78.11031 C 54.092788,91.1156 92.311489,115.98535 65.856615,115.98535 39.401741,115.98535 26.948374,96.996514 17.955828,78.11031 9.0440523,59.393739 50.451792,97.84352 66.074282,75.566878 78.582425,57.731084 60.123946,13.499942 76.99633,13.499942 c 26.45488,0 55.39728,60.548174 36.76108,64.610368 z"
-          class="ball shadow"
+          class="shadow"
         />
         <path
           id="path842"
           d="m 58.313322,69.939735 c -6.287461,7.024627 -18.81328,6.069969 -27.977206,-2.132292 -9.163925,-8.20226 -10.753112,-23.516684 -4.46565,-30.541312 6.287462,-7.024627 21.783878,-14.98174 30.947799,-6.77948 9.163923,8.202263 7.782517,32.428458 1.495057,39.453084 z"
-          class="ball highlight"
+          class="highlight"
         />
         <path
           id="path844"
           d="m 110.93409,93.347311 a 7.3934628,14.077293 64.425592 0 1 -9.50645,12.746019 7.3934628,14.077293 64.425592 0 1 -15.889708,-0.59217 7.3934628,14.077293 64.425592 0 1 9.506448,-12.746009 7.3934628,14.077293 64.425592 0 1 15.88971,0.59216 z"
-          class="ball highlight"
+          class="highlight"
         />
       </g>
-    </svg>`;
-};
-Ball.args = { name: "butter" };
-
-export const Key = ({ name = "butter" } = { name: "butter" }) => {
-  return html`<style>
-      .key * {
-        background-color: var(--color-tango-${name});
-      }
-      .key *::before {
-        content: "${name} " var(--text-tango-${name});
-        color: var(--color-tango-${name}-complement);
-      }
-      .key .highlight {
-        background-color: var(--color-tango-${name}-highlight);
-      }
-      .key .highlight::before {
-        content: "${name} " "highlight " var(--text-tango-${name}-highlight);
-        color: var(--color-tango-${name}-highlight-complement);
-      }
-      .key .shadow {
-        background-color: var(--color-tango-${name}-shadow);
-      }
-      .key .shadow::before {
-        content: "${name} " "shadow " var(--text-tango-${name}-shadow);
-        color: var(--color-tango-${name}-shadow-complement);
-      }
-    </style>
-    <div class="key">
-      <div class="highlight"></div>
-      <div></div>
-      <div class="shadow"></div>
-    </div>`;
-};
-Key.args = { name: "butter" };
-
-// https://www.reddit.com/r/webdev/comments/npffn5/rick_and_morty_with_pure_css/
-// https://codepen.io/manz/pen/JjEqVaB
-// https://www.sassmeister.com/
-import "./rick-morty.css";
-
-export const RickAndMorty = ({ name = "butter" } = { name: "butter" }) => {
-  return html`<style>
-      :root {
-        --border-color: var(--color-tango-${name}-shadow, #4f5352);
-        --rick-skin-color: var(--color-tango-${name}-highlight, #ebe6e3);
-        --morty-skin-color: var(--color-tango-${name}-highlight, #f1daca);
-        --rick-hair-color: var(--color-tango-${name}, #bdcccf);
-        --morty-hair-color: var(--color-tango-${name}, #a68564);
-      }
-    </style>
+    </svg>
     <div class="rick-and-morty">
       <div class="container">
         <div class="rick-container">
@@ -213,7 +240,6 @@ export const RickAndMorty = ({ name = "butter" } = { name: "butter" }) => {
           </div>
         </div>
       </div>
-
       <div class="created">
         <span>Created by</span>
         <a href="https://manz.dev/"><h2>Manz.dev</h2></a>
@@ -222,6 +248,6 @@ export const RickAndMorty = ({ name = "butter" } = { name: "butter" }) => {
           <a href="https://www.youtube.com/watch?v=ZWIgWulXQFg">Youtube</a>
         </p>
       </div>
-    </div>`;
-};
-RickAndMorty.args = { name: "" };
+    </div>
+  </body>
+</html>

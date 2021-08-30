@@ -1,7 +1,3 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-
-<Meta title="JS Library/Negatable String/Docs" />
-
 # Negatable Strings
 
 Ever wanted to literally subtract a string from another in your code?
