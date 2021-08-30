@@ -58,7 +58,7 @@
         import textToNodes from "https://johnhenry.github.io/std/js/simpleelement@0.0.0/textToNodes.js";
         import pause from "https://johnhenry.github.io/std/js/pause@0.0.0/index.mjs";
         import transduce from "https://johnhenry.github.io/std/js/iterator-transduce@0.0.0/index.mjs";
-        import { map, filter, take, group } from "https://johnhenry.github.io/std/js/iterator-transduce@0.0.0/transducers.mjs";
+        import { map, group } from "https://johnhenry.github.io/std/js/iterator-transduce@0.0.0/transducers.mjs";
         import "./string-prototype-warn.mjs";
         import { negater } from "./index.mjs";
 
@@ -93,12 +93,14 @@
             li.append(...textToNodes(negater(x).toString(...negativeMarkup)));
             return li;
           }),
+          group(8)
         );
         const ol = window.document.getElementById("permutations");
         const Permutations = async (string) => {
           for(const x of transform(intersperse(string, "~"))){
-            ol.append(x);
-            await pause(0);
+            ol.append(...x);
+            window.scrollTo(0, window.document.body.scrollHeight);
+            await pause(1000);
           }
         };
         Permutations("mississippi");

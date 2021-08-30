@@ -144,7 +144,6 @@ export const scale = (string, scalar = 1) => {
   newRep = newRep.flat();
 
   const len = Math.floor((pScalar - pScalarRounded) * rep.length);
-  console.log({ scalar, len });
   if (len > 0) {
     newRep = newRep.concat(rep.slice(0, len));
   } else if (len < 0) {
