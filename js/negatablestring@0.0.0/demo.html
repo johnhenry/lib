@@ -58,7 +58,7 @@
         import textToNodes from "https://johnhenry.github.io/std/js/simpleelement@0.0.0/textToNodes.js";
         import pause from "https://johnhenry.github.io/std/js/pause@0.0.0/index.mjs";
         import transduce from "https://johnhenry.github.io/std/js/iterator-transduce@0.0.0/index.mjs";
-        import { map, group, timedTake } from "https://johnhenry.github.io/std/js/iterator-transduce@0.0.0/transducers.mjs";
+        import { map, group, takeTimed } from "https://johnhenry.github.io/std/js/iterator-transduce@0.0.0/transducers.mjs";
         import "./string-prototype-warn.mjs";
         import { negater } from "./index.mjs";
 
@@ -94,7 +94,7 @@
             return li;
           }),
           group(8),
-          timedTake(1244)
+          takeTimed(1244)
         );
         const ol = window.document.getElementById("permutations");
         const Permutations = async (string) => {
