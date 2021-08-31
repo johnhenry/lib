@@ -1,7 +1,7 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 const COLOR = "white";
 const NCOLOR = "red";
-export const r = Symbol.for("negative string representation");
+export const r = Symbol.for("negatable string representation");
 
 export const NegatableString = class {
   constructor(rep = []) {
@@ -133,6 +133,13 @@ export const flushNegative = (string) =>
   new NegatableString(string[r].filter(([x, s]) => !s));
 
 export const scale = (string, scalar = 1) => {
+  let left;
+  if (typeof string === "number") {
+    let temp = string;
+    scalar = string;
+    string = temp;
+    left = true;
+  }
   const pScalar = Math.abs(scalar);
   const pScalarRounded = Math.round(pScalar);
   const rep = string[r];
@@ -147,8 +154,14 @@ export const scale = (string, scalar = 1) => {
   if (len > 0) {
     newRep = newRep.concat(rep.slice(0, len));
   } else if (len < 0) {
-    for (let i = 0; i < -len; i++) {
-      newRep.pop();
+    if (left) {
+      for (let i = 0; i < -len; i++) {
+        newRep.shift();
+      }
+    } else {
+      for (let i = 0; i < -len; i++) {
+        newRep.pop();
+      }
     }
   }
 

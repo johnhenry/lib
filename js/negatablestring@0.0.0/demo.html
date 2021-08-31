@@ -20,7 +20,13 @@
         const { log } = console;
         const NEGATIVE_COLOR = "red";
         const POSITIVE_COLOR = "lightblue";
-        const LinearCombinations = ({ str0, str1, factor0, factor1 }) => {
+        const target = window.document.getElementById("linear-combinations");
+        const LinearCombinations = () => {
+
+          const str0 = window.document.getElementById('str0').value;
+          const factor0 = window.document.getElementById('factor0').valueAsNumber;
+          const str1 = scale(window.document.getElementById('str1').value, -1).toString("~");
+          const factor1 = window.document.getElementById('factor1').valueAsNumber;
           const f = negater(str0);
           const s = negater(str1);
           const fscaled = scale(f, factor0);
@@ -28,7 +34,8 @@
           const result = concat(fscaled, sscaled);
           log(result.toString("~"));
           log(...result.consoleIterator(NEGATIVE_COLOR, POSITIVE_COLOR));
-          window.document.getElementById("linear-combinations").append(...textToNodes(`
+          target.textContent = "";
+          target.append(...textToNodes(`
             <hr />
             "${(f.toString(...negativeMarkup))}" × ${factor0} +
             "${(s.toString(...negativeMarkup))}" × ${factor1}
@@ -39,13 +46,13 @@
             "${(result.toString(...negativeMarkup))}"`));
         };
         const str ="Hello World!";
-        LinearCombinations( {
-          str0: str,
-          factor0: 2,
-          str1: scale(str, -1).toString("~"),
-          factor1: 2,
-        });
+        window.LinearCombinations = LinearCombinations;
+        LinearCombinations();
       </script>
+      <form>
+        <input type="text" id="str0" value="Hello World!" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/> × <input type="number" max="128" min="-128" id="factor0" value="2" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> + <br />
+        <input type="text" id="str1" value="Hello World!" class="negative" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/> × <input type="number" max="128" min="-128" id="factor1" value="2" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> +
+      </form>
       <div id="linear-combinations"></div>
     </pre>
 
@@ -92,14 +99,11 @@
           group(8)
         );
         const ol = window.document.getElementById("permutations");
-        const Permutations = async (string) => {
-          for(const x of transform(intersperse(string, "~"))){
-            ol.append(...x);
-            window.scrollTo(0, window.document.body.scrollHeight);
-            await pause(0);
-          }
-        };
-        Permutations(query.word||"");
+        for(const x of transform(intersperse(query.word||"", "~"))){
+          ol.append(...x);
+          window.scrollTo(0, window.document.body.scrollHeight);
+          await pause(0);
+        }
       </script>
       <form>
         <input type="text" name="word" placeholder="Permutations" value="mississippi" />
