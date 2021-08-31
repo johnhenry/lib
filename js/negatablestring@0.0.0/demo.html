@@ -32,8 +32,8 @@
           const fscaled = scale(f, factor0);
           const sscaled = scale(factor1, s);
           const result = concat(fscaled, sscaled);
-          log(result.toString("~"));
-          log(...result.consoleIterator(NEGATIVE_COLOR, POSITIVE_COLOR));
+          // log(result.toString("~"));
+          // log(...result.consoleIterator(NEGATIVE_COLOR, POSITIVE_COLOR));
           target.textContent = "";
           target.append(...textToNodes(`
             <hr />
@@ -50,8 +50,8 @@
         LinearCombinations();
       </script>
       <form>
-        <input type="text" id="str0" value="Hello World!" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/> × <input type="number" max="128" min="-128" id="factor0" value="2" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> + <br />
-        <input type="number" max="128" min="-128" id="factor1" value="2" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> × <input type="text" id="str1" value="Hello World!" class="negative" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/>  =
+        <input type="text" id="str0" value="Hello World!" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/> × <input type="number" max="128" min="-128" id="factor0" value="1.5" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> + <br />
+        <input type="number" max="128" min="-128" id="factor1" value="1.5" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> × <input type="text" id="str1" value="Hello World!" class="negative" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/>  =
       </form>
       <div id="linear-combinations"></div>
     </pre>
@@ -98,12 +98,12 @@
           }),
           group(8)
         );
-        const ol = window.document.getElementById("permutations");
-        for(const x of transform(intersperse(query.word||"", "~"))){
-          ol.append(...x);
-          window.scrollTo(0, window.document.body.scrollHeight);
-          await pause(0);
-        }
+        // const ol = window.document.getElementById("permutations");
+        // for(const x of transform(intersperse(query.word||"", "~"))){
+        //   ol.append(...x);
+        //   window.scrollTo(0, window.document.body.scrollHeight);
+        //   await pause(0);
+        // }
       </script>
       <form>
         <input type="text" name="word" placeholder="Permutations" value="mississippi" />

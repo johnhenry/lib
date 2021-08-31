@@ -1,4 +1,5 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+import mod from "https://johnhenry.github.io/std/js/mod@0.0.0/index.mjs";
 const COLOR = "white";
 const NCOLOR = "red";
 export const r = Symbol.for("negatable string representation");
@@ -87,7 +88,7 @@ export const ensureNegatableString = (string) => {
   return string;
 };
 
-export const concat = (alpha, beta, drop) => {
+export const concat = (alpha, beta, drop = undefined) => {
   const a = ensureNegatableString(alpha);
   const b = ensureNegatableString(beta);
   const rep = [];
@@ -141,32 +142,24 @@ export const scale = (string, scalar = 1) => {
     left = true;
   }
   const pScalar = Math.abs(scalar);
-  const pScalarRounded = Math.round(pScalar);
   const rep = string[r];
 
-  let newRep = [];
-  for (let i = 0; i < pScalarRounded; i++) {
-    newRep.push(rep);
-  }
-  newRep = newRep.flat();
+  const result = [];
+  const len = Math.round(pScalar * rep.length);
 
-  const len = Math.floor((pScalar - pScalarRounded) * rep.length);
-  if (len > 0) {
-    newRep = newRep.concat(rep.slice(0, len));
-  } else if (len < 0) {
-    if (left) {
-      for (let i = 0; i < -len; i++) {
-        newRep.shift();
-      }
-    } else {
-      for (let i = 0; i < -len; i++) {
-        newRep.pop();
-      }
+  if (left) {
+    for (let i = 1; i <= len; i++) {
+      result.unshift(rep[mod(-i, rep.length)]);
+    }
+  } else {
+    for (let i = 0; i < len; i++) {
+      result.push(rep[i % rep.length]);
     }
   }
 
-  const result = new NegatableString(newRep);
-  return scalar < 0 ? invert(result) : result;
+  return scalar < 0
+    ? invert(new NegatableString(result))
+    : new NegatableString(result);
 };
 
 export const consoleIterator = (
