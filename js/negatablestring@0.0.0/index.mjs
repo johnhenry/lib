@@ -148,12 +148,12 @@ export const scale = (scalar = 1, string = "") => {
   const len = Math.round(pScalar * rep.length);
 
   if (right) {
-    for (let i = 0; i < len; i++) {
-      result.push(rep[i % rep.length]);
-    }
-  } else {
     for (let i = 1; i <= len; i++) {
       result.unshift(rep[mod(-i, rep.length)]);
+    }
+  } else {
+    for (let i = 0; i < len; i++) {
+      result.push(rep[i % rep.length]);
     }
   }
 
