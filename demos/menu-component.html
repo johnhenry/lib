@@ -34,13 +34,13 @@
       }
     </style>
     <script type="module">
-      import Menu from "./index.mjs";
+      import Menu from "https://johnhenry.github.io/std/js/menu.component@0.0.0//index.mjs";
       customElements.define("menu-component", Menu);
     </script>
   </head>
   <body>
     <menu-component class="menu">
-      <menu-item data-key="snake"
+      <menu-item data-key="ext"
         >iFrame
         <template>
           <iframe src="/" frameborder="0"></iframe>
@@ -115,8 +115,8 @@
         </template>
       </menu-item>
     </menu-component>
-    <script>
-      import attach from "hash";
+    <script type="module">
+      import attach from "https://johnhenry.github.io/std/js/menu.component@0.0.0/hash.mjs";
       attach(document.querySelector(".menu"));
     </script>
   </body>
