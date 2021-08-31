@@ -42,6 +42,21 @@ export const take = (limit) => (conjoin) => {
 };
 
 /**
+ * Create a transducer that halts after a given number of values
+ * @kind function
+ * @name takeTimed
+ * @param {number} limit maximum total items to emit
+ * @returns transducer
+ */
+export const takeTimed = (time) => (conjoin) => {
+  let done = false;
+  setTimeout(() => {
+    done = true;
+  }, time);
+  return (init, item) => (!done ? (amount++, conjoin(init, item)) : HAULT);
+};
+
+/**
  * Create a transducer that groups items by quantity before emitting.
  * Note: this currently returns arrays -- would sets make more sense?
  * @kind function
