@@ -52,7 +52,7 @@
 
     <pre><h1>Permutations</h1>
       <script type="module" style="display: block">
-        import { query } from "https://johnhenry.github.io/std/js/url-params@0.0.0/index.mjs.js";
+        import { query } from "https://johnhenry.github.io/std/js/url-params@0.0.0/index.mjs";
         import textToNodes from "https://johnhenry.github.io/std/js/text-to-nodes@0.0.0/index.mjs";
         import pause from "https://johnhenry.github.io/std/js/pause@0.0.0/index.mjs";
         import transduce from "https://johnhenry.github.io/std/js/iterator-transduce@0.0.0/index.mjs";
@@ -100,7 +100,7 @@
             await pause(0);
           }
         };
-        Permutations(window.query.word||"");
+        Permutations(query.word||"");
       </script>
       <form>
         <input type="text" name="word" placeholder="Permutations" value="mississippi" />
