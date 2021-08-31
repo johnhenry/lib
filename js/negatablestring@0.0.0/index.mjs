@@ -136,8 +136,8 @@ export const scale = (string, scalar = 1) => {
   let left;
   if (typeof string === "number") {
     let temp = string;
-    scalar = string;
-    string = temp;
+    string = scalar;
+    scalar = temp;
     left = true;
   }
   const pScalar = Math.abs(scalar);

@@ -30,7 +30,7 @@
           const f = negater(str0);
           const s = negater(str1);
           const fscaled = scale(f, factor0);
-          const sscaled = scale(s, factor1);
+          const sscaled = scale(factor1, s);
           const result = concat(fscaled, sscaled);
           log(result.toString("~"));
           log(...result.consoleIterator(NEGATIVE_COLOR, POSITIVE_COLOR));
@@ -38,7 +38,7 @@
           target.append(...textToNodes(`
             <hr />
             "${(f.toString(...negativeMarkup))}" × ${factor0} +
-            "${(s.toString(...negativeMarkup))}" × ${factor1}
+            ${factor1} × "${(s.toString(...negativeMarkup))}"
             <hr />
             "${(fscaled.toString(...negativeMarkup))}" +
             "${(sscaled.toString(...negativeMarkup))}"
@@ -51,7 +51,7 @@
       </script>
       <form>
         <input type="text" id="str0" value="Hello World!" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/> × <input type="number" max="128" min="-128" id="factor0" value="2" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> + <br />
-        <input type="text" id="str1" value="Hello World!" class="negative" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/> × <input type="number" max="128" min="-128" id="factor1" value="2" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> +
+        <input type="number" max="128" min="-128" id="factor1" value="2" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> × <input type="text" id="str1" value="Hello World!" class="negative" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/>  =
       </form>
       <div id="linear-combinations"></div>
     </pre>
