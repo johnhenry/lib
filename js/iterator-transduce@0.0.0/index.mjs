@@ -9,7 +9,7 @@ const emptyAsync = conjoinAsync();
  * @name transduce
  * @ignore
  */
-const transduce = (itemCollection, reducer, lastreducer, init, reduce) =>
+export const transduce = (itemCollection, reducer, lastreducer, init, reduce) =>
   reduce(itemCollection, reducer(lastreducer), init);
 /**
  * Compose Functions
@@ -17,7 +17,7 @@ const transduce = (itemCollection, reducer, lastreducer, init, reduce) =>
  * @name composeFunctions
  * @ignore
  */
-const composeFunctions =
+export const composeFunctions =
   (...functions) =>
   (input) =>
     functions.reduceRight((input, func) => func(input), input);
@@ -42,7 +42,7 @@ const composeFunctions =
 //   async (input) =>
 //     functions.reduceRight(async (input, func) => func(input), input);
 
-const composeAsyncFunctions =
+export const composeAsyncFunctions =
   (...functions) =>
   async (input) => {
     for (const func of functions) {
@@ -57,7 +57,7 @@ const composeAsyncFunctions =
  * @name createCustomTranduce
  * @ignore
  */
-const createCustomTranduce =
+export const createCustomTranduce =
   (conjoin, empty, reduce, compose) =>
   (...functions) =>
   (itemCollection) =>
