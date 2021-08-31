@@ -1,2 +1,3 @@
-const urlSearchParams = new URLSearchParams(window.location.search);
-export default Object.fromEntries(urlSearchParams.entries());
+export default Object.fromEntries(
+  new URLSearchParams(window.location.search).entries()
+);
