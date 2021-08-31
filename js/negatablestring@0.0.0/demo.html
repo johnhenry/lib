@@ -23,25 +23,27 @@
         const target = window.document.getElementById("linear-combinations");
         const LinearCombinations = () => {
 
-          const str0 = window.document.getElementById('str0').value;
+          const str0 = scale(window.document.getElementById('str0').value, 1).toString("~");
           const factor0 = window.document.getElementById('factor0').valueAsNumber;
-          const str1 = scale(window.document.getElementById('str1').value, -1).toString("~");
+          const str1 = scale(
+              window.document.getElementById('str1').value, -1)
+              .toString("~");
           const factor1 = window.document.getElementById('factor1').valueAsNumber;
-          const f = negater(str0);
-          const s = negater(str1);
-          const fscaled = scale(f, factor0);
-          const sscaled = scale(factor1, s);
-          const result = concat(fscaled, sscaled);
-          // log(result.toString("~"));
-          // log(...result.consoleIterator(NEGATIVE_COLOR, POSITIVE_COLOR));
+          const num0 = negater(str0);
+          const num1 = negater(str1);
+          const scaled0 = scale(factor0, num0);
+          const scaled1 = scale(num1, factor1);
+          const result = concat(scaled0, scaled1);
+          log(result.toString("~"));
+          log(...result.consoleIterator(NEGATIVE_COLOR, POSITIVE_COLOR));
           target.textContent = "";
           target.append(...textToNodes(`
             <hr />
-            "${(f.toString(...negativeMarkup))}" × ${factor0} +
-            ${factor1} × "${(s.toString(...negativeMarkup))}"
+            ${factor0} × "${(num0.toString(...negativeMarkup))}" +
+            "${(num1.toString(...negativeMarkup))}" × ${factor1} =
             <hr />
-            "${(fscaled.toString(...negativeMarkup))}" +
-            "${(sscaled.toString(...negativeMarkup))}"
+            "${(scaled0.toString(...negativeMarkup))}" +
+            "${(scaled1.toString(...negativeMarkup))}" =
             <hr />
             "${(result.toString(...negativeMarkup))}"`));
         };
@@ -50,8 +52,8 @@
         LinearCombinations();
       </script>
       <form>
-        <input type="text" id="str0" value="Hello World!" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/> × <input type="number" max="128" min="-128" id="factor0" value="1.5" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> + <br />
-        <input type="number" max="128" min="-128" id="factor1" value="1.5" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> × <input type="text" id="str1" value="Hello World!" class="negative" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/>  =
+        <input id="factor0" type="number" max="128" min="-128" step="0.5" value="1.5" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> × <input id="str0" type="text" value="Hello World!" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/> + <br />
+        <input id="str1" type="text" value="Hello World!" class="negative" onkeyup="LinearCombinations()" onchange="LinearCombinations()" style="text-align:center"/> × <input id="factor1" type="number" max="128" min="-128" step="0.5" value="1.5" onkeyup="LinearCombinations()" onchange="LinearCombinations()"/> =
       </form>
       <div id="linear-combinations"></div>
     </pre>
@@ -98,12 +100,12 @@
           }),
           group(8)
         );
-        // const ol = window.document.getElementById("permutations");
-        // for(const x of transform(intersperse(query.word||"", "~"))){
-        //   ol.append(...x);
-        //   window.scrollTo(0, window.document.body.scrollHeight);
-        //   await pause(0);
-        // }
+        const ol = window.document.getElementById("permutations");
+        for(const x of transform(intersperse(query.word||"", "~"))){
+          ol.append(...x);
+          // window.scrollTo(0, window.document.body.scrollHeight);
+          await pause(0);
+        }
       </script>
       <form>
         <input type="text" name="word" placeholder="Permutations" value="mississippi" />

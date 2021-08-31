@@ -133,13 +133,13 @@ export const flushPositive = (string) =>
 export const flushNegative = (string) =>
   new NegatableString(string[r].filter(([x, s]) => !s));
 
-export const scale = (string, scalar = 1) => {
-  let left;
-  if (typeof string === "number") {
-    let temp = string;
-    string = scalar;
-    scalar = temp;
-    left = true;
+export const scale = (scalar = 1, string = "") => {
+  let right;
+  if (typeof scalar !== "number") {
+    let temp = scalar;
+    scalar = string;
+    string = temp;
+    right = true;
   }
   const pScalar = Math.abs(scalar);
   const rep = string[r];
@@ -147,13 +147,13 @@ export const scale = (string, scalar = 1) => {
   const result = [];
   const len = Math.round(pScalar * rep.length);
 
-  if (left) {
-    for (let i = 1; i <= len; i++) {
-      result.unshift(rep[mod(-i, rep.length)]);
-    }
-  } else {
+  if (right) {
     for (let i = 0; i < len; i++) {
       result.push(rep[i % rep.length]);
+    }
+  } else {
+    for (let i = 1; i <= len; i++) {
+      result.unshift(rep[mod(-i, rep.length)]);
     }
   }
 
