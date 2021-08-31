@@ -53,7 +53,7 @@ export const takeTimed = (time) => (conjoin) => {
   setTimeout(() => {
     done = true;
   }, time);
-  return (init, item) => (!done ? (amount++, conjoin(init, item)) : HAULT);
+  return (init, item) => (done ? HAULT : conjoin(init, item));
 };
 
 /**
