@@ -1,6 +1,8 @@
 # Concise Binary Object Representation (CBOR)
 
-Based on the specification [here](https://www.ietf.org/id/draft-ietf-cbor-7049bis-14.txt).
+Based on the specification [here](https://datatracker.ietf.org/doc/html/rfc8949)
+
+([old](https://www.ietf.org/id/draft-ietf-cbor-7049bis-14.txt))
 
 ## API
 
