@@ -1,5 +1,5 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
-import mod from "https://johnhenry.github.io/std/js/mod@0.0.0/index.mjs";
+import mod from "../mod@0.0.0/index.mjs";
 const COLOR = "white";
 const NCOLOR = "red";
 export const r = Symbol.for("negatable string representation");
@@ -133,7 +133,7 @@ export const flushPositive = (string) =>
 export const flushNegative = (string) =>
   new NegatableString(string[r].filter(([x, s]) => !s));
 
-export const scale = (scalar = 1, string = "") => {
+export const scale = (scalar = 1, string) => {
   let right;
   if (typeof scalar !== "number") {
     let temp = scalar;
@@ -141,6 +141,8 @@ export const scale = (scalar = 1, string = "") => {
     string = temp;
     right = true;
   }
+  scalar = scalar === undefined ? 1 : scalar;
+  string = string === undefined ? "" : string;
   const pScalar = Math.abs(scalar);
   const rep = string[r];
 

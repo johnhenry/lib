@@ -13,7 +13,7 @@
     <h1>Linear Combinations</h1>
     <pre>
       <script type="module" style="display: block">
-        import textToNodes from "https://johnhenry.github.io/std/js/text-to-nodes@0.0.0/index.mjs";
+        import textToDOMNodes from "https://johnhenry.github.io/std/js/text-to-DOM-nodes@0.0.0/index.mjs";
         import "https://johnhenry.github.io/std/js/negatablestring@0.0.0/string-prototype-warn.mjs";
         import { negater, scale, concat } from "https://johnhenry.github.io/std/js/negatablestring@0.0.0/index.mjs";
         const negativeMarkup = ['<span class="negative">', "</span>"];
@@ -36,7 +36,7 @@
           log(result.toString("~"));
           log(...result.consoleIterator(NEGATIVE_COLOR, POSITIVE_COLOR));
           target.textContent = "";
-          target.append(...textToNodes(`
+          target.append(...textToDOMNodes(`
             <hr />
             ${factor0} × "${(num0.toString(...negativeMarkup))}" +
             "${(num1.toString(...negativeMarkup))}" × ${factor1} =

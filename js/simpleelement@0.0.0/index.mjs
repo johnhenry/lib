@@ -1,5 +1,5 @@
 const { HTMLElement } = globalThis;
-import textToNodes from "https://johnhenry.github.io/std/js/text-to-nodes@0.0.0/index.mjs";
+import textToDOMNodes from "https://johnhenry.github.io/std/js/text-to-DOM-nodes@0.0.0/index.mjs";
 const createElement =
   (
     { shadowMode = "open", useShadow = true, baseElement = HTMLElement } = {
@@ -18,7 +18,7 @@ const createElement =
       return class extends baseElement {
         constructor() {
           super();
-          const children = textToNodes(str);
+          const children = textToDOMNodes(str);
           this.attachShadow({ mode: shadowMode }).append(...children);
         }
       };
@@ -26,7 +26,7 @@ const createElement =
       return class extends baseElement {
         constructor() {
           super();
-          const children = textToNodes(str);
+          const children = textToDOMNodes(str);
           this.append(...children);
         }
       };
@@ -61,11 +61,11 @@ const constructSuperclass = (
     constructor() {
       super();
       if (shadowHTML) {
-        const children = textToNodes(shadowHTML);
+        const children = textToDOMNodes(shadowHTML);
         this.attachShadow({ mode: shadowMode }).append(...children);
       }
       if (HTML) {
-        const children = textToNodes(HTML);
+        const children = textToDOMNodes(HTML);
         this.append(...children);
       }
     }

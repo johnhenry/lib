@@ -14,7 +14,7 @@
     <pre>
       <script type="module" style="display: block">
         import query from "https://johnhenry.github.io/std/js/url-params@0.0.0/query.mjs";
-        import textToNodes from "https://johnhenry.github.io/std/js/text-to-nodes@0.0.0/index.mjs";
+        import textToDOMNodes from "https://johnhenry.github.io/std/js/text-to-DOM-nodes@0.0.0/index.mjs";
         import pause from "https://johnhenry.github.io/std/js/pause@0.0.0/index.mjs";
         import transduce from "https://johnhenry.github.io/std/js/iterator-transduce@0.0.0/index.mjs";
         import { map, group, take } from "https://johnhenry.github.io/std/js/iterator-transduce@0.0.0/transducers.mjs";
@@ -48,7 +48,7 @@
         const transform = transduce(
           map((x) => {
             const li = window.document.createElement("li");
-            li.append(...textToNodes(negater(x).toString(...negativeMarkup)));
+            li.append(...textToDOMNodes(negater(x).toString(...negativeMarkup)));
             return li;
           }),
           group(Number(query.group) || 1),
