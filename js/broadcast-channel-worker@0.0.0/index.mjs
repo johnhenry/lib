@@ -22,11 +22,20 @@ export default class extends EventTarget {
         return;
       }
       const { from, to, message, leave, ping, ack, newId } = data;
+      if (!this.#peers.has(from)) {
+        this.dispatchEvent(new CustomEvent("join", { detail: from }));
+      }
       this.#peers.add(from);
       if (leave) {
+        if (this.#peers.has(from)) {
+          this.dispatchEvent(new CustomEvent("leave", { detail: from }));
+        }
         this.#peers.delete(from);
         if (typeof newId === "number") {
-          this.#peers.add(from);
+          if (!this.#peers.has(newId)) {
+            this.dispatchEvent(new CustomEvent("join", { detail: newId }));
+          }
+          this.#peers.add(newId);
         }
         return;
       }

@@ -12,19 +12,29 @@
     <pre>
       <script type="module" style="display: block">
         import BroadcastChannelWorker from "https://johnhenry.github.io/std/js/broadcast-channel-worker@0.0.0/index.mjs";
-        const onmessage = (message, from, to)=>{
-          console.log(
-`Dear ${to || "ALL"},
+        const transform = (message, from, to) => `${new Date()}
+
+Dear ${to || "ALL"},
 
    ${message}
 
 -- ${from}
-`);
+`;
+        const onmessage = (message, from, to)=>{
+          console.log(transform(message, from, to));
         };
         const worker = new BroadcastChannelWorker({onmessage});
-        console.log("me:", worker.id);
+        console.log(worker.id, new Date());
 
-        worker.postMessage('Hello World!')
+        worker.postMessage('Hello World!');
+        setTimeout(()=>{
+          const peers = [...worker.peers]
+          const peer = peers[Math.floor(Math.random() * peers.length)];
+          if(peer){
+            worker.postMessage('Hello You!', peer);
+          }
+        }, 1000);
+
         worker.addEventListener('ping', ({detail})=>{
           console.log("received ping from:", detail);
         });
