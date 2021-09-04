@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Broadcast Channel Worker</title>
+  </head>
+  <body>
+    <h1>Broadcast Channel Worker</h1>
+    <a href="#" target="_blank">↪ create peer</a>
+    <pre>
+      <script type="module" style="display: block">
+        import BroadcastChannelWorker from "https://johnhenry.github.io/std/js/broadcast-channel-worker@0.0.0/index.mjs";
+        e="module" style="display: block">
+        const onmessage = (message, from, to)=>{
+          console.log(
+`Dear ${to || "ALL"},
+
+   ${message}
+
+-- ${from}
+`);
+        };
+        const worker = new BroadcastChannelWorker({onmessage});
+        console.log("me:", worker.id);
+
+        worker.postMessage('Hello World!')
+        worker.addEventListener('ping', ({detail})=>{
+          console.log("received ping from:", detail);
+        });
+        worker.addEventListener('ack', ({detail})=>{
+          console.log("received ack from:", detail);
+        });
+        setInterval(()=>{
+          [...worker.peers].forEach(peer=>{
+            console.log("sending ping to:", peer);
+            worker.ping(peer);
+          });
+        }, 2000);
+        window.bcw = worker;
+      </script>
+    </pre>
+  </body>
+</html>

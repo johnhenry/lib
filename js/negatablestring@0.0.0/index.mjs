@@ -1,7 +1,20 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 import mod from "../mod@0.0.0/index.mjs";
-const COLOR = "white";
-const NCOLOR = "red";
+let COLOR = "white";
+let PCOLOR = COLOR;
+let NCOLOR = "red";
+export const SETDEFAULTCOLORS = {
+  default(color) {
+    COLOR = color;
+  },
+  positive(color) {
+    PCOLOR = color;
+  },
+  negative(color) {
+    NCOLOR = color;
+  },
+};
+
 export const r = Symbol.for("negatable string representation");
 
 export const NegatableString = class {
@@ -10,7 +23,7 @@ export const NegatableString = class {
     Object.freeze(this[r]);
     this[r].forEach(Object.freeze);
   }
-  consoleIterator(nColor = NCOLOR, pColor = COLOR, color = COLOR) {
+  consoleIterator(nColor = NCOLOR, pColor = PCOLOR, color = COLOR) {
     return consoleIterator(this, nColor, pColor, color);
   }
   toString(nStart = "", nEnd = "", pStart = "", pEnd = "") {
@@ -133,41 +146,38 @@ export const flushPositive = (string) =>
 export const flushNegative = (string) =>
   new NegatableString(string[r].filter(([x, s]) => !s));
 
-export const scale = (scalar = 1, string) => {
-  let right;
-  if (typeof scalar !== "number") {
-    let temp = scalar;
-    scalar = string;
-    string = temp;
-    right = true;
-  }
-  scalar = scalar === undefined ? 1 : scalar;
-  string = string === undefined ? "" : string;
+export const scaleL = (scalar = 1, string = "") => {
   const pScalar = Math.abs(scalar);
   const rep = string[r];
-
   const result = [];
   const len = Math.round(pScalar * rep.length);
-
-  if (right) {
-    for (let i = 1; i <= len; i++) {
-      result.unshift(rep[mod(-i, rep.length)]);
-    }
-  } else {
-    for (let i = 0; i < len; i++) {
-      result.push(rep[i % rep.length]);
-    }
+  for (let i = 0; i < len; i++) {
+    result.push(rep[i % rep.length]);
   }
-
   return scalar < 0
     ? invert(new NegatableString(result))
     : new NegatableString(result);
 };
-
+export const scaleR = (scalar = 1, string = "") => {
+  const pScalar = Math.abs(scalar);
+  const rep = string[r];
+  const result = [];
+  const len = Math.round(pScalar * rep.length);
+  for (let i = 1; i <= len; i++) {
+    result.unshift(rep[mod(-i, rep.length)]);
+  }
+  return scalar < 0
+    ? invert(new NegatableString(result))
+    : new NegatableString(result);
+};
+export const scale = (scalarOrString, stringOrScalar) =>
+  typeof scalarOrString !== "number"
+    ? scaleL(stringOrScalar, scalarOrString)
+    : scaleR(scalarOrString, stringOrScalar);
 export const consoleIterator = (
   str,
   nColor = NCOLOR,
-  pColor = COLOR,
+  pColor = PCOLOR,
   color = COLOR
 ) => {
   const colors = [];
