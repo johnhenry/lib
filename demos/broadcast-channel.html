@@ -8,23 +8,40 @@
   </head>
   <body>
     <h1>Broadcast Channel Worker</h1>
-    <a href="#" target="_blank">↪ create peer</a>
     <pre>
       <script type="module" style="display: block">
         import BroadcastChannelWorker from "https://johnhenry.github.io/std/js/broadcast-channel-worker@0.0.0/index.mjs";
-        const transform = (message, from, to) => `${new Date()}
+        import textToDOMNodes from "https://johnhenry.github.io/std/js/text-to-DOM-nodes@0.0.0/index.mjs";
+        import { PNG , SVG } from "/js/liedenticons@0.0.0/index.mjs";
+        const transform = (message, from, to) =>
+`${new Date()}
 
 Dear ${to || "ALL"},
 
-   ${message}
+${message}
 
 -- ${from}
 `;
         const onmessage = (message, from, to)=>{
+          const letter = transform(message, from, to);
           console.log(transform(message, from, to));
+          document.body.append(...textToDOMNodes(
+`
+<hr />
+<img src=${new PNG(String(from)).toString()} style="display:inline">
+<pre>
+${letter}
+</pre>
+`))
+
         };
         const worker = new BroadcastChannelWorker({onmessage});
         console.log(worker.id, new Date());
+
+        const icon = new SVG(String(worker.id));
+        const img = window.document.getElementById('img-profile');
+        img.src = icon.toString(true);
+        img.title = worker.id;
 
         worker.postMessage('Hello World!');
         setTimeout(()=>{
@@ -50,5 +67,7 @@ Dear ${to || "ALL"},
         window.bcw = worker;
       </script>
     </pre>
+    <img id="img-profile" alt="profile" />
+    <a href="#" target="_blank">↪ create peer</a>
   </body>
 </html>

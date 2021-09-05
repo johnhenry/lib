@@ -8,11 +8,11 @@ describe("Normal strings", () => {
     expect(SAMPLE_STRING[r]).toBeTruthy();
   });
 
-  test("All characters are positive.'", () => {
+  test("All characters are positive.", () => {
     SAMPLE_STRING[r].every(([char, sign]) => expect(sign).toBeFalsy());
   });
 
-  test("All characters are positive.'", () => {
+  test("All characters are positive.", () => {
     expect(SAMPLE_STRING).toEqual(
       SAMPLE_STRING[r].map(([char]) => char).join("")
     );
