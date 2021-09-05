@@ -4,19 +4,10 @@
     <title>Liedenticons</title>
     <style>
       pre {
-        display: block;
-        padding: 9.5px;
-        margin: 0 0 10px;
-        font-size: 13px;
-        line-height: 1.42857143;
-        color: #333;
-        word-break: break-all;
-        word-wrap: break-word;
-        background-color: #f5f5f5;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+        padding: 8px;
+        border: 1px solid #cccccc;
       }
-      script.show-script {
+      pre > * {
         display: block;
       }
     </style>
@@ -24,7 +15,7 @@
 
   <body>
     <h1>Liedenticons</h1>
-    <div class="container-fluid">
+    <div>
       <h2>SVG</h2>
       <div>
         <div>
@@ -34,16 +25,15 @@
             size. Foreground colors is based on input.
           </p>
           <pre id="demo-basic">
-          <script class="show-script" type="module">
-            import { SVG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
-            const span = globalThis.document.createElement("SVG");
-            globalThis.document.getElementById("demo-basic").prepend(span);
-            span.outerHTML = new SVG("d6fe8c82fb0abac17a702fd2a94eff37");
+          <script type="module">
+import { SVG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
+const span = globalThis.document.createElement("SVG");
+globalThis.document.getElementById("demo-basic").prepend(span);
+span.outerHTML = new SVG("d6fe8c82fb0abac17a702fd2a94eff37");
             </script>
           </pre>
         </div>
       </div>
-
       <div>
         <div>
           <h3>Options</h3>
@@ -52,21 +42,21 @@
             color, padding, size.
           </p>
           <pre id="demo-options">
-          <script class="show-script" type="module">
-            import { SVG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
-            const options = {
-              foreground: "#ff0000ff",
-              background: "#000000ff",
-              padding: "25%",
-              size: 32,
-            };
-            const span = globalThis.document.createElement("SVG");
-            globalThis.document.getElementById("demo-options").prepend(span);
-            span.outerHTML = new SVG(
-              "46384036044a604b6b3316fc167fc15f",
-              options
-            );
-          </script>
+            <script type="module">
+import { SVG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
+const options = {
+  foreground: "#ff0000ff",
+  background: "#000000ff",
+  padding: "25%",
+  size: 32,
+};
+const span = globalThis.document.createElement("SVG");
+globalThis.document.getElementById("demo-options").prepend(span);
+span.outerHTML = new SVG(
+  "46384036044a604b6b3316fc167fc15f",
+  options
+);
+            </script>
           </pre>
         </div>
       </div>
@@ -79,14 +69,14 @@
             an image.
           </p>
           <pre id="demo-preamble">
-          <script class="show-script" type="module">
-            import { SVG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
-            const img = globalThis.document.createElement("IMG");
-            img.src = new SVG("373ff2375be91ebc97501e67d24ccd4d").toString(
-              true
-            );
-            globalThis.document.getElementById("demo-preamble").prepend(img);
-          </script>
+            <script type="module">
+import { SVG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
+const img = globalThis.document.createElement("IMG");
+img.src = new SVG("373ff2375be91ebc97501e67d24ccd4d").toString(
+  true
+);
+globalThis.document.getElementById("demo-preamble").prepend(img);
+            </script>
           </pre>
         </div>
       </div>
@@ -95,55 +85,54 @@
           <h3>As an Image Source (base 64)</h3>
           <p>
             The "toString()" method takes a <i>second</i> boolean. When set to
-            true, the output is a base64 string rather than svg text.
+            true, the output is a base64 string rather than SVG text.
           </p>
           <pre id="demo-base64">
-          <script class="show-script" type="module">
-            import { SVG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
-            const img = globalThis.document.createElement("IMG");
-            img.src = new SVG("001000101000000000000000099fff86").toString(
-              true,
-              true
-            );
-            globalThis.document.getElementById("demo-base64").prepend(img);
-          </script>
+            <script type="module">
+import { SVG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
+const img = globalThis.document.createElement("IMG");
+img.src = new SVG("001000101000000000000000099fff86").toString(
+  true,
+  true
+);
+globalThis.document.getElementById("demo-base64").prepend(img);
+            </script>
           </pre>
         </div>
       </div>
     </div>
-
-    <div class="container-fluid">
+    <div>
       <h2>PNG</h2>
       <div>
         <div>
           <h3>Basic Usage (PNG)</h3>
           <p>
-            The generated string is <i>always</i> in base64 format. By default,
-            the preamble is attached.
+            The generated string is <i>always</i> in base64 format. The preamble
+            is attached by default.
           </p>
           <pre id="demo-png">
-          <script class="show-script" type="module">
-            import { PNG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
-            const img = globalThis.document.createElement("IMG");
-            img.src = new PNG("d6fe8c82fb0abac17a702fd2a94eff37");
-            globalThis.document.getElementById("demo-png").prepend(img);
-          </script>
+            <script type="module">
+import { PNG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
+const img = globalThis.document.createElement("IMG");
+img.src = new PNG("d6fe8c82fb0abac17a702fd2a94eff37");
+globalThis.document.getElementById("demo-png").prepend(img);
+            </script>
           </pre>
         </div>
       </div>
       <div>
         <div>
           <h3>Raw String</h3>
-          <p>Pass "false" into to "toString" to drop preamble.</p>
+          <p>Explicitly pass "false" into "toString" to drop the preamble.</p>
           <pre id="demo-png-raw">
-          <script class="show-script" type="module" >
-            import { PNG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
-            const img = globalThis.document.createElement("IMG");
-            img.src = `data:image/png;base64,${new PNG(
-              "46384036044a604b6b3316fc167fc15f"
-            ).toString(false)}`;
-            globalThis.document.getElementById("demo-png-raw").prepend(img);
-          </script>
+            <script type="module" >
+import { PNG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
+const img = globalThis.document.createElement("IMG");
+img.src = `data:image/png;base64,${new PNG(
+  "46384036044a604b6b3316fc167fc15f"
+).toString(false)}`;
+globalThis.document.getElementById("demo-png-raw").prepend(img);
+            </script>
           </pre>
         </div>
       </div>

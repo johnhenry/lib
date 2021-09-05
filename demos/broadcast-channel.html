@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" />
+    <link id="favicon" rel="icon" type="image/svg+xml" />
     <title>Broadcast Channel Worker</title>
   </head>
   <body>
@@ -24,39 +24,22 @@ ${message}
 -- ${from}
 `;
         const onmessage = (message, from, to)=>{
-          const letter = transform(message, from, to);
-          console.log(transform(message, from, to));
-          document.body.append(...textToDOMNodes(
+        const letter = transform(message, from, to);
+        console.log(transform(message, from, to));
+        globalThis.document.body.append(...textToDOMNodes(
 `
 <hr />
-<img src=${new PNG(String(from)).toString()} style="display:inline">
+<img src=${new SVG(String(from)).toString(true, true)} style="display:inline">
 <pre>
 ${letter}
 </pre>
 `))
-
         };
         const worker = new BroadcastChannelWorker({onmessage});
-
-        const setFavicon = (id)=>{
-          let icon = globalThis.document.querySelector("link[rel~='icon']");
-          if (!icon) {
-              icon = globalThis.document.createElement('link');
-              icon.rel = 'icon';
-              icon.type=type="image/svg+xml";
-              globalThis.document.getElementsByTagName('head')[0].appendChild(link);
-          }
-          icon.href = new SVG(String(id)).toString(true);
-        }
-        setFavicon(worker.id)
-
-
         console.log(worker.id, new Date());
 
-        const icon = new SVG(String(worker.id));
-        const img = window.document.getElementById('img-profile');
-        img.src = icon.toString(true);
-        img.title = worker.id;
+        const favicon = globalThis.document.getElementById('favicon');
+        favicon.href = new PNG(String(worker.id)).toString();
 
         worker.postMessage('Hello World!');
         setTimeout(()=>{
@@ -82,7 +65,6 @@ ${letter}
         window.bcw = worker;
       </script>
     </pre>
-    <img id="img-profile" alt="profile" />
-    <a href="#" target="_blank">↪ create peer</a>
+    <a href="#" target="_blank">↪ new peer</a>
   </body>
 </html>

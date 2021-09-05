@@ -1,5 +1,9 @@
 const DEFAULT_CHANNEL_NAME = "default";
 
+const errorEvent = function (event) {
+  this.dispatchEvent(event);
+};
+
 export default class extends EventTarget {
   #id;
   #channel;
@@ -61,7 +65,7 @@ export default class extends EventTarget {
         this.#onmessage(message, from, to);
       }
     };
-    this.#errorBound = this.errorEvent.bind(this);
+    this.#errorBound = errorEvent.bind(this);
     this.#channel.addEventListener("messageerror", this.#errorBound);
     globalThis.addEventListener("beforeunload", () => {
       this.leave();
@@ -70,9 +74,7 @@ export default class extends EventTarget {
       this.ping();
     }
   }
-  errorEvent(event) {
-    this.dispatchEvent(event);
-  }
+
   close(leave = true) {
     if (leave) {
       this.leave();
