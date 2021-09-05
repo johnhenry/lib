@@ -1,17 +1,17 @@
-# Liedenticon
+# Liedenticons
 
 Transform a string into a unique image.
 
-## Lidenticons vs Identicons
+## Liedenticons vs Identicons
 
-Liedenticon is a ~~ripoff of~~ extension of [Identicon](https://github.com/stewartlord/identicon.js/tree/master) with a few major differences.
+Liedenticons is a ~~ripoff of~~ extension of [Identicon](https://github.com/stewartlord/identicon.js/tree/master) with a few major differences.
 
 ### Modules
 
-Liedenticon separates image generation into two separate classes. One to generate SVGs and another to generate PNGs.
+Liedenticons separates image generation into two separate classes. One to generate SVGs and another to generate PNGs.
 
 ```javascript
-import { SVG, PNG } from "Lidenticons";
+import { SVG, PNG } from "Liedenticons";
 ```
 
 #### SVG Class
@@ -56,7 +56,7 @@ It should be easy to extend this object and support other fomats by implementing
 a "renderImage" and a "toString" method.
 
 ```javascript
-import Graphics from "Liedenticon/graphic";
+import Graphics from "Liedenticons/graphic";
 class NewFormat extends Graphics {
   renderImage(hash, size, padding, background, foreground) {
     //...
@@ -69,7 +69,7 @@ class NewFormat extends Graphics {
 
 ### Color Support
 
-In addition to using an array for colors, Liedenticon supports 1, 2, 3, 4, 6, and 8 digit hex color codes.
+In addition to using an array for colors, Liedenticons supports 1, 2, 3, 4, 6, and 8 digit hex color codes.
 2, 4, and 8 digit colors support alpha channels
 
 ### Padding vs Margin

@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <h1>Liedenticon</h1>
+    <h1>Liedenticons</h1>
     <div class="container-fluid">
       <h2>SVG</h2>
       <div class="row">
@@ -21,7 +21,7 @@
             size. Foreground colors is based on input.
           </p>
           <pre id="demo-basic">
-import {SVG} from "Liedenticon";
+import {SVG} from "Liedenticons";
 const span = document.createElement("SVG");
 document.getElementById("demo-basic").appendChild(span);
 span.outerHTML = new SVG("d6fe8c82fb0abac17a702fd2a94eff37");
@@ -45,7 +45,7 @@ span.outerHTML = new SVG("d6fe8c82fb0abac17a702fd2a94eff37");
           </p>
           <pre id="demo-options">
 
-import {SVG} from "Liedenticon";
+import {SVG} from "Liedenticons";
 const options = {
 foreground: "#ff0000ff",
 background: "#000000ff",
@@ -84,7 +84,7 @@ span.outerHTML = new SVG("46384036044a604b6b3316fc167fc15f", options);
             for an image.
           </p>
           <pre id="demo-preamble">
-import {SVG} from "Liedenticon";
+import {SVG} from "Liedenticons";
 const img = document.createElement("IMG");
 img.src = new SVG("373ff2375be91ebc97501e67d24ccd4d").toString(true);
 document.getElementById("demo-preamble").appendChild(img);
@@ -108,7 +108,7 @@ document.getElementById("demo-preamble").appendChild(img);
             is a base64 string rather than svg text.
           </p>
           <pre id="demo-base64">
-import {SVG} from "Liedenticon";
+import {SVG} from "Liedenticons";
 const img = document.createElement("IMG");
 img.src = new SVG("001000101000000000000000099fff86").toString(true, true);
 document.getElementById("demo-base64").appendChild(img);
@@ -135,7 +135,7 @@ document.getElementById("demo-base64").appendChild(img);
           <p>By default, the generated string will have a preamble attached</p>
           <pre id="demo-png">
 
-import { PNG } from "Liedenticon";
+import { PNG } from "Liedenticons";
 const img = document.createElement("IMG");
 img.src = new PNG("d6fe8c82fb0abac17a702fd2a94eff37");
 document.getElementById("demo-png").appendChild(img);
@@ -155,7 +155,7 @@ document.getElementById("demo-png").appendChild(img);
           <h4>Raw String</h4>
           <p>Pass "false" into to "toString" to prevent drop preamble.</p>
           <pre id="demo-png-raw">
-import { PNG } from "Liedenticon";
+import { PNG } from "Liedenticons";
 const img = document.createElement("IMG");
 img.src = `data:image/png;base64,${new PNG("46384036044a604b6b3316fc167fc15f").toString(false)}`;
 document.getElementById("demo-png-raw").appendChild(img);

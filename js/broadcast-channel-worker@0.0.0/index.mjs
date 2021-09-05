@@ -61,7 +61,7 @@ export default class extends EventTarget {
         this.#onmessage(message, from, to);
       }
     };
-    this.#errorBound = this.#errorEvent.bind(this);
+    this.#errorBound = this.errorEvent.bind(this);
     this.#channel.addEventListener("messageerror", this.#errorBound);
     globalThis.addEventListener("beforeunload", () => {
       this.leave();
@@ -70,7 +70,7 @@ export default class extends EventTarget {
       this.ping();
     }
   }
-  #errorEvent(event) {
+  errorEvent(event) {
     this.dispatchEvent(event);
   }
   close(leave = true) {

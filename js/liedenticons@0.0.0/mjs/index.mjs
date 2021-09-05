@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 /**
- * Lidenticon 0.0.0
- * http://github.com/johnhenry/lidenticon
+ * Liedenticons 0.0.0
+ * http://github.com/johnhenry/liedenticons
  * @copyright Copyright (c) 2017, John Henry
  * @copyright Copyright (c) 2017, Stewart Lord
  * @copyright Copyright (c) 2010, Robert Eisele <robert@xarg.org>
@@ -15,9 +15,9 @@
  * @description A hash represented as an SVG
  * @param {string} hash - unique string
  * @param {object} options - graphicical options
- * @extends lidenticons/graphic
+ * @extends liedenticons/graphic
  * @example
- * import {SVG} from "Liedenticon";
+ * import {SVG} from "Liedenticons";
  * const svg = document.createElement("SVG");
  * document.appendChild(svg);
  * svg.outerHTML = new SVG("efb8c90a13f7a1fdc4910");
@@ -29,9 +29,9 @@ export { default as SVG } from "./svg/index.mjs";
  * @description A hash represented as an PNG
  * @param {string} hash - unique string
  * @param {object} options - graphicical options
- * @extends lidenticons/graphic
+ * @extends liedenticons/graphic
  * @example
- * import {PNG} from "Liedenticon";
+ * import {PNG} from "Liedenticons";
  * const img = document.createElement("IMG");
  * img.src = new PNG("efb8c90a13f7a1fdc4910");
  * document.appendChild(img);

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" />
     <title>Broadcast Channel Worker</title>
   </head>
   <body>
@@ -12,7 +13,7 @@
       <script type="module" style="display: block">
         import BroadcastChannelWorker from "https://johnhenry.github.io/std/js/broadcast-channel-worker@0.0.0/index.mjs";
         import textToDOMNodes from "https://johnhenry.github.io/std/js/text-to-DOM-nodes@0.0.0/index.mjs";
-        import { PNG , SVG } from "/js/liedenticons@0.0.0/index.mjs";
+        import { PNG , SVG } from "https://johnhenry.github.io/std/js/liedenticons@0.0.0/index.mjs";
         const transform = (message, from, to) =>
 `${new Date()}
 
@@ -36,6 +37,20 @@ ${letter}
 
         };
         const worker = new BroadcastChannelWorker({onmessage});
+
+        const setFavicon = (id)=>{
+          let icon = globalThis.document.querySelector("link[rel~='icon']");
+          if (!icon) {
+              icon = globalThis.document.createElement('link');
+              icon.rel = 'icon';
+              icon.type=type="image/svg+xml";
+              globalThis.document.getElementsByTagName('head')[0].appendChild(link);
+          }
+          icon.href = new SVG(String(id)).toString(true);
+        }
+        setFavicon(worker.id)
+
+
         console.log(worker.id, new Date());
 
         const icon = new SVG(String(worker.id));

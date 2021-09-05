@@ -1,54 +1,59 @@
 ## Classes
 
 <dl>
-<dt><a href="#SVG">SVG</a> ⇐ <code>lidenticons/graphic</code></dt>
+<dt><a href="#SVG">SVG</a> ⇐ <code>liedenticons/graphic</code></dt>
 <dd></dd>
-<dt><a href="#PNG">PNG</a> ⇐ <code>lidenticons/graphic</code></dt>
+<dt><a href="#PNG">PNG</a> ⇐ <code>liedenticons/graphic</code></dt>
 <dd></dd>
 </dl>
 
 <a name="SVG"></a>
 
-## SVG ⇐ <code>lidenticons/graphic</code>
+## SVG ⇐ <code>liedenticons/graphic</code>
+
 **Kind**: global class  
-**Extends**: <code>lidenticons/graphic</code>  
+**Extends**: <code>liedenticons/graphic</code>  
 <a name="new_SVG_new"></a>
 
 ### new SVG(hash, options)
+
 A hash represented as an SVG
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| hash | <code>string</code> | unique string |
+| Param   | Type                | Description         |
+| ------- | ------------------- | ------------------- |
+| hash    | <code>string</code> | unique string       |
 | options | <code>object</code> | graphicical options |
 
-**Example**  
+**Example**
+
 ```js
-import {SVG} from "Liedenticon";
+import { SVG } from "Liedenticons";
 const svg = document.createElement("SVG");
 document.appendChild(svg);
 svg.outerHTML = new SVG("efb8c90a13f7a1fdc4910");
 ```
+
 <a name="PNG"></a>
 
-## PNG ⇐ <code>lidenticons/graphic</code>
+## PNG ⇐ <code>liedenticons/graphic</code>
+
 **Kind**: global class  
-**Extends**: <code>lidenticons/graphic</code>  
+**Extends**: <code>liedenticons/graphic</code>  
 <a name="new_PNG_new"></a>
 
 ### new PNG(hash, options)
+
 A hash represented as an PNG
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| hash | <code>string</code> | unique string |
+| Param   | Type                | Description         |
+| ------- | ------------------- | ------------------- |
+| hash    | <code>string</code> | unique string       |
 | options | <code>object</code> | graphicical options |
 
-**Example**  
+**Example**
+
 ```js
-import {PNG} from "Liedenticon";
+import { PNG } from "Liedenticons";
 const img = document.createElement("IMG");
 img.src = new PNG("efb8c90a13f7a1fdc4910");
 document.appendChild(img);
