@@ -238,8 +238,7 @@ export default async (yargs: any) => {
       verboseLog(1, `  ${key}: ${value}`);
     }
   }
-  const API_KEY = key || ENVIRONMENT.OPENAI_API_KEY;
-  const api = new OpenAICompletions(engine, API_KEY);
+  const api = new OpenAICompletions(engine, key);
   if (input) {
     if (input === "-") {
       const lines = [];
@@ -300,7 +299,7 @@ export default async (yargs: any) => {
       "/",
       proxy(API_URL, {
         headers: {
-          Authorization: `Bearer ${API_KEY}`,
+          Authorization: `Bearer ${key}`,
         },
       })
     );
