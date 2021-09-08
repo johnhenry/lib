@@ -104,9 +104,9 @@ openai completions -RS
 ### Create an interactive document
 
 ```sh
-openai completions --input=document.txt --output=document.txt --watch=document.txt --format=simple --echo
+openai completions --input=document.txt --output=document.txt --watch=document.txt --format=simple --echo --verbose
 ```
 
 ```sh
-openai completions -I=document.txt
+openai completions -v -I=document.txt
 ```
