@@ -121,60 +121,77 @@ export default async (yargs: any) => {
     .option("prompt", {
       alias: "P",
       type: "string",
-      default: ENVIRONMENT.OPENAI_PROMPT || "davinci",
+      default: ENVIRONMENT.OPENAI_PROMPT || "",
       description: "",
     })
     //
     .option("verbose", {
       alias: "v",
-      type: "boolean",
-      description: "file to watch",
+      type: "count",
+      description: "Verosity level",
     })
     .option("input", {
       alias: "i",
       type: "string",
+      default: ENVIRONMENT.OPENAI_INPUT_FILE || "",
       description: "",
     })
     .nargs("i", 1)
     .option("output", {
       alias: "o",
       type: "string",
+      default: ENVIRONMENT.OPENAI_OUTPUT_FILE || "",
       description: "",
     })
     .nargs("o", 1)
     .option("simple", {
       alias: "S",
       type: "boolean",
+      default:
+        ENVIRONMENT.OPENAI_OUTPUT_SIMPLE === "true"
+          ? true
+          : ENVIRONMENT.OPENAI_OUTPUT_SIMPLE === "false"
+          ? false
+          : undefined,
       description: "",
     })
     .option("format", {
       alias: "f",
       type: "string",
-      default: "json",
+      default: ENVIRONMENT.OPENAI_FORMAT || "json",
       description: "",
     })
     .nargs("f", 1)
     // modal
     .option("http-proxy", {
       alias: "H",
+      default:
+        ENVIRONMENT.OPENAI_HTTP_PROXY === "true"
+          ? true
+          : ENVIRONMENT.OPENAI_HTTP_PROXY === "false"
+          ? false
+          : Number(ENVIRONMENT.OPENAI_HTTP_PROXY),
       description: "proxy local",
     })
     .nargs("w", 1)
     .option("watch", {
       alias: "w",
       type: "string",
+      default: ENVIRONMENT.OPENAI_WATCH_FILE || "",
       description: "file to watch",
     })
     .nargs("w", 1)
     .option("interactive_file", {
       alias: "I",
       type: "string",
+      default: ENVIRONMENT.OPENAI_INTERACTIVE_FILE || "",
       description: "",
     })
     .option("repl", {
       alias: "R",
       type: "boolean",
-      description: "",
+      default: ENVIRONMENT.OPENAI_REPL === "true" ? true : false,
+      description: "(Ctrl+C to exit)",
     });
 
   if (argv["stop"].length === 0) {
@@ -203,6 +220,7 @@ export default async (yargs: any) => {
     prompt,
     _,
   } = argv;
+
   if (stream) {
     throw new Error("stream is not supported yet");
   }
@@ -235,7 +253,8 @@ export default async (yargs: any) => {
 
   const [, ...tokens] = _;
 
-  const verboseLog = logLevels(Number(verbose) || 0);
+  const verboseLog = logLevels(verbose);
+
   // Log Options
   verboseLog(1, "API Options");
   verboseLog(1, "-----------");
@@ -300,8 +319,8 @@ export default async (yargs: any) => {
       verboseLog(1, "updated.");
     }
     return;
-  } else if (httpProxy) {
-    const port = httpProxy === true ? 8080 : Number(httpProxy);
+  } else if (httpProxy || httpProxy === 0) {
+    const port = httpProxy === true ? 8080 : httpProxy;
     const app: any = opine();
     app.use(
       "/",
