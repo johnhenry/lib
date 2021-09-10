@@ -200,7 +200,7 @@ export default async (yargs: any) => {
     verbose,
     repl,
     httpProxy,
-    prompt
+    prompt,
     _,
   } = argv;
   if (stream) {
