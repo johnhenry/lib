@@ -80,15 +80,13 @@ export default async (yargs: any) => {
     })
     .option("stop", {
       alias: "x",
-      type: "boolean",
-      default:
-        ENVIRONMENT.OPENAI_STOP === "true"
-          ? true
-          : ENVIRONMENT.OPENAI_STOP === "false"
-          ? false
-          : undefined,
+      type: "array",
+      default: ENVIRONMENT.OPENAI_STOP
+        ? ENVIRONMENT.OPENAI_STOP.split(",")
+        : [],
       description: "",
     })
+    .nargs("x", 1)
     .option("presence_penalty", {
       alias: "r",
       type: "number",
@@ -113,11 +111,17 @@ export default async (yargs: any) => {
       default: Number(ENVIRONMENT.OPENAI_LOGIT_BIAS) || undefined,
       description: "",
     })
-    // API:URL Parameters
+    // API: Other Parameters
     .option("engine", {
       alias: "g",
       type: "string",
-      default: "davinci",
+      default: ENVIRONMENT.OPENAI_ENGINE || "davinci",
+      description: "",
+    })
+    .option("prompt", {
+      alias: "P",
+      type: "string",
+      default: ENVIRONMENT.OPENAI_PROMPT || "davinci",
       description: "",
     })
     //
@@ -172,6 +176,11 @@ export default async (yargs: any) => {
       type: "boolean",
       description: "",
     });
+
+  if (argv["stop"].length === 0) {
+    argv["stop"] = null;
+  }
+
   if (argv["interactive_file"]) {
     argv["input"] = argv["output"] = argv["watch"] = argv["interactive_file"];
     argv["format"] = "simple";
@@ -189,10 +198,9 @@ export default async (yargs: any) => {
     format,
     watch,
     verbose,
-    echo,
-    interactive_file,
     repl,
     httpProxy,
+    prompt
     _,
   } = argv;
   if (stream) {
@@ -277,7 +285,7 @@ export default async (yargs: any) => {
     const MAX_COUNT = 2;
     let count = 0;
     while (true) {
-      let data = prompt(">");
+      let data = globalThis.prompt(">");
       if (!data) {
         count++;
         if (count === MAX_COUNT) {
@@ -310,6 +318,10 @@ export default async (yargs: any) => {
     const output = await api.create(data, argv);
     write(output, format);
     return;
+  } else if (prompt) {
+    const data = prompt;
+    const output = await api.create(data, argv);
+    write(output, format);
   } else {
     throw new Error("no tokens provided");
   }
