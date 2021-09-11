@@ -110,3 +110,7 @@ openai completions --input=document.txt --output=document.txt --watch=document.t
 ```sh
 openai completions -v -I=document.txt
 ```
+
+## Flags
+
+Documentation for the object passed to the api is available here: https://beta.openai.com/docs/api-reference/completions/create

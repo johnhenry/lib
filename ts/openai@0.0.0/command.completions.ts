@@ -148,9 +148,9 @@ export default async (yargs: any) => {
       alias: "S",
       type: "boolean",
       default:
-        ENVIRONMENT.OPENAI_OUTPUT_SIMPLE === "true"
+        ENVIRONMENT.OPENAI_SIMPLE === "true"
           ? true
-          : ENVIRONMENT.OPENAI_OUTPUT_SIMPLE === "false"
+          : ENVIRONMENT.OPENAI_SIMPLE === "false"
           ? false
           : undefined,
       description: "",
