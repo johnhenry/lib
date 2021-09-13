@@ -1,9 +1,10 @@
 import { proxy } from "https://deno.land/x/opineHttpProxy@2.8.0/mod.ts";
 import opine from "https://cdn.deno.land/opine/versions/1.6.0/raw/mod.ts";
-
 import { readLines } from "https://deno.land/std@0.76.0/io/bufio.ts";
 import logLevels from "./logLevels.mjs";
 import { APPNAME } from "./constants.mjs";
+
+import hashfile from "./hashfile.ts";
 
 import OpenAICompletions, { DEFAULT_OPTIONS } from "./OpenAICompletions.ts";
 // https://books.google.com/books?id=yzgzEAAAQBAJ&pg=PT403&lpg=PT403&dq=yargs+pipe+hyphen&source=bl&ots=OhiYTMlwK5&sig=ACfU3U2262EgG07AaOXlUUrY8lhWir8__g&hl=en&sa=X&ved=2ahUKEwjOmvuP1OvyAhXsCTQIHYvEBKgQ6AF6BAgTEAM#v=onepage&q=yargs%20pipe%20hyphen&f=false
@@ -125,6 +126,12 @@ export default async (yargs: any) => {
       description: "",
     })
     //
+    .option("flash-message", {
+      alias: "h",
+      type: "string",
+      default: ENVIRONMENT.OPENAI_FLASH_MESSAGE || "",
+      description: "flash message",
+    })
     .option("verbose", {
       alias: "v",
       type: "count",
@@ -181,10 +188,22 @@ export default async (yargs: any) => {
       description: "file to watch",
     })
     .nargs("w", 1)
-    .option("interactive_file", {
+    .option("interactive-file", {
       alias: "I",
       type: "string",
       default: ENVIRONMENT.OPENAI_INTERACTIVE_FILE || "",
+      description: "",
+    })
+    .option("interactive-start", {
+      alias: "a",
+      type: "string",
+      default: ENVIRONMENT.OPENAI_INTERACTIVE_START || "",
+      description: "",
+    })
+    .option("interactive-restart", {
+      alias: "z",
+      type: "string",
+      default: ENVIRONMENT.OPENAI_INTERACTIVE_RESTART || "",
       description: "",
     })
     .option("repl", {
@@ -198,14 +217,30 @@ export default async (yargs: any) => {
     argv["stop"] = null;
   }
 
-  if (argv["interactive_file"]) {
-    argv["input"] = argv["output"] = argv["watch"] = argv["interactive_file"];
+  if (argv["interactive-file"]) {
+    argv["input"] = argv["output"] = argv["watch"] = argv["interactive-file"];
     argv["format"] = "simple";
     argv["echo"] = true;
   }
   if (argv["simple"]) {
     argv["format"] = "simple";
   }
+
+  argv["flashMessage"] = argv["flashMessage"].replaceAll("\\n", "\n");
+
+  argv["interactiveStart"] = argv["interactiveStart"].replaceAll("\\n", "\n");
+
+  argv["interactiveStart"] = argv["interactiveStart"].replaceAll("\\n", "\n");
+  argv["interactiveRestart"] = argv["interactiveRestart"].replaceAll(
+    "\\n",
+    "\n"
+  );
+  if (argv["stop"]) {
+    argv["stop"] = argv["stop"].map((item: string) =>
+      item.replaceAll("\\n", "\n")
+    );
+  }
+
   let {
     stream,
     input,
@@ -218,34 +253,43 @@ export default async (yargs: any) => {
     repl,
     httpProxy,
     prompt,
+    flashMessage,
+    interactiveStart,
+    interactiveRestart,
     _,
   } = argv;
 
   if (stream) {
     throw new Error("stream is not supported yet");
   }
-  const StreamWriter = (log: any) => (sse: EventSource, format: any) => {
-    sse.addEventListener("message", (e: any) => {
-      const data = JSON.parse(e.data);
-      const {
-        id,
-        event,
-        data: { text },
-      } = data;
-      if (event === "message") {
-        log(text);
-      }
-    });
-    sse.addEventListener("error", (error: any) => {
-      console.log({ error });
-    });
-    sse.addEventListener("open", (open: any) => {
-      console.log({ open });
-    });
-    sse.addEventListener("close", (close: any) => {
-      console.log({ close });
-    });
-  };
+  if (!key) {
+    throw new Error("no api key supplied");
+  }
+  const StreamWriter =
+    (log: any) =>
+    (sse: EventSource | string, format: any, addendum: string = "") => {
+      // sse.addEventListener("message", (e: any) => {
+      //   const data = JSON.parse(e.data);
+      //   const {
+      //     id,
+      //     event,
+      //     data: { text },
+      //   } = data;
+      //   if (event === "message") {
+      //     log(text);
+      //   }
+      // });
+      // const out = console.log;
+      // sse.addEventListener("error", (error: any) => {
+      //   out({ error });
+      // });
+      // sse.addEventListener("open", (open: any) => {
+      //   out({ open });
+      // });
+      // sse.addEventListener("close", (close: any) => {
+      //   out({ close });
+      // });
+    };
 
   const log = output ? FileLog(output) : console.log;
 
@@ -254,7 +298,9 @@ export default async (yargs: any) => {
   const [, ...tokens] = _;
 
   const verboseLog = logLevels(verbose);
-
+  if (flashMessage) {
+    verboseLog(0, flashMessage);
+  }
   // Log Options
   verboseLog(1, "API Options");
   verboseLog(1, "-----------");
@@ -279,19 +325,35 @@ export default async (yargs: any) => {
       return;
     } else {
       if (watch) {
-        let oldData;
-        for await (const event of Deno.watchFs(watch)) {
-          const data = await Deno.readTextFile(input);
-          if (data === oldData) {
+        verboseLog(2, "watching", watch);
+        let oldHash;
+        for await (const _ of Deno.watchFs(watch)) {
+          const newHash = await hashfile(input);
+          if (newHash === oldHash) {
             continue;
           }
-          verboseLog(1, "updating...");
+
+          verboseLog(2, "change detected", oldHash, newHash);
+          const data = (await Deno.readTextFile(input)) + interactiveStart;
           const output = await api.create(data, argv);
-          write(output, format);
-          verboseLog(1, "updated.");
-          oldData = await Deno.readTextFile(input);
+          write(output, format, interactiveRestart);
+          oldHash = await hashfile(input);
+          verboseLog(2, "updated", watch, oldHash, newHash);
         }
         return;
+        // let oldData;
+        // for await (const event of Deno.watchFs(watch)) {
+        //   const data = await Deno.readTextFile(input);
+        //   if (data === oldData) {
+        //     continue;
+        //   }
+        //   verboseLog(1, "updating...");
+        //   const output = await api.create(data, argv);
+        //   write(output, format);
+        //   verboseLog(1, "updated.");
+        //   oldData = await Deno.readTextFile(input);
+        // }
+        // return;
       } else {
         const data = await Deno.readTextFile(input);
         verboseLog(1, data);

@@ -15,3 +15,4 @@
 - examples/<name>/.env
 - enforce nargs
 - indstuctions/demonstrations/flash message before starting to explain presets
+- external dependevcies

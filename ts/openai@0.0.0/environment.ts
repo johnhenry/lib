@@ -8,18 +8,21 @@ const base = [
   "prompt",
   "input_file",
   "output_file",
+  "flash_message",
   "simple",
   "format",
   "http_proxy",
   "watch_file",
   "interactive_file",
+  "interactive_start",
+  "interactive_restart",
   "repl",
 ];
 // import { Config as settings } from "https://raw.githubusercontent.com/eankeen/config/master/mod.ts";
 const ENVIRONMENT: any = {};
 {
   const env: any = Deno.env.toObject();
-  const env_file: any = environment({ safe: true });
+  const env_file: any = environment({ safe: true, allowEmptyValues: true });
   let set: any = {};
   // set = (await settings.load({
   //       file: "openai",
