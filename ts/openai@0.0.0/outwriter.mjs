@@ -1,15 +1,16 @@
 export default (log) =>
-  (output, format = undefined, addendum = "") => {
+  (output, format, addendum = "") => {
     let result = output;
     if (result.error) {
       throw new Error(result.error.message);
     }
 
     switch (format) {
-      case "simple":
-        result = output.choices[0].text;
+      case "full":
         break;
+      default:
+        result = output.choices[0].text + addendum;
     }
-    log(result + addendum);
+    log(result);
     return result;
   };

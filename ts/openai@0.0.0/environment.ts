@@ -9,7 +9,7 @@ const base = [
   "input_file",
   "output_file",
   "flash_message",
-  "simple",
+  "full_output",
   "format",
   "http_proxy",
   "watch_file",

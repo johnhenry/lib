@@ -151,13 +151,13 @@ export default async (yargs: any) => {
       description: "",
     })
     .nargs("o", 1)
-    .option("simple", {
-      alias: "S",
+    .option("full-output", {
+      alias: "F",
       type: "boolean",
       default:
-        ENVIRONMENT.OPENAI_SIMPLE === "true"
+        ENVIRONMENT.OPENAI_FULL_OUTPUT === "true"
           ? true
-          : ENVIRONMENT.OPENAI_SIMPLE === "false"
+          : ENVIRONMENT.OPENAI_FULL_OUTPUT === "false"
           ? false
           : undefined,
       description: "",
@@ -219,18 +219,16 @@ export default async (yargs: any) => {
 
   if (argv["interactive-file"]) {
     argv["input"] = argv["output"] = argv["watch"] = argv["interactive-file"];
-    argv["format"] = "simple";
     argv["echo"] = true;
   }
-  if (argv["simple"]) {
-    argv["format"] = "simple";
+  if (argv["full"]) {
+    argv["format"] = "full";
   }
 
   argv["flashMessage"] = argv["flashMessage"].replaceAll("\\n", "\n");
 
   argv["interactiveStart"] = argv["interactiveStart"].replaceAll("\\n", "\n");
 
-  argv["interactiveStart"] = argv["interactiveStart"].replaceAll("\\n", "\n");
   argv["interactiveRestart"] = argv["interactiveRestart"].replaceAll(
     "\\n",
     "\n"
@@ -304,11 +302,12 @@ export default async (yargs: any) => {
   // Log Options
   verboseLog(1, "API Options");
   verboseLog(1, "-----------");
-  verboseLog(1, `  engine: ${engine}`);
+  verboseLog(1, `  - prompt: ${prompt}`);
+  verboseLog(1, `  - engine: ${engine}`);
   const optionKeys = Object.keys(DEFAULT_OPTIONS);
   for (const [key, value] of Object.entries(argv)) {
     if (optionKeys.includes(key)) {
-      verboseLog(1, `  ${key}: ${value}`);
+      verboseLog(1, `  - ${key}: ${value}`);
     }
   }
   const api = new OpenAICompletions(engine, key);
@@ -325,7 +324,8 @@ export default async (yargs: any) => {
       return;
     } else {
       if (watch) {
-        verboseLog(2, "watching", watch);
+        verboseLog(1, "watching", watch);
+        verboseLog(1, "Ctrl + c to quit");
         let oldHash;
         for await (const _ of Deno.watchFs(watch)) {
           const newHash = await hashfile(input);
@@ -341,19 +341,6 @@ export default async (yargs: any) => {
           verboseLog(2, "updated", watch, oldHash, newHash);
         }
         return;
-        // let oldData;
-        // for await (const event of Deno.watchFs(watch)) {
-        //   const data = await Deno.readTextFile(input);
-        //   if (data === oldData) {
-        //     continue;
-        //   }
-        //   verboseLog(1, "updating...");
-        //   const output = await api.create(data, argv);
-        //   write(output, format);
-        //   verboseLog(1, "updated.");
-        //   oldData = await Deno.readTextFile(input);
-        // }
-        // return;
       } else {
         const data = await Deno.readTextFile(input);
         verboseLog(1, data);
@@ -363,6 +350,8 @@ export default async (yargs: any) => {
       }
     }
   } else if (repl) {
+    verboseLog(1, "awaiting user input");
+    verboseLog(1, "Ctrl + c to quit");
     const MAX_COUNT = 2;
     let count = 0;
     while (true) {
@@ -375,10 +364,10 @@ export default async (yargs: any) => {
         continue;
       }
       count = 0;
-      verboseLog(1, "updating...");
+      verboseLog(2, "updating...");
       const output = await api.create(data, argv);
       write(output, format);
-      verboseLog(1, "updated.");
+      verboseLog(2, "updated.");
     }
     return;
   } else if (httpProxy || httpProxy === 0) {
@@ -393,6 +382,8 @@ export default async (yargs: any) => {
       })
     );
     app.listen({ port });
+    verboseLog(1, "serving", port);
+    verboseLog(1, "Ctrl + c to quit");
     return;
   } else if (tokens.length > 0) {
     const data = tokens.join(" ");
