@@ -63,5 +63,5 @@ openai --key=$SECRET_KEY <command>
 
 ## Commands
 
-- [openai completions](./.ompletions.md)
+- [openai completions](./completions.md)
 - [openai engines](./engines.md)
