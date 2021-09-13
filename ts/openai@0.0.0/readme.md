@@ -1,6 +1,6 @@
 # Open AI
 
-A comman line tool tool for interacting with [Open AI](https://openai.com/).
+A command line tool for interacting with [Open AI](https://openai.com/).
 
 ## pre-requesites
 
@@ -9,108 +9,59 @@ Must have [deno](https://deno.land) installed.
 ## installation and usage
 
 ```sh
-deno install --name=openai --allow-env --allow-net --allow-read --allow-write mod.ts
+deno install --name=openai --allow-env --allow-net --allow-read --allow-write https://johnhenry.github.io/std/ts/openai@0.0.0/mod.ts
+```
+
+## Basic usage
+
+```sh
 openai --help
+```
+
+```sh
+openai <command> --help
 ```
 
 ## API Key
 
-To use the CLI, obtain an API key here: https://beta.openai.com/account/api-keys
+To use the CLI commands, obtain an API key from here: https://beta.openai.com/account/api-keys.
+
+You can set the key in one of three ways.
 
 ### Set Via .env file
+
+In the directory where you intend to run openai,
+set an environment variable named `OPENAI_ENV_KEY` to your API key.
 
 ```sh: file:///.env
 OPENAI_API_KEY=$SECRET_KEY
 ```
 
+and run the command you wish.
+
 ```sh
-openai completions -- You! Complete me!
+openai <command>
 ```
 
 ### Set Via environment variable
 
-```sh
-OPENAI_API_KEY=$SECRET_KEY openai completions -- You! Complete me!
-```
-
-### Set Via argument
+Set an environment variable named `OPENAI_ENV_KEY`,
+to your API key as your run the program.
 
 ```sh
-openai --key=$SECRET_KEY completions -- You! Complete me!
+OPENAI_API_KEY=$SECRET_KEY openai <command>
 ```
 
-## Input
+### Set Via "--key" flag
 
-### Inline
+Set the --key flag to your API key,
+when your run the program
 
 ```sh
-openai completions -- You! Complete me!
+openai --key=$SECRET_KEY <command>
 ```
 
-### REPL (Read-Evaluate-Print-Loop)
+## Commands
 
-```sh
-openai completions --repl
-> You! Complete me!
-```
-
-### File
-
-```text:file:///input.txt
-You! Complete me!
-```
-
-```sh
-openai completions --input ./input.txt
-```
-
-### Standard Input
-
-Set the input parameter to '-' to read from stdin
-
-```sh
-echo "You! Complete me!" | openai completions --input -
-```
-
-### Interactive-file
-
-```sh
-openai completions --interactive-file input.txt
-echo "You! Complete me!" > input.txt
-```
-
-This is equivalent to setting input, output, and watch to the same file and setting format to 'simple'.
-
-## TODO
-
-- [/] docs
-- [/] pretty print prompts and options
-- [/] streaming output
-
-## Example code
-
-### Simple usage
-
-```sh
-openai completions -e -- hello i am text
-```
-
-### Create a repl
-
-```sh
-openai completions -RS
-```
-
-### Create an interactive document
-
-```sh
-openai completions --input=document.txt --output=document.txt --watch=document.txt --format=simple --echo --verbose
-```
-
-```sh
-openai completions -v -I=document.txt
-```
-
-## Flags
-
-Documentation for the object passed to the api is available here: https://beta.openai.com/docs/api-reference/completions/create
+- [openai completions](./.ompletions.md)
+- [openai engines](./engines.md)
