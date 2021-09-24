@@ -1,4 +1,5 @@
-import { createHash } from "https://deno.land/std@0.80.0/hash/mod.ts";
+// import { createHash } from "https://deno.land/std@0.80.0/hash/mod.ts";
+import { createHash } from "./deps.ts";
 
 export default async (input: string) => {
   const hasher = createHash("md5");

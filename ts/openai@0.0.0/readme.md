@@ -1,4 +1,4 @@
-# Open AI
+# OpenAI
 
 A command line tool for interacting with [Open AI](https://openai.com/).
 
@@ -24,9 +24,15 @@ openai <command> --help
 
 ## API Key
 
+|                      |     |                |
+| :------------------- | :-: | -------------: |
+| Flag                 |  :  |          --key |
+| Short flag           |  :  |             -k |
+| Environment Variable |  :  | OPENAI_API_KEY |
+
 To use the CLI commands, obtain an API key from here: https://beta.openai.com/account/api-keys.
 
-You can set the key in one of three ways.
+You can set the key in a few ways.
 
 ### Set Via .env file
 
@@ -63,5 +69,10 @@ openai --key=$SECRET_KEY <command>
 
 ## Commands
 
-- [openai completions](./completions.md)
-- [openai engines](./engines.md)
+### Completions
+
+[`openai completions`](./completions.md) Intelligently completes text given to it.
+
+### Engines
+
+[`openai engines`](./engines.md) list available engines.

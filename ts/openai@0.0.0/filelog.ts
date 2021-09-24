@@ -1,2 +1,3 @@
-export default (path: string) => (data: string) =>
-  Deno.writeTextFileSync(path, data);
+export default (path: string, append: boolean = false) =>
+  (data: string) =>
+    Deno.writeTextFileSync(path, data, { append });

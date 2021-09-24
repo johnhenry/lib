@@ -1,45 +1,153 @@
-# Open AI completions
+# OpenAI Completions
 
-Takes a prompt and uses Artifical Intelligence to create complete it.
+Use artificial intelligence to complete text input.
+
+## Help
+
+Pass the `--help` flag to a `openai completions` to see the default help message.
 
 ```
 openai completions --help
 ```
 
-### CLI FLags
+## Prompt
 
-## Prompt (--prompt, -p, OPENAI_PROMPT)
+Provide a prompt to the application and it will use Open AI's models to complete it.
 
-To provide a prompt, use the `--prompt` flag
+One can deliver the prompt to the application in a number of ways:
 
-```sh
-openai completions --prompt "<prompt>"
-```
+### Via FLag
 
-or follow the invocation witn '--'
-to indicate that everything afterward is part of the prompt
+Use the `--prompt` flag to pass in a prompt directly
 
 ```sh
-openai completions -- <prompt>
+openai completions --prompt "You! Complete me!"
 ```
 
-## Input (--input, -i, OPENAI_INPUT)
+See: [CLI Flags:Prompt](#cli-flags-prompt).
 
-The input flag provides an alternative way to specify the prompt via file.
+### Inline
 
-Create a file containing the prompt.
+Follow the invocation with '--' to indicate that everything afterward is part of the prompt
+
+```sh
+openai completions -- You! Complete me!
+```
+
+### Via File
+
+Put the prompt within a text file and reference it with the `--input` flag.
+
+```sh
+openai completions --input prompt.text
+```
+
+See: [CLI Flags:Input](#cli-flags-prompt).
+
+### Via STDIN
+
+Set the input flag to '-' to indicate that the prompt is to be piped into STDIN.
+
+```sh
+echo "You! Complete me!" | openai completions --input -
+```
+
+OR
+
+```sh
+cat prompt.txt | openai completions --input -
+```
+
+See: [CLI Flags:Input](#cli-flags-prompt).
+
+## CLI FLags
+
+CLI flags are used to configure the application.
+
+Most of these flags can be set via an Environmental Variable
+
+### Verbose
+
+|                      |     |                 |
+| :------------------- | :-: | --------------: |
+| Flag                 |  :  |       --verbose |
+| Short flag           |  :  |              -v |
+| Environment Variable |  :  | (not available) |
+
+The _verbose_ flag determines how much data is logged.
+
+Add multiple instances of the flag to increase the verbosity.
+
+`openai completions -v` logs everyting with a log level of 1 or lower
+`openai completions -vv` logs everyting with a log level of 2 or lower
+`openai completions -vvv` logs everyting with a log level of 3 or lower
+
+The current highest log level is `2`.
+
+### Prompt
+
+|                      |     |               |
+| :------------------- | :-: | ------------: |
+| Flag                 |  :  |      --prompt |
+| Short flag           |  :  |            -P |
+| Environment Variable |  :  | OPENAI_PROMPT |
+
+The _prompt_ flag determines the prompt to be passed to the API.
+
+See [prompt](#promt) for more ways to pass the prompt.
+
+```sh
+openai completions -P "<prompt>"
+```
+
+### Engine
+
+|                      |     |               |
+| :------------------- | :-: | ------------: |
+| Flag                 |  :  |      --engine |
+| Short flag           |  :  |            -g |
+| Environment Variable |  :  | OPENAI_ENGINE |
+
+The _engine_ flag determines the engine to be used.
+
+```sh
+openai completions -g "<prompt>"
+```
+
+Engines vary in quality and cost.
+
+See [`openai engines` command](./engines.md) for more information.
+
+### Flash Message
+
+|                      |     |                      |
+| :------------------- | :-: | -------------------: |
+| Flag                 |  :  |      --flash-message |
+| Short flag           |  :  |                   -F |
+| Environment Variable |  :  | OPENAI_FLASH_MESSAGE |
+
+The _flash_message_ determines a message to be flashed to the user.
+This can be useful for giving instructions when using an .env file.
+
+### Input
+
+|                      |     |                   |
+| :------------------- | :-: | ----------------: |
+| Flag                 |  :  |           --input |
+| Short flag           |  :  |                -i |
+| Environment Variable |  :  | OPENAI_INPUT_FILE |
+
+The _input_ flag provides a way to specify the prompt via file.
 
 ```sh: file:///prompt.txt
 <prompt>
 ```
 
-And either pass the file name to the input flag
-
 ```sh
 openai completions -i prompt.txt
 ```
 
-or pass "-" to the input flag and read it from stdin.
+Passing "-" to the input flag will allow reading via STDIN.
 
 ```sh
 cat prompt.txt | openai completions -i -
@@ -49,73 +157,220 @@ cat prompt.txt | openai completions -i -
 echo "<prompt>" | openai completions -i -
 ```
 
-## Engine (-g, --engine, OPENAI_ENGINE)
+### Output
 
-### Full (--full, -F)
+|                      |     |                    |
+| :------------------- | :-: | -----------------: |
+| Flag                 |  :  |           --output |
+| Short flag           |  :  |                 -o |
+| Environment Variable |  :  | OPENAI_OUTPUT_FILE |
 
-Bla, bla, bla...
+The _output_ flag allows you to specify a file into which to write the completed text.
+
+```sh
+ openai completions -o output.txt -- <prompt>
+```
+
+### Append
+
+|                      |     |                       |
+| :------------------- | :-: | --------------------: |
+| Flag                 |  :  |              --append |
+| Short flag           |  :  |                    -d |
+| Environment Variable |  :  | OPENAI*APPEND_OUTPUT* |
+
+Passing the _append_ flag along with the _output_
+flag will cause data to be appended to the file rather than overwritten.
+
+```sh
+openai completions -o output.txt -d -- <prompt>
+```
+
+### Style
+
+|                      |     |                    |
+| :------------------- | :-: | -----------------: |
+| Flag                 |  :  |            --style |
+| Short flag           |  :  |                 -y |
+| Environment Variable |  :  | OPENAI_TEMPERATURE |
+
+Passing the a style to the _style_ flag will determine how
+Currently the only supported value is "full", which will
+return the full JSON object passed by the API.
+Otherwise a simplified version of the output will be returned as pain text.
+
+```sh
+openai completions -y full -- <prompt>
+```
+
+### Full
+
+|                      |     |             |
+| :------------------- | :-: | ----------: |
+| Flag                 |  :  |      --full |
+| Short flag           |  :  |          -F |
+| Environment Variable |  :  | OPENAI_FULL |
+
+Passing the _full_ flag is equivalent to passing the _style_ flag with a value of "full".
+
+```sh
+openai completions -F -- <prompt>
+```
+
+### HTTP Proxy
+
+|                      |     |                   |
+| :------------------- | :-: | ----------------: |
+| Flag                 |  :  |      --http-proxy |
+| Short flag           |  :  |                -H |
+| Environment Variable |  :  | OPENAI_HTTP_PROXY |
+
+### Watch
+
+|                      |     |                   |
+| :------------------- | :-: | ----------------: |
+| Flag                 |  :  |           --watch |
+| Short flag           |  :  |                -w |
+| Environment Variable |  :  | OPENAI_HTTP_PROXY |
+
+### Interactive-file
+
+|                      |     |                         |
+| :------------------- | :-: | ----------------------: |
+| Flag                 |  :  |      --interactive-file |
+| Short flag           |  :  |                      -I |
+| Environment Variable |  :  | OPENAI_INTERACTIVE_FILE |
+
+This is equivalent to setting input, output, and watch to the same file and setting format to 'simple'.
+
+### Interactive-Start
+
+|                      |     |                          |
+| :------------------- | :-: | -----------------------: |
+| Flag                 |  :  |      --interactive-start |
+| Short flag           |  :  |                       -a |
+| Environment Variable |  :  | OPENAI_INTERACTIVE_START |
+
+### Interactive-Retart
+
+|                      |     |                            |
+| :------------------- | :-: | -------------------------: |
+| Flag                 |  :  |      --interactive-restart |
+| Short flag           |  :  |                         -z |
+| Environment Variable |  :  | OPENAI_INTERACTIVE_RESTART |
+
+### REPL
+
+|                      |     |             |
+| :------------------- | :-: | ----------: |
+| Flag                 |  :  |      --repl |
+| Short flag           |  :  |          -R |
+| Environment Variable |  :  | OPENAI_REPL |
 
 ## API FLags
 
 These are CLI flags that correspond to properties passed to the API
+Documentation for the object passed to the api is available here: https://beta.openai.com/docs/api-reference/completions/create
 
-### Temperature (--temperature, -t, OPENAI_TEMPERATURE)
+### Max Tokens
 
-Bla, bla, bla...
+|                      |     |                   |
+| :------------------- | :-: | ----------------: |
+| Flag                 |  :  |      --max_tokens |
+| Short flag           |  :  |                -m |
+| Environment Variable |  :  | OPENAI_MAX_TOKENS |
 
-[Offical API Documentation]()
+### Temperature
 
-### --full
+|                      |     |                    |
+| :------------------- | :-: | -----------------: |
+| Flag                 |  :  |      --temperature |
+| Short flag           |  :  |                 -t |
+| Environment Variable |  :  | OPENAI_TEMPERATURE |
 
-## Input
+### Top P
 
-### Inline
+|                      |     |              |
+| :------------------- | :-: | -----------: |
+| Flag                 |  :  |      --top_p |
+| Short flag           |  :  |           -p |
+| Environment Variable |  :  | OPENAI_TOP_P |
 
-```sh
-openai completions -- You! Complete me!
-```
+### N
 
-### REPL (Read-Evaluate-Print-Loop)
+|                      |     |          |
+| :------------------- | :-: | -------: |
+| Flag                 |  :  |      --n |
+| Short flag           |  :  |       -n |
+| Environment Variable |  :  | OPENAI_N |
 
-```sh
-openai completions --repl
-> You! Complete me!
-```
+### Stream
 
-### File
+WARNING: Not implemeted. Will throw error if called.
 
-```text:file:///input.txt
-You! Complete me!
-```
+|                      |     |               |
+| :------------------- | :-: | ------------: |
+| Flag                 |  :  |      --stream |
+| Short flag           |  :  |            -s |
+| Environment Variable |  :  | OPENAI_STREAM |
 
-```sh
-openai completions --input ./input.txt
-```
+### Logprobs
 
-### Standard Input
+|                      |     |                    |
+| :------------------- | :-: | -----------------: |
+| Flag                 |  :  |         --logprobs |
+| Short flag           |  :  |                 -n |
+| Environment Variable |  :  | OPENAI_TEMPERATURE |
 
-Set the input parameter to '-' to read from stdin
+### Echo
 
-```sh
-echo "You! Complete me!" | openai completions --input -
-```
+|                      |     |             |
+| :------------------- | :-: | ----------: |
+| Flag                 |  :  |      --echo |
+| Short flag           |  :  |          -e |
+| Environment Variable |  :  | OPENAI_ECHO |
 
-### Interactive-file
+### Stop
 
-```sh
-openai completions --interactive-file input.txt
-echo "You! Complete me!" > input.txt
-```
+|                      |     |             |
+| :------------------- | :-: | ----------: |
+| Flag                 |  :  |      --stop |
+| Short flag           |  :  |          -x |
+| Environment Variable |  :  | OPENAI_STOP |
 
-This is equivalent to setting input, output, and watch to the same file and setting format to 'simple'.
+### Presence Penalty
 
-## TODO
+|                      |     |                         |
+| :------------------- | :-: | ----------------------: |
+| Flag                 |  :  |      --presence_penalty |
+| Short flag           |  :  |                      -r |
+| Environment Variable |  :  | OPENAI_PRESENCE_PENALTY |
 
-- [/] docs
-- [/] pretty print prompts and options
-- [/] streaming output
+### Frequency Penalty
 
-## Example code
+|                      |     |                          |
+| :------------------- | :-: | -----------------------: |
+| Flag                 |  :  |       --presence_penalty |
+| Short flag           |  :  |                       -r |
+| Environment Variable |  :  | OPENAI_FREQUENCY_PENALTY |
+
+### Best Of
+
+|                      |     |                |
+| :------------------- | :-: | -------------: |
+| Flag                 |  :  |      --best_of |
+| Short flag           |  :  |             -b |
+| Environment Variable |  :  | OPENAI_BEST_OF |
+
+### Logit Bias
+
+|                      |     |                |
+| :------------------- | :-: | -------------: |
+| Flag                 |  :  |   --logit_bias |
+| Short flag           |  :  |             -l |
+| Environment Variable |  :  | OPENAI_BEST_OP |
+
+## Recipes
 
 ### Simple usage
 
@@ -126,7 +381,7 @@ openai completions -e -- hello i am text
 ### Create a repl
 
 ```sh
-openai completions -RS
+openai completions -R
 ```
 
 ### Create an interactive document
@@ -138,7 +393,3 @@ openai completions --input=document.txt --output=document.txt --watch=document.t
 ```sh
 openai completions -v -I=document.txt
 ```
-
-## Flags
-
-Documentation for the object passed to the api is available here: https://beta.openai.com/docs/api-reference/completions/create
