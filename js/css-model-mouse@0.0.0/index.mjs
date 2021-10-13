@@ -13,14 +13,9 @@ const mousemove = function () {
   );
   this.set("x", clientX);
   this.set("y", clientY);
-  this.setStr("x-str", clientX);
-  this.setStr("y-str", clientY);
   this.set("ang", angle);
-  this.setStr("ang-str", angle);
   this.set("mag", magnitude);
-  this.setStr("mag-str", magnitude);
   this.set("magnorm", magnitudeNormalized);
-  this.setStr("magnorm-str", magnitudeNormalized);
 };
 const mouseup = function () {
   this.set("up", "1");

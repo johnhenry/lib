@@ -25,7 +25,7 @@ const keydown = function (event) {
   this.set(buildString("pressed", event), "1");
 };
 
-const CSSModelMouse = class extends CSSModel {
+const CSSModelKeyboard = class extends CSSModel {
   #keyup;
   #keydown;
   constructor(target = globalThis.document, prefix = "key") {
@@ -42,4 +42,4 @@ const CSSModelMouse = class extends CSSModel {
   }
 };
 
-export default CSSModelMouse;
+export default CSSModelKeyboard;

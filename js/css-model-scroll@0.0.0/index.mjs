@@ -1,76 +1,52 @@
 // https://stackoverflow.com/a/17698713/1290781
-import wrapString from "../wrap-number-string@0.0.0/index.mjs";
-
-const target = globalThis.document;
-
-const setScrollLimit = () => {
+import CSSModel from "../css-model@0.0.0/index.mjs";
+const setscrolllimit = function () {
   const y = globalThis.scrollY;
   const x = globalThis.scrollX;
   const vertical =
     Math.max(
-      target.body.scrollHeight,
-      target.body.offsetHeight,
-      target.documentElement.clientHeight,
-      target.documentElement.scrollHeight,
-      target.documentElement.offsetHeight
-    ) - window.innerHeight;
+      this.target.body.scrollHeight,
+      this.target.body.offsetHeight,
+      this.target.documentElement.clientHeight,
+      this.target.documentElement.scrollHeight,
+      this.target.documentElement.offsetHeight
+    ) - globalThis.innerHeight;
   const horizontal =
     Math.max(
-      target.body.scrollWidth,
-      target.body.offsetWidth,
-      target.documentElement.clientWidth,
-      target.documentElement.scrollWidth,
-      target.documentElement.offsetWidth
-    ) - window.innerWidth;
+      this.target.body.scrollWidth,
+      this.target.body.offsetWidth,
+      this.target.documentElement.clientWidth,
+      this.target.documentElement.scrollWidth,
+      this.target.documentElement.offsetWidth
+    ) - globalThis.innerWidth;
   const vratio = y / vertical;
   const hratio = x / horizontal;
 
-  target.documentElement.style.setProperty(
-    "--window-scroll-vertical-max",
-    vertical
-  );
-  target.documentElement.style.setProperty(
-    "--window-scroll-horizontal-max",
-    horizontal
-  );
-  target.documentElement.style.setProperty(
-    "--window-scroll-vertical-max-str",
-    wrapString(vertical)
-  );
-  target.documentElement.style.setProperty(
-    "--window-scroll-horizontal-max-str",
-    wrapString(horizontal)
-  );
+  this.set("vertical-max", vertical);
+  this.set("horizontal-max", horizontal);
 
-  target.documentElement.style.setProperty("--window-scroll-vertical", y);
-  target.documentElement.style.setProperty("--window-scroll-horizontal", x);
-  target.documentElement.style.setProperty(
-    "--window-scroll-vertical-str",
-    wrapString(y)
-  );
-  target.documentElement.style.setProperty(
-    "--window-scroll-horizontal-str",
-    wrapString(x)
-  );
+  this.set("vertical", y);
+  this.set("horizontal", x);
 
-  target.documentElement.style.setProperty(
-    "--window-scroll-vertical-ratio",
-    vratio
-  );
-  target.documentElement.style.setProperty(
-    "--window-scroll-horizontal-ratio",
-    hratio
-  );
-  target.documentElement.style.setProperty(
-    "--window-scroll-vertical-ratio-str",
-    wrapString(vratio)
-  );
-  target.documentElement.style.setProperty(
-    "--window-scroll-horizontal-ratio-str",
-    wrapString(hratio)
-  );
+  this.set("vertical-ratio", vratio);
+  this.set("horizontal-ratio", hratio);
 };
 
-globalThis.addEventListener("load", setScrollLimit);
-target.addEventListener("scroll", setScrollLimit);
-globalThis.addEventListener("resize", setScrollLimit);
+const CSSModelScroll = class extends CSSModel {
+  #setscrolllimit;
+  constructor(target = globalThis.document, prefix = "window-scroll") {
+    super(target, prefix);
+    this.#setscrolllimit = setscrolllimit.bind(this);
+    globalThis.addEventListener("load", this.#setscrolllimit);
+    this.target.addEventListener("scroll", this.#setscrolllimit);
+    globalThis.addEventListener("resize", this.#setscrolllimit);
+  }
+  detach() {
+    globalThis.removeEventListener("load", this.#setscrolllimit);
+    this.target.removeEventListener("scroll", this.#setscrolllimit);
+    globalThis.removeEventListener("resize", this.#setscrolllimit);
+    return super.detach();
+  }
+};
+
+export default CSSModelScroll;

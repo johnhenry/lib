@@ -18,18 +18,23 @@ const CSSModel = class {
     return this.#target;
   }
   set(name, value) {
+    const n = `--${this.#prefix}-${name}`;
+    this.#target.documentElement.style.setProperty(n, value);
     this.#target.documentElement.style.setProperty(
-      `--${this.#prefix}-${name}`,
-      value
+      `${name}-str`,
+      wrapString(value)
     );
     this.#tracked.add(name);
-  }
-  setStr(name, value) {
-    this.set(name, wrapString(value));
   }
   get(name) {
     this.#target.documentElement.style.getPropertyValue(
       `--${this.#prefix}-${name}`,
+      value
+    );
+  }
+  getStr(name) {
+    this.#target.documentElement.style.getPropertyValue(
+      `--${this.#prefix}-${name}-str`,
       value
     );
   }
@@ -38,6 +43,7 @@ const CSSModel = class {
       `--${this.#prefix}-${name}`
     );
     this.#tracked.delete(name);
+    this.#tracked.delete(`${name}-str`);
   }
   detach() {
     for (const name of this.#tracked) {
