@@ -1,0 +1,24 @@
+name: Test Code
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Setup node ⛺️
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install 🔧
+        run: npm install
+
+      - name: Test 🧪
+        run: npm test
