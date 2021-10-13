@@ -21,7 +21,7 @@ const CSSModel = class {
     const n = `--${this.#prefix}-${name}`;
     this.#target.documentElement.style.setProperty(n, value);
     this.#target.documentElement.style.setProperty(
-      `${name}-str`,
+      `${n}-str`,
       wrapString(value)
     );
     this.#tracked.add(name);
