@@ -1,5 +1,5 @@
 const { HTMLElement } = globalThis;
-import textToDOMNodes from "https://johnhenry.github.io/lib/js/text-to-DOM-nodes/0.0.0/index.mjs";
+import textToDOMNodes from "../../text-to-DOM-nodes/0.0.0/index.mjs";
 const createElement =
   (
     { shadowMode = "open", useShadow = true, baseElement = HTMLElement } = {
