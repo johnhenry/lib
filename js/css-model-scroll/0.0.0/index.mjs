@@ -1,5 +1,5 @@
 // https://stackoverflow.com/a/17698713/1290781
-import CSSModel from "../css-model/0.0.0/index.mjs";
+import CSSModel from "../../css-model/0.0.0/index.mjs";
 const setscrolllimit = function () {
   const y = globalThis.scrollY;
   const x = globalThis.scrollX;

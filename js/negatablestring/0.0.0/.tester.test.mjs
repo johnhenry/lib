@@ -1,5 +1,5 @@
 // import testing framework
-import tester, { equal, ok, notok } from "../tester/0.0.0/index.mjs";
+import tester, { equal, ok, notok } from "../../tester/0.0.0/index.mjs";
 
 // import library
 import "./string-prototype-warn.mjs";

@@ -1,4 +1,4 @@
-import { scale } from "../imagedata-emitter.component/0.0.0/utilities.mjs";
+import { scale } from "../../imagedata-emitter.component/0.0.0/utilities.mjs";
 
 export default class extends HTMLElement {
   constructor() {

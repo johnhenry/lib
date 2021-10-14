@@ -1,5 +1,5 @@
 const target = globalThis.document;
-import wrapString from "../wrap-number-string/0.0.0/index.mjs";
+import wrapString from "../../wrap-number-string/0.0.0/index.mjs";
 const setWindowSize = () => {
   target.documentElement.style.setProperty(
     "--window-width",

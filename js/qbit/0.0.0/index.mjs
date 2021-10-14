@@ -7,9 +7,9 @@ import {
   power,
   negate,
   matrixMultiply,
-} from "../complexnumber/0.0.0/ComplexMath.mjs";
-import i from "../complexnumber/0.0.0/i.mjs";
-import "../complexnumber/0.0.0/number-prototype.mjs";
+} from "../../complexnumber/0.0.0/ComplexMath.mjs";
+import i from "../../complexnumber/0.0.0/i.mjs";
+import "../../complexnumber/0.0.0/number-prototype.mjs";
 export const QBit = class {
   constructor(
     ket0 = Math.SQRT1_2,

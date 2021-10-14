@@ -2,7 +2,7 @@ import ComplexNumber from "./ComplexNumber.mjs";
 import {
   createMultiply,
   createKroneckerProduct,
-} from "../matrixmath/0.0.0/index.mjs";
+} from "../../matrixmath/0.0.0/index.mjs";
 
 export const add = (alpha = 0, beta = 0) =>
   new ComplexNumber(alpha + beta, alpha.i + beta.i);

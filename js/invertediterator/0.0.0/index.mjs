@@ -1,4 +1,4 @@
-// import InvertedPromise from "../invertedpromise/0.0.0/index.mjs";
+// import InvertedPromise from "../../invertedpromise/0.0.0/index.mjs";
 // const END = Symbol('END');
 // export default () => {
 //   let done;
@@ -33,8 +33,8 @@
 //   return out;
 // };
 // With Cache
-import InvertedPromise from "../invertedpromise/0.0.0/index.mjs";
-import pause from "../pause/0.0.0/index.mjs";
+import InvertedPromise from "../../invertedpromise/0.0.0/index.mjs";
+import pause from "../../pause/0.0.0/index.mjs";
 
 const END = Symbol("END");
 export default () => {

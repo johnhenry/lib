@@ -1,4 +1,4 @@
-import clamp from "../clamp/0.0.0/index.mjs";
+import clamp from "../../clamp/0.0.0/index.mjs";
 const observedattributes = [
   "eyeoffset",
   "lowerlip",

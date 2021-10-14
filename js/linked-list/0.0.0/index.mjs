@@ -1,4 +1,4 @@
-import { join } from "../string-center-pad/0.0.0/index.mjs";
+import { join } from "../../string-center-pad/0.0.0/index.mjs";
 
 const Link = class {
   constructor(head, tail = undefined) {

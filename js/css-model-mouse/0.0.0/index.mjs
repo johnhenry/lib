@@ -3,7 +3,7 @@
 // https://codersblock.com/blog/what-can-you-put-in-a-css-variable/
 // https://developer.mozilla.org/en-US/docs/Web/CSS/env()
 
-import CSSModel from "../css-model/0.0.0/index.mjs";
+import CSSModel from "../../css-model/0.0.0/index.mjs";
 const mousemove = function ({ clientY, clientX }) {
   const angle = Math.atan2(clientY, clientX) + Math.PI / 2;
   const magnitude = Math.sqrt(clientX ** 2 + clientY ** 2);

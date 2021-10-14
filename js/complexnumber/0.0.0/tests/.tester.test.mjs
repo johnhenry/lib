@@ -1,5 +1,5 @@
 // import testing framework
-import tester, { equal, ok } from "../../tester/0.0.0/index.mjs";
+import tester, { equal, ok } from "../../../tester/0.0.0/index.mjs";
 
 import "../number-prototype.mjs";
 import i from "../i.mjs"; // import 𝑖 from "./i.mjs"; // Does not work in Deno due to unicode issues

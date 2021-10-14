@@ -3,7 +3,7 @@
 // https://codersblock.com/blog/what-can-you-put-in-a-css-variable/
 // https://developer.mozilla.org/en-US/docs/Web/CSS/env()
 const target = globalThis.document;
-import wrapString from "../wrap-number-string/0.0.0/index.mjs";
+import wrapString from "../../wrap-number-string/0.0.0/index.mjs";
 const init = () => {
   target.documentElement.style.setProperty("--mouse-up", "1");
 };

@@ -1,7 +1,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Response
-import InvertedPromise from "../../invertedpromise/0.0.0/index.mjs";
-import InvertedIterator from "../../invertediterator/0.0.0/index.mjs";
-import pause from "../../pause/0.0.0/index.mjs";
+import InvertedPromise from "../../../invertedpromise/0.0.0/index.mjs";
+import InvertedIterator from "../../../invertediterator/0.0.0/index.mjs";
+import pause from "../../../pause/0.0.0/index.mjs";
 
 const VERSION = "HTTP/1.1";
 

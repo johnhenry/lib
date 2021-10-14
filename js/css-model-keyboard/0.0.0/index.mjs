@@ -1,6 +1,6 @@
 //https://keycode.info/
 
-import CSSModel from "../css-model/0.0.0/index.mjs";
+import CSSModel from "../../css-model/0.0.0/index.mjs";
 
 const buildString = (
   preamble = "",

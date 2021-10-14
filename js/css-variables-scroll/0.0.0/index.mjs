@@ -1,5 +1,5 @@
 // https://stackoverflow.com/a/17698713/1290781
-import wrapString from "../wrap-number-string/0.0.0/index.mjs";
+import wrapString from "../../wrap-number-string/0.0.0/index.mjs";
 
 const target = globalThis.document;
 

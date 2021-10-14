@@ -1,6 +1,6 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/request
-import InvertedPromise from "../../invertedpromise/0.0.0/index.mjs";
-import InvertedIterator from "../../invertediterator/0.0.0/index.mjs";
+import InvertedPromise from "../../../invertedpromise/0.0.0/index.mjs";
+import InvertedIterator from "../../../invertediterator/0.0.0/index.mjs";
 
 const decoder = new TextDecoder();
 export default class {

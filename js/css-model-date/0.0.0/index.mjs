@@ -1,4 +1,4 @@
-import CSSModel from "../css-model/0.0.0/index.mjs";
+import CSSModel from "../../css-model/0.0.0/index.mjs";
 
 const update = function (UTC) {
   const date = new Date();
