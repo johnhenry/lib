@@ -1,5 +1,5 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
-import mod from "../mod/0.0.0/index.mjs";
+import mod from "../../mod/0.0.0/index.mjs";
 let COLOR = "white";
 let PCOLOR = COLOR;
 let NCOLOR = "red";

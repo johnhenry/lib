@@ -1,4 +1,4 @@
-import succeedsOnN from "../higher-order-success/0.0.0/succeeds-on.mjs";
+import succeedsOnN from "../../higher-order-success/0.0.0/succeeds-on.mjs";
 import { performance } from "perf_hooks";
 
 import iterator from "./iterator.mjs";

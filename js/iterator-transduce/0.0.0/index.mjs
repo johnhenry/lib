@@ -1,5 +1,8 @@
-import { conjoinSync, conjoinAsync } from "../iterator-conjoin/0.0.0/index.mjs";
-import { reduceSync, reduceAsync } from "../iterator-reduce/0.0.0/index.mjs";
+import {
+  conjoinSync,
+  conjoinAsync,
+} from "../../iterator-conjoin/0.0.0/index.mjs";
+import { reduceSync, reduceAsync } from "../../iterator-reduce/0.0.0/index.mjs";
 
 const emptySync = conjoinSync();
 const emptyAsync = conjoinAsync();

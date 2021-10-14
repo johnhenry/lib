@@ -6,7 +6,7 @@
  * @see transduceAsync
  */
 
-import { HAULT } from "../iterator-reduce/0.0.0/index.mjs";
+import { HAULT } from "../../iterator-reduce/0.0.0/index.mjs";
 
 /**
  * Create a transducer that maps values
