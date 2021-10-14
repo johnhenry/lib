@@ -1,4 +1,4 @@
-import tester, { deepequal } from "../tester/0.0.0/index.mjs";
+import tester, { deepequal } from "../../tester/0.0.0/index.mjs";
 import { encode, decode, Tag } from "./index.mjs";
 const chars = "abcdefghijklmnopqrstuvwxyzABCDEFG";
 tester("it should encode mixed input", function* () {
