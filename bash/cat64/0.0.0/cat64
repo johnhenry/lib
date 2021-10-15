@@ -2,7 +2,7 @@
 DEFAULT_TYPE="text/plain"
 
 if [ $1 == "--help" ]; then
-  echo "creates and prefixes base64 representation of a file"
+  echo "Create and prefix base64 representation of a file"
   echo "usage:"
   echo "  cat64 <path to file> [mime type=${DEFAULT_TYPE}]"
   echo "  cat <path to file> | cat64 [mime type=${DEFAULT_TYPE}] -"

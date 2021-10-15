@@ -1,8 +1,10 @@
 #! /bin/bash
 if [ $1 == "--help" ]; then
-  echo "explode <folder>"
-  echo "explodes child folder into current folder"
+  echo "Move items from child folder into current folder and delete child
+        folder."
   echo "Warning: unxpected behavior if files already exist in current folder"
+  echo "usage:"
+  echo "  explode <folder>"
 else
   mv $1/* ./
   mv $1/.* ./  > /dev/null 2>&1 # will produce error about . and .. directories

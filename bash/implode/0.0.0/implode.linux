@@ -1,8 +1,9 @@
 #! /bin/bash
 # https://stackoverflow.com/questions/965053/extract-filename-and-extension-in-bash
 if [ $1 == "--help" ]; then
-  echo "implode <filename with extension>"
-  echo "implodes file into folder of same name (minus extension)"
+  echo "Move file into folder of same name (minus the extension)."
+  echo "usage:"
+  echo "  implode <filename with extension>"
 else
   filename=$(basename -- "$1")
   extension="${filename##*.}"
