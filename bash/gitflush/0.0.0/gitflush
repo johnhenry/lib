@@ -1,7 +1,4 @@
 #! /bin/bash
-git add .
-git commit -m "$*"
-git push
 
 if [ $1 == "--help" ]; then
   echo "run the following:"
