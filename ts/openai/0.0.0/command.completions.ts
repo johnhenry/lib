@@ -258,11 +258,13 @@ export default ({ ENVIRONMENT }: any) =>
       verbose,
       repl,
       httpProxy,
+      httpProxyGuard,
       prompt,
       flashMessage,
       interactiveStart,
       interactiveRestart,
       append,
+      proxyguard,
       _,
     } = argv;
 
@@ -392,6 +394,28 @@ export default ({ ENVIRONMENT }: any) =>
       verboseLog(1, "serving", port);
       verboseLog(1, "Ctrl + c to quit");
       return;
+      // let proxyguard;
+      // if(httpProxyGuard){
+      //   proxyguard = (await import(join(Deno.cwd(), httpProxyGuard)).default;
+      // }
+      // initiateHTTP(port);
+      // addEventListener("fetch", (event: Event): void => {
+      //   const fetchEvent = event as FetchEvent;
+      //   if(proxyguard){
+      //     try{
+      //       if(guard(event.request) instanceOf Response){
+      //         return fetchEvent.respondWith(guard(event.request));
+      //       }
+      //     }catch({message}){
+      //       return fetchEvent.respondWith(new Response(`guard error:${message}`, {status: 500}));
+      //     }
+      //   }
+      //   fetchEvent.respondWith(
+      //     fetch(new Request(event.request, {
+      //     headers: {
+      //       Authorization: `Bearer ${key}`,
+      //     },
+      //   }))););
     } else if (tokens.length > 0) {
       const data = tokens.join(" ");
       const output = await api.create(data, argv);

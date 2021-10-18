@@ -1,9 +1,6 @@
 import { APPNAME } from "./constants.mjs";
-
 const API_URL = "https://api.openai.com/v1/engines";
-
 const log = console.log;
-
 export default async (yargs: any) => {
   const { argv } = yargs.usage(`${APPNAME} engines --flag`).help();
   const { key } = argv;
