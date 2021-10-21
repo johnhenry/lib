@@ -14,7 +14,8 @@
     "jest": "jest --config=./config/jest.config.js",
     "test:jest": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --verbose",
     "test:jest:watch": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --watchAll --verbose",
-    "test": "npm run test:jest -s"
+    "test": "npm run test:jest -s",
+    "start": "npm run serve"
   },
   "repository": {
     "type": "git",
