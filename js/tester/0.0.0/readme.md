@@ -4,7 +4,7 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Tester
 
-/lib/js/tester@latest/index.mjs
+../js/tester@latest/index.mjs
 
 Tester is a javascript testing framework based on [Tape](https://github.com/substack/tape).
 
