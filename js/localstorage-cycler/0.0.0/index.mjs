@@ -16,10 +16,7 @@ export default (key, ...values) => {
   const handler = typeof values[0] === "function" ? values.shift() : () => {};
   const stored = globalThis.localStorage.getItem(key) ?? values[0];
   const index = values.indexOf(stored);
-  if (index === -1) {
-    throw new Error(`stored value not in list`);
-  }
-  const value = values[index];
+  const value = values[index] ?? values[0];
   globalThis.localStorage.setItem(key, value);
   handler({
     value,
