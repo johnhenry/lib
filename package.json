@@ -16,7 +16,8 @@
     "test": "npm run test:jest -s",
     "start": "npm run serve",
     "template:get": "node scripts/get-template.mjs",
-    "template:use": "node scripts/use-template.mjs"
+    "template:use": "node scripts/use-template.mjs",
+    "build:indicies": "sh scripts/buildindicies.sh"
   },
   "repository": {
     "type": "git",
