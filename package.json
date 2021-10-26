@@ -14,10 +14,7 @@
     "test:jest": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --verbose",
     "test:jest:watch": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --watchAll --verbose",
     "test": "npm run test:jest -s",
-    "start": "npm run serve",
-    "template:get": "node scripts/get-template.mjs",
-    "template:use": "node scripts/use-template.mjs",
-    "build:indicies": "sh scripts/buildindicies.sh"
+    "start": "npm run serve"
   },
   "repository": {
     "type": "git",
@@ -44,8 +41,5 @@
     "showdown": "^1.9.1",
     "style-loader": "^1.3.0",
     "wbn": "0.0.5"
-  },
-  "dependencies": {
-    "node-fetch": "^3.0.0"
   }
 }

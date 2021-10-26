@@ -1,16 +1,22 @@
-npm run template:get
-##
-npm run template:use -- default.html index.html
-##
-npm run template:use -- bash/default.html bash/index.html
-##
-npm run template:use -- demos/default.html demos/index.html
-##
-npm run template:use -- demos/broadcast-channel/default.html demos/broadcast-channel/index.html
-npm run template:use -- demos/clock/default.html demos/clock/index.html
-npm run template:use -- demos/colorwheel/default.html demos/colorwheel/index.html
-npm run template:use -- demos/liedenticons/default.html demos/liedenticons/index.html
-npm run template:use -- demos/menu-component/default.html demos/menu-component/index.html
-npm run template:use -- demos/permutations/default.html demos/permutations/index.html
-npm run template:use -- demos/tester/default.html demos/tester/index.html
+# template location
+TEMPLATE=templates/shell.html
 
+# creation function
+create() {
+  cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst > $2
+}
+
+## Update template
+curl https://johnhenry.github.io/template/shell/index.html > $TEMPLATE
+
+## create indicies
+create default.html index.html
+create bash/default.html bash/index.html
+create demos/default.html demos/index.html
+create demos/broadcast-channel/default.html demos/broadcast-channel/index.html
+create demos/clock/default.html demos/clock/index.html
+create demos/colorwheel/default.html demos/colorwheel/index.html
+create demos/liedenticons/default.html demos/liedenticons/index.html
+create demos/menu-component/default.html demos/menu-component/index.html
+create demos/permutations/default.html demos/permutations/index.html
+create demos/tester/default.html demos/tester/index.html
