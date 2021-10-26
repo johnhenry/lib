@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Without Javascript</title>
+  </head>
+  <body>
+    <h1>Fun Without Javascript</h1>
+    <p>A set of useful techniques for web applications that do not rely on javascript inspired by the work seen <a href=http://technical.nailfashionsweden.se/web-components-that-can-be-built-purely-using-css-no-javascript target=_blank>here</a></p>
+    <section>
+      <h2>Tab-Like Behavior</h2>
+      <p>
+        Using the styling in this section, a <b>component</b> within a series of components, each with a <b>class</b> of 'view' will only be displayed if its <b>id</b> matches exactly the hash of the page OR it is the <i>last</i> component and no other components match the hash.
+      </p>
+      <style>
+        .view{
+          display: none;
+        }
+        .view:last-child{
+          display: block;
+        }
+        .view:target{
+          display:block;
+        }
+        .view:target ~ *{
+          display:none
+        }
+        .view-nodefault{
+          display: none;
+        }
+        .view-nodefault:target{
+          display:block;
+        }
+
+      </style>
+      <style>
+        /*Secondary Styling*/
+        .view{
+          color:black;
+        }
+        #red{
+          color:red;
+        }
+        #blue{
+          color:blue;
+        }
+      </style>
+      <h3>Example</h3>
+        <span>
+          <span id=red class=view>
+            Red Selected
+          </span>
+          <span id=blue class=view>
+            Blue Selected
+          </span>
+          <span class=view>
+            Default Selected
+          </span>
+        </span>
+        <ul>
+          <li><a href=#red>Red</a></li>
+          <li><a href=#blue>Blue</a></li>
+          <li><a href=#default>Default</a></li>
+        </ul>
+    </section>
+    <section>
+      <h2>Progress bar</h2>
+      <style>
+        .step a {
+          color: inherit; /* blue colors for links too */
+          text-decoration: inherit; /* no underline */
+          display:block;
+        }
+        .step{
+          transition: all 0.5s;
+          display:inline-block;
+          width: 30px;
+          height:30px;
+          line-height:2;
+          vertical-align:middle;
+          text-align:center;
+
+          color:white;
+          border-width: 1px;
+          border-style: solid;
+          border-color: green;
+          border-radius: 50%;
+          background-color:green;
+          font-weight: bold;
+
+        }
+        .step:target, .step:target ~ *{
+          color:gray;
+          border-width:1px;
+          border-style:dashed;
+          border-color:gray;
+          border-radius: 35%;
+          opacity:0.5;
+          background-color:white;
+          font-weight: normal;
+        }
+      </style>
+      <h3>Example</h3>
+      <p>Click each step to follow progress:</p>
+      <div>
+        <span id=initial class=step><a href=#first>1</a></span>
+        <span id=first class=step><a href=#second>2</a></span>
+        <span id=second class=step><a href=#third>3</a></span>
+        <span id=third class=step><a href=#fourth>4</a></span>
+        <span id=fourth class=step><a href=#final>5</a></span>
+      </div>
+    </section>
+    <section>
+      <h2>Modal</h2>
+      <style>
+        .modal{
+          display:none;
+        }
+        .modal:target{
+          display:block;
+        }
+      </style>
+      <style>
+        #modal{
+          z-index: 1000px;
+          position:absolute;
+          left:0;
+          top:0;
+          width:100%;
+          height:100%;
+          background-color:rgba(0,0,0,0.5);
+          text-align:center;
+        }
+        #modal a{
+          color:white;
+          text-decoration: inherit;
+        }
+      </style>
+      <h3>Example</h3>
+      <a href=#modal>Click to Open Modal</a>
+      <div class=modal id=modal><div><a href=#modal-closed>Click to Close Modal</a></div></div>
+    </section>
+    <section>
+      <h2>Stylable Checkboxes and Radio Buttons</h2>
+      <p>
+        Using the styling in this section, in conjunction with the html for attribute, we can create invisilble checkboxes and radio buttons whose behavior and appearence is directly tied to the label following it. Because inputs follow "bizzare" formatting rules, and labels follow
+      </p>
+      <style>
+        .follow{
+          display: none;
+        }
+        .follow + label {
+          opacity:0;
+          cursor: pointer;
+        }
+        .follow:checked + label{
+          opacity: 1;
+        }
+      </style>
+      <style>
+        .check-background{
+          display:inline-block;
+          overflow: hidden;
+          border-radius: 50%;
+          position:relative;
+
+          border:1px solid black;
+          background-color:white;
+        }
+        .check-background:before{
+          position:absolute;
+          content: "";
+          width: 14px;
+          height: 6px;
+          border: 3px solid gray;
+          display:block;
+          border-top: none;
+          border-right: none;
+          transform: rotate(-45deg);
+          top: 8px;
+          left: 8px;
+        }
+        .red-check{
+          display:block;
+          transition: all 0.5s;
+          border-radius: 50%;
+          overflow: hidden;
+          background-color: red;
+          width: 30px;
+          height: 30px;
+          position:relative;
+        }
+        .red-check:before{
+          position:absolute;
+          content: "";
+          width: 14px;
+          height: 6px;
+          border: 3px solid white;
+          display:block;
+          border-top: none;
+          border-right: none;
+          transform: rotate(-45deg);
+          top: 8px;
+          left: 6px;
+        }
+      </style>
+      <h3>Example: Checkboxes</h3>
+      <span class=check-background>
+        <input class=follow id=cb type=checkbox checked>
+        <label for=cb class=red-check></label>
+      </span>
+      <span class=check-background>
+        <input class=follow id=cb1 type=checkbox>
+        <label for=cb1 class=red-check></label>
+      </span>
+      <h3>Example: Radio Buttons</h3>
+      <span class=check-background>
+        <input class=follow id=cb2 type=radio name=radio>
+        <label for=cb2 class=red-check></label>
+      </span>
+      <span class=check-background>
+        <input class=follow id=cb3 type=radio name=radio checked>
+        <label for=cb3 class=red-check></label>
+      </span>
+    </section>
+  </body>
+</html>

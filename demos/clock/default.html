@@ -1,0 +1,46 @@
+<section>
+    <script type="module">
+      import "../../js/css-variables-date/0.0.0/index.mjs";
+      import "../../js/css-variables-keyboard/0.0.0/index.mjs";
+    </script>
+    <style>
+      .clock::before {
+        content: var(--date-hour-str, "00") ":" var(--date-minute-str, "00") ":"
+          var(--date-second-str, "00");
+      }
+      .clock::after {
+        content: " " var(--date-am, "") var(--date-pm, "");
+      }
+      .clock24::before {
+        content: var(--date-hour24-str, "00") ":" var(--date-minute-str, "00")
+          ":" var(--date-second-str, "00");
+      }
+      .clock24::after {
+        content: " 24";
+      }
+
+      .utc-clock::before {
+        content: var(--date-utc-hour24-str, "00") ":"
+          var(--date-utc-minute-str, "00") ":" var(--date-utc-second-str, "00");
+      }
+      .utc-clock::after {
+        content: " UTC 24";
+      }
+      .appear-on-space {
+        --on-space: var(--key-pressed-Space, 0);
+        opacity: var(--on-space);
+      }
+      .dissappear-on-space {
+        --on-space: var(--key-pressed-Space, 0);
+        opacity: calc(1 - var(--on-space, 0));
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Clock</h1>
+    <span class="clock"></span>
+    <br />
+    <span class="clock24 dissappear-on-space"></span>
+    <br />
+    <span class="utc-clock appear-on-space"></span>
+</section>

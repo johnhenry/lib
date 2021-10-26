@@ -1,0 +1,8 @@
+#! /bin/bash
+if [ $1 == "--help" ]; then
+  echo "Open directory in vscode. (Creates it if it does not already exist.)"
+  echo "usage:"
+  echo "  codir <project name>"
+else
+  mkdir -p $1 && code $_
+fi

@@ -1,0 +1,45 @@
+{
+  "name": "johnhenry.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "prettier --write . ",
+    "demo": "func() { one=$1; node std/js/${one}/demo.mjs; }; func",
+    "serve": "live-server . --port=3001 --cors",
+    "build:versions": "node scripts/build-versions.mjs",
+    "github:actions": "act --secret-file .github/workflows/.secrets",
+    "test:tester": "node scripts/run-tester-tests.mjs",
+    "jest": "jest --config=./config/jest.config.js",
+    "test:jest": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --verbose",
+    "test:jest:watch": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --watchAll --verbose",
+    "test": "npm run test:jest -s",
+    "start": "npm run serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnhenry/johnhenry.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnhenry/johnhenry.github.io/issues"
+  },
+  "homepage": "https://github.com/johnhenry/johnhenry.github.io#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^3.6.0",
+    "esbuild": "^0.8.53",
+    "fs-extra": "^9.1.0",
+    "jest": "^27.0.3",
+    "lit-html": "^1.4.1",
+    "live-server": "^1.2.1",
+    "perf_hooks": "^0.0.1",
+    "prettier": "^2.3.0",
+    "showdown": "^1.9.1",
+    "style-loader": "^1.3.0",
+    "wbn": "0.0.5"
+  }
+}

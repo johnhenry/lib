@@ -1,0 +1,29 @@
+<script>
+  let started;
+  const flex = FlexSearch.create();
+  let documents;
+
+  const startAutoComplete = async (i)=>{
+    if(started){
+      return;
+    }
+    started = 1;
+    try{
+      documents = await import(i, {asset:{type:'json'}}); // JSON Array
+      documents.forEach(({ title }, i) => {
+        flex.add(i, title);
+      });
+    }
+  }
+  const display = (documents) =>   document
+      .querySelector('#search')
+      .appendChild(
+        textToDOM(`<ul>${documents
+            .map(({ title, url }) =>`<li><a href="${url}">${title
+          }</a></li>`).join("")}</ul>`));
+
+  const search = (inputValue)=>{
+    const foundDocuments = flex.search(inputValue).map((index) => documents[index]);
+    display(foundDocuments.slice(0, 10));
+  }
+</script>

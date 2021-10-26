@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en"><head><title>John Henry</title><link rel="canonical" href="https://johnhenry.github.io/"><meta name="description" content="John Henry's Person Portfolio and Blog"><meta name="robots" content="index,follow"><meta name="theme-color" content="#343233"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="keywords" content="fun,math,engineering,science,experiments,programming"><meta name="author" content="John Henry"><script>
+      globalThis.addEventListener('load', () => {
+        globalThis.navigator.serviceWorker.register("/service-worker.js");
+      });
+    </script><link rel="manifest" href="https://johnhenry.github.io/manifest.json"><link rel="icon" href="https://johnhenry.github.io/image/iajh.png" type="image/png"><link rel="stylesheet" href="https://johnhenry.github.io/lib/vendor/css/reset/2.0.0/index.css"><link rel="stylesheet" href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"><link rel="stylesheet" href="https://johnhenry.github.io/lib/css/universal-box-sizing/0.0.0/index.css"><link rel="stylesheet" href="https://johnhenry.github.io/lib/css/universal-no-margins/0.0.0/index.css"><link rel="stylesheet" href="https://johnhenry.github.io/lib/css/hide-n-show/0.0.0/landscape.css"><link rel="stylesheet" href="https://johnhenry.github.io/style/index.css"><script type="module" src="https://johnhenry.github.io/lib/js/css-variables-mouse/0.0.0/index.mjs"></script><script type="module" src="https://johnhenry.github.io/lib/js/css-variables-scroll/0.0.0/index.mjs"></script><link rel="apple-touch-icon" sizes="512x512" href="https://johnhenry.github.io/image/iajh.512.png"><link rel="apple-touch-icon" sizes="384x384" href="https://johnhenry.github.io/image/iajh.384.png"><link rel="apple-touch-icon" sizes="256x256" href="https://johnhenry.github.io/image/iajh.256.png"><link rel="apple-touch-icon" sizes="192x192" href="https://johnhenry.github.io/image/iajh.192.png"><link rel="apple-touch-icon" sizes="128x128" href="https://johnhenry.github.io/image/iajh.128.png"></head><body>
+<script type="module">
+  import localStorageCycler from "https://johnhenry.github.io/lib/js/localstorage-cycler/0.0.0/index.mjs";
+  const key = 'color-theme-preference';
+  const values = ["","color-theme-dark","color-theme-light"];
+  const target = globalThis.document.querySelector("body");
+  const emit = ({value, key, index}) => {
+    target.classList.remove(...values.filter(s=>s));
+    if(value){
+      target.classList.add(value);
+    }
+  }
+  window["cycleTheme"] = localStorageCycler(key, emit, ...values);
+</script>
+<script type="module">
+  import localStorageCycler from "https://johnhenry.github.io/lib/js/localstorage-cycler/0.0.0/index.mjs";
+  const key = 'mouse-chaser-preference';
+  const values = ["mouse-chaser-logo","mouse-chaser-coordinates",""];
+  const target = globalThis.document.querySelector("body");
+  const emit = ({value, key, index}) => {
+    target.classList.remove(...values.filter(s=>s));
+    if(value){
+      target.classList.add(value);
+    }
+  }
+  window["cycleMouseChaser"] = localStorageCycler(key, emit, ...values);
+</script><header><a href="/#"><img src="https://johnhenry.github.io/image/iajh.png" width="32" height="32" alt="logo"><p class="hide-n-show-landscape-inline">John Henry </p></a><nav class="hide show-landscape-flex"><a href="/blog">Blog</a><a href="/#me">Me</a><a href="/#projects">Projects</a></nav></header><style>
+  body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 7fr;
+  }
+  section {
+    display: grid;
+    gap: 4px;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+  }
+  section > * {
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+
+  section > * > *:first-child,
+  section > * > a {
+    font-weight: bold;
+  }
+  section > * > *:first-child:after {
+    content: " -- ";
+  }
+  @media (orientation: landscape) {
+    section {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+</style>
+<section>
+  <header>Bash</header>
+  <div>
+    <span>explode@0.0.0</span>
+    Move items from child folder into current folder and delete child folder.
+    <a href="../bash/explode/0.0.0/explode" download="explode">(mac/linux)</a>
+  </div>
+  <div>
+    <span>implode@0.0.0</span>
+    Move file into folder of same name (minus the extension).
+    <a href="../bash/implode/0.0.0/implode.mac" download="implode">(mac)</a>
+    <a href="../bash/implode/0.0.0/implode.linux" download="implode">(linux)</a>
+  </div>
+  <div>
+    <span>codir@0.0.0</span>
+    Open directory in
+    <a href="https://code.visualstudio.com/" target="_blank"
+      >visual studio code</a
+    >. Create directory if it does not already exist.
+    <a href="../bash/codir/0.0.0/codir" download="codir">(mac/linux)</a>
+  </div>
+  <div>
+    <span>whichdir@0.0.0</span>
+    Get the parent directory of a given executable.
+    <a href="../bash/whichdir/0.0.0/whichdir" download="whichdir"
+      >(mac/linux)</a
+    >
+  </div>
+  <div>
+    <span>cat64@0.0.0</span>
+    Create and prefix base64 representation of a file.
+    <a href="../bash/cat64/0.0.0/cat64" download="cat64">(mac/linux)</a>
+  </div>
+  <div>
+    <span>gitflush@0.0.0</span>
+    <ul>
+      <li>git add .</li>
+      <li>git commit -m &lt;given args&gt;</li>
+      <li>git push</li>
+    </ul>
+    <a href="../bash/gitflush/0.0.0/gitflush" download="gitflush"
+      >(mac/linux)</a
+    >
+  </div>
+  <div>
+    <span>dobrew@0.0.0</span>
+    <ul>
+      <li>brew update</li>
+      <li>brew upgrade</li>
+      <li>brew upgrade --cask</li>
+    </ul>
+    <a href="../bash/dobrew/0.0.0/dobrew" download="dobrew">(mac/linux)</a>
+  </div>
+</section><span class="mouse-chaser"></span><footer><a href="#">© 2021 John Henry</a><nav><a href="#" class="mouse-chaser-toggler" onclick="event.preventDefault(),window.cycleMouseChaser()" title="Click to toggle mouse."></a><a href="#" class="color-theme-toggler" onclick="event.preventDefault(),window.cycleTheme()" title="Click to toggle color theme."></a></nav></footer></body></html>
