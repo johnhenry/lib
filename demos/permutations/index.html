@@ -28,19 +28,82 @@
     }
   }
   window["cycleMouseChaser"] = localStorageCycler(key, emit, ...values);
-</script><header><a href="/#"><img src="https://johnhenry.github.io/image/iajh.png" width="32" height="32" alt="logo"><p class="hide-n-show-landscape-inline">John Henry </p></a><nav class="hide show-landscape-flex"><a href="/blog">Blog</a><a href="/#me">Me</a><a href="/#projects">Projects</a></nav></header><section>
-  <ul>
-    <li><a href="linear-combinations/">Linear Combinations</a></li>
-    <li><a href="permutations/">Permutations</a></li>
-    <li><a href="tester/">Tester</a></li>
-    <li><a href="colorwheel/">Color Wheel</a></li>
-    <li><a href="tango-colors/">Tango Colors</a></li>
-    <li><a href="simple-element/">Simple Element</a></li>
-    <li><a href="menu-component/">Menu Component</a></li>
-    <li><a href="fun-without-javascript/">Fun Without Javascript</a></li>
-    <li><a href="clock/">Clock</a></li>
-    <li><a href="broadcast-channel/">Broadcast Channel</a></li>
-    <li><a href="liedenticons/">Liedenticons</a></li>
-  </ul>
+</script><header><a href="/#"><img src="https://johnhenry.github.io/image/iajh.png" width="32" height="32" alt="logo"><p class="hide-n-show-landscape-inline">John Henry </p></a><nav class="hide show-landscape-flex"><a href="/blog">Blog</a><a href="/#me">Me</a><a href="/#projects">Projects</a></nav></header><style>
+  @import "../../js/negatablestring/0.0.0/negative-class.css";
+</style>
+<header>Permutations</header>
+<section>
+  <pre>
+      <script type="module" style="display: block">
+        import query from "../../js/url-params/0.0.0/query.mjs";
+        import textToDOMNodes from "../../js/text-to-DOM-nodes/0.0.0/index.mjs";
+        import pause from "../../js/pause/0.0.0/index.mjs";
+        import transduce from "../../js/iterator-transduce/0.0.0/index.mjs";
+        import { map, group, take } from "../../js/iterator-transduce/0.0.0/transducers.mjs";
+        import "../../js/negatablestring/0.0.0/string-prototype-warn.mjs";
+        import { negater } from "../../js/negatablestring/0.0.0/index.mjs";
+        const negativeMarkup = ['<span class="negative">', "</span>"];
+        const numToBinaryArray = (num, len, t = "~", f = "") => {
+          return num
+            .toString(2)
+            .padStart(len, 0)
+            .split("")
+            .map(Number)
+            .map((x) => (x ? t : f));
+        };
+        const zip = (a0, a1) => {
+          return a0.map((item, i) => item + a1[i]);
+        };
+        const intersperse = function* (word, char = "~", after = false, before = true) {
+          const letters = word.split("");
+          if (after) {
+            letters.push("");
+          }
+          let x = 0;
+          if (!before) {
+            x = 2 ** (letters.length - 1);
+          }
+          for (let i = 0; i < 2 ** letters.length - x; i++) {
+            yield zip(numToBinaryArray(i, letters.length, char), letters).join("");
+          }
+        };
+        const transform = transduce(
+          map((x) => {
+            const li = window.document.createElement("li");
+            li.append(...textToDOMNodes(negater(x).toString(...negativeMarkup)));
+            return li;
+          }),
+          group(Number(query.group) || 1),
+          take(Number(query.take) || Infinity)
+        );
+        const ol = window.document.getElementById("permutations");
+        for(const x of transform(intersperse(query.word || "", "~"))){
+          ol.append(...x);
+          if(query.autoscroll === 'on'){
+            window.scrollTo(0, window.document.body.scrollHeight);
+          }
+          await pause(Number(query.pause) || 0);
+        }
+      </script>
+      <form>
+        <label>
+          word <input type="text" name="word" placeholder="permutations" value="mississippi" />
+        </label>
+        <label>
+          group <input type="number" name="group" placeholder="group" value="8" />
+        </label>
+        <label>
+          take <input type="number" name="take" placeholder="take"  value="" />
+        </label>
+        <label>
+          pause <input type="number" name="pause" placeholder="pause" value="1000" />
+        </label>
+        <label>
+          autoscroll <input type="checkbox" checked name="autoscroll">
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+      <ol id="permutations" style="padding-left:128px"></ol>
+    </pre>
 </section>
 <span class="mouse-chaser"></span><footer><a href="#">© 2021 John Henry</a><nav><a href="#" class="mouse-chaser-toggler" onclick="event.preventDefault(),window.cycleMouseChaser()" title="Click to toggle mouse."></a><a href="#" class="color-theme-toggler" onclick="event.preventDefault(),window.cycleTheme()" title="Click to toggle color theme."></a></nav></footer></body></html>

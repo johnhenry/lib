@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://johnhenry.github.io/style/index.css" />
-    <title>Tester</title>
-  </head>
-  <body>
-    <h1>See console for test results</h1>
-    <pre>
-      <script type="module" style="display: block;">
-        import tester, { ok, notok, equal, notequal } from "../js/tester/0.0.0/index.mjs";
+<section>
+  <link rel="stylesheet" href="../../css/on-display/0.0.0/scripts.css" />
+
+  <h1>See console for test results</h1>
+  <pre>
+      <script type="module">
+        import tester, { ok, notok, equal, notequal } from "../../js/tester/0.0.0/index.mjs";
         await tester(function* () {
           yield ok("str");
           yield notok("");
@@ -43,11 +36,11 @@
         });
       </script>
     </pre>
-    <h1>See results below</h1>
-    <pre>
-      <script type="module" style="display: block;">
-        import { ok, notok, equal, notequal } from "../js/tester/0.0.0/index.mjs";
-        import {print as tester} from "../js/tester/0.0.0/TAPRunner.mjs";
+  <h1>See results below</h1>
+  <pre>
+      <script type="module" >
+        import { ok, notok, equal, notequal } from "../../js/tester/0.0.0/index.mjs";
+        import {print as tester} from "../../js/tester/0.0.0/TAPRunner.mjs";
         const log = (message)=>{
           const pre = document.createElement("pre");
           pre.textContent = message;
@@ -89,6 +82,5 @@
           yield notequal("str", "str");
         }, 'all fail #0', log, logError);
       </script>
-    </pre>
-  </body>
-</html>
+</pre>
+</section>

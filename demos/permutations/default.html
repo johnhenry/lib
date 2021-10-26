@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://johnhenry.github.io/style/index.css" />
-    <title>Permutations</title>
-    <style>
-      @import "../js/negatablestring/0.0.0/negative-class.css";
-    </style>
-  </head>
-  <body>
-    <header>Permutations</header>
-    <section>
-      <pre>
+<style>
+  @import "../../js/negatablestring/0.0.0/negative-class.css";
+</style>
+<header>Permutations</header>
+<section>
+  <pre>
       <script type="module" style="display: block">
-        import query from "../js/url-params/0.0.0/query.mjs";
-        import textToDOMNodes from "../js/text-to-DOM-nodes/0.0.0/index.mjs";
-        import pause from "../js/pause/0.0.0/index.mjs";
-        import transduce from "../js/iterator-transduce/0.0.0/index.mjs";
-        import { map, group, take } from "../js/iterator-transduce/0.0.0/transducers.mjs";
-        import "../js/negatablestring/0.0.0/string-prototype-warn.mjs";
-        import { negater } from "../js/negatablestring/0.0.0/index.mjs";
+        import query from "../../js/url-params/0.0.0/query.mjs";
+        import textToDOMNodes from "../../js/text-to-DOM-nodes/0.0.0/index.mjs";
+        import pause from "../../js/pause/0.0.0/index.mjs";
+        import transduce from "../../js/iterator-transduce/0.0.0/index.mjs";
+        import { map, group, take } from "../../js/iterator-transduce/0.0.0/transducers.mjs";
+        import "../../js/negatablestring/0.0.0/string-prototype-warn.mjs";
+        import { negater } from "../../js/negatablestring/0.0.0/index.mjs";
         const negativeMarkup = ['<span class="negative">', "</span>"];
         const numToBinaryArray = (num, len, t = "~", f = "") => {
           return num
@@ -85,6 +75,4 @@
       </form>
       <ol id="permutations" style="padding-left:128px"></ol>
     </pre>
-    </section>
-  </body>
-</html>
+</section>

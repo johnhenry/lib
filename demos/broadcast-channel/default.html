@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link id="favicon" rel="icon" type="image/svg+xml" />
-    <link rel="stylesheet" href="https://johnhenry.github.io/style/index.css" />
-    <link rel="stylesheet" href="https://johnhenry.github.io/style/index.css" />
-    <title>Broadcast Channel Worker</title>
-  </head>
-  <body>
-    <h1>Broadcast Channel Worker</h1>
-    <pre>
+<section>
+  <h1>Broadcast Channel Worker</h1>
+  <pre>
       <script type="module" style="display: block">
-        import BroadcastChannelWorker from "../js/broadcast-channel-worker/0.0.0/index.mjs";
-        import textToDOMNodes from "../js/text-to-DOM-nodes/0.0.0/index.mjs";
-        import { PNG , SVG } from "../js/liedenticons/0.0.0/index.mjs";
+        import BroadcastChannelWorker from "../../js/broadcast-channel-worker/0.0.0/index.mjs";
+        import textToDOMNodes from "../../js/text-to-DOM-nodes/0.0.0/index.mjs";
+        import { PNG , SVG } from "../../js/liedenticons/0.0.0/index.mjs";
         const transform = (message, from, to) =>
 `${new Date()}
 
@@ -38,17 +27,26 @@ ${letter}
 `))
         };
         const worker = new BroadcastChannelWorker({onmessage});
-        console.log(worker.id, new Date());
+        console.log(`${worker.id} has entered`, new Date());
 
-        const favicon = globalThis.document.getElementById('favicon');
-        favicon.href = new PNG(String(worker.id)).toString();
+        try{
+          const favicon = globalThis.document.querySelector('[rel=icon]');
+          favicon.href = new PNG(String(worker.id)).toString();
+        }catch{
+        }
+
+
+        window.onbeforeunload = function(e) {
+            worker.postMessage('Have a good day!');
+            console.log(`${worker.id} has left`, new Date());
+        };
 
         worker.postMessage('Hello World!');
         setTimeout(()=>{
           const peers = [...worker.peers]
           const peer = peers[Math.floor(Math.random() * peers.length)];
           if(peer){
-            worker.postMessage('Hello You!', peer);
+            worker.postMessage('Hey You!', peer);
           }
         }, 1000);
 
@@ -67,6 +65,5 @@ ${letter}
         window.bcw = worker;
       </script>
     </pre>
-    <a href="#" target="_blank">↪ new peer</a>
-  </body>
-</html>
+  <a href="#" target="_blank">↪ new peer</a>
+</section>

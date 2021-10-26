@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>John Henry</title><link rel="canonical" href="https://johnhenry.github.io/"><meta name="description" content="John Henry's Person Portfolio and Blog"><meta name="robots" content="index,follow"><meta name="theme-color" content="#343233"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="keywords" content="fun,math,engineering,science,experiments,programming"><meta name="author" content="John Henry"><script>
+export default (templated) => `<!DOCTYPE html><html lang="en"><head><title>John Henry</title><link rel="canonical" href="https://johnhenry.github.io/"><meta name="description" content="John Henry's Person Portfolio and Blog"><meta name="robots" content="index,follow"><meta name="theme-color" content="#343233"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="keywords" content="fun,math,engineering,science,experiments,programming"><meta name="author" content="John Henry"><script>
       globalThis.addEventListener('load', () => {
         globalThis.navigator.serviceWorker.register("/service-worker.js");
       });
@@ -28,19 +28,4 @@
     }
   }
   window["cycleMouseChaser"] = localStorageCycler(key, emit, ...values);
-</script><header><a href="/#"><img src="https://johnhenry.github.io/image/iajh.png" width="32" height="32" alt="logo"><p class="hide-n-show-landscape-inline">John Henry </p></a><nav class="hide show-landscape-flex"><a href="/blog">Blog</a><a href="/#me">Me</a><a href="/#projects">Projects</a></nav></header><section>
-  <ul>
-    <li><a href="linear-combinations/">Linear Combinations</a></li>
-    <li><a href="permutations/">Permutations</a></li>
-    <li><a href="tester/">Tester</a></li>
-    <li><a href="colorwheel/">Color Wheel</a></li>
-    <li><a href="tango-colors/">Tango Colors</a></li>
-    <li><a href="simple-element/">Simple Element</a></li>
-    <li><a href="menu-component/">Menu Component</a></li>
-    <li><a href="fun-without-javascript/">Fun Without Javascript</a></li>
-    <li><a href="clock/">Clock</a></li>
-    <li><a href="broadcast-channel/">Broadcast Channel</a></li>
-    <li><a href="liedenticons/">Liedenticons</a></li>
-  </ul>
-</section>
-<span class="mouse-chaser"></span><footer><a href="#">© 2021 John Henry</a><nav><a href="#" class="mouse-chaser-toggler" onclick="event.preventDefault(),window.cycleMouseChaser()" title="Click to toggle mouse."></a><a href="#" class="color-theme-toggler" onclick="event.preventDefault(),window.cycleTheme()" title="Click to toggle color theme."></a></nav></footer></body></html>
+</script><header><a href="/#"><img src="https://johnhenry.github.io/image/iajh.png" width="32" height="32" alt="logo"><p class="hide-n-show-landscape-inline">John Henry </p></a><nav class="hide show-landscape-flex"><a href="/blog">Blog</a><a href="/#me">Me</a><a href="/#projects">Projects</a></nav></header>${ templated }<span class="mouse-chaser"></span><footer><a href="#">© 2021 John Henry</a><nav><a href="#" class="mouse-chaser-toggler" onclick="event.preventDefault(),window.cycleMouseChaser()" title="Click to toggle mouse."></a><a href="#" class="color-theme-toggler" onclick="event.preventDefault(),window.cycleTheme()" title="Click to toggle color theme."></a></nav></footer></body></html>`;
