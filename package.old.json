@@ -1,0 +1,51 @@
+{
+  "name": "johnhenry.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "esbuild": "^0.8.53",
+    "fs-extra": "^9.1.0",
+    "jest": "^27.0.3",
+    "lit-html": "^1.4.1",
+    "prettier": "^2.3.0",
+    "showdown": "^1.9.1",
+    "wbn": "0.0.5"
+  },
+  "scripts": {
+    "lint": "prettier --write . ",
+    "build:service-workers": "node scripts/build-service-workers.mjs",
+    "build:readme-indexes": "node scripts/build-readme-indexes.mjs",
+    "build:versions": "node scripts/build-versions.mjs",
+    "build:notes": "node scripts/build-notes.mjs",
+    "build": "npm run build:versions && npm run build-storybook",
+    "serve": "live-server .",
+    "github:actions": "act --secret-file .github/workflows/.secrets",
+    "test:tester": "node scripts/run-tester-tests.mjs",
+    "jest": "jest --config=./config/jest.config.js",
+    "test:jest": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js",
+    "test": "npm run test:jest -s",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnhenry/johnhenry.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnhenry/johnhenry.github.io/issues"
+  },
+  "homepage": "https://github.com/johnhenry/johnhenry.github.io#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/web-components": "^6.2.9",
+    "babel-loader": "^8.2.2",
+    "live-server": "^1.2.1"
+  }
+}
