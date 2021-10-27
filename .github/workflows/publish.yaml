@@ -15,11 +15,11 @@ jobs:
       - name: Build Indicies 🏭
         run: sh scripts/buildindicies.sh
 
-      - name: setup pandock
-      - uses: docker://pandoc/core:2.9
+      - name: setup and test
+        uses: docker://pandoc/core:2.9
         with:
           args: "--help" # gets appended to pandoc command
-        run: sh scripts/pandock.sh
+        run: echo $(which pandocl)
 
       # - name: Setup deno ⛺️
       # - uses: denoland/setup-deno@v1
