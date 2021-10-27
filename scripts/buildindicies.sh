@@ -12,7 +12,7 @@ create() {
 
 ## Update template
 curl https://johnhenry.github.io/template/shell/index.html > $TEMPLATE
-function traverse() {
+function traverse () {
 find $1 -type d \( -path ./node_modules -o -path ./vendor -o -path ./html \) -prune -o  -not -path '*/\.*' -print0 | while IFS= read -r -d '' FILE
 do
   if [ ! -d "${FILE}" ] ; then
