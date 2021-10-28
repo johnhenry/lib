@@ -1,4 +1,4 @@
-# https://stackoverflow.com/a/18897659/1290781
+# find . -print0 | while IFS= read -r -d '' file
 # https://askubuntu.com/questions/266179/how-to-exclude-ignore-hidden-files-and-directories-in-a-wildcard-embedded-find
 TEMPLATE_SRC=https://johnhenry.github.io/template/shell/index.html
 TEMPLATE=templates/shell.html
@@ -33,6 +33,27 @@ do
       TARGET="$(dirname "${FILE}")/${OUTFILE}"
       inject ${FILE} $2 ${TARGET}
     fi
+  fi
+done
+}
+
+
+run_create_test () {
+find $1 -type f -name "*.tester.test.mjs"  -print0 | while IFS= read -r -d '' FILE
+do
+  if [ ! -d "${FILE}" ]; then
+    BASENAME="$(basename ${FILE})";
+    DIRNAME="$(dirname ${FILE})";
+    echo "<html><head><script type=\"module\" src=\"${BASENAME}\"></script></head><body><h1>Open console for logs.</h1></body></html>" > "${DIRNAME}/test.html"
+  fi
+done
+}
+
+run_tester () {
+find $1 -type f -name "*.tester.test.mjs"  -print0 | while IFS= read -r -d '' FILE
+do
+  if [ ! -d "${FILE}" ]; then
+    deno run $FILE
   fi
 done
 }
@@ -146,5 +167,9 @@ case "$1" in
   "build_indicies") build_indicies $DIR $DEPTH
   ;;
   "latest_versions") latest_versions $DIR
+  ;;
+  "run_tester") run_tester $DIR
+  ;;
+  "run_create_test") run_create_test $DIR
   ;;
 esac
