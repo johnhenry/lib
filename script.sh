@@ -61,16 +61,20 @@ done
 build_indicies() {
   local TOP=$1
   local DEPTH=$2
+  local STR=""
   if [ $DEPTH -gt 0 ]; then
     local HTML=""
     for entry in "$TOP"/*
     do
       if [ -d "${entry}" ]; then
         local BASE="$(basename ${entry})"
-        local HTML="${HTML}<li><a href=\"${BASE}\">${BASE}</a></li>"
+        STR="${STR}\n${BASE}"
+        HTML="${HTML}<li><a href=\"${BASE}\">${BASE}</a></li>"
         build_indicies $entry $((DEPTH-1))
       fi
     done
+    VERSION=$(echo $STR | sort -V | tail -1)
+    HTML="<li><a href=\"${VERSION}\">(latest)</a></li>${HTML}"
     #write HTML file
     echo "<ul>${HTML}</ul>" > "${TOP}/index.html"
   fi
