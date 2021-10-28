@@ -38,6 +38,19 @@ done
 }
 
 
+# Transform _index.html into index.html
+remove_indicies () {
+find $1 -type f -name "index.html"  -print0 | while IFS= read -r -d '' FILE
+do
+  if [ ! -d "${FILE}" ] ; then
+    echo ${FILE}
+  fi
+done
+}
+
+
+
+
 run_create_test () {
 find $1 -type f -name "*.tester.test.mjs"  -print0 | while IFS= read -r -d '' FILE
 do
@@ -177,5 +190,7 @@ case "$1" in
   "run_tester") run_tester $DIR
   ;;
   "run_create_test") run_create_test $DIR
+  ;;
+  "remove_indicies") remove_indicies $DIR
   ;;
 esac
