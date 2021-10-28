@@ -1,19 +1,19 @@
 <script type="module">
-  import { register } from "../../js/simpleelement/0.0.0/index.mjs";
+  import { register } from "./index.mjs";
   register("red-element", {
     shadowMode: "closed",
     useShadow: true,
   })`<slot part=content /><style>*{color:red}</style>`;
 </script>
 <script type="module">
-  import { shadowOpen } from "../../js/simpleelement/0.0.0/index.mjs";
+  import { shadowOpen } from "./index.mjs";
   globalThis.customElements.define(
     "blue-element",
     shadowOpen`<slot part=content /><style>*{color:blue}</style>`
   );
 </script>
 <script type="module">
-  import { constructSuperclass } from "../../js/simpleelement/0.0.0/index.mjs";
+  import { constructSuperclass } from "./index.mjs";
   globalThis.customElements.define(
     "green-element",
     class extends constructSuperclass({

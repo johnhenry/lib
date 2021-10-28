@@ -1,17 +1,17 @@
 <style>
-  @import "../../js/negatablestring/0.0.0/negative-class.css";
+  @import "./negative-class.css";
 </style>
 <header>Permutations</header>
 <section>
   <pre>
       <script type="module" style="display: block">
-        import query from "../../js/url-params/0.0.0/query.mjs";
-        import textToDOMNodes from "../../js/text-to-DOM-nodes/0.0.0/index.mjs";
-        import pause from "../../js/pause/0.0.0/index.mjs";
-        import transduce from "../../js/iterator-transduce/0.0.0/index.mjs";
-        import { map, group, take } from "../../js/iterator-transduce/0.0.0/transducers.mjs";
-        import "../../js/negatablestring/0.0.0/string-prototype-warn.mjs";
-        import { negater } from "../../js/negatablestring/0.0.0/index.mjs";
+        import query from "../../../js/url-params/0.0.0/query.mjs";
+        import textToDOMNodes from "../../../js/text-to-DOM-nodes/0.0.0/index.mjs";
+        import pause from "../../../js/pause/0.0.0/index.mjs";
+        import transduce from "../../../js/iterator-transduce/0.0.0/index.mjs";
+        import { map, group, take } from "../../../js/iterator-transduce/0.0.0/transducers.mjs";
+        import "./string-prototype-warn.mjs";
+        import { negater } from "./index.mjs";
         const negativeMarkup = ['<span class="negative">', "</span>"];
         const numToBinaryArray = (num, len, t = "~", f = "") => {
           return num

@@ -29,7 +29,7 @@
     }
   </style>
   <script type="module">
-    import Menu from "../../js/menu.component/0.0.0/index.mjs";
+    import Menu from "./index.mjs";
     customElements.define("menu-component", Menu);
   </script>
   <menu-component class="menu">
@@ -110,7 +110,7 @@
     </menu-item>
   </menu-component>
   <script type="module">
-    import attach from "../../js/menu.component/0.0.0/hash.mjs";
+    import attach from "./hash.mjs";
     attach(document.querySelector(".menu"));
   </script>
 </section>

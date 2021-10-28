@@ -1,0 +1,86 @@
+<section>
+  <link rel="stylesheet" href="../../../css/on-display/0.0.0/scripts.css" />
+
+  <h1>See console for test results</h1>
+  <pre>
+      <script type="module">
+        import tester, { ok, notok, equal, notequal } from "./index.mjs";
+        await tester(function* () {
+          yield ok("str");
+          yield notok("");
+          yield equal("str", "str");
+          yield notequal("str", "str0");
+        });
+        await tester(function* () {
+          yield ok("str");
+          yield ok("");
+        });
+        await tester(function* () {
+          yield notok("");
+          yield notok("str");
+        });
+        await tester(function* () {
+          yield equal("str", "str");
+          yield equal("str", "str0");
+        });
+        await tester(function* () {
+          yield notequal("str", "str0");
+          yield notequal("str", "str");
+        });
+
+        await tester(function* () {
+          yield ok("");
+          yield notok("str");
+          yield equal("str", "str0");
+          yield notequal("str", "str");
+        });
+      </script>
+    </pre>
+  <h1>See results below</h1>
+  <pre>
+      <script type="module" >
+        import { ok, notok, equal, notequal } from "./index.mjs";
+        import {print as tester} from "./TAPRunner.mjs";
+        const log = (message)=>{
+          const pre = document.createElement("pre");
+          pre.textContent = message;
+          document.body.appendChild(pre);
+        }
+        const logError = (message)=>{
+          const pre = document.createElement("pre");
+          pre.style = 'color:red;'
+          pre.textContent = message;
+          document.body.appendChild(pre);
+        }
+        await tester(function* () {
+          yield ok("str");
+          yield notok("");
+          yield equal("str", "str");
+          yield notequal("str", "str0");
+        }, 'all pass #0', log, logError);
+
+        await tester(function* () {
+          yield ok("str");
+          yield ok("");
+        }, 'pass fail #0', log, logError);
+        await tester(function* () {
+          yield notok("");
+          yield notok("str");
+        }, 'pass fail #1', log, logError);
+        await tester(function* () {
+          yield equal("str", "str");
+          yield equal("str", "str0");
+        }, 'pass fail #2', log, logError);
+        await tester(function* () {
+          yield notequal("str", "str0");
+          yield notequal("str", "str");
+        }, 'pass fail #3', log, logError);
+        await tester(function* () {
+          yield ok("");
+          yield notok("str");
+          yield equal("str", "str0");
+          yield notequal("str", "str");
+        }, 'all fail #0', log, logError);
+      </script>
+</pre>
+</section>
