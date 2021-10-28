@@ -15,9 +15,9 @@ jobs:
       - name: Build Indicies 🏭
         run: npm run build
 
-      - name: test pandoc
+      - name: test jq/pandoc
         run: |
-          sudo apt-get install pandoc
+          echo $(which jq)
           echo $(which pandoc)
 
       # - name: Setup deno ⛺️
