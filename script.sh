@@ -40,7 +40,6 @@ done
 build_indicies() {
   local TOP=$1
   local DEPTH=$2
-  echo $TOP $DEPTH
   if [ $DEPTH -gt 0 ]; then
     local HTML=""
     for entry in "$TOP"/*
@@ -79,10 +78,6 @@ latest_version() {
   NAME=$(basename $TOP)
   FULL="${NAME}@${VERSION}"
   echo "The latest version of ${NAME} is ${VERSION} (${DIR})"
-
-
-
-
 
 # test for documentation
   if [ -f "${DIR}/_index.html" ]; then
