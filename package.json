@@ -16,6 +16,7 @@
     "test": "npm run test:jest -s",
     "start": "npm run serve",
     "script": "sh script.sh",
+    "publish-ignore": "echo .publishignore > .gitignore",
     "build": "sh build.sh"
   },
   "repository": {

@@ -26,7 +26,7 @@ do
     if [ $BASENAME = $INFILE ]; then
       # create file
       TARGET="$(dirname "${FILE}")/${OUTFILE}"
-      inject ${FILE} $2 ${TARGET}
+      cp $FILE $TARGET
     fi
   fi
 done
@@ -118,7 +118,7 @@ latest_version() {
   if [ -f "${DIR}/_index.html" ]; then
     echo "✅ _index.html found!"
     echo "🏭 Building index.html from _index.html"
-    cat "${DIR}/_index.md" > "${DIR}/index.html"
+    cat "${DIR}/_index.html" > "${DIR}/index.html"
     echo "🏭 index.html built from HTML"
   elif [ -f "${DIR}/readme.md" ]; then
     echo "🏭 Building index.html from readme.md"

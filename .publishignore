@@ -1,0 +1,5 @@
+node_modules
+.github/workflows/.secrets
+.DS_Store
+.env/
+index.html

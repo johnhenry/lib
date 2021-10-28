@@ -23,6 +23,9 @@ jobs:
       #   with:
       #     deno-version: v1.15
 
+      - name: Update Git Ignore 🏭
+        run: echo .publishignore > .gitignore
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
