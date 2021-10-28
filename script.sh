@@ -74,6 +74,8 @@ build_indicies() {
       fi
     done
     VERSION=$(echo $STR | sort -V | tail -1)
+
+    (echo "$VERSION" | grep -Eq  "(.*)@(\d+\.\d+\.\d+)$") &&\
     HTML="<li><a href=\"${VERSION}\">(latest)</a></li>${HTML}"
     #write HTML file
     echo "<ul>${HTML}</ul>" > "${TOP}/index.html"
