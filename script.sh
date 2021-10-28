@@ -83,13 +83,20 @@ latest_version() {
   if [ -f "${DIR}/_index.html" ]; then
     echo "✅ _index.html found!"
     echo "🏭 Building index.html from _index.html"
+    cat "${DIR}/_index.md" > "${DIR}/index.html"
+    echo "🏭 index.html built from HTML"
   elif [ -f "${DIR}/readme.md" ]; then
     echo "🏭 Building index.html from readme.md"
+    pandoc -f markdown "${DIR}/readme.md" > "${DIR}/index.html"
+    echo "🏭 index.html built from Markdown"
   fi
+
 # test for typescript conmilation
   if [ -f "${DIR}/index.ts" ]; then
     echo "✅ index.ts found!"
     echo "🏭 Building ${DIR}/index.mjs from index.ts"
+#    tsc --outDir "${DIR}" "${DIR}/index.ts"
+#    echo "🏭 index.html built from Markdown"
   fi
 
 # test for publication
@@ -108,6 +115,8 @@ latest_version() {
             echo "❓ package.version is "${VERSION}" (5 of 5)"
             echo "✅ we can publish ${FULL}!"
             echo "🚀 Publishing ${FULL}"
+            # npm publish "${DIR}"
+            # echo "🚀 ${FULL} published!"
           fi
         fi
       fi

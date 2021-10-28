@@ -1,0 +1,124 @@
+<h1 id="liedenticons">Liedenticons</h1>
+<p>Transform a string into a unique image.</p>
+<h2 id="liedenticons-vs-identicons">Liedenticons vs Identicons</h2>
+<p>Liedenticons is a <del>ripoff of</del> extension of <a href="https://github.com/stewartlord/identicon.js/tree/master">Identicon</a> with a few major differences.</p>
+<h3 id="modules">Modules</h3>
+<p>Liedenticons separates image generation into two separate classes. One to generate SVGs and another to generate PNGs.</p>
+<h4 id="common-js-module">Common JS Module</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> { SVG<span class="op">,</span> PNG } <span class="op">=</span> <span class="pp">require</span>(<span class="st">&quot;liedenticons&quot;</span>)<span class="op">;</span></span></code></pre></div>
+<h4 id="es6-module">ES6 Module</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { SVG<span class="op">,</span> PNG } <span class="im">from</span> <span class="st">&quot;liedenticons/js&quot;</span><span class="op">;</span></span></code></pre></div>
+<h4 id="es6-module-1">ES6 Module</h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;../vendor/liedenticons/browser.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> { SVG<span class="op">,</span> PNG } <span class="op">=</span> <span class="bu">window</span><span class="op">.</span><span class="at">Liedenticons</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+<h4 id="svg-class">SVG Class</h4>
+<p>By default the SVG module will generate an svg string to be embedded in a document.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">new</span> <span class="fu">SVG</span>(<span class="st">&quot;...&quot;</span>))<span class="op">;</span> <span class="co">//logs &quot;&lt;svg ...&quot;</span></span></code></pre></div>
+<p>Passing a truthy paramater to the “toString” method will create a string that can be used directly as the source attribute of an image.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">new</span> <span class="fu">SVG</span>(<span class="st">&quot;...&quot;</span>)<span class="op">.</span><span class="fu">toString</span>(<span class="kw">true</span>))<span class="op">;</span> <span class="co">//logs &quot;data:image/svg+xml;utf8,&lt;svg ...&quot;</span></span></code></pre></div>
+<p>Passing a second truthy paramater returns the base 64 encoded string.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">new</span> <span class="fu">SVG</span>(<span class="st">&quot;...&quot;</span>)<span class="op">.</span><span class="fu">toString</span>(<span class="kw">true</span><span class="op">,</span> <span class="kw">true</span>))<span class="op">;</span> <span class="co">//logs &quot;data:image/svg+xml;base64,...&quot;</span></span></code></pre></div>
+<h4 id="png-moduclassle">PNG ModuClassle</h4>
+<p>The PNG module will generate a base64 string by default with a preamble attached.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">new</span> <span class="fu">SVG</span>(<span class="st">&quot;...&quot;</span>))<span class="op">;</span> <span class="co">//logs &quot;data:image/svg+png;base64,...&quot;</span></span></code></pre></div>
+<p>Passing a falsy parameter to “toString” method will drop the preamble.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="kw">new</span> <span class="fu">SVG</span>(<span class="st">&quot;...&quot;</span>)<span class="op">.</span><span class="fu">toString</span>(<span class="kw">false</span>))<span class="op">;</span> <span class="co">//logs &quot;...&quot;</span></span></code></pre></div>
+<h4 id="future">Future</h4>
+<p>Both the SVG and PNG modules both inherit from an internal class called Graphic. It should be easy to extend this object and support other fomats by implementing a “renderImage” and a “toString” method.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Graphics <span class="im">from</span> <span class="st">&quot;Liedenticons/graphic&quot;</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NewFormat <span class="kw">extends</span> Graphics {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">renderImage</span>(hash<span class="op">,</span> size<span class="op">,</span> padding<span class="op">,</span> background<span class="op">,</span> foreground) {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">//...</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">toString</span>() {</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">//...</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="color-support">Color Support</h3>
+<p>In addition to using an array for colors, Liedenticons supports 1, 2, 3, 4, 6, and 8 digit hex color codes. 2, 4, and 8 digit colors support alpha channels</p>
+<h3 id="padding-vs-margin">Padding vs Margin</h3>
+<p>We’ve replaced the “margin” option “padding” as it this more closely fits this <a href="https://www.w3schools.com/cSS/css_padding.asp">definition</a> used by most web developers.</p>
+<h4 id="padding-percentage">Padding Percentage</h4>
+<p>Padding also supports values given as percentage strings.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> svg <span class="op">=</span> <span class="kw">new</span> <span class="fu">SVG</span>(<span class="st">&quot;...&quot;</span><span class="op">,</span> { <span class="dt">padding</span><span class="op">:</span> <span class="st">&quot;20%&quot;</span> })<span class="op">;</span></span></code></pre></div>
+<h2 id="classes">Classes</h2>
+<dl>
+<dt>
+<a href="#SVG">SVG</a> ⇐ <code>liedenticons/graphic</code>
+</dt>
+<dd>
+</dd>
+<dt>
+<a href="#PNG">PNG</a> ⇐ <code>liedenticons/graphic</code>
+</dt>
+<dd>
+</dd>
+</dl>
+<p><a name="SVG"></a></p>
+<h2 id="svg-liedenticonsgraphic">SVG ⇐ <code>liedenticons/graphic</code></h2>
+<p><strong>Kind</strong>: global class<br />
+<strong>Extends</strong>: <code>liedenticons/graphic</code><br />
+<a name="new_SVG_new"></a></p>
+<h3 id="new-svghash-options">new SVG(hash, options)</h3>
+<p>A hash represented as an SVG</p>
+<table>
+<thead>
+<tr class="header">
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>hash</td>
+<td><code>string</code></td>
+<td>unique string</td>
+</tr>
+<tr class="even">
+<td>options</td>
+<td><code>object</code></td>
+<td>graphicical options</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { SVG } <span class="im">from</span> <span class="st">&quot;Liedenticons&quot;</span><span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> svg <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">&quot;SVG&quot;</span>)<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">document</span><span class="op">.</span><span class="fu">appendChild</span>(svg)<span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>svg<span class="op">.</span><span class="at">outerHTML</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">SVG</span>(<span class="st">&quot;efb8c90a13f7a1fdc4910&quot;</span>)<span class="op">;</span></span></code></pre></div>
+<p><a name="PNG"></a></p>
+<h2 id="png-liedenticonsgraphic">PNG ⇐ <code>liedenticons/graphic</code></h2>
+<p><strong>Kind</strong>: global class<br />
+<strong>Extends</strong>: <code>liedenticons/graphic</code><br />
+<a name="new_PNG_new"></a></p>
+<h3 id="new-pnghash-options">new PNG(hash, options)</h3>
+<p>A hash represented as an PNG</p>
+<table>
+<thead>
+<tr class="header">
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>hash</td>
+<td><code>string</code></td>
+<td>unique string</td>
+</tr>
+<tr class="even">
+<td>options</td>
+<td><code>object</code></td>
+<td>graphicical options</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { PNG } <span class="im">from</span> <span class="st">&quot;Liedenticons&quot;</span><span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> img <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">&quot;IMG&quot;</span>)<span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>img<span class="op">.</span><span class="at">src</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">PNG</span>(<span class="st">&quot;efb8c90a13f7a1fdc4910&quot;</span>)<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">document</span><span class="op">.</span><span class="fu">appendChild</span>(img)<span class="op">;</span></span></code></pre></div>

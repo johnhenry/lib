@@ -1,0 +1,88 @@
+<h1 id="textelement">textElement</h1>
+<p>Create HTML Components using simple HTML Text strings.</p>
+<h2 id="creating-elements">Creating elements</h2>
+<ul>
+<li>The module provides two exports: <em>shadowOpen</em> and <em>shadowClosed</em>.</li>
+<li>Pass an HTML string to either to create an element derived from <em>globalThis.HTMLElement</em>.</li>
+<li>Use the resulting class as the second argument to <em>globalThis.customElements.define</em>.</li>
+<li>Each can be used as a regular function or as a <a href="https://2ality.com/2016/11/computing-tag-functions.html">tag function</a>.</li>
+</ul>
+<h3 id="regular-function-usage">Regular function usage</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { shadowOpen } <span class="im">from</span> <span class="st">&quot;./textElement.mjs&quot;</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> HTMLString <span class="op">=</span> <span class="st">&quot;&lt;div&gt;I am HTML&lt;/div&gt;&quot;</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> SampleElementClass <span class="op">=</span> <span class="fu">shadowOpen</span>(HTMLString)<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(<span class="st">&quot;sample-element&quot;</span><span class="op">,</span> SampleElementClass)<span class="op">;</span></span></code></pre></div>
+<h3 id="tag-function-usage">Tag function usage</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { shadowClosed } <span class="im">from</span> <span class="st">&quot;./textElement.mjs&quot;</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;sample-element&quot;</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shadowClosed</span><span class="vs">`&lt;div&gt;I am HTML&lt;/div&gt;`</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code></pre></div>
+<h3 id="shadowopen-vs-shadowclosed">shadowOpen vs shadowClosed</h3>
+<p><em>shadowOpen</em> creates an element with an accessible shadowRoot.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;open-element&quot;</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shadowOpen</span><span class="vs">`&lt;div&gt;I am open&lt;/div&gt;`</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">//...</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">console</span><span class="op">.</span><span class="fu">log</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  globalThis<span class="op">.</span><span class="at">document</span><span class="op">.</span><span class="fu">getElementsByTagName</span>(<span class="st">&quot;open-element&quot;</span>)[<span class="dv">0</span>]<span class="op">.</span><span class="at">shadowRoot</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span> <span class="co">//Logs element</span></span></code></pre></div>
+<p><em>shadowClosed</em> creates an element with an inaccessible shadowRoot.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;closed-element&quot;</span><span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shadowClosed</span><span class="vs">`&lt;div&gt;I am open&lt;/div&gt;`</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">//...</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">console</span><span class="op">.</span><span class="fu">log</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  globalThis<span class="op">.</span><span class="at">document</span><span class="op">.</span><span class="fu">getElementsByTagName</span>(<span class="st">&quot;closed-element&quot;</span>)[<span class="dv">0</span>]<span class="op">.</span><span class="at">shadowRoot</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span> <span class="co">//Logs null</span></span></code></pre></div>
+<h2 id="composing-elements">Composing elements</h2>
+<p>Use the <em>slot</em> element within the HTML string to allow for other HTML elements to be embedded.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;composable-element&quot;</span><span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shadowOpen</span><span class="vs">`&lt;div&gt;&lt;slot /&gt;&lt;/div&gt;`</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;composable-element&gt;</span> I&#39;m dynamic content <span class="kw">&lt;/composable-element&gt;</span></span></code></pre></div>
+<p>Renders like:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;</span>I&#39;m dynamic content<span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<h3 id="named-slots">Named Slots</h3>
+<p>Used named slots to place multiple pieces content within an element.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;composable-element&quot;</span><span class="op">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shadowOpen</span><span class="vs">`&lt;slot name=&quot;first&quot; /&gt;&lt;slot name=&quot;second&quot; /&gt;`</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;composable-element&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">slot</span><span class="ot">=</span><span class="st">&quot;second&quot;</span><span class="kw">&gt;</span>2nd<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">slot</span><span class="ot">=</span><span class="st">&quot;first&quot;</span><span class="kw">&gt;</span>1st<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/composable-element&gt;</span></span></code></pre></div>
+<p>Renders like:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>1st<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;br</span> <span class="kw">/&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span&gt;</span>2nd<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code></pre></div>
+<h2 id="styling-elements">Styling Elements</h2>
+<p>Elements can be styled by adding a <em>style</em> tag to the HTML string.</p>
+<p>Because the style tag exists within the shadowRoot, styles will only be applied within the element.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> RedTextClass <span class="op">=</span> <span class="fu">shadowOpen</span><span class="vs">`&lt;style&gt;*{color:red}&lt;/style&gt;&lt;slot /&gt;`</span><span class="op">;</span></span></code></pre></div>
+<h3 id="styling-slotted-elements">Styling slotted elements</h3>
+<p>Slotted elements exist outside of the shadowRoot and can be styled outside of the element.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(<span class="st">&quot;red-element&quot;</span><span class="op">,</span> RedTextClass)<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">.blue</span> {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>: <span class="cn">blue</span><span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;red-element&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;span</span> <span class="er">class</span><span class="ot">=</span><span class="st">&quot;blue&quot;</span><span class="kw">&gt;</span>This text is blue<span class="kw">&lt;/span&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/red-element&gt;</span></span></code></pre></div>
+<h3 id="using-part-sudo-element">Using ::part() sudo-element</h3>
+<p>Parts of the element intended to be the target of external styles can be marked with the <em>part</em> attribute.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(<span class="st">&#39;stylable-element&#39;</span><span class="op">,</span> <span class="fu">shadowOpen</span><span class="vs">`&lt;div part=content&gt; I&#39;m stylable externally&lt;/div&gt;`</span><span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  stylable-element<span class="in">::part(content)</span> {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>: <span class="cn">blue</span><span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;stylable-element</span> <span class="kw">/&gt;</span></span></code></pre></div>
