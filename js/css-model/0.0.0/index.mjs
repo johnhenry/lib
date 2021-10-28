@@ -45,7 +45,7 @@ const CSSModel = class {
     this.#tracked.delete(name);
     this.#tracked.delete(`${name}-str`);
   }
-  detach() {
+  detach(...args) {
     for (const name of this.#tracked) {
       this.remove(name);
     }

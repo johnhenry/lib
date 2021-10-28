@@ -5,11 +5,6 @@ TEMPLATE=templates/shell.html
 INFILE=_index.html
 OUTFILE=index.html
 
-# inject $1 into $2 to create $3
-create () {
-  cat $2 | templated_string_p7Rwrz6=$(cat $1) envsubst > $3
-}
-
 # Update template
 # save $1 as $2
 update_template () {
@@ -31,11 +26,24 @@ do
     if [ $BASENAME = $INFILE ]; then
       # create file
       TARGET="$(dirname "${FILE}")/${OUTFILE}"
-      inject ${FILE} $2 ${TARGET}
+      cp $FILE $TARGET
     fi
   fi
 done
 }
+
+
+# Transform _index.html into index.html
+remove_indicies () {
+find $1 -type f -name "index.html"  -print0 | while IFS= read -r -d '' FILE
+do
+  if [ ! -d "${FILE}" ] ; then
+    rm ${FILE}
+  fi
+done
+}
+
+
 
 
 run_create_test () {
@@ -74,6 +82,8 @@ build_indicies() {
       fi
     done
     VERSION=$(echo $STR | sort -V | tail -1)
+
+    (echo "$VERSION" | grep -Eq  "(.*)@(\d+\.\d+\.\d+)$") &&\
     HTML="<li><a href=\"${VERSION}\">(latest)</a></li>${HTML}"
     #write HTML file
     echo "<ul>${HTML}</ul>" > "${TOP}/index.html"
@@ -108,7 +118,7 @@ latest_version() {
   if [ -f "${DIR}/_index.html" ]; then
     echo "✅ _index.html found!"
     echo "🏭 Building index.html from _index.html"
-    cat "${DIR}/_index.md" > "${DIR}/index.html"
+    cat "${DIR}/_index.html" > "${DIR}/index.html"
     echo "🏭 index.html built from HTML"
   elif [ -f "${DIR}/readme.md" ]; then
     echo "🏭 Building index.html from readme.md"
@@ -175,5 +185,9 @@ case "$1" in
   "run_tester") run_tester $DIR
   ;;
   "run_create_test") run_create_test $DIR
+  ;;
+  "remove_indicies") remove_indicies $DIR
+  ;;
+  "inject") inject $2 $3 $4
   ;;
 esac
