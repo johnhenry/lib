@@ -1,4 +1,5 @@
 sh script.sh update_template
+sh script.sh inject _index.html templates/shell.html index.html
 sh script.sh build_html js
 sh script.sh build_html css
 sh script.sh build_html html

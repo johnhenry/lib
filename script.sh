@@ -5,11 +5,6 @@ TEMPLATE=templates/shell.html
 INFILE=_index.html
 OUTFILE=index.html
 
-# inject $1 into $2 to create $3
-create () {
-  cat $2 | templated_string_p7Rwrz6=$(cat $1) envsubst > $3
-}
-
 # Update template
 # save $1 as $2
 update_template () {
@@ -192,5 +187,7 @@ case "$1" in
   "run_create_test") run_create_test $DIR
   ;;
   "remove_indicies") remove_indicies $DIR
+  ;;
+  "inject") inject $2 $3 $4
   ;;
 esac
