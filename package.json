@@ -15,7 +15,8 @@
     "test:jest:watch": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --watchAll --verbose",
     "test": "npm run test:jest -s",
     "start": "npm run serve",
-    "build": "sh scripts/buildindicies.sh"
+    "script": "sh script.sh",
+    "build": "sh build.sh"
   },
   "repository": {
     "type": "git",
