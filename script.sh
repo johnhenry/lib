@@ -43,7 +43,7 @@ remove_indicies () {
 find $1 -type f -name "index.html"  -print0 | while IFS= read -r -d '' FILE
 do
   if [ ! -d "${FILE}" ] ; then
-    echo ${FILE}
+    rm ${FILE}
   fi
 done
 }
