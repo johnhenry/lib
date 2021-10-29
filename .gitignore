@@ -5,4 +5,5 @@ node_modules
 templates/shell.html
 **/index.html
 **/tests.html
+index.html
 demos.html
