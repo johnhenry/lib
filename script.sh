@@ -119,7 +119,7 @@ latest_version() {
   if [ -f "${DIR}/tester.test.mjs" ]; then
     echo "✅ tester.test.mjs found!"
     echo "🏭 Creating test.html using tester.test.mjs"
-    echo "<html><head><script type=\"module\" src=\"${DIR}/tester.test.mjs\"></script></head><body><h1>Open console for logs.</h1></body></html>" > "${DIR}/test.html"
+    echo "<html><head><script type=\"module\" src=\"./tester.test.mjs\"></script></head><body><h1>Open console for logs.</h1></body></html>" > "${DIR}/test.html"
     echo "🏭 tests.html built from from javascript"
   fi
 

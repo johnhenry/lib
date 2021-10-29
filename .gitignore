@@ -4,6 +4,6 @@ node_modules
 .env/
 templates/shell.html
 **/index.html
-**/tests.html
+**/test.html
 index.html
 demos.html
