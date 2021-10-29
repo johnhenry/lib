@@ -34,8 +34,14 @@ done
 
 
 # Transform _index.html into index.html
-remove_indicies () {
+reset_generated_files () {
 find $1 -type f -name "index.html"  -print0 | while IFS= read -r -d '' FILE
+do
+  if [ ! -d "${FILE}" ] ; then
+    rm ${FILE}
+  fi
+done
+find $1 -type f -name "test.html"  -print0 | while IFS= read -r -d '' FILE
 do
   if [ ! -d "${FILE}" ] ; then
     rm ${FILE}
@@ -43,22 +49,8 @@ do
 done
 }
 
-
-
-
-run_create_test () {
-find $1 -type f -name "*.tester.test.mjs"  -print0 | while IFS= read -r -d '' FILE
-do
-  if [ ! -d "${FILE}" ]; then
-    BASENAME="$(basename ${FILE})";
-    DIRNAME="$(dirname ${FILE})";
-    echo "<html><head><script type=\"module\" src=\"${BASENAME}\"></script></head><body><h1>Open console for logs.</h1></body></html>" > "${DIRNAME}/test.html"
-  fi
-done
-}
-
 run_tester () {
-find $1 -type f -name "*.tester.test.mjs"  -print0 | while IFS= read -r -d '' FILE
+find $1 -type f -name "tester.test.mjs"  -print0 | while IFS= read -r -d '' FILE
 do
   if [ ! -d "${FILE}" ]; then
     deno run $FILE
@@ -82,7 +74,6 @@ build_indicies() {
       fi
     done
     VERSION=$(echo $STR | sort -V | tail -1)
-
     (echo "$VERSION" | grep -Eq  "(.*)@(\d+\.\d+\.\d+)$") &&\
     HTML="<li><a href=\"${VERSION}\">(latest)</a></li>${HTML}"
     #write HTML file
@@ -90,29 +81,27 @@ build_indicies() {
   fi
 }
 
-# given a list of simversioned directoreies, print the highest
+# given a list of simversioned directoreies, print the highes
+
 latest_version() {
   TOP=$1
+  rm -rf "${TOP}/latest"
   STR=""
-  HTML=""
   for entry in "$TOP"/*
   do
     if [ -d "${entry}" ] ; then
       BASE="$(basename ${entry})"
       STR="${STR}\n${BASE}"
-      HTML="${HTML}<li><a href=\"${BASE}\">${BASE}</a></li>"
     fi
   done
-
 # write HTML file
-
-  echo "<ul>${HTML}</ul>" > "${TOP}/index.html"
 
   VERSION=$(echo $STR | sort -V | tail -1)
   DIR="${TOP}/${VERSION}"
   NAME=$(basename $TOP)
   FULL="${NAME}@${VERSION}"
   echo "The latest version of ${NAME} is ${VERSION} (${DIR})"
+  echo "Copying latest versoion of ${NAME}} (${VERSION}) to /latest "
 
 # test for documentation
   if [ -f "${DIR}/_index.html" ]; then
@@ -126,7 +115,15 @@ latest_version() {
     echo "🏭 index.html built from Markdown"
   fi
 
-# test for typescript conmilation
+# test for typescript conmilationremove
+  if [ -f "${DIR}/tester.test.mjs" ]; then
+    echo "✅ tester.test.mjs found!"
+    echo "🏭 Creating test.html using tester.test.mjs"
+    echo "<html><head><script type=\"module\" src=\"${DIR}/tester.test.mjs\"></script></head><body><h1>Open console for logs.</h1></body></html>" > "${DIR}/test.html"
+    echo "🏭 tests.html built from from javascript"
+  fi
+
+# test for typescript copilation
   if [ -f "${DIR}/index.ts" ]; then
     echo "✅ index.ts found!"
     echo "🏭 Building ${DIR}/index.mjs from index.ts"
@@ -157,7 +154,10 @@ latest_version() {
       fi
     fi
   fi
+
+
 }
+
 
 latest_versions() {
   echo $1
@@ -176,8 +176,6 @@ DEPTH="${3:-2}"
 case "$1" in
   "update_template") update_template $TEMPLATE_SRC $TEMPLATE
   ;;
-  "build_html") build_html $DIR $TEMPLATE
-  ;;
   "build_indicies") build_indicies $DIR $DEPTH
   ;;
   "latest_versions") latest_versions $DIR
@@ -186,7 +184,7 @@ case "$1" in
   ;;
   "run_create_test") run_create_test $DIR
   ;;
-  "remove_indicies") remove_indicies $DIR
+  "reset_generated_files") reset_generated_files $DIR
   ;;
   "inject") inject $2 $3 $4
   ;;

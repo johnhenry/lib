@@ -2,5 +2,7 @@ node_modules
 .github/workflows/.secrets
 .DS_Store
 .env/
+templates/shell.html
 **/index.html
+**/tests.html
 demos.html
