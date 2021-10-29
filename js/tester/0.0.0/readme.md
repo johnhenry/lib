@@ -1,7 +1,3 @@
-import { Meta } from "@storybook/addon-docs/blocks";
-
-<Meta title="JS Library/Tester/Docs" />
-
 # Tester
 
 ../js/tester@latest/index.mjs
