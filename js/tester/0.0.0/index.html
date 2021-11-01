@@ -1,25 +1,4 @@
-<html lang="en">
-<head>
-<pre><code>&lt;title&gt;John Henry&lt;/title&gt;
-&lt;link rel=&quot;canonical&quot; href=&quot;https://johnhenry.github.io/&quot; /&gt;
-&lt;meta name=&quot;description&quot; content=&quot;John Henry&#39;s Person Portfolio and Blog&quot; /&gt;
-&lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot; /&gt;
-&lt;meta name=&quot;theme-color&quot; content=&quot;#343233&quot; /&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
-&lt;meta charset=&quot;utf-8&quot; /&gt;
-&lt;meta
-  name=&quot;keywords&quot;
-  content=&quot;fun,math,engineering,science,experiments,programming&quot;
-/&gt;
-&lt;meta name=&quot;author&quot; content=&quot;John Henry&quot; /&gt;
-&lt;link
-  rel=&quot;icon&quot;
-  href=&quot;https://johnhenry.github.io/image/iajh.png&quot;
-  type=&quot;image/png&quot;
-/&gt;</code></pre>
-</head>
-<body>
-<pre><code># Tester</code></pre>
+<h1 id="tester">Tester</h1>
 <p>../js/tester@latest/index.mjs</p>
 <p>Tester is a javascript testing framework based on <a href="https://github.com/substack/tape">Tape</a>.</p>
 <p>Like Tape, tester</p>
@@ -38,7 +17,7 @@
 <li>The &quot;tester&quot; function acts on a group of assertions.</li>
 <li>The assertions themselves, which return errors if a given condition is not satisfied.</li>
 </ul>
-<h3 id="tester">Tester</h3>
+<h3 id="tester-1">Tester</h3>
 <p>The tester function is the default export.</p>
 <p>It takes as its only argument a [possibly asynchronous] generator. We call this a &quot;test&quot;.</p>
 <p>Results of assertions are yielded from within the body of a test.</p>
@@ -116,7 +95,7 @@
 <li>An expected messages</li>
 <li>An object who's key-value pairs are displayed as part of TAP output</li>
 </ul>
-<h1 id="tester-1">Tester</h1>
+<h1 id="tester-2">Tester</h1>
 <p>A context-independent testing framework inspired by <a href="https://github.com/substack/tape">tape</a>.</p>
 <h2 id="context-agnostic">context-agnostic</h2>
 <p>Tests run in same context as your application. No special executables needed.</p>
@@ -231,6 +210,4 @@ await <span class="at">tester</span>(<span class="st">&quot;test title&quot;</sp
 <span class="op">}</span></code></pre></div>
 <h2 id="taprunner-print-run">TAPRunner, print, run</h2>
 <p>The file &quot;/TAPRunner.mjs&quot; export methods &quot;print&quot; and &quot;run&quot;. &quot;print&quot; functions similarly to the default export of &quot;index.mjs&quot; -- both of which rely on &quot;run&quot; to execute underlying code.</p>
-When called with as single argument (a test), &quot;run&quot; yields only the results of the test (string or Error) without additional processing.
-</body>
-</html>
+<p>When called with as single argument (a test), &quot;run&quot; yields only the results of the test (string or Error) without additional processing.</p>

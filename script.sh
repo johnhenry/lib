@@ -13,14 +13,15 @@ update_template () {
 }
 
 # inject $1 into $2 to create $3
-# TODO put in /basj
+# TODO put in /bash
 inject () {
   cat $2 | templated_string_p7Rwrz6=$(cat $1) envsubst > $3
 }
 
 #https://stackoverflow.com/questions/40993488/convert-markdown-links-to-html-with-pandoc
 md_to_html() {
-  cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown -o $2
+  cat $1 | pandoc -f markdown -o $2
+  # cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown -o $2
   # echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown ) > $2
   # echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown -t html5 --lua-filter=links-to-html.lua ) > $2
 }
