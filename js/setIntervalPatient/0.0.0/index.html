@@ -1,8 +1,0 @@
-<h2 id="setintervalpatient">setIntervalPatient</h2>
-<p><code>setIntervalPatient</code> has a similar API to set the built-in <code>setIntervalPatient</code> function, but it waits for the previous instance callback to be completed before calling the next.</p>
-<p>Additonally <code>clearIntervalPatient</code> returns true if the id exists, and false if it does not.</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> setIntervalPatient<span class="op">,</span> <span class="op">{</span> clear <span class="im">as</span> clearIntervalPatient <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;..&quot;</span><span class="op">;</span>
-<span class="kw">const</span> id <span class="op">=</span> <span class="at">setIntervalPatient</span>(() <span class="op">=&gt;</span> <span class="op">{</span>
-  <span class="co">/* function that must finish  */</span>
-<span class="op">},</span> <span class="dv">100</span>)<span class="op">;</span>
-<span class="at">setTimeout</span>(() <span class="op">=&gt;</span> <span class="at">clearIntervalPatient</span>(id)<span class="op">,</span> <span class="dv">2000</span>)<span class="op">;</span></code></pre></div>
