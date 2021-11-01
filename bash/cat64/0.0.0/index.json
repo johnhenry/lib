@@ -1,4 +1,5 @@
 {
   "title": "cat64",
-  "url": "bash/cat64/0.0.0"
+  "url": "bash/cat64/0.0.0",
+  "content": "        John Henry                           cat64@0.0.0  Create and prefix base64 representation of a file.  (mac/linux)        "
 }

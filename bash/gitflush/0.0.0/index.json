@@ -1,0 +1,5 @@
+{
+  "title": "gitflush",
+  "url": "bash/gitflush/0.0.0",
+  "content": "        John Henry                           gitflush@0.0.0     git add .   git commit -m &lt;given args&gt;   git push     (mac/linux)        "
+}
