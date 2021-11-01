@@ -20,7 +20,7 @@ inject () {
 
 #https://stackoverflow.com/questions/40993488/convert-markdown-links-to-html-with-pandoc
 md_to_html() {
-  echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown -t html5 ) > $2
+  echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown ) > $2
   # echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown -t html5 --lua-filter=links-to-html.lua ) > $2
 }
 
