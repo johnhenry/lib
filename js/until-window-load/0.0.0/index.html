@@ -1,2 +1,51 @@
-<!DOCTYPE html>
- <html lang="en"> <head> <pre><code>&lt;title&gt;John Henry&lt;/title&gt; &lt;link rel=&quot;canonical&quot; href=&quot;https://johnhenry.github.io/&quot; /&gt; &lt;meta name=&quot;description&quot; content=&quot;John Henry&#39;s Person Portfolio and Blog&quot; /&gt; &lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot; /&gt; &lt;meta name=&quot;theme-color&quot; content=&quot;#343233&quot; /&gt; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt; &lt;meta charset=&quot;utf-8&quot; /&gt; &lt;meta name=&quot;keywords&quot; content=&quot;fun,math,engineering,science,experiments,programming&quot; /&gt; &lt;meta name=&quot;author&quot; content=&quot;John Henry&quot; /&gt; &lt;link rel=&quot;icon&quot; href=&quot;https://johnhenry.github.io/image/iajh.png&quot; type=&quot;image/png&quot; /&gt;</code></pre> </head> <body> <pre><code># Until Window Load</code></pre> <p>Declarative import to remove loading classes once the window has loaded.</p> <p>Useful for to avoid content flash for custom components that arrange content after loading.</p> <h2 id="usage">Usage</h2> <h3 id="maunal">Maunal</h3> <p>Define class to be removed</p> <div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="im">import</span> removeLoadingClasses <span class="im">from</span> <span class="st">&quot;https://johnhenry.github.io/lib/remove-loading-classes/0.0.0/index.mjs&quot;</span><span class="op">;</span> <span class="at">removeLoadingClasses</span>(<span class="st">&quot;custom-loading-class&quot;</span>)<span class="op">;</span></code></pre></div> <div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="fu">.custom-loading-class</span> { <span class="kw">visibility</span>: <span class="dv">hidden</span>; }</code></pre></div> <div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;custom-component</span><span class="ot"> class=</span><span class="st">&quot;custom-loading-class&quot;</span> <span class="kw">&gt;</span>Hide me until window load<span class="kw">&lt;/custom-component</span> <span class="kw">&gt;</span></code></pre></div> <h3 id="automatic">Automatic</h3> <p>Use &quot;global&quot; import to automatically use class name &quot;until-window-load&quot;</p> <div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span> <span class="ot"> type=</span><span class="st">&quot;module&quot;</span> <span class="ot"> src=</span><span class="st">&quot;https://johnhenry.github.io/lib/remove-loading-classes/0.0.0/global.mjs&quot;</span> <span class="kw">&gt;&lt;/script&gt;</span> <span class="kw">&lt;style&gt;</span> <span class="fu">.until-window-load</span> { <span class="kw">visibility</span>: <span class="dv">hidden</span>; } <span class="kw">&lt;/style&gt;</span> <span class="kw">&lt;custom-component</span><span class="ot"> class=</span><span class="st">&quot;until-window-load&quot;</span> <span class="kw">&gt;</span>Hide me until window load<span class="kw">&lt;/custom-component</span> <span class="kw">&gt;</span></code></pre></div> </body> </html>
+<html lang="en">
+<head>
+<pre><code>&lt;title&gt;John Henry&lt;/title&gt;
+&lt;link rel=&quot;canonical&quot; href=&quot;https://johnhenry.github.io/&quot; /&gt;
+&lt;meta name=&quot;description&quot; content=&quot;John Henry&#39;s Person Portfolio and Blog&quot; /&gt;
+&lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot; /&gt;
+&lt;meta name=&quot;theme-color&quot; content=&quot;#343233&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;meta
+  name=&quot;keywords&quot;
+  content=&quot;fun,math,engineering,science,experiments,programming&quot;
+/&gt;
+&lt;meta name=&quot;author&quot; content=&quot;John Henry&quot; /&gt;
+&lt;link
+  rel=&quot;icon&quot;
+  href=&quot;https://johnhenry.github.io/image/iajh.png&quot;
+  type=&quot;image/png&quot;
+/&gt;</code></pre>
+</head>
+<body>
+<pre><code># Until Window Load</code></pre>
+<p>Declarative import to remove loading classes once the window has loaded.</p>
+<p>Useful for to avoid content flash for custom components that arrange content after loading.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="maunal">Maunal</h3>
+<p>Define class to be removed</p>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="im">import</span> removeLoadingClasses <span class="im">from</span> <span class="st">&quot;https://johnhenry.github.io/lib/remove-loading-classes/0.0.0/index.mjs&quot;</span><span class="op">;</span>
+<span class="at">removeLoadingClasses</span>(<span class="st">&quot;custom-loading-class&quot;</span>)<span class="op">;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="fu">.custom-loading-class</span> {
+  <span class="kw">visibility</span>: <span class="dv">hidden</span>;
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;custom-component</span><span class="ot"> class=</span><span class="st">&quot;custom-loading-class&quot;</span>
+  <span class="kw">&gt;</span>Hide me until window load<span class="kw">&lt;/custom-component</span>
+<span class="kw">&gt;</span></code></pre></div>
+<h3 id="automatic">Automatic</h3>
+<p>Use &quot;global&quot; import to automatically use class name &quot;until-window-load&quot;</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span>
+<span class="ot">  type=</span><span class="st">&quot;module&quot;</span>
+<span class="ot">  src=</span><span class="st">&quot;https://johnhenry.github.io/lib/remove-loading-classes/0.0.0/global.mjs&quot;</span>
+<span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;style&gt;</span>
+  <span class="fu">.until-window-load</span> {
+    <span class="kw">visibility</span>: <span class="dv">hidden</span>;
+  }
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;custom-component</span><span class="ot"> class=</span><span class="st">&quot;until-window-load&quot;</span>
+  <span class="kw">&gt;</span>Hide me until window load<span class="kw">&lt;/custom-component</span>
+<span class="kw">&gt;</span></code></pre></div>
+</body>
+</html>

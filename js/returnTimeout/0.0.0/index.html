@@ -1,2 +1,30 @@
-<!DOCTYPE html>
- <html lang="en"> <head> <pre><code>&lt;title&gt;John Henry&lt;/title&gt; &lt;link rel=&quot;canonical&quot; href=&quot;https://johnhenry.github.io/&quot; /&gt; &lt;meta name=&quot;description&quot; content=&quot;John Henry&#39;s Person Portfolio and Blog&quot; /&gt; &lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot; /&gt; &lt;meta name=&quot;theme-color&quot; content=&quot;#343233&quot; /&gt; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt; &lt;meta charset=&quot;utf-8&quot; /&gt; &lt;meta name=&quot;keywords&quot; content=&quot;fun,math,engineering,science,experiments,programming&quot; /&gt; &lt;meta name=&quot;author&quot; content=&quot;John Henry&quot; /&gt; &lt;link rel=&quot;icon&quot; href=&quot;https://johnhenry.github.io/image/iajh.png&quot; type=&quot;image/png&quot; /&gt;</code></pre> </head> <body> <pre><code>## returnTimeout</code></pre> <p><code>returnTimeout</code> has a similar API to set the built-in <code>setTimeout</code> function. Instead of returning and ID of a timeout, it returns a promise fulfilled with the value of the function when called.</p> <p>Note: there is currently no official way to cancel a promise in javascript.</p> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> returnTimeout <span class="im">from</span> <span class="st">&quot;..&quot;</span><span class="op">;</span> <span class="kw">const</span> joinStrs <span class="op">=</span> (...<span class="at">str</span>) <span class="op">=&gt;</span> <span class="va">str</span>.<span class="at">join</span>(<span class="st">&quot; &quot;</span>)<span class="op">;</span> <span class="va">console</span>.<span class="at">log</span>(await <span class="at">returnTimeout</span>(joinStrs<span class="op">,</span> <span class="dv">4500</span><span class="op">,</span> <span class="st">&quot;hello&quot;</span><span class="op">,</span> <span class="st">&quot;world&quot;</span>))<span class="op">;</span> <span class="co">// logs hello world after 4.5 seconds</span></code></pre></div> </body> </html>
+<html lang="en">
+<head>
+<pre><code>&lt;title&gt;John Henry&lt;/title&gt;
+&lt;link rel=&quot;canonical&quot; href=&quot;https://johnhenry.github.io/&quot; /&gt;
+&lt;meta name=&quot;description&quot; content=&quot;John Henry&#39;s Person Portfolio and Blog&quot; /&gt;
+&lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot; /&gt;
+&lt;meta name=&quot;theme-color&quot; content=&quot;#343233&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;meta
+  name=&quot;keywords&quot;
+  content=&quot;fun,math,engineering,science,experiments,programming&quot;
+/&gt;
+&lt;meta name=&quot;author&quot; content=&quot;John Henry&quot; /&gt;
+&lt;link
+  rel=&quot;icon&quot;
+  href=&quot;https://johnhenry.github.io/image/iajh.png&quot;
+  type=&quot;image/png&quot;
+/&gt;</code></pre>
+</head>
+<body>
+<pre><code>## returnTimeout</code></pre>
+<p><code>returnTimeout</code> has a similar API to set the built-in <code>setTimeout</code> function. Instead of returning and ID of a timeout, it returns a promise fulfilled with the value of the function when called.</p>
+<p>Note: there is currently no official way to cancel a promise in javascript.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> returnTimeout <span class="im">from</span> <span class="st">&quot;..&quot;</span><span class="op">;</span>
+<span class="kw">const</span> joinStrs <span class="op">=</span> (...<span class="at">str</span>) <span class="op">=&gt;</span> <span class="va">str</span>.<span class="at">join</span>(<span class="st">&quot; &quot;</span>)<span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(await <span class="at">returnTimeout</span>(joinStrs<span class="op">,</span> <span class="dv">4500</span><span class="op">,</span> <span class="st">&quot;hello&quot;</span><span class="op">,</span> <span class="st">&quot;world&quot;</span>))<span class="op">;</span>
+<span class="co">// logs hello world after 4.5 seconds</span></code></pre></div>
+</body>
+</html>

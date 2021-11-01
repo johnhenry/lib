@@ -1,2 +1,111 @@
-<!DOCTYPE html>
- <html lang="en"> <head> <pre><code>&lt;title&gt;John Henry&lt;/title&gt; &lt;link rel=&quot;canonical&quot; href=&quot;https://johnhenry.github.io/&quot; /&gt; &lt;meta name=&quot;description&quot; content=&quot;John Henry&#39;s Person Portfolio and Blog&quot; /&gt; &lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot; /&gt; &lt;meta name=&quot;theme-color&quot; content=&quot;#343233&quot; /&gt; &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt; &lt;meta charset=&quot;utf-8&quot; /&gt; &lt;meta name=&quot;keywords&quot; content=&quot;fun,math,engineering,science,experiments,programming&quot; /&gt; &lt;meta name=&quot;author&quot; content=&quot;John Henry&quot; /&gt; &lt;link rel=&quot;icon&quot; href=&quot;https://johnhenry.github.io/image/iajh.png&quot; type=&quot;image/png&quot; /&gt;</code></pre> </head> <body> <pre><code># textElement</code></pre> <p>Create HTML Components using simple HTML Text strings.</p> <h2 id="creating-elements">Creating elements</h2> <ul> <li>The module provides two exports: <em>shadowOpen</em> and <em>shadowClosed</em>.</li> <li>Pass an HTML string to either to create an element derived from <em>globalThis.HTMLElement</em>.</li> <li>Use the resulting class as the second argument to <em>globalThis.customElements.define</em>.</li> <li>Each can be used as a regular function or as a <a href="https://2ality.com/2016/11/computing-tag-functions.html">tag function</a>.</li> </ul> <h3 id="regular-function-usage">Regular function usage</h3> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> shadowOpen <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./textElement.mjs&quot;</span><span class="op">;</span> <span class="kw">const</span> HTMLString <span class="op">=</span> <span class="st">&quot;&lt;div&gt;I am HTML&lt;/div&gt;&quot;</span><span class="op">;</span> <span class="kw">const</span> SampleElementClass <span class="op">=</span> <span class="at">shadowOpen</span>(HTMLString)<span class="op">;</span> <span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(<span class="st">&quot;sample-element&quot;</span><span class="op">,</span> SampleElementClass)<span class="op">;</span></code></pre></div> <h3 id="tag-function-usage">Tag function usage</h3> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> shadowClosed <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./textElement.mjs&quot;</span><span class="op">;</span> <span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>( <span class="st">&quot;sample-element&quot;</span><span class="op">,</span> shadowClosed<span class="vs">`&lt;div&gt;I am HTML&lt;/div&gt;`</span> )<span class="op">;</span></code></pre></div> <h3 id="shadowopen-vs-shadowclosed">shadowOpen vs shadowClosed</h3> <p><em>shadowOpen</em> creates an element with an accessible shadowRoot.</p> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>( <span class="st">&quot;open-element&quot;</span><span class="op">,</span> shadowOpen<span class="vs">`&lt;div&gt;I am open&lt;/div&gt;`</span> )<span class="op">;</span> <span class="co">//...</span> <span class="va">globalThis</span>.<span class="va">console</span>.<span class="at">log</span>( <span class="va">globalThis</span>.<span class="va">document</span>.<span class="at">getElementsByTagName</span>(<span class="st">&quot;open-element&quot;</span>)[<span class="dv">0</span>].<span class="at">shadowRoot</span> )<span class="op">;</span> <span class="co">//Logs element</span></code></pre></div> <p><em>shadowClosed</em> creates an element with an inaccessible shadowRoot.</p> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>( <span class="st">&quot;closed-element&quot;</span><span class="op">,</span> shadowClosed<span class="vs">`&lt;div&gt;I am open&lt;/div&gt;`</span> )<span class="op">;</span> <span class="co">//...</span> <span class="va">globalThis</span>.<span class="va">console</span>.<span class="at">log</span>( <span class="va">globalThis</span>.<span class="va">document</span>.<span class="at">getElementsByTagName</span>(<span class="st">&quot;closed-element&quot;</span>)[<span class="dv">0</span>].<span class="at">shadowRoot</span> )<span class="op">;</span> <span class="co">//Logs null</span></code></pre></div> <h2 id="composing-elements">Composing elements</h2> <p>Use the <em>slot</em> element within the HTML string to allow for other HTML elements to be embedded.</p> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>( <span class="st">&quot;composable-element&quot;</span><span class="op">,</span> shadowOpen<span class="vs">`&lt;div&gt;&lt;slot /&gt;&lt;/div&gt;`</span> )<span class="op">;</span></code></pre></div> <div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;composable-element&gt;</span> I&#39;m dynamic content <span class="kw">&lt;/composable-element&gt;</span></code></pre></div> <p>Renders like:</p> <div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;div&gt;</span>I&#39;m dynamic content<span class="kw">&lt;/div&gt;</span></code></pre></div> <h3 id="named-slots">Named Slots</h3> <p>Used named slots to place multiple pieces content within an element.</p> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>( <span class="st">&quot;composable-element&quot;</span><span class="op">,</span> shadowOpen<span class="vs">`&lt;slot name=&quot;first&quot; /&gt;&lt;slot name=&quot;second&quot; /&gt;`</span> )<span class="op">;</span></code></pre></div> <div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;composable-element&gt;</span> <span class="kw">&lt;span</span><span class="ot"> slot=</span><span class="st">&quot;second&quot;</span><span class="kw">&gt;</span>2nd<span class="kw">&lt;/span&gt;</span> <span class="kw">&lt;span</span><span class="ot"> slot=</span><span class="st">&quot;first&quot;</span><span class="kw">&gt;</span>1st<span class="kw">&lt;/span&gt;</span> <span class="kw">&lt;/composable-element&gt;</span></code></pre></div> <p>Renders like:</p> <div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;div&gt;</span> <span class="kw">&lt;span&gt;</span>1st<span class="kw">&lt;/span&gt;</span> <span class="kw">&lt;br</span> <span class="kw">/&gt;</span> <span class="kw">&lt;span&gt;</span>2nd<span class="kw">&lt;/span&gt;</span> <span class="kw">&lt;/div&gt;</span></code></pre></div> <h2 id="styling-elements">Styling Elements</h2> <p>Elements can be styled by adding a <em>style</em> tag to the HTML string.</p> <p>Because the style tag exists within the shadowRoot, styles will only be applied within the element.</p> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> RedTextClass <span class="op">=</span> shadowOpen<span class="vs">`&lt;style&gt;*{color:red}&lt;/style&gt;&lt;slot /&gt;`</span><span class="op">;</span></code></pre></div> <h3 id="styling-slotted-elements">Styling slotted elements</h3> <p>Slotted elements exist outside of the shadowRoot and can be styled outside of the element.</p> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(<span class="st">&quot;red-element&quot;</span><span class="op">,</span> RedTextClass)<span class="op">;</span></code></pre></div> <div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;style&gt;</span> <span class="fu">.blue</span> { <span class="kw">color</span>: <span class="dv">blue</span>; } <span class="kw">&lt;/style&gt;</span> <span class="kw">&lt;red-element&gt;</span> <span class="kw">&lt;span</span><span class="ot"> class=</span><span class="st">&quot;blue&quot;</span><span class="kw">&gt;</span>This text is blue<span class="kw">&lt;/span&gt;</span> <span class="kw">&lt;/red-element&gt;</span></code></pre></div> <h3 id="using-part-sudo-element">Using ::part() sudo-element</h3> <p>Parts of the element intended to be the target of external styles can be marked with the <em>part</em> attribute.</p> <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(<span class="st">&#39;stylable-element&#39;</span><span class="op">,</span> shadowOpen<span class="vs">`&lt;div part=content&gt; I&#39;m stylable externally&lt;/div&gt;`</span><span class="op">;</span></code></pre></div> <div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;style&gt;</span> stylable-element<span class="in">::</span>part(content) { <span class="kw">color</span>: <span class="dv">blue</span>; } <span class="kw">&lt;/style&gt;</span> <span class="kw">&lt;stylable-element</span> <span class="kw">/&gt;</span></code></pre></div> </body> </html>
+<html lang="en">
+<head>
+<pre><code>&lt;title&gt;John Henry&lt;/title&gt;
+&lt;link rel=&quot;canonical&quot; href=&quot;https://johnhenry.github.io/&quot; /&gt;
+&lt;meta name=&quot;description&quot; content=&quot;John Henry&#39;s Person Portfolio and Blog&quot; /&gt;
+&lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot; /&gt;
+&lt;meta name=&quot;theme-color&quot; content=&quot;#343233&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+&lt;meta charset=&quot;utf-8&quot; /&gt;
+&lt;meta
+  name=&quot;keywords&quot;
+  content=&quot;fun,math,engineering,science,experiments,programming&quot;
+/&gt;
+&lt;meta name=&quot;author&quot; content=&quot;John Henry&quot; /&gt;
+&lt;link
+  rel=&quot;icon&quot;
+  href=&quot;https://johnhenry.github.io/image/iajh.png&quot;
+  type=&quot;image/png&quot;
+/&gt;</code></pre>
+</head>
+<body>
+<pre><code># textElement</code></pre>
+<p>Create HTML Components using simple HTML Text strings.</p>
+<h2 id="creating-elements">Creating elements</h2>
+<ul>
+<li>The module provides two exports: <em>shadowOpen</em> and <em>shadowClosed</em>.</li>
+<li>Pass an HTML string to either to create an element derived from <em>globalThis.HTMLElement</em>.</li>
+<li>Use the resulting class as the second argument to <em>globalThis.customElements.define</em>.</li>
+<li>Each can be used as a regular function or as a <a href="https://2ality.com/2016/11/computing-tag-functions.html">tag function</a>.</li>
+</ul>
+<h3 id="regular-function-usage">Regular function usage</h3>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> shadowOpen <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./textElement.mjs&quot;</span><span class="op">;</span>
+<span class="kw">const</span> HTMLString <span class="op">=</span> <span class="st">&quot;&lt;div&gt;I am HTML&lt;/div&gt;&quot;</span><span class="op">;</span>
+<span class="kw">const</span> SampleElementClass <span class="op">=</span> <span class="at">shadowOpen</span>(HTMLString)<span class="op">;</span>
+<span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(<span class="st">&quot;sample-element&quot;</span><span class="op">,</span> SampleElementClass)<span class="op">;</span></code></pre></div>
+<h3 id="tag-function-usage">Tag function usage</h3>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> shadowClosed <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./textElement.mjs&quot;</span><span class="op">;</span>
+<span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(
+  <span class="st">&quot;sample-element&quot;</span><span class="op">,</span>
+  shadowClosed<span class="vs">`&lt;div&gt;I am HTML&lt;/div&gt;`</span>
+)<span class="op">;</span></code></pre></div>
+<h3 id="shadowopen-vs-shadowclosed">shadowOpen vs shadowClosed</h3>
+<p><em>shadowOpen</em> creates an element with an accessible shadowRoot.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(
+  <span class="st">&quot;open-element&quot;</span><span class="op">,</span>
+  shadowOpen<span class="vs">`&lt;div&gt;I am open&lt;/div&gt;`</span>
+)<span class="op">;</span>
+<span class="co">//...</span>
+<span class="va">globalThis</span>.<span class="va">console</span>.<span class="at">log</span>(
+  <span class="va">globalThis</span>.<span class="va">document</span>.<span class="at">getElementsByTagName</span>(<span class="st">&quot;open-element&quot;</span>)[<span class="dv">0</span>].<span class="at">shadowRoot</span>
+)<span class="op">;</span> <span class="co">//Logs element</span></code></pre></div>
+<p><em>shadowClosed</em> creates an element with an inaccessible shadowRoot.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(
+  <span class="st">&quot;closed-element&quot;</span><span class="op">,</span>
+  shadowClosed<span class="vs">`&lt;div&gt;I am open&lt;/div&gt;`</span>
+)<span class="op">;</span>
+<span class="co">//...</span>
+<span class="va">globalThis</span>.<span class="va">console</span>.<span class="at">log</span>(
+  <span class="va">globalThis</span>.<span class="va">document</span>.<span class="at">getElementsByTagName</span>(<span class="st">&quot;closed-element&quot;</span>)[<span class="dv">0</span>].<span class="at">shadowRoot</span>
+)<span class="op">;</span> <span class="co">//Logs null</span></code></pre></div>
+<h2 id="composing-elements">Composing elements</h2>
+<p>Use the <em>slot</em> element within the HTML string to allow for other HTML elements to be embedded.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(
+  <span class="st">&quot;composable-element&quot;</span><span class="op">,</span>
+  shadowOpen<span class="vs">`&lt;div&gt;&lt;slot /&gt;&lt;/div&gt;`</span>
+)<span class="op">;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;composable-element&gt;</span> I&#39;m dynamic content <span class="kw">&lt;/composable-element&gt;</span></code></pre></div>
+<p>Renders like:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;div&gt;</span>I&#39;m dynamic content<span class="kw">&lt;/div&gt;</span></code></pre></div>
+<h3 id="named-slots">Named Slots</h3>
+<p>Used named slots to place multiple pieces content within an element.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(
+  <span class="st">&quot;composable-element&quot;</span><span class="op">,</span>
+  shadowOpen<span class="vs">`&lt;slot name=&quot;first&quot; /&gt;&lt;slot name=&quot;second&quot; /&gt;`</span>
+)<span class="op">;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;composable-element&gt;</span>
+  <span class="kw">&lt;span</span><span class="ot"> slot=</span><span class="st">&quot;second&quot;</span><span class="kw">&gt;</span>2nd<span class="kw">&lt;/span&gt;</span>
+  <span class="kw">&lt;span</span><span class="ot"> slot=</span><span class="st">&quot;first&quot;</span><span class="kw">&gt;</span>1st<span class="kw">&lt;/span&gt;</span>
+<span class="kw">&lt;/composable-element&gt;</span></code></pre></div>
+<p>Renders like:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;div&gt;</span>
+  <span class="kw">&lt;span&gt;</span>1st<span class="kw">&lt;/span&gt;</span>
+  <span class="kw">&lt;br</span> <span class="kw">/&gt;</span>
+  <span class="kw">&lt;span&gt;</span>2nd<span class="kw">&lt;/span&gt;</span>
+<span class="kw">&lt;/div&gt;</span></code></pre></div>
+<h2 id="styling-elements">Styling Elements</h2>
+<p>Elements can be styled by adding a <em>style</em> tag to the HTML string.</p>
+<p>Because the style tag exists within the shadowRoot, styles will only be applied within the element.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> RedTextClass <span class="op">=</span> shadowOpen<span class="vs">`&lt;style&gt;*{color:red}&lt;/style&gt;&lt;slot /&gt;`</span><span class="op">;</span></code></pre></div>
+<h3 id="styling-slotted-elements">Styling slotted elements</h3>
+<p>Slotted elements exist outside of the shadowRoot and can be styled outside of the element.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(<span class="st">&quot;red-element&quot;</span><span class="op">,</span> RedTextClass)<span class="op">;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;style&gt;</span>
+  <span class="fu">.blue</span> {
+    <span class="kw">color</span>: <span class="dv">blue</span>;
+  }
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;red-element&gt;</span>
+  <span class="kw">&lt;span</span><span class="ot"> class=</span><span class="st">&quot;blue&quot;</span><span class="kw">&gt;</span>This text is blue<span class="kw">&lt;/span&gt;</span>
+<span class="kw">&lt;/red-element&gt;</span></code></pre></div>
+<h3 id="using-part-sudo-element">Using ::part() sudo-element</h3>
+<p>Parts of the element intended to be the target of external styles can be marked with the <em>part</em> attribute.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(<span class="st">&#39;stylable-element&#39;</span><span class="op">,</span> shadowOpen<span class="vs">`&lt;div part=content&gt; I&#39;m stylable externally&lt;/div&gt;`</span><span class="op">;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;style&gt;</span>
+  stylable-element<span class="in">::</span>part(content) {
+    <span class="kw">color</span>: <span class="dv">blue</span>;
+  }
+<span class="kw">&lt;/style&gt;</span>
+<span class="kw">&lt;stylable-element</span> <span class="kw">/&gt;</span></code></pre></div>
+</body>
+</html>
