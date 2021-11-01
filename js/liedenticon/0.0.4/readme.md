@@ -1,10 +1,10 @@
-# Liedenticons
+# Liedenticon
 
 Transform a string into a unique image.
 
-## Liedenticons vs Identicons
+## Liedenticon vs Identicon
 
-Liedenticons is a ~~ripoff of~~ extension of [Identicon](https://github.com/stewartlord/identicon.js/tree/master) with a few major differences.
+Liedenticon is a ~~ripoff of~~ refinement of [Identicon](https://github.com/stewartlord/identicon.js/tree/master) with a few major differences.
 
 ### Modules
 
@@ -19,13 +19,13 @@ const { SVG, PNG } = require("liedenticons");
 #### ES6 Module
 
 ```javascript
-import { SVG, PNG } from "liedenticons/js";
+import { SVG, PNG } from "liedenticon/js";
 ```
 
 #### ES6 Module
 
 ```html
-<script src="../vendor/liedenticons/browser.js"></script>
+<script src="../vendor/liedenticon/browser.js"></script>
 <script>
   const { SVG, PNG } = window.Liedenticons;
 </script>
@@ -73,7 +73,7 @@ It should be easy to extend this object and support other fomats by implementing
 a "renderImage" and a "toString" method.
 
 ```javascript
-import Graphics from "Liedenticons/graphic";
+import Graphics from "liedenticon/graphic";
 class NewFormat extends Graphics {
   renderImage(hash, size, padding, background, foreground) {
     //...
@@ -104,18 +104,18 @@ const svg = new SVG("...", { padding: "20%" });
 ## Classes
 
 <dl>
-<dt><a href="#SVG">SVG</a> ⇐ <code>liedenticons/graphic</code></dt>
+<dt><a href="#SVG">SVG</a> ⇐ <code>liedenticon/graphic</code></dt>
 <dd></dd>
-<dt><a href="#PNG">PNG</a> ⇐ <code>liedenticons/graphic</code></dt>
+<dt><a href="#PNG">PNG</a> ⇐ <code>liedenticon/graphic</code></dt>
 <dd></dd>
 </dl>
 
 <a name="SVG"></a>
 
-## SVG ⇐ <code>liedenticons/graphic</code>
+## SVG ⇐ <code>liedenticon/graphic</code>
 
 **Kind**: global class  
-**Extends**: <code>liedenticons/graphic</code>  
+**Extends**: <code>liedenticon/graphic</code>  
 <a name="new_SVG_new"></a>
 
 ### new SVG(hash, options)
@@ -138,10 +138,10 @@ svg.outerHTML = new SVG("efb8c90a13f7a1fdc4910");
 
 <a name="PNG"></a>
 
-## PNG ⇐ <code>liedenticons/graphic</code>
+## PNG ⇐ <code>liedenticon/graphic</code>
 
 **Kind**: global class  
-**Extends**: <code>liedenticons/graphic</code>  
+**Extends**: <code>liedenticon/graphic</code>  
 <a name="new_PNG_new"></a>
 
 ### new PNG(hash, options)

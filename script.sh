@@ -4,6 +4,7 @@ TEMPLATE_SRC=https://johnhenry.github.io/template/shell/index.html
 TEMPLATE=templates/shell.html
 INFILE=_index.html
 OUTFILE=index.html
+HTML_PREAMBLE="<!DOCTYPE html>\n"
 
 # Update template
 # save $1 as $2
@@ -12,10 +13,21 @@ update_template () {
 }
 
 # inject $1 into $2 to create $3
+# TODO put in /basj
 inject () {
   cat $2 | templated_string_p7Rwrz6=$(cat $1) envsubst > $3
 }
 
+#https://stackoverflow.com/questions/40993488/convert-markdown-links-to-html-with-pandoc
+md_to_html() {
+  echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown -t html5 ) > $2
+  # echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown -t html5 --lua-filter=links-to-html.lua ) > $2
+}
+
+html_to_html() {
+  echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst ) > $2
+  # pandoc -f markdown -t html5 $1 > $2
+}
 
 # Transform _index.html into index.html
 build_html () {
@@ -32,7 +44,6 @@ do
 done
 }
 
-
 # Transform _index.html into index.html
 reset_generated_files () {
 find $1 -type f -name "index.html"  -print0 | while IFS= read -r -d '' FILE
@@ -42,6 +53,12 @@ do
   fi
 done
 find $1 -type f -name "test.html"  -print0 | while IFS= read -r -d '' FILE
+do
+  if [ ! -d "${FILE}" ] ; then
+    rm ${FILE}
+  fi
+done
+find $1 -type f -name "index.json"  -print0 | while IFS= read -r -d '' FILE
 do
   if [ ! -d "${FILE}" ] ; then
     rm ${FILE}
@@ -77,7 +94,8 @@ build_indicies() {
     (echo "$VERSION" | grep -Eq  "(.*)@(\d+\.\d+\.\d+)$") &&\
     HTML="<li><a href=\"${VERSION}\">(latest)</a></li>${HTML}"
     #write HTML file
-    echo "<ul>${HTML}</ul>" > "${TOP}/index.html"
+    HTML="<ul>${HTML}</ul>"
+    echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=${HTML} envsubst ) > "${TOP}/index.html"
   fi
 }
 
@@ -104,31 +122,47 @@ latest_version() {
   echo "Copying latest versoion of ${NAME}} (${VERSION}) to /latest "
 
 # test for documentation
-  if [ -f "${DIR}/_index.html" ]; then
-    echo "✅ _index.html found!"
-    echo "🏭 Building index.html from _index.html"
-    cat "${DIR}/_index.html" > "${DIR}/index.html"
-    echo "🏭 index.html built from HTML"
+  if [ -f "${DIR}/${INFILE}" ]; then
+    echo "✅ ${INFILE} found!"
+    echo "🏭 Building ${OUTFILE} from ${INFILE}"
+    html_to_html "${DIR}/${INFILE}" "${DIR}/${OUTFILE}"
+    echo "🏭 ${OUTFILE} built from HTML"
   elif [ -f "${DIR}/readme.md" ]; then
-    echo "🏭 Building index.html from readme.md"
-    pandoc -f markdown "${DIR}/readme.md" > "${DIR}/index.html"
-    echo "🏭 index.html built from Markdown"
+    echo "🏭 Building ${OUTFILE} from readme.md"
+    md_to_html "${DIR}/readme.md" "${DIR}/${OUTFILE}"
+    echo "🏭 ${OUTFILE} built from Markdown"
   fi
 
-# test for typescript conmilationremove
+
+# test for test compilation
   if [ -f "${DIR}/tester.test.mjs" ]; then
     echo "✅ tester.test.mjs found!"
     echo "🏭 Creating test.html using tester.test.mjs"
-    echo "<html><head><script type=\"module\" src=\"./tester.test.mjs\"></script></head><body><h1>Open console for logs.</h1></body></html>" > "${DIR}/test.html"
-    echo "🏭 tests.html built from from javascript"
+    echo "<html><head><script type=\"module\" src=\"./tester.test.mjs\"></script></head><body><h1>Test for ${NAME}</h1><h2>Open console for logs.</h2></body></html>" > "${DIR}/test.html"
+    echo "🏭 tests.html built importing from Javascript"
   fi
 
 # test for typescript copilation
   if [ -f "${DIR}/index.ts" ]; then
     echo "✅ index.ts found!"
     echo "🏭 Building ${DIR}/index.mjs from index.ts"
-#    tsc --outDir "${DIR}" "${DIR}/index.ts"
-#    echo "🏭 index.html built from Markdown"
+#    deno bundle "${DIR}/index.ts" "${DIR}/index.mjs"
+#    echo "🏭 index.mjs built from Typescript"
+  fi
+
+  if [ -f "${DIR}/index.html" ]; then
+    echo "✅ index.html found!"
+    echo "🏭 Adding ${DIR}/index.json from index."
+    echo "{}" > "${DIR}/index.json";
+    CONTENT=$(jq ".title = \"${NAME}\"" "${DIR}/index.json")
+    echo "${CONTENT}" > "${DIR}/index.json"
+    CONTENT=$(jq ".url = \"${DIR}\"" "${DIR}/index.json")
+    echo "${CONTENT}" > "${DIR}/index.json"
+    local HTML=$(cat ${DIR}/index.html)
+    # HTML=$(echo "${HTML}" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g' | tr '\n' ' ')
+    HTML=$(echo "${HTML}" | sed 's/<[^>]*>/\n/g' | tr '\n' ' ')
+    CONTENT=$(jq ".content = \"${HTML}\"" "${DIR}/index.json" )
+    echo "${CONTENT}" > "${DIR}/index.json"
   fi
 
 # test for publication
@@ -154,8 +188,6 @@ latest_version() {
       fi
     fi
   fi
-
-
 }
 
 
@@ -170,6 +202,15 @@ latest_versions() {
   done
 }
 
+
+
+build_search_index (){
+local TEXT=$(jq -s . $(find $1/* -type f -name "index.json"  -print))
+rm $(find $1/* -type f -name "index.json"  -print)
+echo $TEXT > index.json
+}
+
+
 DIR="${2:-.}"
 DEPTH="${3:-2}"
 
@@ -182,10 +223,12 @@ case "$1" in
   ;;
   "run_tester") run_tester $DIR
   ;;
-  "run_create_test") run_create_test $DIR
-  ;;
   "reset_generated_files") reset_generated_files $DIR
   ;;
   "inject") inject $2 $3 $4
+  ;;
+  "md_to_html") md_to_html $2 $3
+  ;;
+  "build_search_index") build_search_index $2
   ;;
 esac

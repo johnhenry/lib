@@ -56,7 +56,7 @@ It should be easy to extend this object and support other fomats by implementing
 a "renderImage" and a "toString" method.
 
 ```javascript
-import Graphics from "Liedenticons/graphic";
+import Graphics from "liedenticon/graphic";
 class NewFormat extends Graphics {
   renderImage(hash, size, padding, background, foreground) {
     //...

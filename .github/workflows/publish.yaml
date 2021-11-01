@@ -16,6 +16,8 @@ jobs:
         run: sudo apt-get install pandoc
 
       - name: Build Indicies 🏭
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run build
 
       # - name: Setup deno ⛺️
@@ -24,7 +26,7 @@ jobs:
       #     deno-version: v1.15
 
       - name: Update Git Ignore 🏭
-        run: cat .publishignore > .gitignore
+        run: capublishignore > .gitignore
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.3

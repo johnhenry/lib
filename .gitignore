@@ -5,5 +5,7 @@ node_modules
 templates/shell.html
 **/index.html
 **/test.html
+**/index.json
 index.html
 demos.html
+index.json

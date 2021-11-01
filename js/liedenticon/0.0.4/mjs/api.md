@@ -1,18 +1,18 @@
 ## Classes
 
 <dl>
-<dt><a href="#SVG">SVG</a> ⇐ <code>liedenticons/graphic</code></dt>
+<dt><a href="#SVG">SVG</a> ⇐ <code>liedenticon/graphic</code></dt>
 <dd></dd>
-<dt><a href="#PNG">PNG</a> ⇐ <code>liedenticons/graphic</code></dt>
+<dt><a href="#PNG">PNG</a> ⇐ <code>liedenticon/graphic</code></dt>
 <dd></dd>
 </dl>
 
 <a name="SVG"></a>
 
-## SVG ⇐ <code>liedenticons/graphic</code>
+## SVG ⇐ <code>liedenticon/graphic</code>
 
 **Kind**: global class  
-**Extends**: <code>liedenticons/graphic</code>  
+**Extends**: <code>liedenticon/graphic</code>  
 <a name="new_SVG_new"></a>
 
 ### new SVG(hash, options)
@@ -35,10 +35,10 @@ svg.outerHTML = new SVG("efb8c90a13f7a1fdc4910");
 
 <a name="PNG"></a>
 
-## PNG ⇐ <code>liedenticons/graphic</code>
+## PNG ⇐ <code>liedenticon/graphic</code>
 
 **Kind**: global class  
-**Extends**: <code>liedenticons/graphic</code>  
+**Extends**: <code>liedenticon/graphic</code>  
 <a name="new_PNG_new"></a>
 
 ### new PNG(hash, options)

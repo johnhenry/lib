@@ -1,0 +1,48 @@
+<style>
+  .until-window-load {
+    visibility: hidden;
+  }
+</style>
+<script type="module" src="../../until-window-load/0.0.0/index.mjs"></script>
+<script
+  type="module"
+  src="../../define-component.component/0.0.0/global.mjs"
+></script>
+<script
+  type="module"
+  src="../../define-component-by-content.component/0.0.0/global.mjs"
+></script>
+
+<define-component name="query-component" src="./index.mjs"></define-component>
+<define-component-by-content
+  name="h-1"
+  shadow
+  mode="open"
+  use-dom="true"
+  content="<h1><slot /></h1>"
+></define-component-by-content>
+<query-component
+  class="until-window-load"
+  default="ul"
+  query="
+    [(min-width:300px) and (max-width:1200px)] ol.ordered[style=color:blue]|
+    [(min-width:400px) and (max-width:600px)] ol.ordered[style=color:red;font-weight:bold]"
+>
+  <li>a</li>
+  <li>b</li>
+  <li>c</li>
+</query-component>
+<query-component
+  class="until-window-load"
+  default="ul"
+  query="
+    [(min-width:600px)] dl"
+>
+  <query-component default="li" query="[(min-width:600px)] dt"
+    >Definition:</query-component
+  >
+  <query-component default="" query=" [(min-width:600px)] dd.hello"
+    >Term</query-component
+  >
+</query-component>
+<h-1>Hello</h-1>
