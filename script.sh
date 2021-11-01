@@ -205,9 +205,9 @@ latest_versions() {
 
 
 build_search_index (){
-local TEXT=$(jq -s . $(find $1/* -type f -name "index.json"  -print))
-rm $(find $1/* -type f -name "index.json"  -print)
-echo $TEXT > index.json
+  TEXT=$(jq -s . $(find $1/* -type f -name "index.json"  -print))
+  rm $(find $1/* -type f -name "index.json"  -print)
+  echo $TEXT > index.json
 }
 
 
