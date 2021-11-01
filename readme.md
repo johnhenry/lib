@@ -28,4 +28,10 @@ Keep in mind that this is still in the early stages. The code in all modules sho
 - [html](./html/) Contains a few useful HTML snippets
 - [demos](./demos.html) Contains importable JavaScript modules
 
-This site is published on the [dist branch of https://github.com/johnhenry/lib](https://github.com/johnhenry/lib/tree/dist).
+## About
+
+This site is published at [https://johnhenry.github.io/lib) via the [dist branch](https://github.com/johnhenry/lib/tree/dist) of [https://github.com/johnhenry/lib](https://github.com/johnhenry/lib).
+
+- [Project](https://github.com/users/johnhenry/projects/2)
+- [Discussion](https://github.com/johnhenry/lib/discussions)
+- [Issues](https://github.com/johnhenry/lib/issues)
