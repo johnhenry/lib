@@ -158,10 +158,10 @@ latest_version() {
     echo "${CONTENT}" > "${DIR}/index.json"
     CONTENT=$(jq ".url = \"${DIR}\"" "${DIR}/index.json")
     echo "${CONTENT}" > "${DIR}/index.json"
-    local HTML=$(cat ${DIR}/index.html)
+    CONTENT=$(cat ${DIR}/index.html)
     # HTML=$(echo "${HTML}" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g' | tr '\n' ' ')
-    HTML=$(echo "${HTML}" | sed 's/<[^>]*>/\n/g' | tr '\n' ' ')
-    CONTENT=$(jq ".content = \"${HTML}\"" "${DIR}/index.json" )
+    CONTENT=$(echo "${CONTENT}" | sed 's/<[^>]*>/\n/g' | tr '\n' ' ')
+    CONTENT=$(jq ".content = \"${CONTENT}\"" "${DIR}/index.json" )
     echo "${CONTENT}" > "${DIR}/index.json"
   fi
 
