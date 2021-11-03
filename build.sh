@@ -1,10 +1,8 @@
 # Remove all generated files
 rm -f demos.html
 rm -f index.html
-sh script.sh reset_generated_files js
-sh script.sh reset_generated_files css
-sh script.sh reset_generated_files html
-sh script.sh reset_generated_files bash
+rm -f test.html
+rm -f index.json
 
 # Generate Index files
 sh script.sh build_indicies js

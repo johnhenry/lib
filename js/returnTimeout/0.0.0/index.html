@@ -1,7 +1,30 @@
-<h2 id="returntimeout">returnTimeout</h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+  </head>
+  <body><h2 id="returntimeout">returnTimeout</h2>
 <p><code>returnTimeout</code> has a similar API to set the built-in <code>setTimeout</code> function. Instead of returning and ID of a timeout, it returns a promise fulfilled with the value of the function when called.</p>
 <p>Note: there is currently no official way to cancel a promise in javascript.</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> returnTimeout <span class="im">from</span> <span class="st">&quot;..&quot;</span><span class="op">;</span>
 <span class="kw">const</span> joinStrs <span class="op">=</span> (...<span class="at">str</span>) <span class="op">=&gt;</span> <span class="va">str</span>.<span class="at">join</span>(<span class="st">&quot; &quot;</span>)<span class="op">;</span>
 <span class="va">console</span>.<span class="at">log</span>(await <span class="at">returnTimeout</span>(joinStrs<span class="op">,</span> <span class="dv">4500</span><span class="op">,</span> <span class="st">&quot;hello&quot;</span><span class="op">,</span> <span class="st">&quot;world&quot;</span>))<span class="op">;</span>
 <span class="co">// logs hello world after 4.5 seconds</span></code></pre></div>
+  </body>
+</html>
