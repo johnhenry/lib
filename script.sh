@@ -20,17 +20,14 @@ inject () {
 
 #https://stackoverflow.com/questions/40993488/convert-markdown-links-to-html-with-pandoc
 md_to_html() {
-  cat templates/start.html > $2
-  cat $1 | pandoc -f markdown >> $2
-  cat templates/end.html >> $2
   # cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown -o $2
   # echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown ) > $2
   # echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst | pandoc -f markdown -t html5 --lua-filter=links-to-html.lua ) > $2
+  { cat templates/start.html; cat $1 | pandoc -f markdown; cat templates/end.html; } > $2
 }
 
 html_to_html() {
-  echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=$(cat $1) envsubst ) > $2
-  # pandoc -f markdown -t html5 $1 > $2
+  { cat templates/start.html; cat $1; cat templates/end.html; } > $2
 }
 
 # Transform _index.html into index.html
@@ -77,7 +74,7 @@ build_indicies() {
     HTML="<li><a href=\"${VERSION}\">(latest)</a></li>${HTML}"
     #write HTML file
     HTML="<ul>${HTML}</ul>"
-    echo "${HTML_PREAMBLE}" $(cat $TEMPLATE | templated_string_p7Rwrz6=${HTML} envsubst ) > "${TOP}/index.html"
+    { cat templates/start.html; echo $HTML; cat templates/end.html; } > "${TOP}/index.html"
   fi
 }
 
@@ -141,8 +138,9 @@ latest_version() {
     CONTENT=$(jq ".url = \"${DIR}\"" "${DIR}/index.json")
     echo "${CONTENT}" > "${DIR}/index.json"
     CONTENT=$(cat ${DIR}/index.html)
-    CONTENT=$(echo "${CONTENT}" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g' | tr '\n' ' ')
-    CONTENT=$(echo "${CONTENT}" | sed 's/<[^>]*>/\n/g' | tr '\n' ' ')
+#    CONTENT=$(echo "${CONTENT}" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g' | tr '\n' ' ')
+#    CONTENT=$(echo "${CONTENT}" | sed 's/<[^>]*>/\n/g' | tr '\n' ' ')
+    CONTENT=$(echo $CONTENT | awk '{gsub(/<[^>]*>/,"\n"); print }' | tr '\n' ' ')
     CONTENT=$(jq ".content = \"${CONTENT}\"" "${DIR}/index.json" )
     echo "${CONTENT}" > "${DIR}/index.json"
   fi
@@ -208,6 +206,8 @@ case "$1" in
   "inject") inject $2 $3 $4
   ;;
   "md_to_html") md_to_html $2 $3
+  ;;
+  "html_to_html") html_to_html $2 $3
   ;;
   "build_search_index") build_search_index $2
   ;;

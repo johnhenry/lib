@@ -28,6 +28,65 @@ Keep in mind that this is still in the early stages. The code in all modules sho
 - [html](./html/) Contains a few useful HTML snippets
 - [demos](./demos.html) Contains importable JavaScript modules
 
+## Search
+
+<section>
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+<script type="module">
+  import textToDOM from "./js/text-to-DOM-nodes/0.0.0/index.mjs";
+  const searchBox = document.querySelector("#search-box");
+  const searchResults = document.querySelector("#search-results");
+  let index;
+  let rev = {};
+  const search = (inputValue) => {
+    const foundDocuments = index.search(inputValue).map(({ ref }) => rev[ref]);
+    display(foundDocuments);
+  };
+  const startAutocomplete = async (i) => {
+    if (index) {
+      return;
+    }
+    try {
+      const documents = await fetch("./index.json").then((res) => res.json());
+      rev = Object.fromEntries(documents.map((doc) => [doc.url, doc]));
+      index = lunr(function () {
+        this.ref("url");
+        this.field("content");
+        this.field("content");
+        this.field("url");
+        documents.forEach(function (doc) {
+          this.add(doc);
+        }, this);
+      });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      search(searchBox.value);
+    }
+  };
+  const display = (documents) => {
+    searchResults.innerHTML = "";
+    searchResults.append(
+      ...textToDOM(
+        documents
+          .map(({ title, url }) => `<li><a href="${url}">${title}</a></li>`)
+          .join("")
+      )
+    );
+  };
+
+searchBox.onmouseover = searchBox.onclick = startAutocomplete;
+searchBox.onkeyup = (e) => {
+search(e.target.value);
+};
+</script>
+
+<input id="search-box" type="search" placeholder="Site search..." />
+
+<ul id="search-results"></ul>
+
+</section>
+
 ## About
 
 This site is published at [https://johnhenry.github.io/lib) via the [dist branch](https://github.com/johnhenry/lib/tree/dist) of [https://github.com/johnhenry/lib](https://github.com/johnhenry/lib).
