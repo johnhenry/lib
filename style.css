@@ -11,14 +11,14 @@
   }
 }
 body {
-  margin: 32px 48px;
+  margin: 0;
+  padding: 16px 32px;
   font-family: var(--font-family);
-  max-width: 650px;
+  max-width: 512px;
   line-height: 1.6;
   font-size: var(--font-size);
   color: var(--color);
   background-color: var(--bg-color);
-  padding: 0 10px;
 }
 h1,
 h2,

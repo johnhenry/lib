@@ -91,7 +91,7 @@ search(e.target.value);
 
 ## About
 
-This site is published at [https://johnhenry.github.io/lib) via the [dist branch](https://github.com/johnhenry/lib/tree/dist) of [https://github.com/johnhenry/lib](https://github.com/johnhenry/lib).
+This site is published at [https://johnhenry.github.io/lib](https://johnhenry.github.io/lib) via the [dist branch](https://github.com/johnhenry/lib/tree/dist) of [https://github.com/johnhenry/lib](https://github.com/johnhenry/lib).
 
 - [Project](https://github.com/users/johnhenry/projects/2)
 - [Discussion](https://github.com/johnhenry/lib/discussions)
