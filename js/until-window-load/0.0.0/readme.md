@@ -12,7 +12,7 @@ arrange content after loading.
 Define class to be removed
 
 ```js
-import removeLoadingClasses from "https://johnhenry.github.io/lib/remove-loading-classes/0.0.0/index.mjs";
+import removeLoadingClasses from "https://johnhenry.github.io/lib/until-window-load/0.0.0/index.mjs";
 removeLoadingClasses("custom-loading-class");
 ```
 

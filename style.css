@@ -1,0 +1,33 @@
+:root {
+  --color: #343233;
+  --bg-color: #fafafa;
+  --link-color: #455897;
+  --font-family: "times new roman";
+}
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --color: #fafafa;
+    --bg-color: #343233;
+  }
+}
+body {
+  margin: 32px 48px;
+  font-family: var(--font-family);
+  max-width: 650px;
+  line-height: 1.6;
+  font-size: var(--font-size);
+  color: var(--color);
+  background-color: var(--bg-color);
+  padding: 0 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+a {
+  color: var(--link-color);
+}

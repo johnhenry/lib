@@ -4,6 +4,8 @@
 
 tl;dr [skip straight to some demos](./demos.html)
 
+⚠ This is very much a work in progress. ⚠
+
 This is my standard library.
 It is a collection of modules, tools and components that
 I've created for my personal projects over the years.

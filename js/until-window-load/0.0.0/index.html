@@ -18,14 +18,21 @@
       href="https://johnhenry.github.io/image/iajh.png"
       type="image/png"
     />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
   </head>
-  <body><h1 id="until-window-load">Until Window Load</h1>
+  <body>
+    
+<h1 id="until-window-load">Until Window Load</h1>
 <p>Declarative import to remove loading classes once the window has loaded.</p>
 <p>Useful for to avoid content flash for custom components that arrange content after loading.</p>
 <h2 id="usage">Usage</h2>
 <h3 id="maunal">Maunal</h3>
 <p>Define class to be removed</p>
-<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="im">import</span> removeLoadingClasses <span class="im">from</span> <span class="st">&quot;https://johnhenry.github.io/lib/remove-loading-classes/0.0.0/index.mjs&quot;</span><span class="op">;</span>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="im">import</span> removeLoadingClasses <span class="im">from</span> <span class="st">&quot;https://johnhenry.github.io/lib/until-window-load/0.0.0/index.mjs&quot;</span><span class="op">;</span>
 <span class="at">removeLoadingClasses</span>(<span class="st">&quot;custom-loading-class&quot;</span>)<span class="op">;</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="fu">.custom-loading-class</span> {
   <span class="kw">visibility</span>: <span class="dv">hidden</span>;
