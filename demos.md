@@ -10,4 +10,4 @@
 - [Fun Without Javascript](./css/fun-without-javascript/0.0.0/demo.html)
 - [Clock](./js/css-model-date/0.0.0/demo.html)
 - [Broadcast Channel Worker](./js/broadcast-channel-worker/0.0.0/demo.html)
-- [Liedenticons](./js/liedenticon/0.0.0/demo.html)
+- [Liedenticons](./js/liedenticon/0.0.4/demo.html)
