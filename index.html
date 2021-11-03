@@ -34,6 +34,61 @@
 <li><a href="./html/">html</a> Contains a few useful HTML snippets</li>
 <li><a href="./demos.html">demos</a> Contains importable JavaScript modules</li>
 </ul>
+<h2 id="search">Search</h2>
+<section>
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+<script type="module">
+  import textToDOM from "./js/text-to-DOM-nodes/0.0.0/index.mjs";
+  const searchBox = document.querySelector("#search-box");
+  const searchResults = document.querySelector("#search-results");
+  let index;
+  let rev = {};
+  const search = (inputValue) => {
+    const foundDocuments = index.search(inputValue).map(({ ref }) => rev[ref]);
+    display(foundDocuments);
+  };
+  const startAutocomplete = async (i) => {
+    if (index) {
+      return;
+    }
+    try {
+      const documents = await fetch("./index.json").then((res) => res.json());
+      rev = Object.fromEntries(documents.map((doc) => [doc.url, doc]));
+      index = lunr(function () {
+        this.ref("url");
+        this.field("content");
+        this.field("content");
+        this.field("url");
+        documents.forEach(function (doc) {
+          this.add(doc);
+        }, this);
+      });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      search(searchBox.value);
+    }
+  };
+  const display = (documents) => {
+    searchResults.innerHTML = "";
+    searchResults.append(
+      ...textToDOM(
+        documents
+          .map(({ title, url }) => `<li><a href="${url}">${title}</a></li>`)
+          .join("")
+      )
+    );
+  };
+
+searchBox.onmouseover = searchBox.onclick = startAutocomplete;
+searchBox.onkeyup = (e) => {
+search(e.target.value);
+};
+</script>
+<p><input id="search-box" type="search" placeholder="Site search..." /></p>
+<ul id="search-results">
+</ul>
+</section>
 <h2 id="about">About</h2>
 <p>This site is published at [https://johnhenry.github.io/lib) via the <a href="https://github.com/johnhenry/lib/tree/dist">dist branch</a> of <a href="https://github.com/johnhenry/lib" class="uri">https://github.com/johnhenry/lib</a>.</p>
 <ul>
