@@ -1,8 +1,8 @@
 # Remove all generated files
 rm -f demos.html
-rm -f index.html
-rm -f test.html
-rm -f index.json
+sh script.sh . index.html
+sh script.sh . test.html
+sh script.sh . index.json
 
 # Generate Index files
 sh script.sh build_indicies js
