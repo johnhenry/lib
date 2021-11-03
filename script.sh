@@ -1,15 +1,13 @@
 # find . -print0 | while IFS= read -r -d '' file
 # https://askubuntu.com/questions/266179/how-to-exclude-ignore-hidden-files-and-directories-in-a-wildcard-embedded-find
-TEMPLATE_SRC=https://johnhenry.github.io/template/shell/index.html
 TEMPLATE=templates/shell.html
 INFILE=_index.html
 OUTFILE=index.html
 HTML_PREAMBLE="<!DOCTYPE html>\n"
 
-# Update template
 # save $1 as $2
-update_template () {
-  curl $1 > $2
+delete_file () {
+  rm $(find $1/* -type f -name "${2}"  -print)
 }
 
 # inject $1 into $2 to create $3
@@ -195,7 +193,7 @@ DIR="${2:-.}"
 DEPTH="${3:-2}"
 
 case "$1" in
-  "update_template") update_template $TEMPLATE_SRC $TEMPLATE
+  "delete_file") delete_file $DIR $3
   ;;
   "build_indicies") build_indicies $DIR $DEPTH
   ;;
