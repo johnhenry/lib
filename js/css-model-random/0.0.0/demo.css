@@ -1,8 +1,6 @@
 .rectangle {
   position: absolute;
   display: block;
-}
-.rectangle::before {
-  /* content: var(--rand-0-str) var(--rand-1-str) var(--rand-2-str)
-    var(--rand-3-str); */
+  transition: width var(--speed) ease-in-out, height var(--speed) ease-in-out,
+    left var(--speed) ease-in-out, top var(--speed) ease-in-out;
 }
