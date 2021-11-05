@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS Model Random</title>
+    <link rel="stylesheet" href="./demo.css" />
+    <!-- <script type="module" src="./global16.mjs"></script> -->
+    <script type="module">
+      import CSSModelRandom from "./index.mjs";
+      import textToDOMNodes from "../../text-to-DOM-nodes/0.0.0/index.mjs";
+      const size = 128 * 4;
+      const width = "128px";
+      const height = "128px";
+      const model = new CSSModelRandom(globalThis.documentElement, undefined, {
+        size,
+      });
+      const interval = 5;
+      for (let i = 0; i < size; i += 4) {
+        const a = i;
+        const b = a + 1;
+        const c = b + 1;
+        const d = c + 1;
+        document.body.append(
+          ...textToDOMNodes(`
+                <div
+        class="rectangle"
+        style="
+          background-color: #${(
+            (Math.random() * 2 ** 32) |
+            0x100000000
+          ).toString(16)};
+          --speed:${interval}s;
+          width: calc(${width} * var(--rand-${a}));
+          height: calc(${width} * var(--rand-${b}));
+          left: calc(100vw * var(--rand-${c}) - (128px * var(--rand-${a})));
+          top: calc(100vh * var(--rand-${d}) - (128px * var(--rand-${b})));
+        "
+      ></div>`)
+        );
+      }
+
+      setInterval(() => {
+        model.reset();
+      }, interval * 1000);
+    </script>
+  </head>
+  <body style="position: relative"></body>
+</html>

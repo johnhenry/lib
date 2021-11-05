@@ -26,8 +26,8 @@
   </head>
   <body>
     
-<h1 id="define-component">Define Component</h1>
-<p>HTML Component to define HTML components.</p>
+<h1 id="polyfill-global">Polyfill Global</h1>
+<p>Polyfills a key on the global object.</p>
 <h2 id="usage">Usage</h2>
 <h3 id="maunal">Maunal</h3>
 <p>Define class to be removed</p>
@@ -48,12 +48,9 @@
 <p>Use &quot;global&quot; import to automatically use component name &quot;define-component&quot;</p>
 <div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span>
 <span class="ot">  type=</span><span class="st">&quot;module&quot;</span>
-<span class="ot">  src=</span><span class="st">&quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/global.mjs&quot;</span>
+<span class="ot">  src=</span><span class="st">&quot;https://johnhenry.github.io/lib/polyfill-global.component/0.0.0/global.mjs&quot;</span>
 <span class="kw">&gt;&lt;/script&gt;</span>
-<span class="kw">&lt;define-component</span>
-<span class="ot">  name=</span><span class="st">&quot;custom-component&quot;</span>
-<span class="ot">  src=</span><span class="st">&quot;./custom-component.mjs&quot;</span>
-<span class="kw">&gt;&lt;/define-component&gt;</span>
-<span class="kw">&lt;custom-component&gt;</span>I&#39;m a custom component!<span class="kw">&lt;/custom-component&gt;</span></code></pre></div>
+
+<span class="kw">&lt;polyfill-global</span> <span class="kw">&gt;</span>Hide me until window load<span class="kw">&lt;/custom-component&gt;</span></code></pre></div>
   </body>
 </html>

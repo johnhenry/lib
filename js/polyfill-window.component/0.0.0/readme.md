@@ -1,6 +1,6 @@
-# Define Component
+# Polyfill Global
 
-HTML Component to define HTML components.
+Polyfills a key on the global object.
 
 ## Usage
 
@@ -34,11 +34,8 @@ Use "global" import to automatically use component name "define-component"
 ```html
 <script
   type="module"
-  src="https://johnhenry.github.io/lib/define-component.component/0.0.0/global.mjs"
+  src="https://johnhenry.github.io/lib/polyfill-global.component/0.0.0/global.mjs"
 ></script>
-<define-component
-  name="custom-component"
-  src="./custom-component.mjs"
-></define-component>
-<custom-component>I'm a custom component!</custom-component>
+
+<polyfill-global >Hide me until window load</custom-component>
 ```

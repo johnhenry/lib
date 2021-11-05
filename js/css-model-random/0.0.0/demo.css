@@ -1,0 +1,6 @@
+.rectangle {
+  position: absolute;
+  display: block;
+  transition: width var(--speed) ease-in-out, height var(--speed) ease-in-out,
+    left var(--speed) ease-in-out, top var(--speed) ease-in-out;
+}
