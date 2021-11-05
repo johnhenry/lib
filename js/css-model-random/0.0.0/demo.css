@@ -1,0 +1,8 @@
+.rectangle {
+  position: absolute;
+  display: block;
+}
+.rectangle::before {
+  /* content: var(--rand-0-str) var(--rand-1-str) var(--rand-2-str)
+    var(--rand-3-str); */
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS Model Random</title>
+    <link rel="stylesheet" href="./demo.css" />
+    <!-- <script type="module" src="./global16.mjs"></script> -->
+    <script type="module">
+      import CSSModelRandom from "./index.mjs";
+      const model = new CSSModelRandom(globalThis.documentElement, undefined, {
+        size: 16,
+      });
+
+      setInterval(() => {
+        model.reset();
+      }, 2048);
+    </script>
+  </head>
+  <body style="position: relative">
+    <div
+      class="rectangle"
+      style="
+        background-color: grey;
+        width: calc(128px * var(--rand-0));
+        height: calc(128px * var(--rand-1));
+        left: calc(100vw * var(--rand-2) - (128px * var(--rand-0)));
+        top: calc(100vh * var(--rand-3) - (128px * var(--rand-1)));
+      "
+    ></div>
+    <div
+      class="rectangle"
+      style="
+        background-color: red;
+        width: calc(128px * var(--rand-4));
+        height: calc(128px * var(--rand-5));
+        left: calc(100vw * var(--rand-6) - (128px * var(--rand-4)));
+        top: calc(100vh * var(--rand-7) - (128px * var(--rand-5)));
+      "
+    ></div>
+    <div
+      class="rectangle"
+      style="
+        background-color: green;
+        width: calc(128px * var(--rand-8));
+        height: calc(128px * var(--rand-9));
+        left: calc(100vw * var(--rand-10) - (128px * var(--rand-8)));
+        top: calc(100vh * var(--rand-11) - (128px * var(--rand-9)));
+      "
+    ></div>
+    <div
+      class="rectangle"
+      style="
+        background-color: blue;
+        width: calc(128px * var(--rand-12));
+        height: calc(128px * var(--rand-13));
+        left: calc(100vw * var(--rand-14) - (128px * var(--rand-12)));
+        top: calc(100vh * var(--rand-15) - (128px * var(--rand-13)));
+      "
+    ></div>
+  </body>
+</html>
