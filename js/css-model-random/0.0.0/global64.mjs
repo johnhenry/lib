@@ -1,2 +1,2 @@
 import Model from "./index.mjs";
-new Model(globalThis.documentElement, undefined, { size: 64 });
+new Model(globalThis.document, undefined, { size: 64 });

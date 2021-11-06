@@ -8,41 +8,58 @@
     <script type="module">
       import CSSModelRandom from "./index.mjs";
       import textToDOMNodes from "../../text-to-DOM-nodes/0.0.0/index.mjs";
-      const size = 128 * 4;
-      const width = "128px";
-      const height = "128px";
-      const model = new CSSModelRandom(globalThis.documentElement, undefined, {
-        size,
-      });
-      const interval = 5;
-      for (let i = 0; i < size; i += 4) {
-        const a = i;
+      const count = 64;
+      const varCount = count * 4;
+      const width = "25%";
+      const height = "25%";
+      const seconds = 5;
+
+      for (let i = 0; i < count; i++) {
+        const a = 4 * i;
         const b = a + 1;
         const c = b + 1;
         const d = c + 1;
+        // const color = `#${Math.floor(Math.random() * 2 ** 32)
+        //   .toString(16)
+        //   .padStart(8, "0")}`;
+        const color = `#${Math.floor(Math.random() * 2 ** 16)
+          .toString(16)
+          .padStart(4, "0")}`;
+        // const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
+        //   Math.random() * 256
+        // )}, ${Math.floor(Math.random() * 256)}, ${Math.random()})`;
+
         document.body.append(
           ...textToDOMNodes(`
                 <div
         class="rectangle"
+        data-id="${i}"
         style="
-          background-color: #${(
-            (Math.random() * 2 ** 32) |
-            0x100000000
-          ).toString(16)};
-          --speed:${interval}s;
-          width: calc(${width} * var(--rand-${a}));
-          height: calc(${width} * var(--rand-${b}));
-          left: calc(100vw * var(--rand-${c}) - (128px * var(--rand-${a})));
-          top: calc(100vh * var(--rand-${d}) - (128px * var(--rand-${b})));
+          background-color: ${color};
+          --transition-function: ease-in-out;
+          --speed: ${seconds}s;
+          width: calc(${width} * var(--rand-${a}, 1));
+          height: calc(${height} * var(--rand-${b}, 1));
+          left: calc((100vw - (${width} * var(--rand-${a},1))) * var(--rand-${c}, 0.5));
+          top: calc((100vh - (${width} * var(--rand-${b},1))) * var(--rand-${d}, 0.5));
         "
       ></div>`)
         );
       }
 
-      setInterval(() => {
-        model.reset();
-      }, interval * 1000);
+      setTimeout(() => {
+        const model = new CSSModelRandom(globalThis.document, undefined, {
+          count: varCount,
+        });
+        const interval = setInterval(() => {
+          model.reset();
+        }, seconds * 1000);
+        globalThis.document.onclick = () => {
+          clearInterval(interval);
+          model.reset();
+        };
+      });
     </script>
   </head>
-  <body style="position: relative"></body>
+  <body></body>
 </html>

@@ -17,27 +17,32 @@ const CSSModel = class {
   get target() {
     return this.#target;
   }
-  set(name, value) {
+  setRaw(name, value) {
+    this.#target.documentElement.style.setProperty(name, value);
+  }
+  set(name, value, string = true, reg = true) {
     const n = `--${this.#prefix}-${name}`;
-    this.#target.documentElement.style.setProperty(n, value);
-    this.#target.documentElement.style.setProperty(
-      `${n}-str`,
-      wrapString(value)
-    );
+    if (reg) {
+      this.setRaw(n, value);
+    }
+    if (string) {
+      this.setRaw(`${n}-str`, wrapString(value));
+    }
     this.#tracked.add(name);
   }
+  getRaw(key) {
+    const value = this.#target.documentElement.style
+      .getPropertyValue(key)
+      .trim();
+    return value;
+  }
   get(name) {
-    this.#target.documentElement.style.getPropertyValue(
-      `--${this.#prefix}-${name}`,
-      value
-    );
+    return this.getRaw(`--${this.#prefix}-${name}`);
   }
   getStr(name) {
-    this.#target.documentElement.style.getPropertyValue(
-      `--${this.#prefix}-${name}-str`,
-      value
-    );
+    return this.getRaw(`--${this.#prefix}-${name}-str`);
   }
+
   remove(name) {
     this.#target.documentElement.style.removeProperty(
       `--${this.#prefix}-${name}`
@@ -52,6 +57,14 @@ const CSSModel = class {
     const target = this.#target;
     this.#target = null;
     return target;
+  }
+  valueIs(name, value) {
+    console.log(this.get);
+    const left = [this.get, this.getNum, this.getStr]
+      .map((x) => x.bind(this))
+      .map((x) => x(name));
+    console.log(name, left);
+    return false;
   }
 };
 

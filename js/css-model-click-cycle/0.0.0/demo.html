@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html style="
+        --input-numbers-str: '0';
+        --input-letters-str: 'A';
+        --input-numbers: 0;
+        --input-letters: A;
+        ">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS Input Model</title>
+    <script type="module">
+      import "./global.mjs";
+    </script>
+    <style>
+      body > * {
+        display: block;
+      }
+      #numbers::after {
+        content: var(--input-numbers-str);
+      }
+      #letters::after {
+        content: var(--input-letters-str);
+      }
+    </style>
+  </head>
+  <body>
+    <button id="numbers" data-custom-property="numbers" data-values="0;1;2;3" >
+      Numbers:
+    </button>
+    <button id="letters" data-custom-property="letters" data-values="A;B;C" >
+      Letters:
+    </button>
+</html>
