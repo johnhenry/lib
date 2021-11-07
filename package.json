@@ -6,11 +6,12 @@
   "scripts": {
     "lint": "prettier --write . ",
     "serve": "http-server . --port=3001 --cors -c-1",
+    "serve:live": "live-server . --port=3001 --cors",
     "jest": "jest --config=./config/jest.config.js",
     "test:jest": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --verbose",
     "test:jest:watch": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --watchAll --verbose",
     "test": "npm run test:jest -s",
-    "start": "npm -s i && npm run -s build && npm run -s serve",
+    "start": "npm -s i && npm run -s build && npm run -s serve:live",
     "publish-ignore": "echo .publishignore > .gitignore",
     "build": "sh build.sh"
   },
@@ -41,6 +42,7 @@
     "wbn": "0.0.5"
   },
   "dependencies": {
-    "css-what": "^5.1.0"
+    "css-what": "^5.1.0",
+    "live-server": "^1.2.1"
   }
 }

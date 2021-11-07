@@ -3,8 +3,9 @@ import wrapString from "../../wrap-number-string/0.0.0/index.mjs";
 const CSSModel = class {
   #target;
   #prefix;
-  #tracked = new Set();
+  #tracked;
   constructor(target = null, prefix = "") {
+    this.#tracked = new Set();
     if (!target) {
       throw new Error("No target provided");
     }
@@ -18,7 +19,7 @@ const CSSModel = class {
     return this.#target;
   }
   setRaw(name, value) {
-    this.#target.documentElement.style.setProperty(name, value);
+    this.#target.style.setProperty(name, value);
   }
   set(name, value, string = true, reg = true) {
     const n = `--${this.#prefix}-${name}`;
@@ -28,12 +29,29 @@ const CSSModel = class {
     if (string) {
       this.setRaw(`${n}-str`, wrapString(value));
     }
-    this.#tracked.add(name);
+    this.track(name, string, reg);
+  }
+  track(name, string = true, reg = true) {
+    const n = `--${this.#prefix}-${name}`;
+    if (reg) {
+      this.#tracked.add(n);
+    }
+    if (string) {
+      this.#tracked.add(`${n}-str`);
+    }
+  }
+
+  untrack(name, string = true, reg = true) {
+    const n = `--${this.#prefix}-${name}`;
+    if (reg) {
+      this.#tracked.delete(n);
+    }
+    if (string) {
+      this.#tracked.delete(`${n}-str`);
+    }
   }
   getRaw(key) {
-    const value = this.#target.documentElement.style
-      .getPropertyValue(key)
-      .trim();
+    const value = this.#target.style.getPropertyValue(key).trim();
     return value;
   }
   get(name) {
@@ -42,13 +60,15 @@ const CSSModel = class {
   getStr(name) {
     return this.getRaw(`--${this.#prefix}-${name}-str`);
   }
-
-  remove(name) {
-    this.#target.documentElement.style.removeProperty(
-      `--${this.#prefix}-${name}`
-    );
-    this.#tracked.delete(name);
-    this.#tracked.delete(`${name}-str`);
+  remove(name, string = true, reg = true) {
+    const n = `--${this.#prefix}-${name}`;
+    if (reg) {
+      this.#target.style.removeProperty(n);
+    }
+    if (string) {
+      this.#target.style.removeProperty(`${n}-str`);
+    }
+    this.untrack(name, string, reg);
   }
   detach(...args) {
     for (const name of this.#tracked) {
@@ -65,6 +85,9 @@ const CSSModel = class {
       .map((x) => x(name));
     console.log(name, left);
     return false;
+  }
+  get tracked() {
+    return [...this.#tracked];
   }
 };
 

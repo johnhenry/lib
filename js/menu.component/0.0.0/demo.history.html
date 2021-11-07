@@ -115,4 +115,9 @@
       </template>
     </menu-item>
   </menu-component>
+  <!-- This part is buggy. -->
+  <script type="module">
+    import attach from "./hash.mjs";
+    attach(document.querySelector(".menu"));
+  </script>
 </section>

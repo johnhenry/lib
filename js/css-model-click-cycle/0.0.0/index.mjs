@@ -1,7 +1,5 @@
 import CSSModel from "../../css-model/0.0.0/index.mjs";
-import wrapString from "../../wrap-number-string/0.0.0/index.mjs";
-
-const CSSInputModel = class extends CSSModel {
+const CSSModelClickCycle = class extends CSSModel {
   constructor(target = null, prefix = "input", key = "customProperty") {
     super(target, prefix);
     this.target.addEventListener("click", ({ target }) => {
@@ -18,4 +16,4 @@ const CSSInputModel = class extends CSSModel {
     });
   }
 };
-export default CSSInputModel;
+export default CSSModelClickCycle;
