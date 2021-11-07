@@ -72,7 +72,9 @@ export default class extends HTMLElement {
       .split("|")
       .map((x) => x.trim())
       .filter((x) => x)) {
+      // console.log({ mediaQuery });
       const [, query, selector] = exp.exec(mediaQuery);
+      console.log({ query, selector });
       firstSelector = firstSelector || selector;
       this.#queries.set(
         globalThis.matchMedia(query),
@@ -90,6 +92,7 @@ export default class extends HTMLElement {
     }
   }
   triggerQuery() {
+    console.log(1);
     let element = this.#default;
     if (this.#queries) {
       for (const [query, selected] of this.#queries) {
@@ -98,6 +101,7 @@ export default class extends HTMLElement {
         }
       }
     }
+    // console.log({ XYZ: this.#content });
     if (this.contains(this.#content)) {
       if (element !== this.content) {
         element.append(...this.#content.childNodes);

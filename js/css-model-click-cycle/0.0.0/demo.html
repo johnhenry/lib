@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html style="
-        --input-numbers-str: '0';
-        --input-letters-str: 'A';
-        --input-numbers: 0;
-        --input-letters: A;
+        --input-items: 0;
+        --input-items-str: '0';
         ">
   <head>
     <meta charset="utf-8" />
-    <title>CSS Input Model</title>
-    <script type="module">
-      import "./global.mjs";
-    </script>
+    <title>CSS Model Click Cycle</title>
     <style>
-      body > * {
-        display: block;
+      button {
+        display: inline-block;
+        background-color:rebeccapurple;
+        color:white;
+        padding: 16px;
+        border: none;
+        font-weight: bold;
+        font-size: 1.25em;
+        border-radius: 8px;
       }
-      #numbers::after {
-        content: var(--input-numbers-str);
-      }
-      #letters::after {
-        content: var(--input-letters-str);
+      #items::after {
+        content: ": " var(--input-items-str);
       }
     </style>
+    <script type="module" src="./global.mjs"></script>
+    <script type="module">
+      const numbers = Array.from(new Array(32)).map((_,index)=>index)
+          .join(";");
+      const letters =  Array.from(new Array(26)).map((_,index)=>String.fromCharCode(index+65))
+          .join(";");
+      document
+        .querySelector("#items")
+        .dataset.values = numbers;
+      document
+        .querySelector("#letters")
+        .dataset.values = letters;
+    </script>
   </head>
   <body>
-    <button id="numbers" data-custom-property="numbers" data-values="0;1;2;3" >
-      Numbers:
-    </button>
-    <button id="letters" data-custom-property="letters" data-values="A;B;C" >
-      Letters:
-    </button>
+    <h1>CSS Model Cycle Click</h1>
+    <article>
+      <p>This demo uses <a href="./">CSS Model Cycle Click</a> to cycle through variables.</p>
+      <p> Clicking this button cycles the CSS custom property "--input-items" through the numbers (0-31)</p>
+      <button id="items" data-custom-property="items"> Cycle numbers by default</button>
+      <div>
+      <p> Clicking this button cycles the CSS custom property "--input-items" through the letters (A-Z) </p>
+        <button id="letters" data-custom-property="items">Cycle letters instead</button>
+      </div>
+    </article>
 </html>

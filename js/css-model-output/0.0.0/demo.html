@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS Models:Binding</title>
+    <script type="module">
+      import "./global.mjs";
+      import "../../css-model-input/0.0.0/global.mjs";
+    </script>
+    <style>
+      body > * :not(script) {
+        display: block;
+      }
+      body {
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Model: Output w/ Binding</h1>
+    <h2>One-way Binding</h2>
+    <p>
+      When the first input is changed, data is pushed to the custom property
+      '--input-foo' via the 'data-custom-property' attribute.
+    </p>
+    <p>
+      When the custom propety '--input-foo' changes, data is pulled into the
+      second input via the 'data-custom-property-output' attribute.
+    </p>
+    <p>
+      Data is also pulled into the span. By default, it would be set to the
+      "innerText" attribut, but we set the "data-custom-property-write-key" to
+      "DANGEROULSY_SET_innerHTML" to allow HTML content.
+    </p>
+    <p>
+      Note that changing the second input does not propagate to the other two
+      elements.
+    </p>
+    <input data-custom-property="foo" />
+    <div>↓</div>
+    <input data-custom-property-output="foo" />
+    <div>⍖</div>
+    <span
+      data-custom-property-output="foo"
+      data-custom-property-write-key="DANGEROULSY_SET_innerHTML"
+    ></span>
+    <h2>Two-way Binding</h2>
+    <p>
+      When data in either input is updated, the change is propagated to the
+      other element as both reference the the same variable, '--input-bar', via
+      the 'data-custom-property-bind' atttribute.
+      <input data-custom-property-bind="bar" />
+    </p>
+
+    <div>⮁</div>
+    <textarea data-custom-property-bind="bar"> </textarea>
+  </body>
+</html>

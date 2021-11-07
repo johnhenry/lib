@@ -7,17 +7,17 @@ const setscrolllimit = function () {
     Math.max(
       this.target.body.scrollHeight,
       this.target.body.offsetHeight,
-      this.target.documentElement.clientHeight,
-      this.target.documentElement.scrollHeight,
-      this.target.documentElement.offsetHeight
+      this.target.clientHeight,
+      this.target.scrollHeight,
+      this.target.offsetHeight
     ) - globalThis.innerHeight;
   const horizontal =
     Math.max(
       this.target.body.scrollWidth,
       this.target.body.offsetWidth,
-      this.target.documentElement.clientWidth,
-      this.target.documentElement.scrollWidth,
-      this.target.documentElement.offsetWidth
+      this.target.clientWidth,
+      this.target.scrollWidth,
+      this.target.offsetWidth
     ) - globalThis.innerWidth;
   const vratio = y / vertical;
   const hratio = x / horizontal;

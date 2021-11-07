@@ -3,8 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <title>CSS Model Random</title>
-    <link rel="stylesheet" href="./demo.css" />
-    <!-- <script type="module" src="./global16.mjs"></script> -->
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        position: relative;
+        height: 100%;
+      }
+      section {
+        padding: 32px;
+        border-bottom-right-radius: 16px;
+        background-color: #ffffffdd;
+        position: fixed;
+        z-index: 1;
+      }
+      .rectangle {
+        position: absolute;
+        display: block;
+        transition: width var(--speed) var(--transition-function),
+          height var(--speed) var(--transition-function),
+          left var(--speed) var(--transition-function),
+          top var(--speed) var(--transition-function);
+      }
+    </style>
+    <script
+      type="module"
+      src="../../../js/css-model-gamepad/0.0.0/global.mjs"
+    ></script>
     <script type="module">
       import CSSModelRandom from "./index.mjs";
       import textToDOMNodes from "../../text-to-DOM-nodes/0.0.0/index.mjs";
@@ -29,7 +59,7 @@
         //   Math.random() * 256
         // )}, ${Math.floor(Math.random() * 256)}, ${Math.random()})`;
 
-        document.body.append(
+        document.body.prepend(
           ...textToDOMNodes(`
                 <div
         class="rectangle"
@@ -38,6 +68,7 @@
           background-color: ${color};
           --transition-function: ease-in-out;
           --speed: ${seconds}s;
+          transform: skew(calc(var(--gamepad-axis-0, 0) * 0.1turn), calc(var(--gamepad-axis-1, 0)  * 0.1turn)) scale(calc(var(--gamepad-axis-2,0) + 0.5), calc(var(--gamepad-axis-3, 0) + 0.5 ));
           width: calc(${width} * var(--rand-${a}, 1));
           height: calc(${height} * var(--rand-${b}, 1));
           left: calc((100vw - (${width} * var(--rand-${a},1))) * var(--rand-${c}, 0.5));
@@ -48,9 +79,13 @@
       }
 
       setTimeout(() => {
-        const model = new CSSModelRandom(globalThis.document, undefined, {
-          count: varCount,
-        });
+        const model = new CSSModelRandom(
+          globalThis.document.documentElement,
+          undefined,
+          {
+            count: varCount,
+          }
+        );
         const interval = setInterval(() => {
           model.reset();
         }, seconds * 1000);
@@ -61,5 +96,9 @@
       });
     </script>
   </head>
-  <body></body>
+  <body>
+    <section>
+      <h1>CSS Model: Random</h1>
+    </section>
+  </body>
 </html>
