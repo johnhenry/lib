@@ -68,11 +68,11 @@
           background-color: ${color};
           --transition-function: ease-in-out;
           --speed: ${seconds}s;
-          transform: skew(calc(var(--gamepad-axis-0, 0) * 0.1turn), calc(var(--gamepad-axis-1, 0)  * 0.1turn)) scale(calc(var(--gamepad-axis-2,0) + 0.5), calc(var(--gamepad-axis-3, 0) + 0.5 ));
+          transform: scale(calc(var(--gamepad-axis-3,0) + 0.5), calc(var(--gamepad-axis-2, 0) + 0.5 ));
           width: calc(${width} * var(--rand-${a}, 1));
           height: calc(${height} * var(--rand-${b}, 1));
-          left: calc((100vw - (${width} * var(--rand-${a},1))) * var(--rand-${c}, 0.5));
-          top: calc((100vh - (${width} * var(--rand-${b},1))) * var(--rand-${d}, 0.5));
+          left: calc((var(--gamepad-axis-0, 0) * 100vw) + (100vw - (${width} * var(--rand-${a},1))) * var(--rand-${c}, 0.5));
+          top: calc((var(--gamepad-axis-1, 0) * 100vh) + (100vh - (${width} * var(--rand-${b},1))) * var(--rand-${d}, 0.5));
         "
       ></div>`)
         );
@@ -90,7 +90,6 @@
           model.reset();
         }, seconds * 1000);
         globalThis.document.onclick = () => {
-          clearInterval(interval);
           model.reset();
         };
       });
