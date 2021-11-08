@@ -33,8 +33,9 @@ Keep in mind that this is still in the early stages. The code in all modules sho
 ## Search
 
 <section>
-<script src="https://unpkg.com/lunr/lunr.js"></script>
+
 <script type="module">
+  import lunr from "./vendor/js/lunr/2.3.9/index.mjs";
   import textToDOM from "./js/text-to-DOM-nodes/0.0.0/index.mjs";
   const searchBox = document.querySelector("#search-box");
   const searchResults = document.querySelector("#search-results");
