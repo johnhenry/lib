@@ -23,15 +23,15 @@ You are encouraged to examine the source code of all demos to remix your own.
 # Web Components
 
 - [Simple Element](./js/simple-element/0.0.0/demo.html)
-- [Menu Component](./js/menu.component/0.0.0/demo.html)
+- [Menu Component](./js/menu-component.component/0.0.0/demo.html)
 - [Menu Component w/browser history (WARNING:BUGGY)](./js/menu.component/0.0.0/demo.history.html)
 - [Query Container Component](./js/query-container.component/0.0.0/demo.html)
 
 ## Misc
 
-- [Tester](./js/tester/0.0.0/demo.html)
-- [Color Wheel](./js/colorwheel/0.0.0/demo.html)
-- [Colors:Tango](./css/colors-tango/0.0.0/demo.html)
+- [Tester](./demo.html?jsfiddle=yvcamsb8)
+- [Color Wheel](./demo.html?jsfiddle=j23ec6n4)
+- [Rick & Morty Tango Colors](./demo.html?jsfiddle=cxje8kdr)
+- [Broadcast Channel Worker](./demo.html?jsfiddle=huntd540)
+- [Liedenticons](./demo.html?jsfiddle=4verjf13)
 - [Fun Without Javascript](./css/fun-without-javascript/0.0.0/demo.html)
-- [Broadcast Channel Worker](./js/broadcast-channel-worker/0.0.0/demo.html)
-- [Liedenticons](./js/liedenticon/0.0.4/demo.html)
