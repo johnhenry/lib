@@ -11,20 +11,19 @@ You are encouraged to examine the source code of all demos to remix your own.
 
 ## CSS Models
 
-- [CSS Model Click Cycle](./js/css-model-click-cycle/0.0.0/demo.html)
-- [CSS Model Date](./js/css-model-date/0.0.0/demo.html)
-- [CSS Model Gamepad](./js/css-model-gamepad/0.0.0/demo.html)
-- [CSS Model Input](./js/css-model-input/0.0.0/demo.html)
-- [CSS Model Mouse](./js/css-model-mouse/0.0.0/demo.html)
-- [CSS Model Output/Binding](./js/css-model-output/0.0.0/demo.html)
+- [CSS Model Click Cycle](./demo.html?jsfiddle=tkocpL8b)
+- [CSS Model Date](./demo.html?jsfiddle=mp1b0sfz)
+- [CSS Model Gamepad](./demo.html?jsfiddle=Lyvz1krn)
+- [CSS Model Input](./demo.html?jsfiddle=p2yqou4m)
+- [CSS Model Mouse](./demo.html?jsfiddle=Lj1p47z6)
+- [CSS Model Output/Binding](./demo.html?jsfiddle=suk2ewq9)
 - [CSS Model Random](./demo.html?jsfiddle=0Lnvyzr4)
-- [CSS Model Scroll](./js/css-model-scroll/0.0.0/demo.html)
 
 # Web Components
 
-- [Simple Element](./js/simple-element/0.0.0/demo.html)
 - [Menu Component](./demo.html?jsfiddle=u8xtvfna)
 - [Menu Component w/browser history (WARNING:BUGGY)](./demo.html?jsfiddle=5v08pdb6)
+- [Simple Element](./js/simple-element/0.0.0/demo.html)
 - [Query Container Component](./js/query-container.component/0.0.0/demo.html)
 
 ## Misc
