@@ -23,8 +23,8 @@ You are encouraged to examine the source code of all demos to remix your own.
 # Web Components
 
 - [Simple Element](./js/simple-element/0.0.0/demo.html)
-- [Menu Component](./js/menu-component.component/0.0.0/demo.html)
-- [Menu Component w/browser history (WARNING:BUGGY)](./js/menu.component/0.0.0/demo.history.html)
+- [Menu Component](./demo.html?jsfiddle=u8xtvfna)
+- [Menu Component w/browser history (WARNING:BUGGY)](./demo.html?jsfiddle=5v08pdb6)
 - [Query Container Component](./js/query-container.component/0.0.0/demo.html)
 
 ## Misc
