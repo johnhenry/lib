@@ -6,8 +6,8 @@ You are encouraged to examine the source code of all demos to remix your own.
 
 ## Negatable String
 
-- [Negatable String: Linear Combinations](./js/negatablestring/0.0.0/demo.linear-combinations.html)
-- [Negatable String: Permutations](./js/negatablestring/0.0.0/demo.permutations.html)
+- [Negatable String: Linear Combinations](./demo.html?jsfiddle=auobeh3n)
+- [Negatable String: Permutations](./demo.html?jsfiddle=)2dnt45bw
 
 ## CSS Models
 
@@ -17,7 +17,7 @@ You are encouraged to examine the source code of all demos to remix your own.
 - [CSS Model Input](./js/css-model-input/0.0.0/demo.html)
 - [CSS Model Mouse](./js/css-model-mouse/0.0.0/demo.html)
 - [CSS Model Output/Binding](./js/css-model-output/0.0.0/demo.html)
-- [CSS Model Random](./demo.html?jsfiddle=0Lnvyzr4&=7jnqwfdg)
+- [CSS Model Random](./demo.html?jsfiddle=0Lnvyzr4)
 - [CSS Model Scroll](./js/css-model-scroll/0.0.0/demo.html)
 
 # Web Components
