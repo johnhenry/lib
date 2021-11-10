@@ -48,7 +48,7 @@
     <script type="module">
       // https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/platform/feature_policy/feature_policy.cc;drc=ab90b51c5b60de15054a32b0bd18e4839536a1c9;l=138
       import query from "./js/url-params/0.0.0/query.mjs";
-      const allow = ['accelerometer', 'ambient-light-sensor', 'camera', 'encrypted-media', 'fullscreen', 'geolocation', 'gyroscope', 'magnetometer', 'microphone', 'midi', 'payment', 'speaker', 'sync-xhr', 'usb', 'vr', 'picture-in-picture', 'document-write', 'image-compression', 'legacy-image-formats', 'max-downscaling-image', 'unsized-media', 'vertical-scroll', 'animations', 'autoplay'].map(str=>`${str} *`)
+      const allow = ['accelerometer', 'ambient-light-sensor', 'camera', 'encrypted-media', 'fullscreen', 'geolocation', 'gyroscope', 'magnetometer', 'microphone', 'midi', 'payment', 'speaker', 'sync-xhr', 'usb', 'vr', 'picture-in-picture', 'document-write', 'image-compression', 'legacy-image-formats', 'max-downscaling-image', 'unsized-media', 'vertical-scroll', 'animations', 'autoplay', 'gamepad'].map(str=>`${str} *`)
       .join("; ");
       const sandbox = ['allow-forms', 'allow-modals', 'allow-orientation-lock', 'allow-pointer-lock', 'allow-popups', 'allow-popups-to-escape-sandbox', 'allow-presentation', 'allow-same-origin', 'allow-scripts', 'allow-top-navigation'].join(' ');
       const createFrame = (src)=>{
