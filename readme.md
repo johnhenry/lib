@@ -1,6 +1,4 @@
-# Standard Library
-
-[home](/#)
+# <a href="/#" style="display:contents"><img width=16px height=16px src="https://johnhenry.github.io/image/iajh.png"></img></a> Standard Library
 
 tl;dr [skip straight to some demos](./demos.html)
 
