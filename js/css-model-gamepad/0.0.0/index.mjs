@@ -12,7 +12,6 @@ const CSSModelGamepads = class extends CSSModel {
     super(target, prefix);
     0;
     this.#interval = setInterval(() => {
-      console.log(1);
       const pads = navigator.getGamepads
         ? navigator.getGamepads()
         : navigator.webkitGetGamepads

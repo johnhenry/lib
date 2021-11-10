@@ -17,7 +17,7 @@ You are encouraged to examine the source code of all demos to remix your own.
 - [CSS Model Input](./js/css-model-input/0.0.0/demo.html)
 - [CSS Model Mouse](./js/css-model-mouse/0.0.0/demo.html)
 - [CSS Model Output/Binding](./js/css-model-output/0.0.0/demo.html)
-- [CSS Model Random](./js/css-model-random/0.0.0/demo.html)
+- [CSS Model Random](./demo.html?jsfiddle=0Lnvyzr4&=7jnqwfdg)
 - [CSS Model Scroll](./js/css-model-scroll/0.0.0/demo.html)
 
 # Web Components
