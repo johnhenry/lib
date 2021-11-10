@@ -7,7 +7,7 @@ You are encouraged to examine the source code of all demos to remix your own.
 ## Negatable String
 
 - [Negatable String: Linear Combinations](./demo.html?jsfiddle=auobeh3n)
-- [Negatable String: Permutations](./demo.html?jsfiddle=)2dnt45bw
+- [Negatable String: Permutations](./demo.html?jsfiddle=2dnt45bw)
 
 ## CSS Models
 
