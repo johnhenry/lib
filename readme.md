@@ -12,6 +12,7 @@ tl;dr [skip straight to some demos](./demos.html)
 - [bash](./bash/) Index of useful Command Line Tools
 - [html](./html/) Index of useful HTML snippets
 - [demos](./demos) Demos using the above modules
+- [consistency](./consistency) Notes on goals for consistency
 
 ## About
 
