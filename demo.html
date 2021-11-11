@@ -47,6 +47,7 @@
     </style>
     <script type="module">
       // https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/platform/feature_policy/feature_policy.cc;drc=ab90b51c5b60de15054a32b0bd18e4839536a1c9;l=138
+      import * as demos from "./demos.mjs";
       import query from "./js/url-params/0.0.0/query.mjs";
       const allow = ['accelerometer', 'ambient-light-sensor', 'camera', 'encrypted-media', 'fullscreen', 'geolocation', 'gyroscope', 'magnetometer', 'microphone', 'midi', 'payment', 'speaker', 'sync-xhr', 'usb', 'vr', 'picture-in-picture', 'document-write', 'image-compression', 'legacy-image-formats', 'max-downscaling-image', 'unsized-media', 'vertical-scroll', 'animations', 'autoplay', 'gamepad'].map(str=>`${str} *`)
       .join("; ");
@@ -66,30 +67,40 @@
       }
       const code = globalThis.document.getElementById('code');
       const results = globalThis.document.getElementById('results');
-      if(query.jsfiddle){
-        const client =
-          createFrame(`//jsfiddle.net/Iamjohnhenry/${query.jsfiddle}/embedded/`);
-        const result = createFrame(`//jsfiddle.net/Iamjohnhenry/${query.jsfiddle}/embedded/result/`);
-        code.appendChild(client);
-        results.appendChild(result);
-      }else if(query.codepen){
-        const client =
-          createFrame(`//codepen.io/johnhenry/embed/${query.codepen}?default-tab=html%2Cresult`);
-        const result =
-          createFrame(`//codepen.io/johnhenry/full/${query.codepen}`);
-        code.appendChild(client);
-        results.appendChild(result);
-      }
-      if(query.denodeploy){
-        const server = createFrame(`//embed.deno.com/playground/${query.denodeploy}?layout=code-only`)
-        code.appendChild(server);
+      const queryDemo = demos[query.id];
+      const demo = typeof queryDemo === "string"
+        ? {jsfiddle:queryDemo}
+        : queryDemo;
+      if(demo){
+        if(demo.jsfiddle){
+          const client =
+            createFrame(`//jsfiddle.net/Iamjohnhenry/${demo.jsfiddle}/embedded/`);
+          const result = createFrame(`//jsfiddle.net/Iamjohnhenry/${demo.jsfiddle}/embedded/result/`);
+          code.appendChild(client);
+          results.appendChild(result);
+        }else if(demo.codepen){
+          const client =
+            createFrame(`//codepen.io/johnhenry/embed/${demo.codepen}?default-tab=html%2Cresult`);
+          const result =
+            createFrame(`//codepen.io/johnhenry/full/${demo.codepen}`);
+          code.appendChild(client);
+          results.appendChild(result);
+        }
+        if(demo.denodeploy){
+          const server = createFrame(`//embed.deno.com/playground/${demo.denodeploy}?layout=code-only`)
+          code.appendChild(server);
+        }
+      }else{
+        globalThis.document.body.removeChild(results);
+        code.innerHTML = `<h1>No demo found for ${query.id}</h1>`;
       }
     </script>
   </head>
   <body>
     <header >
       <a href="./#" style="display:contents"><img width=16px height=16px src="https://johnhenry.github.io/image/iajh.png"></img></a>
-      <a href="#">result</a> <a href="#code">code</a></header>
+      <a href="#">result</a> <a href="#code">code</a> <a href="./demos" style="margin-left:auto;">back to demos</a>
+    </header>
       <div id="code" class="view"></div>
       <div id="results" class="view"></div>
     </div>
