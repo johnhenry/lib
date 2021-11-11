@@ -1,6 +1,6 @@
 ⚠ This is very much a work in progress. ⚠
 
-# <a href="/#" style="display:contents"><img width=16px height=16px src="https://johnhenry.github.io/image/iajh.png"/></a> Standard Library
+# Standard Library ![test](https://github.com/johnhenry/lib/actions/workflows/test.yaml/badge.svg) ![publish](https://github.com/johnhenry/lib/actions/workflows/publish.yaml/badge.svg) <a href="/#" style="display:contents"><img width=21px height=21px src="https://johnhenry.github.io/image/iajh.png"/></a>
 
 tl;dr [skip straight to some demos](./demos.html)
 
