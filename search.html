@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+    
+<script type="module">
+  import lunr from "./vendor/js/lunr/2.3.9/index.mjs";
+  import textToDOM from "./js/text-to-DOM-nodes/0.0.0/index.mjs";
+  const searchBox = document.querySelector("#search-box");
+  const searchResults = document.querySelector("#search-results");
+  let index;
+  let rev = {};
+  const search = (inputValue) => {
+    const foundDocuments = index.search(inputValue).map(({ ref }) => rev[ref]);
+    display(foundDocuments);
+  };
+  const startAutocomplete = async (i) => {
+    if (index) {
+      return;
+    }
+    try {
+      const documents = await fetch("./index.json").then((res) => res.json());
+      rev = Object.fromEntries(documents.map((doc) => [doc.url, doc]));
+      index = lunr(function () {
+        this.ref("url");
+        this.field("content");
+        this.field("content");
+        this.field("url");
+        documents.forEach(function (doc) {
+          this.add(doc);
+        }, this);
+      });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      search(searchBox.value);
+    }
+  };
+  const display = (documents) => {
+    searchResults.innerHTML = "";
+    searchResults.append(
+      ...textToDOM(
+        documents
+          .map(({ title, url }) => `<li><a href="${url}">${title}</a></li>`)
+          .join("")
+      )
+    );
+  };
+
+  searchBox.onfocus =
+    searchBox.onmouseover =
+    searchBox.onclick =
+      startAutocomplete;
+  searchBox.onkeyup = (e) => {
+    search(e.target.value);
+  };
+</script>
+<section>
+  <h1>Search for modules</h1>
+  <p>This is a partial index of available modules.</p>
+  <p>Documentation is still very much a work in progress</p>
+  <input id="search-box" type="search" placeholder="Site search..." />
+  <ul id="search-results"></ul>
+</section>
+  </body>
+</html>

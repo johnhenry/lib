@@ -32,3 +32,4 @@ sh script.sh build_search_index .
 
 sh script.sh md_to_html readme.md index.html
 sh script.sh md_to_html demos.md demos.html
+sh script.sh html_to_html _search.html search.html
