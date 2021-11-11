@@ -26,6 +26,37 @@
   </head>
   <body>
     
-
+<h1 id="consistency-goals">Consistency Goals</h1>
+<p>(I still have a lot of refactoring before this is completely true.)</p>
+<ul>
+<li>All module folder names are in kebab case (&quot;kebab-case&quot;);</li>
+<li>Each module folder has an associated readme.md minimally containing:</li>
+<li>Module Name</li>
+<li>A brief description description</li>
+<li>Import Syntax</li>
+<li>Links to at least demonstration of its use.</li>
+<li><p>Each module folder contains at least one -- perhaps both -- of a global export file (global.mjs or global.css) and a module export file (index.mjs).</p></li>
+<li><p><strong>index.mjs</strong> contains named exports that can be imported into a file and manipulated.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> MainClass<span class="op">,</span> <span class="op">{</span> associatedFunction <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./some-js-module/index.mjs&quot;</span><span class="op">;</span>
+<span class="co">// Do something using &quot;MainClass&quot; and &quot;associatedFunction&quot; ...</span></code></pre></div></li>
+<li><p><strong>global.mjs</strong> or <strong>global.css</strong> indicates a global file. These add behaviors to the environment with no additional manipulation required by a developer and thus names are not needed.</p></li>
+</ul>
+<p>The prefered method of import is to use a tag:</p>
+<p><code>html   &lt;script type=&quot;module&quot; src=&quot;./some-js-module/global.mjs&quot;&gt;&lt;/script&gt;   &lt;link rel=&quot;stylesheet&quot; link=&quot;./some-css-module/global.css&quot; /&gt;</code></p>
+<p>but they can be imported using their native language syntax as well:</p>
+<p><code>javascript   import &quot;./some-js-module/global.mjs&quot;;</code></p>
+<p><code>css   @import &quot;./some-css-module/global.css&quot;;</code></p>
+<p>Unless and until the <a href="https://web.dev/css-module-scripts/">CSS Module Scripts proposal</a> is widely adopted, all css modules are global.</p>
+<ul>
+<li>Exported module naming conventions</li>
+<li>camel case (&quot;camelCase&quot;) if the module is a function</li>
+<li>pascal case (&quot;PascalCase&quot;) if the module is a class</li>
+<li>upper snake case (&quot;UPPER_SNAKE_CASE&quot;) if the module is a constant</li>
+<li>Web components are named using their default component name (followed by &quot;.component&quot;). Importing a web component's global file will registers that name.</li>
+</ul>
+<p><code>html   &lt;script     type=&quot;module&quot;     src=&quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/global.mjs&quot;   &gt;&lt;/script&gt;   &lt;!-- registers the  &quot;&lt;define-component&gt;&quot; tag --&gt;</code></p>
+<ul>
+<li>Spelling should be checked</li>
+</ul>
   </body>
 </html>
