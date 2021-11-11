@@ -1,8 +1,17 @@
-# <a href="/#" style="display:contents"><img width=16px height=16px src="https://johnhenry.github.io/image/iajh.png"></img></a> Standard Library
+⚠ This is very much a work in progress. ⚠
+
+# <a href="/#" style="display:contents"><img width=16px height=16px src="https://johnhenry.github.io/image/iajh.png"/></a> Standard Library
 
 tl;dr [skip straight to some demos](./demos.html)
 
-⚠ This is very much a work in progress. ⚠
+## Site Map
+
+- [search](./search.html) Search for modules
+- [js](./js/) Index of useful importable JavaScript modules
+- [css](./css/) Index of useful importable CSS modules
+- [bash](./bash/) Index of useful Command Line Tools
+- [html](./html/) Index of useful HTML snippets
+- [demos](./demos.html) Demos using the above modules
 
 This is my standard library.
 It is a collection of modules, tools and components that
@@ -19,74 +28,6 @@ Everything is written in pure, uncompliled languages -- JavaScript and CSS.
 This makes it easy to import them directly into your project -- web or [deno](https://deno.land/). I'm currently in the process of languages that compile to the web -- Typescript, Rust, and AssemblyScript are the prime candidates.
 
 Keep in mind that this is still in the early stages. The code in all modules should be considered unstable unless versioned 1.0.0 or above. (No modules currently fit this criterion). If you want to search for something specific, you'll have a better time by visiting the [github repository](https://github.com/johnhenry/lib) directly.
-
-## Links
-
-- [js](./js/) Contains importable JavaScript modules
-- [css](./css/) Contains importable CSS modules
-- [bash](./bash/) Contains a few useful Command Line Tools
-- [html](./html/) Contains a few useful HTML snippets
-- [demos](./demos.html) Contains importable JavaScript modules
-
-## Search
-
-<section>
-
-<script type="module">
-  import lunr from "./vendor/js/lunr/2.3.9/index.mjs";
-  import textToDOM from "./js/text-to-DOM-nodes/0.0.0/index.mjs";
-  const searchBox = document.querySelector("#search-box");
-  const searchResults = document.querySelector("#search-results");
-  let index;
-  let rev = {};
-  const search = (inputValue) => {
-    const foundDocuments = index.search(inputValue).map(({ ref }) => rev[ref]);
-    display(foundDocuments);
-  };
-  const startAutocomplete = async (i) => {
-    if (index) {
-      return;
-    }
-    try {
-      const documents = await fetch("./index.json").then((res) => res.json());
-      rev = Object.fromEntries(documents.map((doc) => [doc.url, doc]));
-      index = lunr(function () {
-        this.ref("url");
-        this.field("content");
-        this.field("content");
-        this.field("url");
-        documents.forEach(function (doc) {
-          this.add(doc);
-        }, this);
-      });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      search(searchBox.value);
-    }
-  };
-  const display = (documents) => {
-    searchResults.innerHTML = "";
-    searchResults.append(
-      ...textToDOM(
-        documents
-          .map(({ title, url }) => `<li><a href="${url}">${title}</a></li>`)
-          .join("")
-      )
-    );
-  };
-
-searchBox.onmouseover = searchBox.onclick = startAutocomplete;
-searchBox.onkeyup = (e) => {
-search(e.target.value);
-};
-</script>
-
-<input id="search-box" type="search" placeholder="Site search..." />
-
-<ul id="search-results"></ul>
-
-</section>
 
 ## About
 
