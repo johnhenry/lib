@@ -1,5 +1,5 @@
-export const firstParty = [
+export const FIRST_PARTY = [
   "https://johnhenry.github.io",
   "https://iamjohnhenry.com",
 ];
-export const secondParty = ["https://cdpn.io", "https://fiddle.jshell.net"];
+export const SECOND_PARTY = ["https://cdpn.io", "https://fiddle.jshell.net"];

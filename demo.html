@@ -4,6 +4,13 @@
     <script>
     </script>
     <title>John Henry Live</title>
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="css/universal-unstyled-links/0.0.0/index.css">
+    <link rel="stylesheet" href="css/universal-box-sizing/0.0.0/index.css">
     <style type="text/css">
       body,
       html {
@@ -11,6 +18,7 @@
         padding: 0;
         height: 100%;
         overflow: hidden;
+        font-family: monospace;
       }
       * {
         box-sizing: border-box;
@@ -30,8 +38,7 @@
       body iframe {
         flex: 1 1 auto;
       }
-      @media screen and (orientation: Landscape) {
-      }
+
       .view {
         display: none;
       }
@@ -43,6 +50,9 @@
       }
       .view:target ~ * {
         display: none;
+      }
+      header > *:last-child{
+        margin-left:auto;
       }
     </style>
     <script type="module">
@@ -58,7 +68,7 @@
         iframe.allowtransparency="true"
         iframe.allowfullscreen="allowfullscreen"
         iframe.allowpaymentrequest="true"
-        iframe.frameborder="0"
+        iframe.frameBorder="0"
         iframe.loading="eager"
         iframe.referrerpolicy="unsafe-url"
         iframe.allow=allow;
@@ -92,14 +102,15 @@
         }
       }else{
         globalThis.document.body.removeChild(results);
-        code.innerHTML = `<h1>No demo found for ${query.id}</h1>`;
+        code.innerHTML = `<h1>No demo found for id "${query.id}"</h1>`;
       }
     </script>
   </head>
   <body>
     <header >
       <a href="./#" style="display:contents"><img width=16px height=16px src="https://johnhenry.github.io/image/iajh.png"></img></a>
-      <a href="#">result</a> <a href="#code">code</a> <a href="./demos" style="margin-left:auto;">back to demos</a>
+      <a href="#">view result</a> | <a href="#code">view code</a>
+      <a href="./demos"> &lt;&lt; back to demos</a>
     </header>
       <div id="code" class="view"></div>
       <div id="results" class="view"></div>
