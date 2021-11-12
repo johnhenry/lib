@@ -88,19 +88,25 @@
           const result = createFrame(`//jsfiddle.net/Iamjohnhenry/${demo.jsfiddle}/embedded/result/`);
           code.appendChild(client);
           results.appendChild(result);
-        }else if(demo.codepen){
+        } else if(demo.codepen){
           const client =
             createFrame(`//codepen.io/johnhenry/embed/${demo.codepen}?default-tab=html%2Cresult`);
           const result =
             createFrame(`//codepen.io/johnhenry/full/${demo.codepen}`);
           code.appendChild(client);
           results.appendChild(result);
+        } else if(deno.client){
+          const client = createFrame(deno.client)
+          code.appendChild(client);
         }
         if(demo.denodeploy){
           const server = createFrame(`//embed.deno.com/playground/${demo.denodeploy}?layout=code-only`)
           code.appendChild(server);
+        } else if(deno.server){
+          const server = createFrame(deno.server)
+          code.appendChild(server);
         }
-      }else{
+      } else {
         globalThis.document.body.removeChild(results);
         code.innerHTML = `<h1>No demo found for id "${query.id}"</h1>`;
       }
