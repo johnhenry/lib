@@ -37,13 +37,26 @@
 <li><a href="./bash/">bash</a> Index of useful Command Line Tools</li>
 <li><a href="./html/">html</a> Index of useful HTML snippets</li>
 <li><a href="./demos">demos</a> Demos using the above modules</li>
-<li><a href="./consistency">consistency</a> Notes on goals for consistency</li>
 </ul>
 <h2 id="about">About</h2>
-<p>This is my standard library. It is a collection of modules, tools and components that I've created for my personal projects over the years. I hope that publishing them here, I will be able to easily pull them into other projects that I create.</p>
-<p>Most importantly, I also hope that you will be able to use them too! Everything is still in the early stages, but I'm working to make everything accessible to the average user! This means adding documentation, a search function, and <a href="./demos.html">more demos</a>.</p>
-<p>Everything is written in pure, uncompliled languages -- JavaScript and CSS. This makes it easy to import them directly into your project -- web or <a href="https://deno.land/">deno</a>. I'm looking to add languages that compile to the javascript and web assembly as well -- Typescript, Rust, and AssemblyScript are the prime candidates.</p>
-<p>Keep in mind that this is still in the early stages. The code in all modules should be considered unstable unless versioned 1.0.0 or above. (No modules currently fit this criterion). If you want to search for something specific, you'll have a better time by visiting the <a href="https://github.com/johnhenry/lib">github repository</a> directly.</p>
+<p>This is as collection of tools and components that I have created.</p>
+<p>By publishing them here, I also hope that you will be able to use them too!</p>
+<p>Everything is written in uncompliled JavaScript and CSS to make it easy to pull into your own projects.</p>
+<p>No need to host your own infrastructure -- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import"><code>import</code></a>* projects into many hosted services including:</p>
+<ul>
+<li><a href="https://jsfiddle.net">jsfiddle</a></li>
+<li><a href="http://codepen.io">codepen</a></li>
+<li><a href="https://deno.com/deploy/">deno deploy</a> are using this library.</li>
+</ul>
+<p><small>* If a service does not allow you to use the <code>import</code> keyword within its JavaScript panel, try using a script tag within the HTML.</small></p>
+<p>Pull in libraries hosted in other repositories including:</p>
+<ul>
+<li><a href="https://jspm.org/">jspm</a></li>
+<li><a href="https://deno.land/std">deno</a> / <a href="https://deno.land/x">deno land x</a></li>
+</ul>
+<p>Everything is still in the early stages, but I'm working to make everything accessible to the average user!</p>
+<p>I'll try not to break anything, but, but <strong>UNTIL A MODULE'S VERSION IS 1.0.0 or greater, IT SHOULD BE CONSIDERED UNSTABLE</strong></p>
+<p>(and nothing in this repo is there stable. See <a href="./consistency">consistency notes</a> notes).</p>
 <h2 id="source">Source</h2>
 <p><a href="https://johnhenry.github.io/lib">Published</a></p>
 <p><a href="https://github.com/johnhenry/lib/tree/dist"><img src="https://img.shields.io/github/last-commit/johnhenry/lib/dist" alt="GitHub last commit (dist)" /></a></p>
@@ -53,5 +66,10 @@
 <p><a href="https://github.com/users/johnhenry/projects/2">Project</a></p>
 <p><a href="https://github.com/johnhenry/lib/discussions">Discussion</a></p>
 <p><a href="https://github.com/johnhenry/lib/issues">Issues</a></p>
+<h2 id="mit-license">MIT License</h2>
+<p>Copyright (c) 2021 John Henry</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
   </body>
 </html>
