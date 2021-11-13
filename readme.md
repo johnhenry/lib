@@ -2,7 +2,7 @@
 
 # Standard Library <a href="/#" style="display:contents"><img width=21px height=21px src="https://johnhenry.github.io/image/iajh.png"/></a>
 
-tl;dr [skip straight to some demos](./demos.html)
+tl;dr [skip straight to some demos](./demos)
 
 ## Site Map
 
