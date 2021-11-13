@@ -18,3 +18,6 @@ export const JOHNHENRY_LIVE = {
   jsfiddle: "7jnqwfdg",
   denodeploy: "johnhenry-live",
 };
+export const CSS_MODEL_AUDIO = {
+  client: "./hosted/css-model-audio.html",
+};

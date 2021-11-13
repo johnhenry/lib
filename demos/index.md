@@ -1,6 +1,6 @@
 # Demos
 
-[back](./#)
+[back](../#)
 
 This is an ever-growning list of of demos.
 

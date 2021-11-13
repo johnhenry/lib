@@ -9,8 +9,8 @@
       href="https://johnhenry.github.io/image/iajh.png"
       type="image/png"
     />
-    <link rel="stylesheet" href="css/universal-unstyled-links/0.0.0/index.css">
-    <link rel="stylesheet" href="css/universal-box-sizing/0.0.0/index.css">
+    <link rel="stylesheet" href="../css/universal-unstyled-links/0.0.0/index.css">
+    <link rel="stylesheet" href="../css/universal-box-sizing/0.0.0/index.css">
     <style type="text/css">
       body,
       html {
@@ -58,7 +58,7 @@
     <script type="module">
       // https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/platform/feature_policy/feature_policy.cc;drc=ab90b51c5b60de15054a32b0bd18e4839536a1c9;l=138
       import * as demos from "./demos.mjs";
-      import query from "./js/url-params/0.0.0/query.mjs";
+      import query from "../js/url-params/0.0.0/query.mjs";
       const allow = ['accelerometer', 'ambient-light-sensor', 'camera', 'encrypted-media', 'fullscreen', 'geolocation', 'gyroscope', 'magnetometer', 'microphone', 'midi', 'payment', 'speaker', 'sync-xhr', 'usb', 'vr', 'picture-in-picture', 'document-write', 'image-compression', 'legacy-image-formats', 'max-downscaling-image', 'unsized-media', 'vertical-scroll', 'animations', 'autoplay', 'gamepad'].map(str=>`${str} *`)
       .join("; ");
       const sandbox = ['allow-forms', 'allow-modals', 'allow-orientation-lock', 'allow-pointer-lock', 'allow-popups', 'allow-popups-to-escape-sandbox', 'allow-presentation', 'allow-same-origin', 'allow-scripts', 'allow-top-navigation'].join(' ');
@@ -84,22 +84,22 @@
       if(demo){
         let client, result, server;
         if(demo.jsfiddle){
-          const client =
+          client =
             createFrame(`//jsfiddle.net/Iamjohnhenry/${demo.jsfiddle}/embedded/`);
-          const result = createFrame(`//jsfiddle.net/Iamjohnhenry/${demo.jsfiddle}/embedded/result/`);
+          result = createFrame(`//jsfiddle.net/Iamjohnhenry/${demo.jsfiddle}/embedded/result/`);
         } else if(demo.codepen){
-          const client =
+          client =
             createFrame(`//codepen.io/johnhenry/embed/${demo.codepen}?default-tab=html%2Cresult`);
-          const result =
+          result =
             createFrame(`//codepen.io/johnhenry/full/${demo.codepen}`);
-        } else if(deno.client){
-          const client = createFrame(deno.client);
-          const result = createFrame(deno.result || deno.client);
+        } else if(demo.client){
+          client = createFrame(demo.client);
+          result = createFrame(demo.result || demo.client);
         }
-        if(demo.denodeploy){
-          const server = createFrame(`//embed.deno.com/playground/${demo.denodeploy}?layout=code-only`)
-        } else if(deno.server){
-          const server = createFrame(deno.server)
+        if(demo.demodeploy){
+          server = createFrame(`//embed.demo.com/playground/${demo.demodeploy}?layout=code-only`)
+        } else if(demo.server){
+          server = createFrame(demo.server)
         }
         if(client){
           code.appendChild(client);
@@ -120,7 +120,7 @@
     <header >
       <a href="./#" style="display:contents"><img width=16px height=16px src="https://johnhenry.github.io/image/iajh.png"></img></a>
       <a href="#">view result</a> | <a href="#code">view code</a>
-      <a href="./demos"> &lt;&lt; back to demos</a>
+      <a href="../"> &lt;&lt; back to demos</a>
     </header>
       <div id="code" class="view"></div>
       <div id="results" class="view"></div>

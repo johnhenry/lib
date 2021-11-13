@@ -2,12 +2,11 @@ node_modules
 .github/workflows/.secrets
 .DS_Store
 .env/
-templates/shell.html
 **/index.html
 **/test.html
 **/index.json
 search.html
 index.html
-demos.html
+demos/index.html
 index.json
 search.html
