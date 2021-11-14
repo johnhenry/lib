@@ -20,7 +20,7 @@ export const JOHNHENRY_LIVE = {
 };
 export const CSS_MODEL_AUDIO = {
   results: [
-    "https://johnhenry.github.io/lib/demos/hosted/css-model-audio.html",
+    "https://johnhenry.github.io/lib/demos/hosted/css-model-audio-node.html",
     "https://www.szynalski.com/tone-generator/",
   ],
 };
