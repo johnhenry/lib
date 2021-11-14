@@ -28,45 +28,59 @@
       div {
         position: absolute;
       }
+      .frequency {
+        position: absolute;
+        display: block;
+        transition: height var(--speed) var(--transition-function);
+      }
+      .time {
+        position: absolute;
+        display: block;
+        transition: bottom var(--speed) var(--transition-function);
+      }
     </style>
     <script type="module">
       import textToDOMNodes from "https://johnhenry.github.io/lib/js/text-to-DOM-nodes/0.0.0/index.mjs";
       import randomBytes from "https://johnhenry.github.io/lib/js/random-bytes/0.0.0/index.mjs";
       const SIZE = 128;
       const width = `calc(1px * var(--window-width) / ${SIZE} )`;
+      const milliseconds = 16;
+      for (let i = 0; i < SIZE; i++) {
+        const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
+        document.body.prepend(
+          ...textToDOMNodes(`
+                <div
+        class="time"
+        data-id="${i}"
+        style="
+          --transition-function: ease-in-out;
+          --speed: ${milliseconds}ms;
+          background-color: black;
+          width: ${width};
+          height: 4px;
+          left:  ${x};
+          bottom:  calc(1px * var(--mic-td-${i})/256 * var(--window-height));;
+        "
+      ></div>`)
+        );
+      }
+
       for (let i = 0; i < SIZE; i++) {
         const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
         const color = randomBytes(4, "color32");
         document.body.prepend(
           ...textToDOMNodes(`
                 <div
-        class="rectangle"
+        class="frequency"
         data-id="${i}"
         style="
+          --transition-function: ease-in-out;
+          --speed: ${milliseconds}ms;
           background-color: ${color};
           width: ${width};
-          height: calc(1px * var(--mic-f-${i}));
+          height: calc(1px * var(--mic-f-${i})/256 * var(--window-height));
           left: ${x};
           bottom: 0;
-        "
-      ></div>`)
-        );
-      }
-      const width2 = `calc(1px * var(--window-width) / ${SIZE} )`;
-
-      for (let i = 0; i < SIZE; i++) {
-        const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
-        document.body.prepend(
-          ...textToDOMNodes(`
-                <div
-        class="rectangle"
-        data-id="${i}"
-        style="
-          background-color: black;
-          width: ${width2};
-          height: 4px;
-          left:  ${x};
-          bottom:  calc(1px * var(--mic-td-${i}));
         "
       ></div>`)
         );
@@ -75,6 +89,15 @@
     <scirpt> </scirpt>
   </head>
   <body>
-    <h1>CSS Model Mic Analysis</h1>
+    <section>
+      <h1>CSS Model: Audio Analysis -- Mic</h1>
+      <p>
+        This demo primarily uses
+        <a href="https://johnhenry.github.io/lib/js/css-model-audio-node/0.0.0/"
+          >CSS Model: Audio Node</a
+        >
+        to generate visualizations based on microphone data.
+      </p>
+    </section>
   </body>
 </html>
