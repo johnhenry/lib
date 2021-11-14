@@ -110,6 +110,12 @@
         if(server){
           code.appendChild(server);
         }
+        if(demo.results){
+          for(const result of demo.results){
+            results.appendChild(createFrame(result));
+          }
+        }
+
       } else {
         globalThis.document.body.removeChild(results);
         code.innerHTML = `<h1>No demo found for id "${query.id}"</h1>`;

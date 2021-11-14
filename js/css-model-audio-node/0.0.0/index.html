@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+    
+<h1 id="css-model-audio-node">CSS Model Audio Node</h1>
+<p>Connect an auto Source to a CSS Model</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> CssModelAudio <span class="im">from</span> <span class="st">&quot;./index.mjs&quot;</span><span class="op">;</span>
+
+<span class="kw">const</span> stream <span class="op">=</span> await <span class="va">navigator</span>.<span class="va">mediaDevices</span>.<span class="at">getUserMedia</span>(<span class="op">{</span>
+  <span class="dt">video</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span>
+  <span class="dt">audio</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span>
+<span class="op">}</span>)<span class="op">;</span>
+<span class="kw">const</span> context <span class="op">=</span> <span class="kw">new</span> <span class="at">AudioContext</span>()<span class="op">;</span>
+<span class="va">context</span>.<span class="at">createMediaStreamSource</span>(stream).<span class="at">connect</span>(<span class="kw">new</span> <span class="at">CssModelAudio</span>(context))<span class="op">;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="fu">.volume</span><span class="in">::before</span> {
+  <span class="kw">content</span>: <span class="st">&quot;volume&quot;</span> var(--audio-volume) <span class="st">&quot;frequency&quot;</span> var(--audio-f-0)
+    <span class="st">&quot;time domain&quot;</span> var(--audio-td-0);
+}</code></pre></div>
+  </body>
+</html>
