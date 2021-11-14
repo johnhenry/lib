@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <script
+      type="module"
+      src="https://johnhenry.github.io/lib/js/css-model-window/0.0.0/global.mjs"
+    ></script>
+    <script
+      type="module"
+      src="https://johnhenry.github.io/lib/js/css-model-audio-node/0.0.0/mic.mjs"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-box-sizing/0.0.0/index.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-no-margins/0.0.0/index.css"
+    />
+    <style>
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        position: relative;
+      }
+      div {
+        position: absolute;
+      }
+    </style>
+    <script type="module">
+      import textToDOMNodes from "https://johnhenry.github.io/lib/js/text-to-DOM-nodes/0.0.0/index.mjs";
+      import randomBytes from "https://johnhenry.github.io/lib/js/random-bytes/0.0.0/index.mjs";
+      const SIZE = 128;
+      const width = `calc(1px * var(--window-width) / ${SIZE} )`;
+      for (let i = 0; i < SIZE; i++) {
+        const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
+        const color = randomBytes(4, "color32");
+        document.body.prepend(
+          ...textToDOMNodes(`
+                <div
+        class="rectangle"
+        data-id="${i}"
+        style="
+          background-color: ${color};
+          width: ${width};
+          height: calc(1px * var(--mic-f-${i}));
+          left: ${x};
+          bottom: 0;
+        "
+      ></div>`)
+        );
+      }
+      const width2 = `calc(1px * var(--window-width) / ${SIZE} )`;
+
+      for (let i = 0; i < SIZE; i++) {
+        const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
+        document.body.prepend(
+          ...textToDOMNodes(`
+                <div
+        class="rectangle"
+        data-id="${i}"
+        style="
+          background-color: black;
+          width: ${width2};
+          height: 4px;
+          left:  ${x};
+          bottom:  calc(1px * var(--mic-td-${i}));
+        "
+      ></div>`)
+        );
+      }
+    </script>
+    <scirpt> </scirpt>
+  </head>
+  <body>
+    <h1>CSS Model Mic Analysis</h1>
+  </body>
+</html>

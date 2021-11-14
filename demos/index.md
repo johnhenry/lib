@@ -20,6 +20,7 @@ You are encouraged to examine the source code of all demos to remix your own.
 - [CSS Model Mouse](./demo.html?id=CSS_MODEL_MOUSE)
 - [CSS Model Output/Binding](./demo.html?id=CSS_MODEL_OUTPUT_BINDING)
 - [CSS Model Random](./demo.html?id=CSS_MODEL_RANDOM)
+- [CSS Model Audio Node](./demo.html?id=CSS_MODEL_AUDIO)
 
 # Web Components
 

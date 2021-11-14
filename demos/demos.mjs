@@ -19,5 +19,8 @@ export const JOHNHENRY_LIVE = {
   denodeploy: "johnhenry-live",
 };
 export const CSS_MODEL_AUDIO = {
-  client: "./hosted/css-model-audio.html",
+  results: [
+    "https://johnhenry.github.io/lib/demos/hosted/css-model-audio.html",
+    "https://www.szynalski.com/tone-generator/",
+  ],
 };
