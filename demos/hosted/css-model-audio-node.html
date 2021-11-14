@@ -8,6 +8,14 @@
       type="module"
       src="https://johnhenry.github.io/lib/js/css-model-audio-node/0.0.0/mic.mjs"
     ></script>
+    <!-- <script
+      type="module"
+      src="../../js/css-model-audio-node/0.0.0/mic.mjs"
+    ></script> -->
+    <script
+      type="module"
+      src="../../js/css-model-audio-node/0.0.0/mic-color.mjs"
+    ></script>
     <link
       rel="stylesheet"
       href="https://johnhenry.github.io/lib/css/universal-box-sizing/0.0.0/index.css"
@@ -46,6 +54,8 @@
       const width = `calc(1px * var(--window-width) / ${SIZE} )`;
       const milliseconds = 16;
       for (let i = 0; i < SIZE; i++) {
+        const color = randomBytes(4, "color32");
+
         const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
         document.body.prepend(
           ...textToDOMNodes(`
@@ -55,7 +65,7 @@
         style="
           --transition-function: ease-in-out;
           --speed: ${milliseconds}ms;
-          background-color: black;
+          background-color: ${color};
           width: ${width};
           height: 4px;
           left:  ${x};
@@ -66,8 +76,8 @@
       }
 
       for (let i = 0; i < SIZE; i++) {
-        const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
         const color = randomBytes(4, "color32");
+        const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
         document.body.prepend(
           ...textToDOMNodes(`
                 <div
@@ -76,7 +86,7 @@
         style="
           --transition-function: ease-in-out;
           --speed: ${milliseconds}ms;
-          background-color: ${color};
+          background-color: var(--mic-f-color-${i});
           width: ${width};
           height: calc(1px * var(--mic-f-${i})/256 * var(--window-height));
           left: ${x};
