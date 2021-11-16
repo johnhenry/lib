@@ -60,6 +60,11 @@ const CSSModel = class {
   getStr(name) {
     return this.getRaw(`--${this.#prefix}-${name}-str`);
   }
+  setObject(obj = {}) {
+    for (const [key, value] of Object.entries(obj)) {
+      this.set(key, value);
+    }
+  }
   remove(name, string = true, reg = true) {
     const n = `--${this.#prefix}-${name}`;
     if (reg) {
