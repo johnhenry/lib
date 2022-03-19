@@ -1,6 +1,6 @@
 const { document } = globalThis;
-export default (tagName = true) => {
-  if (document.body.firstChild) {
+export default (tagName = true, force = true) => {
+  if (!force && document.body.firstChild) {
     return document.body.firstChild;
   }
   if (tagName) {
