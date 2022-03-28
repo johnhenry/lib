@@ -26,8 +26,8 @@ You are encouraged to examine the source code of all demos to remix your own.
 
 - [Menu Component](./demo.html?id=MENU_COMPONENT)
 - [Menu Component w/browser history (WARNING:BUGGY)](./demo.html?id=MENU_COMPONENT_BROWSER_HISTORY)
-- [Simple Element](./js/simple-element/0.0.0/demo.html)
-- [Query Container Component](./js/query-container.component/0.0.0/demo.html)
+- [Simple Element](../js/simple-element/0.0.0/demo.html)
+- [Query Container Component](../js/query-container.component/0.0.0/demo.html)
 
 ## Misc
 
@@ -36,4 +36,4 @@ You are encouraged to examine the source code of all demos to remix your own.
 - [Rick & Morty Tango Colors](./demo.html?id=RICK_MORTY_TANGO_COLORS)
 - [Broadcast Channel Worker](./demo.html?id=BROADCAST_CHANNEL_WORKER)
 - [Liedenticons](./demo.html?id=LIEDENTICONS)
-- [Fun Without Javascript](./css/fun-without-javascript/0.0.0/demo.html)
+- [Fun Without Javascript](../css/fun-without-javascript/0.0.0/demo.html)
