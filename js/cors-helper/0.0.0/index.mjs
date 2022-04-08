@@ -66,4 +66,4 @@ const CreateCORSHelper = (
   };
 };
 
-export default CORSHelper;
+export default CreateCORSHelper;
