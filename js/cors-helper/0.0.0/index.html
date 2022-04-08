@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+    
+<h1 id="cors-helper">CORS Helper</h1>
+<p>This utility is used to help define CORS headers for a given request origin.</p>
+<h2 id="api">API</h2>
+<h3 id="createcorshelper-function-default-export">CreateCORSHelper Function (default export)</h3>
+<p>The default export is a function that creates a CORS helper object given the following parameters:</p>
+<ul>
+<li><strong>allowedOrigins</strong> -- array of origins that are be allowed to make CORS requests</li>
+<li>a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">regex</a>, or a <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL_Pattern_API">URLPattern</a> that's tested against the request origin</li>
+<li>instead of an array, this may be a function that takes a request and returns a boolean.</li>
+<li><strong>deniedOrigins</strong> -- list of origins that are deined from making CORS requests</li>
+<li>(see allowedOrigins)</li>
+<li><strong>headers</strong> -- a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers#parameters">heaaders init object or array</a> used as the basis for headers set for allowed cors requests</li>
+<li><strong>accessControlAllowOrigin</strong> -- function who's return value is used as the &quot;Access-Control-Allow-Origin&quot; header</li>
+<li>it takes as parameters:
+<ul>
+<li>the request origin</li>
+<li>the match from (see allowedOrigins above)</li>
+<li>the full request object</li>
+</ul></li>
+<li>by default, it returns the request origin. You may choose to have it return &quot;*&quot; to , but this causes requests sent with credentials to fail.</li>
+</ul>
+<p>The CORS helper has the following methods that take a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request">request</a> object as a parameter:</p>
+<ul>
+<li><p><strong>getHeadersInit</strong> -- returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers#parameters">heaaders init array</a> configured for CORS if the request is allowed, or an empty array if not.</p></li>
+<li><p>This is designed to be used to as a base for headers in most [non-OPTIONS] responses.</p></li>
+<li><strong>getResponse</strong> -- returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">response</a> with headers configured for CORS if the request is allowed, or a response with empty headers if not.</li>
+<li>You may pass a second parameter to overide the default &quot;ok&quot; message in the response.</li>
+<li><p>This is designed to be used to respond to OPTIONS requests.</p></li>
+</ul>
+<h2 id="example-usage">Example Usage</h2>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">// 0. Create helper object</span>
+<span class="im">import</span> CreateCORSHelper <span class="im">from</span> <span class="st">&quot;...&quot;</span><span class="op">;</span>
+<span class="kw">const</span> helper <span class="op">=</span> <span class="at">CreateCORSHelper</span>([
+  <span class="st">&quot;http://localhost:3000&quot;</span><span class="op">,</span>
+  <span class="kw">new</span> <span class="at">URLPattern</span>(<span class="op">{</span> <span class="dt">hostname</span><span class="op">:</span> <span class="st">&quot;{:subdomain.}*example.com&quot;</span> <span class="op">}</span>)<span class="op">,</span>
+  <span class="ss">/./</span><span class="op">,</span>
+])<span class="op">;</span>
+<span class="kw">const</span> handler <span class="op">=</span> (request) <span class="op">=&gt;</span> <span class="op">{</span>
+  <span class="co">// 1. If the request method is &quot;OPTIONS&quot;</span>
+  <span class="co">// respond immediately with response object</span>
+  <span class="co">// returned by the helper&#39;s getResponse method</span>
+  <span class="cf">if</span> (<span class="va">request</span>.<span class="at">method</span> <span class="op">===</span> <span class="st">&quot;OPTIONS&quot;</span>) <span class="op">{</span>
+    <span class="cf">return</span> <span class="va">helper</span>.<span class="at">getResponse</span>(request)<span class="op">;</span>
+  <span class="op">}</span>
+  <span class="co">// 2. Otherwise, construct a response object</span>
+  <span class="co">// using the array from the helper&#39;s</span>
+  <span class="co">// getHeadersInit method as a base for it&#39;s headers</span>
+  <span class="kw">const</span> otherHeades <span class="op">=</span> []<span class="op">;</span>
+  <span class="kw">const</span> headers <span class="op">=</span> <span class="kw">new</span> <span class="at">Headers</span>([
+    ...<span class="va">helper</span>.<span class="at">getHeadersInit</span>(request)<span class="op">,</span>
+    ...<span class="at">otherHeaders</span><span class="op">,</span>
+  ])<span class="op">;</span>
+  <span class="cf">return</span> <span class="kw">new</span> <span class="at">Response</span>(<span class="st">&quot;...&quot;</span><span class="op">,</span> <span class="op">{</span>
+    headers<span class="op">,</span>
+  <span class="op">}</span>)<span class="op">;</span>
+<span class="op">};</span></code></pre></div>
+  </body>
+</html>
