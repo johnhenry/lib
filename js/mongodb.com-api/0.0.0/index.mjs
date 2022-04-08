@@ -1,6 +1,6 @@
 const CreateMongoDBQuery = (
   { APP_ID, DATA_API_KEY, COLLECTION, DATABASE, DATA_SOURCE },
-  DEFAULT_URL = "https://data.mongodb-api.com/app/$APP_ID/endpoint/data/beta/action/$PATH"
+  DEFAULT_URL = "https://data.mongodb-api.com/app/$APP_ID/endpoint/data/beta/action/"
 ) => {
   const url = DEFAULT_URL.replace("$APP_ID", APP_ID);
   return (path, fields) => {
