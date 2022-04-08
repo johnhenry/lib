@@ -13,8 +13,10 @@ The default export is a function that creates a CORS helper object given the fol
     a [regex](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp),
     or a [URLPattern](https://developer.mozilla.org/en-US/docs/Web/API/URL_Pattern_API) that's tested against the request origin
   - instead of an array, this may be a function that takes a request and returns a boolean.
+  - one may also pass a value of "true" allow all origins
 - **deniedOrigins** -- list of origins that are deined from making CORS requests
-  - (see allowedOrigins)
+  - Similar signature to that of allowedOrigins
+  - one may also pass a value of "true" deny all origins
 - **headers** -- a [heaaders init object or array](https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers#parameters)
   used as the basis for headers set for allowed cors requests
 - **accessControlAllowOrigin** -- function who's return value is used as the "Access-Control-Allow-Origin" header

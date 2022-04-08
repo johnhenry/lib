@@ -19,7 +19,7 @@ const CreateCORSHelper = (
     headers = Object.entries(headers);
   }
   const getHeadersInit = (request) => {
-    let matched = true;
+    let matched = allowedOrigins;
     const origin = String(request.headers.get("origin"));
     if (typeof allowedOrigins === "function") {
       matched = allowedOrigins(request);
@@ -35,11 +35,15 @@ const CreateCORSHelper = (
     if (!matched) {
       return [];
     }
+    if (deniedOrigins === true) {
+      return [];
+    }
     if (typeof deniedOrigins === "function") {
       if (deniedOrigins(request)) {
         return [];
       }
-    } else if (deniedOrigins.length) {
+    }
+    if (deniedOrigins.length) {
       for (const url of deniedOrigins) {
         if (typeof url === "string" ? url === origin : url.test(origin)) {
           return [];

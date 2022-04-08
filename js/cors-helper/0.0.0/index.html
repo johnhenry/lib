@@ -35,8 +35,10 @@
 <li><strong>allowedOrigins</strong> -- array of origins that are be allowed to make CORS requests</li>
 <li>a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">regex</a>, or a <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL_Pattern_API">URLPattern</a> that's tested against the request origin</li>
 <li>instead of an array, this may be a function that takes a request and returns a boolean.</li>
+<li>one may also pass a value of &quot;true&quot; allow all origins</li>
 <li><strong>deniedOrigins</strong> -- list of origins that are deined from making CORS requests</li>
-<li>(see allowedOrigins)</li>
+<li>Similar signature to that of allowedOrigins</li>
+<li>one may also pass a value of &quot;true&quot; deny all origins</li>
 <li><strong>headers</strong> -- a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/Headers#parameters">heaaders init object or array</a> used as the basis for headers set for allowed cors requests</li>
 <li><strong>accessControlAllowOrigin</strong> -- function who's return value is used as the &quot;Access-Control-Allow-Origin&quot; header</li>
 <li>it takes as parameters:
