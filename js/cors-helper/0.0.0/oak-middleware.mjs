@@ -1,6 +1,4 @@
 import CreateCORSHelper from "./index.mjs";
-
-// Route that blanketly enables CORS headers for all requests
 const CreateOakMiddleware = (...init) => {
   const helper = CreateCORSHelper(...init);
   return async ({ request, response }, next) => {
