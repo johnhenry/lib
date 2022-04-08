@@ -9,6 +9,8 @@ const CreateOakMiddleware = (...init) => {
     }
     if (request.method !== "OPTIONS") {
       await next();
+    } else {
+      response.body = "";
     }
   };
 };
