@@ -1,3 +1,5 @@
+// Create Function that query's the MongoDB API
+
 const CreateMongoDBQuery = (
   { APP_ID, DATA_API_KEY, COLLECTION, DATABASE, DATA_SOURCE },
   DEFAULT_URL = "https://data.mongodb-api.com/app/$APP_ID/endpoint/data/beta/action/"
