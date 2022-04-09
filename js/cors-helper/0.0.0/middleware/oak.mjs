@@ -1,4 +1,4 @@
-import CreateCORSHelper from "./index.mjs";
+import CreateCORSHelper from "../index.mjs";
 const CreateOakMiddleware = (...init) => {
   const helper = CreateCORSHelper(...init);
   return async ({ request, response }, next) => {
