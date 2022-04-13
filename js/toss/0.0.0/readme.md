@@ -1,16 +1,16 @@
-# Thro
+# Toss
 
-[Throw](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) as a functions.
+[Throw](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) as a function.
 
 Useful in places where you want to throw an error, but need an expression.
 
 ## Usage
 
 ```javascript
-import thro from "...";
+import toss from "...";
 
 const doAThing = (
-  arg = thro(new Error("1st arg required")),
+  arg = toss(new Error("1st arg required")),
   result = "done"
 ) => {
   // do a thing...

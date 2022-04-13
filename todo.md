@@ -19,3 +19,33 @@
   - (check for readme.md, test.mjs, package.json|publish=true+version=folderfolder)
 
 - convert js/\*\*/index.mjs to mod.ts to can be compiled to index.mjs
+
+- modularize css files to be both global and class-based
+
+```html
+<html class="box-sizing no-margin unstyled-links">
+  <link rel="stylesheet" href="box-sizing/0.0.0/universal.css" />
+  <link rel="stylesheet" href="no-margin/0.0.0/universal.css" />
+  <link rel="stylesheet" href="unstyled-links/0.0.0/universal.css" />
+  <link rel="stylesheet" href="box-sizing/0.0.0/class.css" />
+  <link rel="stylesheet" href="no-margin/0.0.0/class.css" />
+  <link rel="stylesheet" href="unstyled-links/0.0.0/class.css" />
+</html>
+```
+
+-- Inline graphs?
+
+- sin(x) = .·˙·.·˙·
+
+* sin(x) = ˙·.·˙·.·
+
+- cos(x) = ·˙·.·˙·.
+
+* cos(x) = ·.·˙·.·˙
+
+- tan(x) = ╷·╹
+- arctan(x) = ...·˙˙˙
+
+⡀https://en.wikipedia.org/wiki/Braille_Patterns
+⨌https://en.wikibooks.org/wiki/Unicode/List_of_useful_symbols
+https://en.wikipedia.org/wiki/Box-drawing_character
