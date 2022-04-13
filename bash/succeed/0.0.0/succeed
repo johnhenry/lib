@@ -1,0 +1,11 @@
+#! /bin/bash
+
+range=$1
+max=100
+actual_max=32767
+((actual_range=actual_max / max * range))
+rand=$RANDOM
+if (( $actual_range > $RANDOM )); then
+  exit 0
+fi
+exit 1
