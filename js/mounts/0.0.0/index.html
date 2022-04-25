@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+    
+<h1 id="mounts">Mounts</h1>
+<p>Using the body or its direct decendents as mount points is a common pattern in modern javascript applications (<a href="https://www.solidjs.com/">Solid</a>, <a href="https://vuejs.org/">Vue</a>, <a href="https://reactjs.org/">React</a>, etc.).</p>
+<p>We can declaratively abstract this away as imports.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="body">Body</h3>
+<p>Use body element as a mount point.</p>
+<p>Note: Some applications including react, warn against using the body element as a mount point. Use 'first' or 'last' instead.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> render <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;solid-js/web&quot;</span><span class="op">;</span>
+<span class="im">import</span> Application <span class="im">from</span> <span class="st">&quot;./Soild-Application&quot;</span><span class="op">;</span>
+<span class="im">import</span> body <span class="im">from</span> <span class="st">&quot;mounts/body.mjs&quot;</span><span class="op">;</span>
+<span class="at">render</span>(() <span class="op">=&gt;</span> <span class="op">&lt;</span>Application /<span class="op">&gt;,</span> body)<span class="op">;</span></code></pre></div>
+<h3 id="first">First</h3>
+<p>Use body's first child as a mount point.</p>
+<p>Creates and prepends a new 'div' element if child is &quot;unsuitable&quot; or non-existent.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> Application <span class="im">from</span> <span class="st">&quot;./Vue-Application&quot;</span><span class="op">;</span>
+<span class="im">import</span> first <span class="im">from</span> <span class="st">&quot;mounts/first.mjs&quot;</span><span class="op">;</span>
+<span class="va">Application</span>.<span class="at">mount</span>(first)<span class="op">;</span></code></pre></div>
+<h3 id="last">Last</h3>
+<p>Use body's last child as a mount point.</p>
+<p>Creates and appends a new 'div' element if child is &quot;unsuitable&quot; or non-existent.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> createRoot <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span>
+<span class="im">import</span> Application <span class="im">from</span> <span class="st">&quot;./React-Application&quot;</span><span class="op">;</span>
+<span class="im">import</span> last <span class="im">from</span> <span class="st">&quot;mounts/last.mjs&quot;</span><span class="op">;</span>
+<span class="kw">const</span> root <span class="op">=</span> <span class="at">createRoot</span>(last)<span class="op">;</span>
+<span class="va">root</span>.<span class="at">render</span>(Application)<span class="op">;</span></code></pre></div>
+<h3 id="unsuitable-elements">Unsuitable elements</h3>
+<p>The following elements are considered &quot;unsuitable&quot; for mounting:</p>
+<ul>
+<li>script</li>
+<li>style</li>
+<li>link</li>
+<li>noscript</li>
+</ul>
+  </body>
+</html>
