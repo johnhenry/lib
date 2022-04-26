@@ -13,6 +13,9 @@ const createNext =
     };
   };
 export default (key, ...values) => {
+  if (!key) {
+    throw new Error("key is required");
+  }
   const handler = typeof values[0] === "function" ? values.shift() : () => {};
   const stored = globalThis.localStorage.getItem(key) ?? values[0];
   const index = values.indexOf(stored);
