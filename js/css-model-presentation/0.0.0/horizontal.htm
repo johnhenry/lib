@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="" />
+    <script type="module">
+      import CSSModelPresentation from "./index.mjs";
+      new CSSModelPresentation(document.body, undefined, {
+        horizontal: true,
+      });
+    </script>
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      body {
+        width: var(--presentation-size);
+        height: 100vh;
+      }
+      body > section {
+        width: var(--presentation-slide-size);
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <section><span>a</span></section>
+    <section data-size-factor="2"><span>b</span></section>
+    <section data-size-factor="1"><span>c</span></section>
+    <section>
+      <p class="marker"></p>
+    </section>
+  </body>
+</html>

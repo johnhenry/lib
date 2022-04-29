@@ -94,6 +94,9 @@ const CSSModel = class {
   get tracked() {
     return [...this.#tracked];
   }
+  get prefix() {
+    return this.#prefix;
+  }
 };
 
 export default CSSModel;

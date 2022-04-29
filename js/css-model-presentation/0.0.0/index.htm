@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="" />
+    <script type="module" src="./global.mjs"></script>
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      body {
+        height: var(--presentation-size);
+        width: 100vw;
+      }
+      body > section {
+        height: var(--presentation-slide-size);
+        width: 100vw;
+      }
+    </style>
+  </head>
+  <body>
+    <section><span>a</span></section>
+    <section data-size-factor="2"><span>b</span></section>
+    <section data-size-factor="1"><span>c</span></section>
+    <section>
+      <p class="marker"></p>
+    </section>
+  </body>
+</html>

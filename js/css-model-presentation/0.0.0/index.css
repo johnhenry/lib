@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  display: contents;
+}
+body > section {
+  position: fixed;
+  display: var(--presentation-slide-display-none, block);
+}
+body > section:last-of-type {
+  display: block;
+}
+.marker::before {
+  content: var(--presentation-total-str) ":" var(--presentation-position-str)
+    " / " var(--presentation-current-size-str) ",  "
+    var(--presentation-absolute-position-str) " / " var(--presentation-size-str)
+    " -- " var(--presentation-norm-str);
+}
