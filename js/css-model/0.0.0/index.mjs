@@ -84,15 +84,16 @@ const CSSModel = class {
     return target;
   }
   valueIs(name, value) {
-    console.log(this.get);
     const left = [this.get, this.getNum, this.getStr]
       .map((x) => x.bind(this))
       .map((x) => x(name));
-    console.log(name, left);
     return false;
   }
   get tracked() {
     return [...this.#tracked];
+  }
+  get prefix() {
+    return this.#prefix;
   }
 };
 
