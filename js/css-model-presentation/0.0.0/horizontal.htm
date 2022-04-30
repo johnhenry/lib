@@ -6,6 +6,7 @@
       import CSSModelPresentation from "./index.mjs";
       new CSSModelPresentation(document.body, undefined, {
         horizontal: true,
+        endSpace: false,
       });
     </script>
     <link rel="stylesheet" href="./index.css" />
@@ -14,16 +15,24 @@
         width: var(--presentation-size);
         height: 100vh;
       }
-      body > section {
+      section {
         width: var(--presentation-slide-size);
         height: 100vh;
+      }
+      section span:first-of-type {
+        position: absolute;
+        top: 0;
+        left: calc((1 - var(--presentation-norm)) * 100vw);
       }
     </style>
   </head>
   <body>
-    <section><span>a</span></section>
-    <section data-size-factor="2"><span>b</span></section>
-    <section data-size-factor="1"><span>c</span></section>
+    <section><span>a: </span></section>
+    <section data-span="4" data-transform-norm="(1-norm)*span">
+      <span>b: </span>
+    </section>
+    <section data-span="2"><span>c: </span></section>
+    <section data-span="1"><span>d: </span></section>
     <section>
       <p class="marker"></p>
     </section>

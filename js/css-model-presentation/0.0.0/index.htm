@@ -9,16 +9,25 @@
         height: var(--presentation-size);
         width: 100vw;
       }
-      body > section {
+      section {
         height: var(--presentation-slide-size);
         width: 100vw;
+      }
+      section span:first-of-type {
+        position: absolute;
+        left: 0;
+        top: calc((1 - var(--presentation-norm)) * 100vh);
+        left: calc(25vw + var(--presentation-norm-transform) * 25vw);
       }
     </style>
   </head>
   <body>
-    <section><span>a</span></section>
-    <section data-size-factor="2"><span>b</span></section>
-    <section data-size-factor="1"><span>c</span></section>
+    <section><span>a: </span></section>
+    <section data-span="4" data-transform-norm="Math.sin(norm * 4 * Math.PI)">
+      <span>b: </span>
+    </section>
+    <section data-span="2"><span>c: </span></section>
+    <section data-span="1"><span>d: </span></section>
     <section>
       <p class="marker"></p>
     </section>
