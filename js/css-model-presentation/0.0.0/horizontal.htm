@@ -2,13 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="" />
-    <script type="module">
-      import CSSModelPresentation from "./index.mjs";
-      new CSSModelPresentation(document.body, undefined, {
-        horizontal: true,
-        endSpace: false,
-      });
-    </script>
+    <script type="module" src="./global.mjs"></script>
     <link rel="stylesheet" href="./index.css" />
     <style>
       body {
@@ -21,14 +15,17 @@
       }
       section span:first-of-type {
         position: absolute;
-        top: 0;
-        left: calc((1 - var(--presentation-norm)) * 100vw);
+        left: calc(25vw + var(--presentation-norm-2) * 25vw);
+        top: calc(25vh + var(--presentation-norm-1) * 25vh);
       }
     </style>
   </head>
-  <body>
+  <body
+    data-transform-norm="Math.sin(norm * 4 * Math.PI), Math.cos(norm * 4 * Math.PI)"
+    data-horizontal
+  >
     <section><span>a: </span></section>
-    <section data-span="4" data-transform-norm="(1-norm)*span">
+    <section data-span="4">
       <span>b: </span>
     </section>
     <section data-span="2"><span>c: </span></section>

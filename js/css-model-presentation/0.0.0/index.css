@@ -5,7 +5,8 @@ section {
 section:not(:last-of-type) span::after {
   /* content: var(--presentation-position-str) " / "
     var(--presentation-current-size-str) " -- " var(--presentation-norm-str); */
-  content: var(--presentation-norm-transform-str);
+  content: var(--presentation-norm-0-str) ", " var(--presentation-norm-1-str)
+    ", " var(--presentation-norm-2-str);
 }
 section:last-of-type {
   display: block;
@@ -14,7 +15,7 @@ p::before {
   content: var(--presentation-index-str) "/" var(--presentation-total-str) " : "
     var(--presentation-position-str) " / " var(--presentation-current-size-str)
     ",  " var(--presentation-absolute-position-str) " / "
-    var(--presentation-size-str) " -- " var(--presentation-norm-str) " | "
+    var(--presentation-size-str) " -- " var(--presentation-norm-0-str) " | "
     var(--presentation-absolute-norm-str);
 }
 

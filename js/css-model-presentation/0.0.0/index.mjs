@@ -2,7 +2,6 @@
 import CSSModel from "../../css-model/0.0.0/index.mjs";
 import unsuitable from "./unsuitable.mjs";
 const CSSModelPresentation = class extends CSSModel {
-  #target;
   #span = 1;
   #slides = [];
   #horizontal = false;
@@ -11,26 +10,19 @@ const CSSModelPresentation = class extends CSSModel {
   #endSpace;
   #size;
   #useEndSpace = true;
+  #transformNorm;
   constructor(
     target = globalThis.document.documentElement,
-    prefix = "presentation",
-    { span = 1, horizontal = false, endSpace = true } = {
-      span: 1,
-      endSpace: true,
-    }
+    prefix = "presentation"
   ) {
     super(target, prefix);
     this.#reset = this.reset.bind(this);
     this.#setScroll = this.setScroll.bind(this);
-    this.#target = target;
-    this.#span = span;
-    this.#horizontal = horizontal;
     globalThis.addEventListener("scroll", this.#setScroll);
     globalThis.addEventListener("load", this.#reset);
     globalThis.addEventListener("resize", this.#reset);
-    this.#reset({ detail: { scroll: true } });
+    this.#reset();
     this.#setScroll();
-    this.#useEndSpace = endSpace;
   }
   detach() {
     globalThis.removeEventListener("scroll", this.#setScroll);
@@ -40,12 +32,14 @@ const CSSModelPresentation = class extends CSSModel {
   }
   reset() {
     let absoluteSize = 0;
-    this.#size =
-      this.orientation === "vertical"
-        ? globalThis.innerHeight
-        : globalThis.innerWidth;
+    this.#span = Number(this.target.dataset.span || 1);
+    this.#horizontal = this.target.dataset.horizontal !== undefined;
+    this.#useEndSpace = this.target.dataset.noEndSpace === undefined;
+    this.#size = this.#horizontal
+      ? globalThis.innerWidth
+      : globalThis.innerHeight;
     this.set("size", `${this.#size}px`);
-    this.#slides = [...this.#target.children]
+    this.#slides = [...this.target.children]
       .filter(
         (child) =>
           child.nodeType === Node.ELEMENT_NODE &&
@@ -60,16 +54,24 @@ const CSSModelPresentation = class extends CSSModel {
         return slide;
       });
     this.#endSpace = this.#useEndSpace
-      ? Number(this.#target.lastElementChild.dataset.span || 1) *
+      ? Number(this.target.lastElementChild.dataset.span || 1) *
         this.#span *
         this.#size
       : 0;
+    this.#transformNorm = this.target.dataset.transformNorm
+      ? new Function(
+          "norm",
+          "span",
+          `return [${this.target.dataset.transformNorm}];`
+        )
+      : (norm) => [norm];
     this.set("size", `${absoluteSize + this.#endSpace}px`);
     this.set("total", this.#slides.length);
   }
   setScroll() {
-    const absolutePosition =
-      this.orientation === "vertical" ? globalThis.scrollY : globalThis.scrollX;
+    const absolutePosition = this.#horizontal
+      ? globalThis.scrollX
+      : globalThis.scrollY;
     this.set("absolute-position", `${absolutePosition}px`);
     let localPosition = 0;
     let index = 0;
@@ -95,19 +97,15 @@ const CSSModelPresentation = class extends CSSModel {
       this.remove("end");
     }
     const span = current.get("span");
-    const transformNorm = current.target.dataset.transformNorm
-      ? new Function(
-          "norm",
-          "span",
-          `return ${current.target.dataset.transformNorm};`
-        )
-      : (_) => _;
 
     this.set("position", `${position}px`);
     this.set("index", index);
     const norm = position / parseFloat(current.get("size"));
     this.set("norm", `${norm}`);
-    this.set("norm-transform", transformNorm(norm, span));
+    let valueIndex = 0;
+    for (const value of [norm].concat(this.#transformNorm(norm, span))) {
+      this.set(`norm-${valueIndex++}`, value);
+    }
     this.set("current-size", current.get("size"));
     this.set(
       "absolute-norm",
@@ -129,9 +127,6 @@ const CSSModelPresentation = class extends CSSModel {
         slide.remove("showing");
       }
     }
-  }
-  get orientation() {
-    return this.#horizontal ? "horizontal" : "vertical";
   }
   get slides() {
     return this.#slides;

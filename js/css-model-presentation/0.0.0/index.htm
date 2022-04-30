@@ -6,24 +6,25 @@
     <link rel="stylesheet" href="./index.css" />
     <style>
       body {
-        height: var(--presentation-size);
         width: 100vw;
+        height: var(--presentation-size);
       }
       section {
-        height: var(--presentation-slide-size);
         width: 100vw;
+        height: var(--presentation-slide-size);
       }
       section span:first-of-type {
         position: absolute;
-        left: 0;
-        top: calc((1 - var(--presentation-norm)) * 100vh);
-        left: calc(25vw + var(--presentation-norm-transform) * 25vw);
+        left: calc(25vw + var(--presentation-norm-2) * 25vw);
+        top: calc(25vh + var(--presentation-norm-1) * 25vh);
       }
     </style>
   </head>
-  <body>
+  <body
+    data-transform-norm="Math.sin(norm * 4 * Math.PI), Math.cos(norm * 4 * Math.PI)"
+  >
     <section><span>a: </span></section>
-    <section data-span="4" data-transform-norm="Math.sin(norm * 4 * Math.PI)">
+    <section data-span="4">
       <span>b: </span>
     </section>
     <section data-span="2"><span>c: </span></section>
