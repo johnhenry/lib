@@ -1,5 +1,13 @@
 # CSS Model
 
+## M in MVC
+
+Model View Controller (MVC) is a design pattern that separates functionality into three distinct parts:
+
+- Model
+- View
+- Controller
+
 CSSModel is a model for:
 
 1. [declaratively] defining the behavior of
