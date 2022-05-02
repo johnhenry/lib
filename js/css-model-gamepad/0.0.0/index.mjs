@@ -1,7 +1,6 @@
 //https://keycode.info/
 
 import CSSModel from "../../css-model/0.0.0/index.mjs";
-
 const CSSModelGamepads = class extends CSSModel {
   #interval;
   constructor(
@@ -17,7 +16,9 @@ const CSSModelGamepads = class extends CSSModel {
         : navigator.webkitGetGamepads
         ? navigator.webkitGetGamepads
         : [];
+
       for (const pad of pads) {
+        console.log({ pad });
         if (!pad) continue;
         const { id, index, buttons, axes } = pad;
         if (index > limit) break;

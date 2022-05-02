@@ -24,10 +24,4 @@ export const CSS_MODEL_AUDIO = {
   ],
 };
 
-// export const CSS_MODEL_GAMEPAD = "Lyvz1krn";
-
-export const CSS_MODEL_GAMEPAD = {
-  results: [
-    "https://johnhenry.github.io/lib/demos/hosted/css-model-gamepad.html",
-  ],
-};
+export const CSS_MODEL_GAMEPAD = "Lyvz1krn";
