@@ -2,7 +2,6 @@ export const NEGATABLE_STRING_LINEAR_COMBINATIONS = "auobeh3n";
 export const NEGATABLE_STRING_PERMUTATIONS = "2dnt45bw";
 export const CSS_MODEL_CLICK_CYCLE = "tkocpL8b";
 export const CSS_MODEL_DATE = "mp1b0sfz";
-export const CSS_MODEL_GAMEPAD = "Lyvz1krn";
 export const CSS_MODEL_INPUT = "p2yqou4m";
 export const CSS_MODEL_MOUSE = "Lj1p47z6";
 export const CSS_MODEL_OUTPUT_BINDING = "suk2ewq9";
@@ -22,5 +21,13 @@ export const CSS_MODEL_AUDIO = {
   results: [
     "https://johnhenry.github.io/lib/demos/hosted/css-model-audio-node.html",
     "https://www.szynalski.com/tone-generator/",
+  ],
+};
+
+// export const CSS_MODEL_GAMEPAD = "Lyvz1krn";
+
+export const CSS_MODEL_GAMEPAD = {
+  results: [
+    "https://johnhenry.github.io/lib/demos/hosted/css-model-gamepad.html",
   ],
 };

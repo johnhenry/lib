@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS Model Gamepads</title>
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-box-sizing/0.0.0/index.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-no-margins/0.0.0/index.css"
+    />
+    <script
+      type="module"
+      src="https://johnhenry.github.io/lib/js/css-model-gamepad/0.0.0/global.mjs"
+    ></script>
+    <script type="module">
+      import textToDOMNodes from "https://johnhenry.github.io/lib/js/text-to-DOM-nodes/0.0.0/index.mjs";
+      let connected;
+      window.addEventListener("gamepadconnected", function ({ gamepad }) {
+        const { index, id, buttons, axes } = gamepad;
+        if (index === 0 && !connected) {
+          connected = true;
+          for (let i = buttons.length - 1; i >= 0; i--) {
+            const color = `#${Math.floor(Math.random() * 2 ** 12)
+              .toString(16)
+              .padStart(3, "0")}`;
+            const button = document.createElement("button");
+            button.textContent = `Button ${i}`;
+            document.body.prepend(
+              ...textToDOMNodes(
+                `<div style="order:-1;background-color:${color}; opacity:var(--gamepad-button-${i}-value);">${i}</div>`
+              )
+            );
+          }
+        }
+      });
+    </script>
+    <style>
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-auto-rows: 1fr;
+      }
+      div {
+        display: grid;
+        place-items: center;
+      }
+      section {
+        padding: 32px;
+        border-bottom-right-radius: 16px;
+        background-color: #ffffffdd;
+        position: fixed;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>CSS Model: Gamepad</h1>
+    </section>
+  </body>
+</html>
