@@ -27,7 +27,30 @@
   <body>
     
 <h1 id="css-model">CSS Model</h1>
-<p>CSS Models provide a standard method of creating declariative applications using minimal javascript.</p>
+<p>CSS Models provide a [declariative] method of creating applications using CSS custom properties and minimal javascript.</p>
+<p>Note that the &quot;user&quot;, in this document, referres to developer who creates an application by importing and instantiating the CSSModel class (or one of its descendants). This is distinct from the &quot;developer&quot;, who creates the model; or the &quot;end user&quot; who does not interact with code.</p>
+<h2 id="list-of-css-models">List of CSS Models:</h2>
+<ul>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-audio-node/0.0.0/">CSS Model Audio Node</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-cycle-click/0.0.0/">CSS Model Cycle Click</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-date/0.0.0/">CSS Model Date</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-gamepad/0.0.0/">CSS Model Gamepad</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-input/0.0.0/">CSS Model Input</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-keyboard/0.0.0/">CSS Model Keyboard</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-mouse/0.0.0/">CSS Model Mouse</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-output/0.0.0/">CSS Model Output</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-presentation/0.0.0/">CSS Model Presentation</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-random/0.0.0/">CSS Model Random</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-scroll/0.0.0/">CSS Model Scroll</a></li>
+<li><a href="https://johnhenry.github.io/lib/js/css-model-window/0.0.0/">CSS Model Window</a></li>
+</ul>
+<h2 id="model-view-controller">Model-View-Controller</h2>
+<p>Although implementations vary slightly, a <a href=".">CSS Model</a> can be though of as the &quot;M&quot; in the <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC (Model-View-Controller)</a> design pattern. It is a collection of data represented as <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS custom properties</a> (variables) attached to the DOM.</p>
+<p>The &quot;V&quot;, or &quot;view&quot;, is the stylesheet that uses the CSS custom properties to style the DOM.</p>
+<p>The &quot;C&quot;, or &quot;controller&quot;, is a instance of the CSSModel class that creates and manipulates the model. Ideally the controllers is exposed to the user of the CSSModel as little as possible. Once attached to the DOM, it should &quot;get out of the way&quot;.</p>
+<h2 id="usage">Usage</h2>
+<p>This is a base class. You will not likely use it directly, but rather an ancestor from which to inherit.</p>
+<p>Desecenants should be constructed to work in the following manner:</p>
 <ol style="list-style-type: decimal">
 <li>Use javascript to import (and minimally configure) how an appilcation sets specific css custom properties on the DOM.</li>
 </ol>
@@ -37,22 +60,40 @@
 <ol start="2" style="list-style-type: decimal">
 <li>Apply custom properties to DOM elements via stylesheets.</li>
 </ol>
-<h2 id="m-in-mvc">M in MVC</h2>
-<p>Model View Controller (MVC) is a design pattern that separates functionality into three distinct parts. There are many slightly different implementations of MVC, but this can be thought of the Model in MVC.</p>
+<p>CSS Models <em>should</em>, when possible, provide a global file that the user can import withouth having to configure the model. This file should provide smart defaults to the Model's constructor.</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="ot"> src</span><span class="er">&quot;../global.mjs&quot;</span> <span class="kw">&gt;&lt;/script&gt;</span></code></pre></div>
+<p>or</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="st">&quot;../global.mjs&quot;</span><span class="op">;</span></code></pre></div>
+<h3 id="api">API</h3>
+<p>The API is described for those creating CSS models of their own.</p>
+<h4 id="cssclass.constructortarget-prefix">CSSClass.constructor(target, prefix)</h4>
 <ul>
-<li>Model - the data represented as a collection of css custom properties attached to the DOM</li>
-<li>View -</li>
-<li>Controller - the CSS model</li>
+<li>target -- the DOM element to which the CSS custom properties will be attached.</li>
+<li>properties attached to some models will depend on attributes attached to the target as well as children of the target</li>
+<li>previx -- prefix attached to CSS custom properties to avoid name collisions.</li>
 </ul>
-<p>CSSModel is a model for:</p>
-<ol style="list-style-type: decimal">
-<li>[declaratively] defining the behavior of certain CSS custom properties;</li>
-<li>using those properties to create appications that are laregly unaware of underlying [imperative] Javascript.</li>
-</ol>
-<h2 id="usage">Usage</h2>
-<p>This is a base class and so, you will not likely use it directly; but rather a descendent.</p>
-<p>constructors general take a element and will define custom properties on that element to be inherited by the element's children.</p>
-<h2 id="section"></h2>
-<h2 id="why">WHy?</h2>
+<h4 id="cssclass.setname-value">CSSClass.#set(name, value)</h4>
+<p>Sets a value for a css property. Note, this also sets a string representation of the value with the suffix &quot;-str&quot;</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> css <span class="op">=</span> <span class="kw">new</span> <span class="at">CSSClass</span>(<span class="va">document</span>.<span class="at">body</span><span class="op">,</span> <span class="st">&quot;css-model&quot;</span>)<span class="op">;</span>
+
+<span class="va">css</span>.<span class="va">model</span>.<span class="at">set</span>(<span class="st">&quot;color&quot;</span><span class="op">,</span> <span class="st">&quot;red&quot;</span>)<span class="op">;</span> <span class="co">// sets the css custom property &#39;--css-model-color&#39; to &#39;red&#39; on the document&#39;s body</span>
+<span class="co">// Also sets the css custom property &#39;--css-model-color-str&#39; to &#39;&quot;red&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css">body {
+  <span class="kw">background-color</span>: var(--css-model-color); <span class="co">/* background-color is red */</span>
+}
+body<span class="in">::before</span> {
+  <span class="kw">content</span>: var(--css-model-color-str); <span class="co">/* content is &quot;red&quot;;*/</span>
+}</code></pre></div>
+<h4 id="cssclass.getname">CSSClass.#get(name)</h4>
+<p>Returns the value for a given set key, ignoring the prefix.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> css <span class="op">=</span> <span class="kw">new</span> <span class="at">CSSClass</span>(<span class="va">document</span>.<span class="at">body</span><span class="op">,</span> <span class="st">&quot;css-model&quot;</span>)<span class="op">;</span>
+<span class="va">css</span>.<span class="va">model</span>.<span class="at">set</span>(<span class="st">&quot;color&quot;</span><span class="op">,</span> <span class="st">&quot;red&quot;</span>)<span class="op">;</span>
+<span class="va">css</span>.<span class="va">mode</span>.<span class="at">get</span>(<span class="st">&quot;color&quot;</span>)<span class="op">;</span> <span class="co">// returns the value of the css custom property &#39;--css-model-color&#39;, &quot;red&quot;</span></code></pre></div>
+<h4 id="cssclass.removename">CSSClass.#remove(name)</h4>
+<p>Removes the value for a given set key, ignoring the prefix.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> css <span class="op">=</span> <span class="kw">new</span> <span class="at">CSSClass</span>(<span class="va">document</span>.<span class="at">body</span><span class="op">,</span> <span class="st">&quot;css-model&quot;</span>)<span class="op">;</span>
+<span class="va">css</span>.<span class="va">model</span>.<span class="at">set</span>(<span class="st">&quot;color&quot;</span><span class="op">,</span> <span class="st">&quot;red&quot;</span>)<span class="op">;</span>
+<span class="va">css</span>.<span class="va">mode</span>.<span class="at">remove</span>(<span class="st">&quot;color&quot;</span>)<span class="op">;</span>
+<span class="va">css</span>.<span class="va">mode</span>.<span class="at">get</span>(<span class="st">&quot;color&quot;</span>)<span class="op">;</span> <span class="co">// returns undefined</span></code></pre></div>
   </body>
 </html>

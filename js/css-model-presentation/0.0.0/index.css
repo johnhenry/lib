@@ -31,3 +31,22 @@ section:nth-of-type(2) {
 section:nth-of-type(1) {
   background-color: aqua;
 }
+section span:first-of-type {
+  position: absolute;
+}
+.circular-clockwise {
+  left: calc(25vw + var(--presentation-norm-2) * 25vw);
+  top: calc(25vh + var(--presentation-norm-1) * 25vh);
+}
+.circular-counter-clockwise {
+  left: calc(25vw + var(--presentation-norm-2) * 25vw);
+  top: calc(25vh + var(--presentation-norm-1) * -25vh);
+}
+.pause-up {
+  left: 25vw;
+  top: calc((1 - var(--presentation-norm-3)) * 100vh);
+}
+.pause-down {
+  left: 25vw;
+  top: calc(var(--presentation-norm-3) * 100vh);
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+    
+<h1 id="define-component">Define Component</h1>
+<p>HTML Component to define HTML components.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="maunal">Maunal</h3>
+<p>Define class to be removed</p>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript"><span class="co">// file:///./custom-component.mjs</span>
+<span class="im">export</span> <span class="im">default</span> <span class="kw">class</span> <span class="kw">extends</span> HTMLElement <span class="op">{</span>
+  <span class="co">///...</span>
+<span class="op">}</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script&gt;</span>
+  <span class="im">import</span> defineComponent <span class="im">from</span> <span class="st">&quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/index.mjs&quot;</span><span class="op">;</span>
+  <span class="va">globalThis</span>.<span class="va">customElements</span>.<span class="at">define</span>(<span class="st">&quot;define-component&quot;</span><span class="op">,</span> defineComponent)<span class="op">;</span>
+<span class="kw">&lt;/script&gt;</span>
+<span class="kw">&lt;define-component</span>
+<span class="ot">  name=</span><span class="st">&quot;custom-component&quot;</span>
+<span class="ot">  src=</span><span class="st">&quot;./custom-component.mjs&quot;</span>
+<span class="kw">&gt;&lt;/define-component&gt;</span>
+<span class="kw">&lt;custom-component&gt;&lt;/custom-component&gt;</span></code></pre></div>
+<h3 id="automatic">Automatic</h3>
+<p>Use &quot;global&quot; import to automatically use component name &quot;define-component&quot;</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span>
+<span class="ot">  type=</span><span class="st">&quot;module&quot;</span>
+<span class="ot">  src=</span><span class="st">&quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/global.mjs&quot;</span>
+<span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;define-component</span>
+<span class="ot">  name=</span><span class="st">&quot;custom-component&quot;</span>
+<span class="ot">  src=</span><span class="st">&quot;./custom-component.mjs&quot;</span>
+<span class="kw">&gt;&lt;/define-component&gt;</span>
+<span class="kw">&lt;custom-component&gt;</span>I&#39;m a custom component!<span class="kw">&lt;/custom-component&gt;</span></code></pre></div>
+  </body>
+</html>
