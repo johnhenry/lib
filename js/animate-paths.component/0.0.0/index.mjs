@@ -24,7 +24,7 @@ export default class extends HTMLElement {
     this.#style = this.appendChild(document.createElement("style"));
     this.shadow = this.shadow || this.attachShadow({ mode: "open" });
     this.slotted = this.shadow.appendChild(document.createElement("slot"));
-    // this.slotted.style = "display:none";
+    this.slotted.style = "display:none";
     this.slotChange = this.slotChange.bind(this);
     this.slotted.addEventListener("slotchange", this.slotChange);
   }
@@ -37,6 +37,7 @@ export default class extends HTMLElement {
       "intervals",
       "animate",
       "path-onclick",
+      "child-class",
     ];
   }
   attributeChangedCallback(name, old, current) {
@@ -55,6 +56,12 @@ export default class extends HTMLElement {
       return;
     }
     injectAttributes(this.child, this.#svg);
+    const childClass = this.getAttribute("child-class");
+    if (childClass) {
+      console.log({ childClass });
+      this.#svg.classList.add(...childClass.split(" "));
+      console.log(this.#svg);
+    }
     const paths = this.child.getElementsByTagName("path") || [];
     const styles = [];
     for (const path of paths) {
@@ -97,6 +104,7 @@ export default class extends HTMLElement {
       this.#style.textContent = styles.join("\n");
     }
     this.child.remove();
+    this.slotted.style = "";
   }
   slotChange({ target }) {
     this.child = target
