@@ -58,9 +58,7 @@ export default class extends HTMLElement {
     injectAttributes(this.child, this.#svg);
     const childClass = this.getAttribute("child-class");
     if (childClass) {
-      console.log({ childClass });
       this.#svg.classList.add(...childClass.split(" "));
-      console.log(this.#svg);
     }
     const paths = this.child.getElementsByTagName("path") || [];
     const styles = [];
