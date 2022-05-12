@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+    
+<h1 id="createelement">CreateElement</h1>
+<p>An alternative to <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement"><code>document.createElement</code></a>.</p>
+<p>Create an element with attributes and children all in one go.</p>
+<p>Similar to <a href="https://reactjs.org/docs/react-without-jsx.html">React's JSX-less UI</a>.</p>
+<h2 id="usage-api">Usage + API</h2>
+<h3 id="createelement-1">createElement</h3>
+<p>The main export (below named &quot;createElement&quot;) is analogous to <code>document.createElement</code> on the global object. When passed a single argument, they work similarly.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> createElement <span class="im">from</span> <span class="st">&quot;./index.mjs&quot;</span><span class="op">;</span>
+<span class="kw">const</span> div0 <span class="op">=</span> <span class="at">createElement</span>(<span class="st">&quot;div&quot;</span>)<span class="op">;</span>
+<span class="kw">const</span> div1 <span class="op">=</span> <span class="va">window</span>.<span class="va">document</span>.<span class="at">createElement</span>(<span class="st">&quot;div&quot;</span><span class="op">,</span> <span class="op">{</span> <span class="dt">class</span><span class="op">:</span> <span class="st">&quot;foo&quot;</span> <span class="op">}</span>)<span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(<span class="va">div0</span>.<span class="at">outerHTML</span>)<span class="op">;</span> <span class="co">// &lt;div&gt;&lt;/div&gt;;</span>
+<span class="va">console</span>.<span class="at">log</span>(<span class="va">div1</span>.<span class="at">outerHTML</span>)<span class="op">;</span> <span class="co">// &lt;div&gt;&lt;/div&gt;;</span></code></pre></div>
+<h3 id="attributes">Attributes</h3>
+<p>Pass a second argument to createElement to set the returned element's attributes.</p>
+<p>Attributes are passed &quot;as-is&quot;, that is, no translation from<a href="https://en.wikipedia.org/wiki/Letter_case#Camel_case">&quot;camelCase&quot;</a> to <a href="https://en.wikipedia.org/wiki/Letter_case#Kebab_case">&quot;kebab-case&quot;</a> as with some libraries and frameworks.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> div <span class="at">createElement</span>(<span class="st">&quot;div&quot;</span><span class="op">,</span> <span class="op">{</span> <span class="dt">id</span><span class="op">:</span> <span class="st">&quot;foo&quot;</span><span class="op">,</span> [<span class="st">&quot;data-bar&quot;</span>]<span class="op">:</span> <span class="st">&quot;baz&quot;</span> <span class="op">}</span>)<span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(<span class="va">div</span>.<span class="at">outerHTML</span>)<span class="op">;</span>
+<span class="co">// &lt;div id=&quot;foo&quot; data-bar=&quot;baz&quot;&gt;&lt;/div&gt;</span></code></pre></div>
+<h4 id="class-attribute">&quot;class&quot; Attribute</h4>
+<p>The class key in the attributes argument can corespond to can be a strin g <em>or</em> an array of strings.</p>
+<p>In the latter case, each element of the array is added to the object's classList.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> DIV <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./tags.mjs&quot;</span><span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(<span class="at">DIV</span>(<span class="op">{</span> <span class="dt">class</span><span class="op">:</span> [<span class="st">&quot;foo&quot;</span><span class="op">,</span> <span class="st">&quot;bar&quot;</span><span class="op">,</span> <span class="st">&quot;baz&quot;</span>] <span class="op">}</span>).<span class="at">outerHTML</span>)<span class="op">;</span>
+<span class="co">// &lt;div class=&quot;foo bar baz&quot;&gt;&lt;/div&gt;</span></code></pre></div>
+<h3 id="children">children</h3>
+<p>Add children at creation by passing instances of HTMLElement after the attributes object. Strings are converted into text nodes.</p>
+<p>Note: instances may be created through <code>createElement</code>, <code>document.createElement</code>, or any other means.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> list <span class="op">=</span> <span class="at">createElement</span>(<span class="st">&quot;ul&quot;</span><span class="op">,{</span> <span class="dt">id</span><span class="op">:</span> <span class="st">&quot;foo&quot;</span> <span class="op">},</span>
+  <span class="at">createElement</span>(<span class="st">&quot;li&quot;</span><span class="op">,</span> <span class="op">{</span> <span class="op">},</span> <span class="st">&quot;bar),</span>
+  <span class="va">document</span>.<span class="at">createElement</span>(<span class="st">&quot;li&quot;</span>)
+)<span class="op">;</span>
+<span class="va">console</span>.<span class="at">log</span>(<span class="va">list</span>.<span class="at">outerHTML</span>)<span class="op">;</span>
+<span class="co">// &lt;ul id=&quot;foo&quot;&gt;</span>
+<span class="co">//   &lt;li&gt;bar&lt;/li&gt;</span>
+<span class="co">//   &lt;li&gt;&lt;/li&gt;</span>
+<span class="co">// &lt;/ul&gt;</span></code></pre></div>
+<h4 id="attributes.children">attributes.children</h4>
+<p>Alternatively, pass a &quot;children&quot; array of HTMLElements to the attributes object. This will be prepended to rest of the children.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">const</span> list <span class="op">=</span> <span class="at">createElement</span>(<span class="st">&quot;ul&quot;</span><span class="op">,</span> <span class="op">{</span> <span class="dt">id</span><span class="op">:</span><span class="st">&quot;foo&quot;</span><span class="op">,</span>
+  <span class="dt">children</span><span class="op">:</span> [
+    <span class="at">createElement</span>(<span class="st">&quot;li&quot;</span><span class="op">,</span> <span class="op">{</span> <span class="op">},</span> <span class="st">&quot;bar),</span>
+    <span class="va">document</span>.<span class="at">createElement</span>(<span class="st">&quot;li&quot;</span>)] <span class="op">}</span>)<span class="op">;</span>
+    <span class="va">console</span>.<span class="at">log</span>(<span class="va">list</span>.<span class="at">outerHTML</span>)<span class="op">;</span>
+<span class="co">// &lt;ul id=&quot;foo&quot;&gt;</span>
+<span class="co">//   &lt;li&gt;bar&lt;/li&gt;</span>
+<span class="co">//   &lt;li&gt;&lt;/li&gt;</span>
+<span class="co">// &lt;/ul&gt;</span></code></pre></div>
+<p>This is done for compataibility with some libraries and frameworks.</p>
+<div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="er">//file:///tsconfig.json</span>
+<span class="fu">{</span>
+  <span class="dt">&quot;compilerOptions&quot;</span><span class="fu">:</span> <span class="fu">{</span>
+    <span class="dt">&quot;jsx&quot;</span><span class="fu">:</span> <span class="st">&quot;this&quot;</span>
+  <span class="fu">}</span>
+<span class="fu">}</span></code></pre></div>
+<pre class="jsx"><code>//file:///index.jsx
+const list = (
+  &lt;ul id=&quot;foo&quot;&gt;
+    &lt;li&gt;bar&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+);
+console.log(list.outerHTML);
+// &lt;ul id=&quot;foo&quot;&gt;
+//   &lt;li&gt;bar&lt;/li&gt;
+//   &lt;li&gt;&lt;/li&gt;
+// &lt;/ul&gt;</code></pre>
+<pre class="jsx"><code>//file:///index2.jsx
+/** @jsx ce */
+import ce from &quot;./createElement.mjs&quot;;
+const list = (
+  &lt;ul id=&quot;foo&quot;&gt;
+    &lt;li&gt;bar&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+);
+// const list = createElement(&quot;ul&quot;, { id: &quot;foo&quot; },
+//   createElement(&quot;li&quot;, { }, &quot;bar),
+//   document.createElement(&quot;li&quot;)
+// );
+console.log(list.outerHTML);
+// &lt;ul id=&quot;foo&quot;&gt;
+//   &lt;li&gt;bar&lt;/li&gt;
+//   &lt;li&gt;&lt;/li&gt;
+// &lt;/ul&gt;</code></pre>
+<pre class="jsx"><code>//file:///index2.js
+/** @jsx ce */
+import ce from &quot;./createElement.mjs&quot;;
+const list = ce(&quot;ul&quot;, { id: &quot;foo&quot; },
+  createElement(&quot;li&quot;, { }, &quot;bar),
+  document.createElement(&quot;li&quot;)
+);
+console.log(list.outerHTML);
+// &lt;ul id=&quot;foo&quot;&gt;
+//   &lt;li&gt;bar&lt;/li&gt;
+//   &lt;li&gt;&lt;/li&gt;
+// &lt;/ul&gt;</code></pre>
+<h3 id="omission">Omission</h3>
+<p>The attributes object is optional.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="at">createElement</span>(<span class="st">&quot;ul&quot;</span><span class="op">,</span> <span class="at">createElement</span>(<span class="st">&quot;li&quot;</span>))<span class="op">;</span>
+<span class="co">// &lt;ul&gt;</span>
+<span class="co">//   &lt;li&gt;&lt;/li&gt;</span>
+<span class="co">// &lt;/ul&gt;</span></code></pre></div>
+<p>The tagName is optional. If omitted, a DocumentFragment is returned.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="at">createElement</span>(<span class="at">createElement</span>(<span class="st">&quot;li&quot;</span>)<span class="op">,</span> <span class="at">createElement</span>(<span class="st">&quot;li&quot;</span>)<span class="op">,</span> <span class="at">createElement</span>(<span class="st">&quot;li&quot;</span>))<span class="op">;</span>
+<span class="co">// &lt;li&gt;&lt;/li&gt;</span>
+<span class="co">// &lt;li&gt;&lt;/li&gt;</span>
+<span class="co">// &lt;li&gt;&lt;/li&gt;</span></code></pre></div>
+<p>The library exports a shorthand, <code>_</code>, for crating fragments.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> _ <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./index.mjs&quot;</span><span class="op">;</span>
+<span class="at">_</span>(<span class="at">createElement</span>(<span class="st">&quot;li&quot;</span>)<span class="op">,</span> <span class="at">createElement</span>(<span class="st">&quot;li&quot;</span>)<span class="op">,</span> <span class="at">createElement</span>(<span class="st">&quot;li&quot;</span>))<span class="op">;</span>
+<span class="co">// &lt;li&gt;&lt;/li&gt;</span>
+<span class="co">// &lt;li&gt;&lt;/li&gt;</span>
+<span class="co">// &lt;li&gt;&lt;/li&gt;</span></code></pre></div>
+<h3 id="html-elements">HTML Elements</h3>
+<p>The library exports a shorthand for every existing HTML and SVG tag.</p>
+<ul>
+<li>Most tags are exported in lowercase (&quot;div&quot;, &quot;span&quot;, &quot;textarea&quot;, etc.),</li>
+<li>Some tags are exported uppercased (&quot;Switch&quot;, &quot;Var&quot;),</li>
+<li>Some (specifically SVG) tags -- are exported as camelCase (&quot;radialGradient&quot;, &quot;textArea&quot;, etc.).</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> html<span class="op">,</span> head<span class="op">,</span> title<span class="op">,</span> body <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./index.mjs&quot;</span><span class="op">;</span>
+<span class="at">html</span>(
+  <span class="op">{</span> <span class="dt">lang</span><span class="op">:</span> <span class="st">&quot;en&quot;</span> <span class="op">},</span>
+  <span class="at">head</span>(<span class="op">{},</span> <span class="at">title</span>(<span class="op">{},</span> <span class="st">&quot;Hello&quot;</span>))<span class="op">,</span>
+  <span class="at">body</span>(<span class="op">{</span> <span class="dt">id</span><span class="op">:</span> <span class="st">&quot;foo&quot;</span> <span class="op">},</span> <span class="st">&quot;world&quot;</span>)
+)<span class="op">;</span>
+<span class="co">// &lt;html lang=&quot;en&quot;&gt;</span>
+<span class="co">//   &lt;head&gt;</span>
+<span class="co">//     &lt;title&gt;Hello&lt;/title&gt;</span>
+<span class="co">//   &lt;/head&gt;</span>
+<span class="co">//   &lt;body id=&quot;foo&quot;&gt;world&lt;/body&gt;</span>
+<span class="co">// &lt;/html&gt;</span></code></pre></div>
+<h4 id="omission-1">Omission</h4>
+<p>The attributes object can be omitted here as well.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> <span class="op">{</span> HTML<span class="op">,</span> HEAD<span class="op">,</span> TITLE<span class="op">,</span> BODY <span class="op">}</span> <span class="im">from</span> <span class="st">&quot;./index.mjs&quot;</span><span class="op">;</span>
+<span class="at">html</span>(<span class="at">head</span>(<span class="at">title</span>(<span class="st">&quot;Hello&quot;</span>))<span class="op">,</span> <span class="at">body</span>(<span class="st">&quot;world&quot;</span>))<span class="op">;</span>
+<span class="co">// &lt;html&gt;</span>
+<span class="co">//   &lt;head&gt;</span>
+<span class="co">//     &lt;title&gt;Hello&lt;/title&gt;</span>
+<span class="co">//   &lt;/head&gt;</span>
+<span class="co">//   &lt;body&gt;world&lt;/body&gt;</span>
+<span class="co">// &lt;/html&gt;</span></code></pre></div>
+  </body>
+</html>
