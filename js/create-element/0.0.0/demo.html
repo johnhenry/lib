@@ -1,0 +1,30 @@
+<script type="module">
+  import {
+    html,
+    head,
+    title,
+    body,
+    div,
+    li,
+    ul,
+    _,
+  } from "./index.mjs";
+  const innerList = _(
+    li("Hello"), li("World"));
+  const root =
+  html(
+    head(title("Create Element")),
+    body(
+      div(
+        ul(
+          innerList,
+          innerList.cloneNode(true),
+          li("!")
+        )
+      )
+    )
+  );
+  document.open();
+  document.write(root.outerHTML);
+  document.close();
+</script>
