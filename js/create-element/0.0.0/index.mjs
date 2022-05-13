@@ -1,4 +1,3 @@
-export { default as fromString } from "../../text-to-DOM-nodes/0.0.0/index.mjs";
 const createElement = (tag = "", props = {}, ...children) => {
   if (props === null) {
     props = {};
@@ -45,6 +44,7 @@ const createElement = (tag = "", props = {}, ...children) => {
   }
   return element;
 };
+export default createElement;
+export { default as fromString } from "../../text-to-DOM-nodes/0.0.0/index.mjs";
 export * from "./tags.mjs";
 export const _ = (...c) => createElement(...c);
-export default createElement;
