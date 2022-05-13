@@ -1,5 +1,4 @@
 import t from "./index.mjs";
-export const _  = (...c) => t(...c);
 export const a = (a, ...c) => t("a", a, ...c);
 export const abbr = (a, ...c) => t("abbr", a, ...c);
 export const address = (a, ...c) => t("address", a, ...c);
