@@ -13,11 +13,6 @@ const upCaseIfNecessary =
 const upcase = upCaseIfNecessary(...uppercaseList);
 
 Deno.writeTextFileSync("./tags.mjs", `import t from "./index.mjs";` + "\n", {});
-Deno.writeTextFileSync(
-  "./tags.mjs",
-  `export const _  = (...c) => t(...c);` + "\n",
-  { append: true }
-);
 
 for (const tag of HTMLtags.concat(SVGtags)) {
   Deno.writeTextFileSync(

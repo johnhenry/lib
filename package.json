@@ -11,7 +11,8 @@
     "test:jest": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --verbose",
     "test:jest:watch": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --watchAll --verbose",
     "test": "npm run test:jest -s",
-    "start": "npm -s i && npm run -s build && npm run -s serve:live",
+    "start": "npm run serve:live",
+    "start:over": "npm -s i && npm run -s build && npm run -s serve:live",
     "publish-ignore": "echo .publishignore > .gitignore",
     "build": "sh build.sh"
   },
