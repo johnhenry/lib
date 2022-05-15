@@ -1,4 +1,5 @@
 svg-tag
+a
 altGlyph
 altGlyphDef
 altGlyphItem
@@ -7,6 +8,8 @@ animateColor
 animateMotion
 animateTransform
 animation
+audio
+canvas
 circle
 clipPath
 color-profile
@@ -53,6 +56,7 @@ glyph
 glyphRef
 handler
 hkern
+iframe
 image
 line
 linearGradient
@@ -69,18 +73,23 @@ polyline
 prefetch
 radialGradient
 rect
+script
 set
 solidColor
 stop
+style
+svg
 switch
 symbol
 tbreak
 text
 textArea
 textPath
+title
 tref
 tspan
 unknown
 use
+video
 view
 vkern

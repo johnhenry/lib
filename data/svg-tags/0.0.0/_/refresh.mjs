@@ -3,6 +3,8 @@ import { ensureDirSync } from "https://deno.land/std@0.138.0/fs/mod.ts";
 const DIR = `./archived/${DATE}`;
 ensureDirSync(DIR);
 const STR = JSON.stringify(RAW, null, 2);
+// Write RAW
+Deno.writeTextFileSync(`${DIR}/${FILE_NAME}`, STR);
 // Write JSON
 Deno.writeTextFileSync(`${DIR}/${FILE_NAME}.json`, STR);
 // Write JS
@@ -20,7 +22,7 @@ Deno.writeTextFileSync(
   CSV_LABEL + "\n" + RAW.join("\n")
 );
 // Write Date
-await Deno.writeTextFile(`./last_refresh`, Number(new Date()));
+await Deno.writeTextFile(`./last_refresh`, DATE);
 import { copySync } from "https://deno.land/std/fs/mod.ts";
 
 copySync(`${DIR}`, `./latest`, { overwrite: true });
