@@ -1,11 +1,11 @@
 // import testing framework
-import tester, { equal, ok, notok } from "../../tester/0.0.0/index.mjs";
+import quiz, { equal, ok, notok } from "../../pop-quiz/0.0.4/index.mjs";
 
 // import library
 import "./string-prototype-warn.mjs";
 import { negater, scale, concat, equal as strEqual, abs, r } from "./index.mjs";
 
-await tester("Normal Strings", function* () {
+await quiz("Normal Strings", function* () {
   const SAMPLE_STRING = "sample string";
   yield ok(SAMPLE_STRING[r], "string has rep property");
   yield ok(
@@ -19,7 +19,7 @@ await tester("Normal Strings", function* () {
   );
 });
 
-await tester(
+await quiz(
   "Negative Strings: Create negative string by scaling regular string by -1",
   function* () {
     const DESREVER = "DESREVER";
@@ -37,7 +37,7 @@ await tester(
   }
 );
 
-await tester(
+await quiz(
   "Negater: Use specific character to negate characters within string",
   function* () {
     yield ok(strEqual(negater("mississippi"), "mississippi"));
@@ -51,7 +51,7 @@ await tester(
   }
 );
 
-await tester("Concat: Combine negative numbers", function* () {
+await quiz("Concat: Combine negative numbers", function* () {
   const HELLO = "HELLO";
   const GOODBYE = scale("HELLO", -1);
   const COMBO = concat(HELLO, GOODBYE);

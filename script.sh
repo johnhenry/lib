@@ -43,8 +43,8 @@ do
 done
 }
 
-run_tester () {
-find $1 -type f -name "tester.test.mjs"  -print0 | while IFS= read -r -d '' FILE
+run_popquiz () {
+find $1 -type f -name "popquiz.test.mjs"  -print0 | while IFS= read -r -d '' FILE
 do
   if [ ! -d "${FILE}" ]; then
     deno run $FILE
@@ -199,7 +199,7 @@ case "$1" in
   ;;
   "latest_versions") latest_versions $DIR
   ;;
-  "run_tester") run_tester $DIR
+  "run_popquiz") run_popquiz $DIR
   ;;
   "inject") inject $2 $3 $4
   ;;

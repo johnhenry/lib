@@ -1,9 +1,9 @@
 {
   "name": "pop-quiz",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Modern Javascript that works in all enviornments with zero dependencies",
   "main": "./index.mjs",
-  "homepage": "https://github.com/johnhenry/lib/tree/main/js/pop-quiz/0.0.3#readme",
+  "homepage": "https://github.com/johnhenry/lib/tree/main/js/pop-quiz/0.0.4#readme",
   "type": "module",
   "exports": {
     ".": "./index.mjs",
@@ -14,7 +14,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "node tester.test.mjs"
+    "test": "node popquiz.test.mjs"
   },
   "keywords": [
     "test",
