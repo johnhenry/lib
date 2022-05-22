@@ -31,7 +31,7 @@ You are encouraged to examine the source code of all demos to remix your own.
 
 ## Misc
 
-- [Tester](./demo.html?id=TESTER)
+- [Pop Quiz](./demo.html?id=POP_QUIZ)
 - [Color Wheel](./demo.html?id=COLOR_WHEEL)
 - [Rick & Morty Tango Colors](./demo.html?id=RICK_MORTY_TANGO_COLORS)
 - [Broadcast Channel Worker](./demo.html?id=BROADCAST_CHANNEL_WORKER)
