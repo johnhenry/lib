@@ -1,5 +1,5 @@
 // import testing framework
-import tester, { equal, ok } from "../../../tester/0.0.0/index.mjs";
+import quiz, { equal, ok } from "../../../pop-quiz/0.0.4/index.mjs";
 
 import "../number-prototype.mjs";
 import i from "../i.mjs"; // import 𝑖 from "./i.mjs"; // Does not work in Deno due to unicode issues
@@ -14,7 +14,7 @@ import {
   random,
 } from "../ComplexMath.mjs";
 
-await tester("Numbers", function* () {
+await quiz("Numbers", function* () {
   const SAMPLE_NUM = Math.random();
   yield equal(
     SAMPLE_NUM.r,
@@ -38,7 +38,7 @@ await tester("Numbers", function* () {
   );
 });
 
-await tester("Addition", function* () {
+await quiz("Addition", function* () {
   const A0 = random();
   const A1 = random();
   const A2 = add(A0, A1);
@@ -46,7 +46,7 @@ await tester("Addition", function* () {
   yield ok(numEqual(A0.i + A1.i, A2.i), "should be equal");
 });
 
-await tester("Subtraction", function* () {
+await quiz("Subtraction", function* () {
   const S0 = random();
   const S1 = random();
   const S2 = subtract(S0, S1);
@@ -54,15 +54,15 @@ await tester("Subtraction", function* () {
   yield ok(numEqual(S0.i - S1.i, S2.i), "should be equal");
 });
 
-await tester("Multiplication", function* () {
+await quiz("Multiplication", function* () {
   yield ok(numEqual(-1, multiply(i, i)), "should be equal");
 });
 
-await tester("Division", function* () {
+await quiz("Division", function* () {
   yield ok(numEqual(subtract(0, i), divide(1, i)), "should be equal");
 });
 
-await tester("Addition", function* () {
+await quiz("Addition", function* () {
   const A0 = random();
   const A1 = random();
   const A2 = add(A0, A1);
@@ -70,7 +70,7 @@ await tester("Addition", function* () {
   yield ok(numEqual(A0.i + A1.i, A2.i), "should be equal");
 });
 
-await tester("Subtraction", function* () {
+await quiz("Subtraction", function* () {
   const S0 = random();
   const S1 = random();
   const S2 = subtract(S0, S1);
@@ -78,15 +78,15 @@ await tester("Subtraction", function* () {
   yield ok(numEqual(S0.i - S1.i, S2.i), "should be equal");
 });
 
-await tester("Multiplication", function* () {
+await quiz("Multiplication", function* () {
   yield ok(numEqual(-1, multiply(i, i)), "should be equal");
 });
 
-await tester("Division", function* () {
+await quiz("Division", function* () {
   yield ok(numEqual(subtract(0, i), divide(1, i)), "should be equal");
 });
 
-await tester("Truncation", function* () {
+await quiz("Truncation", function* () {
   yield ok(
     numEqual(
       trunc(fromRectangular(1.1234, 5.6789), 2),
@@ -95,6 +95,6 @@ await tester("Truncation", function* () {
   );
 });
 
-await tester("Polar", function* () {
+await quiz("Polar", function* () {
   yield ok(numEqual(fromPolar(1, Math.PI / 2), i));
 });

@@ -11,6 +11,7 @@
     "test:jest": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --verbose",
     "test:jest:watch": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --watchAll --verbose",
     "test": "npm run test:jest -s",
+    "test:pq": "bash ./script.sh run_popquiz",
     "start": "npm run serve:live",
     "start:over": "npm -s i && npm run -s build && npm run -s serve:live",
     "publish-ignore": "echo .publishignore > .gitignore",
