@@ -1,1 +1,1 @@
-export default (min, max) => Math.min(Math.max(this, min), max);
+export default (min, max) => (target) => Math.min(Math.max(target, min), max);
