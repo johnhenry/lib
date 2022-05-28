@@ -86,9 +86,16 @@ This is done for compataibility with some libraries and frameworks.
 //file:///tsconfig.json
 {
   "compilerOptions": {
-    "jsx": "this"
+    "jsxInject": "import createElement from '??",
+    "jsxFactory": "createElement",
+    "jsxFragment": "''"
+
   }
 }
+
+export const jsxInject = `import _jsx from "https://johnhenry.github.io/lib/js/create-element/0.0.0/index.mjs";`;
+export const jsxFactory = "_jsx";
+export const jsxFragment = "''";
 ```
 
 ```jsx

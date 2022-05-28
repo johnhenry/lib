@@ -77,9 +77,16 @@
 <div class="sourceCode"><pre class="sourceCode json"><code class="sourceCode json"><span class="er">//file:///tsconfig.json</span>
 <span class="fu">{</span>
   <span class="dt">&quot;compilerOptions&quot;</span><span class="fu">:</span> <span class="fu">{</span>
-    <span class="dt">&quot;jsx&quot;</span><span class="fu">:</span> <span class="st">&quot;this&quot;</span>
+    <span class="dt">&quot;jsxInject&quot;</span><span class="fu">:</span> <span class="st">&quot;import createElement from &#39;??&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;jsxFactory&quot;</span><span class="fu">:</span> <span class="st">&quot;createElement&quot;</span><span class="fu">,</span>
+    <span class="dt">&quot;jsxFragment&quot;</span><span class="fu">:</span> <span class="st">&quot;&#39;&#39;&quot;</span>
+
   <span class="fu">}</span>
-<span class="fu">}</span></code></pre></div>
+<span class="fu">}</span>
+
+<span class="er">export</span> <span class="er">const</span> <span class="er">jsxInject</span> <span class="er">=</span> <span class="er">`import</span> <span class="er">_jsx</span> <span class="er">from</span> <span class="er">&quot;https://johnhenry.github.io/lib/js/create-element/0.0.0/index.mjs&quot;;`;</span>
+<span class="er">export</span> <span class="er">const</span> <span class="er">jsxFactory</span> <span class="er">=</span> <span class="er">&quot;_jsx&quot;;</span>
+<span class="er">export</span> <span class="er">const</span> <span class="er">jsxFragment</span> <span class="er">=</span> <span class="er">&quot;&#39;&#39;&quot;;</span></code></pre></div>
 <pre class="jsx"><code>//file:///index.jsx
 const list = (
   &lt;ul id=&quot;foo&quot;&gt;
