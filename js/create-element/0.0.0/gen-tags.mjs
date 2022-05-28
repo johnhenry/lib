@@ -33,3 +33,4 @@ preamble("./tags/svg.mjs", [
 ]);
 content("./tags/html.mjs", HTMLtags);
 content("./tags/svg.mjs", SVGtags);
+Deno.writeTextFileSync("./LAST_GEN", Number(new Date()));
