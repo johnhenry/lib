@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+    
+<h1 id="create-mutable-nodelist">Create-Mutable-NodeList</h1>
+<p>Create a mutable &quot;subclass&quot; (not technically a subclass) of NodeList.</p>
+<p>Adds <strong>push</strong>, <strong>pull</strong>, <strong>shift</strong>, and <strong>unshift</strong> methods.</p>
+<p>Note: the MutableNodeList is available as an export, but it cannot be used directly as a constructor. Use the default factory export instead.</p>
+<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="im">import</span> createMutableNodeList <span class="im">from</span> <span class="st">&quot;...&quot;</span><span class="op">;</span>
+<span class="kw">const</span> nodeList <span class="op">=</span> <span class="at">createMutableNodeList</span>(...<span class="va">document</span>.<span class="at">querySelectorAll</span>(<span class="st">&quot;*&quot;</span>))<span class="op">;</span></code></pre></div>
+  </body>
+</html>

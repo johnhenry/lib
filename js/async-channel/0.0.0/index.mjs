@@ -26,6 +26,34 @@ const InvertedPromise = () => {
   });
   return out;
 };
+// Enhanced
+// const InvertedPromise = () => {
+//   const out = [];
+//   out.promise = new Promise((resolve, reject) => {
+//     out.resolve = resolve;
+//     out.reject = reject;
+//     out.push(resolve);
+//     out.push(reject);
+//   });
+//   return out;
+// };
+// const invertedIterator = () => {
+//   let updater;
+//   let result;
+//   const iterator = async function * {
+//     while(true){
+//       [result, updater] = invertedPromise();
+//       if(!result){
+//         break;
+//       }
+//       yield await result;
+//     }
+//   }
+//   const update = (...args) => {
+//     return updater(...args);
+//   }
+//   return [update, iterator()]
+// }
 
 /**
  * Defaults for Asynchronous Channel
