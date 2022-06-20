@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+html {
+  display: contents;
+  height: 100%;
+}
+body {
+  display: contents;
+}
+.demo {
+  --isometric-list-depth: 24px;
+  --animation-distance: 25%;
+  --animation-time: 0.25s;
+  --color-front: #3e3f46;
+  --color-side: #7393b3;
+  --color-top: #7393b3;
+  --rotation: 15deg;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  color: white;
+  text-transform: uppercase;
+  font-family: arial;
+  height: 100%;
+}
+
+.demo .item-top > * {
+  transform: skewY(calc(-1 * var(--rotation)));
+}
+.demo .item-top > .isometric-list-right {
+  transform: skewY(var(--rotation));
+}
+.demo .item-bottom {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.demo .item-bottom > * {
+  transform: skewY(var(--rotation));
+}
+.demo .item-bottom > .isometric-list-right {
+  transform: skewY(calc(-1 * var(--rotation)));
+}
+.demo .isometric-list {
+  list-style: none;
+  width: 50%;
+  text-align: right;
+}
+.demo .isometric-list.isometric-list-right {
+  text-align: left;
+}
+.demo .isometric-list li {
+  cursor: pointer;
+  padding: 8px;
+  transition: var(--animation-time);
+  background-color: var(--color-front);
+}
+.demo .isometric-list li::before {
+  background-color: var(--color-side);
+}
+.demo .isometric-list li::after {
+  background-color: var(--color-top);
+}
+.demo .isometric-list li:hover {
+  transform: translateY(var(--animation-distance));
+  background-color: var(--color-highlight-front, var(--color-highlight));
+}
+.demo .isometric-list li:hover::before {
+  background-color: var(--color-highlight-side, var(--color-highlight));
+}
+.demo .isometric-list li:hover::after {
+  background-color: var(--color-highlight-top, var(--color-highlight));
+}
+.demo .isometric-list.isometric-list-bottom li:hover {
+  transform: translateY(calc(var(--animation-distance) * -1));
+}
+.demo .isometric-list.isometric-list-vertical li:hover {
+  transform: translateX(var(--animation-distance));
+}
+.demo .isometric-list.isometric-list-vertical.isometric-list-right li:hover {
+  transform: translateX(calc(var(--animation-distance) * -1));
+}

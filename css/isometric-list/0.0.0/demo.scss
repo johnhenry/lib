@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+}
+html {
+  display: contents;
+  height: 100%;
+}
+body {
+  display: contents;
+}
+.demo {
+  --isometric-list-depth: 24px;
+  --animation-distance: 25%;
+  --animation-time: 0.25s;
+  --color-front: #3e3f46;
+  --color-side: #7393b3;
+  --color-top: #7393b3;
+  --rotation: 15deg;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  color: white;
+  text-transform: uppercase;
+  font-family: arial;
+  .item-top {
+    & > * {
+      transform: skewY(calc(-1 * var(--rotation)));
+    }
+    & > .isometric-list-right {
+      transform: skewY(var(--rotation));
+    }
+  }
+  .item-bottom {
+    display: flex;
+    flex-direction: column-reverse;
+    & > * {
+      transform: skewY(var(--rotation));
+    }
+    & > .isometric-list-right {
+      transform: skewY(calc(-1 * var(--rotation)));
+    }
+  }
+  .isometric-list {
+    list-style: none;
+    width: 50%;
+    text-align: right;
+    &.isometric-list-right {
+      text-align: left;
+    }
+    li {
+      cursor: pointer;
+      padding: 8px;
+      transition: var(--animation-time);
+      background-color: var(--color-front);
+      &::before {
+        background-color: var(--color-side);
+      }
+      &::after {
+        background-color: var(--color-top);
+      }
+      &:hover {
+        transform: translateY(var(--animation-distance));
+        background-color: var(--color-highlight-front, var(--color-highlight));
+        &::before {
+          background-color: var(--color-highlight-side, var(--color-highlight));
+        }
+        &::after {
+          background-color: var(--color-highlight-top, var(--color-highlight));
+        }
+      }
+    }
+    &.isometric-list-bottom {
+      li {
+        &:hover {
+          transform: translateY(calc(var(--animation-distance) * -1));
+        }
+      }
+    }
+    &.isometric-list-vertical {
+      li {
+        &:hover {
+          transform: translateX(var(--animation-distance));
+        }
+      }
+    }
+    &.isometric-list-vertical.isometric-list-right {
+      li {
+        &:hover {
+          transform: translateX(calc(var(--animation-distance) * -1));
+        }
+      }
+    }
+  }
+}

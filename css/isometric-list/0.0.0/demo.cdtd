@@ -1,0 +1,9 @@
+@import "./demo.cdtd";
+.demo {
+  >.item-top --2 {
+   >.isometric-list --2,
+  }
+  >.item-bottom --2{
+   >.isometric-list --2,
+  }
+}
