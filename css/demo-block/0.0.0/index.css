@@ -1,0 +1,129 @@
+.demo-block {
+  --demo-block-size: 128px;
+  display: inline-block;
+  width: var(--demo-block-size, 100%);
+  aspect-ratio: var(--demo-block-ratio, 1 / 1);
+}
+.demo-block.demo-block-golden {
+  --demo-block-ratio: 1.61803 / 1;
+}
+.demo-block.demo-block-golden-inverse {
+  --demo-block-ratio: calc(1 / 1.61803) / 1;
+}
+
+.demo-block.demo-block-0,
+.demo-block.demo-block-null {
+  --demo-block-size: 0;
+}
+
+.demo-block.demo-block-16,
+.demo-block.demo-block-smallest {
+  --demo-block-size: 16px;
+}
+
+.demo-block.demo-block-32,
+.demo-block.demo-block-smaller {
+  --demo-block-size: 32px;
+}
+
+.demo-block.demo-block-64,
+.demo-block.demo-block-small {
+  --demo-block-size: 64px;
+}
+
+.demo-block.demo-block-128,
+.demo-block.demo-block-a {
+  --demo-block-size: 128px;
+}
+
+.demo-block.demo-block-256,
+.demo-block.demo-block-b {
+  --demo-block-size: 256px;
+}
+
+.demo-block.demo-block-384,
+.demo-block.demo-block-c {
+  --demo-block-size: 384px;
+}
+
+.demo-block.demo-block-512,
+.demo-block.demo-block-d {
+  --demo-block-size: 512px;
+}
+
+.demo-block.demo-block-640,
+.demo-block.demo-block-e {
+  --demo-block-size: 640px;
+}
+
+.demo-block.demo-block-768,
+.demo-block.demo-block-f {
+  --demo-block-size: 768px;
+}
+
+.demo-block.demo-block-896,
+.demo-block.demo-block-g {
+  --demo-block-size: 896px;
+}
+
+.demo-block.demo-block-1024,
+.demo-block.demo-block-h {
+  --demo-block-size: 1024px;
+}
+
+.demo-block.demo-block-autocolor:nth-of-type(8n + 1) {
+  background-color: indianred;
+}
+
+.demo-block.demo-block-autocolor:nth-of-type(8n + 2) {
+  background-color: darkgoldenrod;
+}
+
+.demo-block.demo-block-autocolor:nth-of-type(8n + 3) {
+  background-color: yellow;
+}
+
+.demo-block.demo-block-autocolor:nth-of-type(8n + 4) {
+  background-color: lightseagreen;
+}
+
+.demo-block.demo-block-autocolor:nth-of-type(8n + 5) {
+  background-color: skyblue;
+}
+
+.demo-block.demo-block-autocolor:nth-of-type(8n + 6) {
+  background-color: indigo;
+}
+
+.demo-block.demo-block-autocolor:nth-of-type(8n + 7) {
+  background-color: violet;
+}
+
+.demo-block.demo-block-autocolor:nth-of-type(8n + 8) {
+  background-color: darkgray;
+}
+
+.demo-block.demo-block-full {
+  --demo-block-size: 100%;
+}
+.demo-block.demo-block-half {
+  --demo-block-size: 50%;
+}
+.demo-block.demo-block-quarter {
+  --demo-block-size: 25%;
+}
+.demo-block.demo-block-eighth {
+  --demo-block-size: 12.5%;
+}
+
+.demo-block.demo-block-fill {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: unset;
+}
+
+.demo-block.demo-block-fill {
+  width: max(var(--demo-block-size) 100%);
+  height: max(var(--demo-block-size) 100%);
+  aspect-ratio: unset;
+}

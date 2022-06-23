@@ -1,0 +1,15 @@
+html,
+body {
+  display: contents;
+  width: 100vw;
+  height: 100vh;
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+}
+body > *:first-child {
+  height: 100%;
+  width: 100%;
+}

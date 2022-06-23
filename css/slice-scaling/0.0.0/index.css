@@ -1,0 +1,65 @@
+.slice-scaling {
+  display: grid;
+  grid-template-rows:
+    var(--slice-scaling-size-top, 1fr)
+    1fr
+    var(--slice-scaling-size-bottom, var(--slice-scaling-size-top, 1fr));
+
+  grid-template-columns:
+    var(--slice-scaling-size-left, 1fr)
+    1fr
+    var(--slice-scaling-size-right, var(--slice-scaling-size-left, 1fr));
+  grid-template-areas:
+    "a b c"
+    "d e f"
+    "h i j";
+}
+
+.slice-scaling:nth-child(1) {
+  grid-area: a;
+}
+.slice-scaling:nth-child(2) {
+  grid-area: b;
+}
+.slice-scaling:nth-child(3) {
+  grid-area: c;
+}
+.slice-scaling:nth-child(4) {
+  grid-area: d;
+}
+.slice-scaling:nth-child(5) {
+  grid-area: e;
+}
+.slice-scaling:nth-child(6) {
+  grid-area: f;
+}
+.slice-scaling:nth-child(7) {
+  grid-area: g;
+}
+.slice-scaling:nth-child(8) {
+  grid-area: h;
+}
+.slice-scaling:nth-child(9) {
+  grid-area: i;
+}
+
+.slice-scaling.slice-scaling-horizontal {
+  grid-template-rows: unset;
+  grid-template-columns:
+    var(--slice-scaling-size-left, 1fr)
+    1fr
+    var(--slice-scaling-size-right, var(--slice-scaling-size-left, 1fr));
+  grid-template-areas: "a b c";
+}
+.slice-scaling.slice-scaling-vertical {
+  grid-template-columns: unset;
+  grid-template-rows:
+    var(--slice-scaling-size-top, 1fr)
+    1fr
+    var(--slice-scaling-size-bottom, var(--slice-scaling-size-top, 1fr));
+
+  grid-template-areas:
+    "a"
+    "b"
+    "c";
+}
