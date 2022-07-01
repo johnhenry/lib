@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../blank-slate/0.0.0/index.css" />
     <link rel="stylesheet" href="./index.css" />
     <style>
       .application {
+        height: 100%;
+        width: 100%;
         font-size: 0;
         display: contents;
       }
@@ -27,19 +28,6 @@
       <p>Add the `demo-block-autocolor` class to cycle through colors.</p>
       <div class="demo-block demo-block-autocolor"></div>
       <div class="demo-block demo-block-autocolor"></div>
-      <p>Add the `--demo-block-size` custom property for custom sizes.</p>
-      <div
-        class="demo-block demo-block-autocolor"
-        style="--demo-block-size: 64px"
-      ></div>
-      <div
-        class="demo-block demo-block-autocolor"
-        style="--demo-block-size: 33%"
-      ></div>
-      <div
-        class="demo-block demo-block-autocolor"
-        style="--demo-block-size: 32px"
-      ></div>
       <p>
         Add the `demo-block-golden` or `demo-block-golden-inverse` class to
         create 'golden rectangles'
@@ -48,22 +36,21 @@
       <div
         class="demo-block demo-block-autocolor demo-block-golden-inverse"
       ></div>
-
-      <p>Add the `--demo-block-ratio` custom property for custom sizes.</p>
+      <p>
+        Add the `--demo-block-size`, `--demo-block-size-width`, and
+        `--demo-block-size-height` custom properties for custom sizes.
+      </p>
       <div
         class="demo-block demo-block-autocolor"
-        style="--demo-block-ratio: 1 / 2"
+        style="--demo-block-size: 64px"
       ></div>
       <div
         class="demo-block demo-block-autocolor"
-        style="--demo-block-ratio: 1 / 3"
+        style="--demo-block-size: 32px"
       ></div>
       <div
         class="demo-block demo-block-autocolor"
-        style="
-          --demo-block-ratio: 3 / 1;
-          --demo-block-size: calc(128 * 3 * 1px);
-        "
+        style="--demo-block-size-height: 32px; --demo-block-size-width: 128px"
       ></div>
       <p>
         Add the class `demo-block-a` through `demo-block h` to create blocks of
@@ -86,9 +73,29 @@
       <p></p>
       <p>.demo-block-a</p>
       <div class="demo-block demo-block-autocolor demo-block-a"></div>
-      <p>Use `demo-block-null` to create a box of zero-size</p>
-      <p>.demo-block-null</p>
-      <div class="demo-block demo-block-autocolor demo-block-null"></div>
+      <p>Use `demo-block-{small, smaller, smallest}` to create small boxes</p>
+      <p>.demo-block-small</p>
+      <div class="demo-block demo-block-autocolor demo-block-small"></div>
+      <p>.demo-block-smaller</p>
+      <div class="demo-block demo-block-autocolor demo-block-smaller"></div>
+      <p>.demo-block-smallest</p>
+      <p>
+        Use `demo-block-{tiny, tinier, tiniest}` to create even smaller boxes
+      </p>
+      <p>.demo-block-tiny</p>
+      <div class="demo-block demo-block-autocolor demo-block-tiny"></div>
+      <p>.demo-block-tiny</p>
+      <div class="demo-block demo-block-autocolor demo-block-tinier"></div>
+      <p>.demo-block-tiniest</p>
+      <div class="demo-block demo-block-autocolor demo-block-tiniest"></div>
+      <p>
+        Use `demo-block-pixel` and `demo-block-zero' to create a box of one and
+        zero size
+      </p>
+      <p>.demo-block-pixel</p>
+      <div class="demo-block demo-block-autocolor demo-block-pixel"></div>
+      <p>.demo-block-zero</p>
+      <div class="demo-block demo-block-autocolor demo-block-zero"></div>
       <p>
         Use `demo-block-{full, half, quarter, eight}` to create a that scales
         with the window width.
@@ -98,6 +105,7 @@
       <p>.demo-block-half</p>
       <div class="demo-block demo-block-autocolor demo-block-half"></div>
       <div class="demo-block demo-block-autocolor demo-block-half"></div>
+
       <p>.demo-block-quarter</p>
       <div class="demo-block demo-block-autocolor demo-block-quarter"></div>
       <div class="demo-block demo-block-autocolor demo-block-quarter"></div>

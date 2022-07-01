@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../blank-slate/0.0.0/index.css" />
+    <link rel="stylesheet" href="../../demo-block/0.0.0/index.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      .application {
+        --header-fixed--size: 64px;
+        --footer-fixed--size: 32px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .application > div {
+        background-color: black;
+      }
+      .application > div header {
+        background-color: blue;
+      }
+      .application > div footer {
+        background-color: red;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="application">
+      <h2>header (top) +</h2>
+      <div class="header-fixed header-fixed--top">
+        <header></header>
+        content
+      </div>
+      <h2>header (left) +</h2>
+      <div class="header-fixed header-fixed--left">
+        <header></header>
+        content
+      </div>
+      <h2>+ footer (bottom)</h2>
+      <div class="footer-fixed footer-fixed--bottom">
+        content
+        <footer></footer>
+      </div>
+      <h2>+ footer (right)</h2>
+      <div class="footer-fixed footer-fixed--right">
+        content
+        <footer></footer>
+      </div>
+      <h2>header (top) + footer (bottom)</h2>
+      <div
+        class="header-fixed header-fixed--top footer-fixed footer-fixed--bottom"
+      >
+        <header></header>
+        content
+        <footer></footer>
+      </div>
+      <h2>header (left) + footer (right)</h2>
+      <div
+        class="header-fixed header-fixed--left footer-fixed footer-fixed--right"
+      >
+        <header></header>
+        content
+        <footer></footer>
+      </div>
+      <h2>header (left) + footer (bottom) {header dominant}</h2>
+      <div
+        class="
+          header-fixed header-fixed--left
+          footer-fixed footer-fixed--bottom
+        "
+      >
+        <header></header>
+        content
+        <footer />
+      </div>
+      <h2>header (top) + footer (right) {header dominant}</h2>
+      <div
+        class="header-fixed header-fixed--top footer-fixed footer-fixed--right"
+      >
+        <header></header>
+        content
+        <footer />
+      </div>
+      <h2>header (left) + footer (bottom) {footer dominant}</h2>
+      <div
+        class="
+          header-fixed header-fixed--left
+          footer-fixed footer-fixed--bottom
+          header-fixed--footer-dominant
+        "
+      >
+        <header></header>
+        content
+        <footer />
+      </div>
+      <h2>header (top) + footer (right) {footer dominant}</h2>
+      <div
+        class="
+          header-fixed header-fixed--top
+          footer-fixed footer-fixed--right
+          header-fixed--footer-dominant
+        "
+      >
+        <header></header>
+        content
+        <footer />
+      </div>
+      <h2>header (top) [header(left) + footer(right)] footer (bottom)</h2>
+      <div
+        class="header-fixed header-fixed--top footer-fixed footer-fixed--bottom"
+      >
+        <header></header>
+        <div
+          class="
+            header-fixed header-fixed--left
+            footer-fixed footer-fixed--right
+          "
+        >
+          <header></header>
+          content
+          <footer></footer>
+        </div>
+        <footer></footer>
+      </div>
+      <h2>header (left) [header(top) + footer(bottom)] footer (right)</h2>
+      <div
+        class="header-fixed header-fixed--left footer-fixed footer-fixed--right"
+      >
+        <header></header>
+        <div
+          class="
+            header-fixed header-fixed--top
+            footer-fixed footer-fixed--bottom
+          "
+        >
+          <header></header>
+          content
+          <footer></footer>
+        </div>
+        <footer></footer>
+      </div>
+    </div>
+  </body>
+</html>

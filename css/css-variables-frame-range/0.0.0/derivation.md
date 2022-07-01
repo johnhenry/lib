@@ -64,7 +64,7 @@ let b := current - max
 then
 
 ```
-a \* b > 0 if and only if (a < 0, b < 0) or (a > 0, b > 0)
+a * b > 0 if and only if (a < 0, b < 0) or (a > 0, b > 0)
 ```
 
 #### step 2

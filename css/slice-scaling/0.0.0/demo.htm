@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../blank-slate/0.0.0/index.css" />
     <link rel="stylesheet" href="../../demo-block/0.0.0/index.css" />
     <link rel="stylesheet" href="./index.css" />
     <style>
-      .demo-block {
-        --demo-block-size: 100%;
+      .application {
+        height: 100%;
+        width: 100%;
       }
     </style>
     <title>Document</title>
@@ -18,26 +18,55 @@
     <div class="application">
       <h1>Slice Scaling</h1>
       <p>
-        Apply the `slice-scaling` class to create a grid that uses 9-slice
+        Apply the `slice-scaling` class to create a grid that uses 4-slice
         scaling
       </p>
       <div class="slice-scaling">
-        <span class="demo-block demo-block-fill demo-block-autocolor">a</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">b</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">c</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">d</span>
-        <span class="demo-block demo-block demo-block-autocolor">e</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">f</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">g</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">h</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">i</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">b</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-horizontal demo-block-autocolor"
+          >content</span
+        >
+      </div>
+      <p>
+        Apply the `--slice-scaling-size-{top,bottom-left-right}` custom
+        properties to set fixed edges
+      </p>
+      <div
+        class="slice-scaling"
+        style="--slice-scaling-size-top: 64px; --slice-scaling-size-left: 32px"
+      >
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">b</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-horizontal demo-block-autocolor"
+          >content</span
+        >
+      </div>
+      <p>
+        Add the `slice-scaling-nine` class to create a grid that uses 9-slice
+        scaling
+      </p>
+      <div class="slice-scaling slice-scaling-nine">
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">b</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">d</span>
+        <span class="demo-block demo-block-full demo-block-autocolor"
+          >content</span
+        >
+        <span class="demo-block demo-block-full demo-block-autocolor">f</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">g</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">h</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">i</span>
       </div>
       <p>
         Apply the `--slice-scaling-size-{top,bottom-left-right}` custom
         properties to set fixed borders
       </p>
       <div
-        class="slice-scaling"
+        class="slice-scaling slice-scaling-nine"
         style="
           --slice-scaling-size-top: 64px;
           --slice-scaling-size-bottom: 32px;
@@ -45,33 +74,39 @@
           --slice-scaling-size-right: 16px;
         "
       >
-        <span class="demo-block demo-block-fill demo-block-autocolor">a</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">b</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">c</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">d</span>
-        <span class="demo-block demo-block demo-block-autocolor">e</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">f</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">g</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">h</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">i</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">b</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">d</span>
+        <span class="demo-block demo-block-full demo-block-autocolor"
+          >content</span
+        >
+        <span class="demo-block demo-block-full demo-block-autocolor">f</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">g</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">h</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">i</span>
       </div>
       <p>
         Add the "slice-scaling-horizontal" class for strictly horizontal,
         3-slize scaling
       </p>
       <div class="slice-scaling slice-scaling-horizontal">
-        <span class="demo-block demo-block-fill demo-block-autocolor">a</span>
-        <span class="demo-block demo-block demo-block-autocolor">b</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-horizontal demo-block-autocolor"
+          >content</span
+        >
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
       </div>
       <p>
         Add the "slice-scaling-vertical" class for strictly vertical, 3-slize
         scaling
       </p>
       <div class="slice-scaling slice-scaling-vertical">
-        <span class="demo-block demo-block-fill demo-block-autocolor">a</span>
-        <span class="demo-block demo-block demo-block-autocolor">b</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-horizontal demo-block-autocolor"
+          >b</span
+        >
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
       </div>
       <p>
         Appling the `--slice-scaling-{top,bottom-left-right}` custom properties
@@ -81,18 +116,22 @@
         class="slice-scaling slice-scaling-horizontal"
         style="--slice-scaling-size-left: 16px"
       >
-        <span class="demo-block demo-block-fill demo-block-autocolor">a</span>
-        <span class="demo-block demo-block demo-block-autocolor">b</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-horizontal demo-block-autocolor"
+          >content</span
+        >
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
       </div>
       <hr />
       <div
         class="slice-scaling slice-scaling-vertical"
         style="--slice-scaling-size-top: 64px"
       >
-        <span class="demo-block demo-block-fill demo-block-autocolor">a</span>
-        <span class="demo-block demo-block demo-block-autocolor">b</span>
-        <span class="demo-block demo-block-fill demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-horizontal demo-block-autocolor"
+          >content</span
+        >
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
       </div>
     </div>
   </body>
