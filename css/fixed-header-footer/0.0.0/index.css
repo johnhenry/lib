@@ -1,0 +1,79 @@
+.header-fixed {
+  display: grid;
+}
+.header-fixed > header {
+  grid-area: header;
+}
+
+.footer-fixed {
+  display: grid;
+}
+.footer-fixed > footer {
+  grid-area: footer;
+}
+
+.header-fixed.header-fixed--top {
+  grid-template-columns: unset;
+  grid-template-rows: var(--header-fixed--size, 1fr) 1fr;
+  grid-template-areas: "header" "......";
+}
+
+.footer-fixed.footer-fixed--bottom {
+  grid-template-columns: unset;
+  grid-template-rows: 1fr var(--footer-fixed--size, 1fr);
+  grid-template-areas: "......" "footer";
+}
+
+.header-fixed.header-fixed--left {
+  grid-template-rows: unset;
+  grid-template-columns: var(--header-fixed--size, 1fr) 1fr;
+  grid-template-areas: "header .";
+}
+
+.footer-fixed.footer-fixed--right {
+  grid-template-rows: unset;
+  grid-template-columns: 1fr var(--footer-fixed--size, 1fr);
+  grid-template-areas: ". footer";
+}
+
+.header-fixed.footer-fixed.header-fixed--top.footer-fixed--bottom {
+  grid-template-columns: unset;
+  grid-template-rows: var(--header-fixed--size, 1fr) 1fr var(
+      --footer-fixed--size,
+      1fr
+    );
+  grid-template-areas: "header" "......" "footer";
+}
+
+.header-fixed.footer-fixed.header-fixed--left.footer-fixed--right {
+  grid-template-rows: unset;
+  grid-template-columns: var(--header-fixed--size, 1fr) 1fr var(
+      --footer-fixed--size,
+      1fr
+    );
+  grid-template-areas: "header . footer";
+}
+
+.header-fixed.footer-fixed.header-fixed--left.footer-fixed--bottom {
+  grid-template-rows: 1fr var(--footer-fixed--size, 1fr);
+  grid-template-columns: var(--header-fixed--size, 1fr) 1fr;
+  grid-template-areas: "header ......" "header footer";
+}
+
+.header-fixed.footer-fixed.header-fixed--top.footer-fixed--right {
+  grid-template-rows: var(--header-fixed--size, 1fr) 1fr;
+  grid-template-columns: 1fr var(--footer-fixed--size, 1fr);
+  grid-template-areas: "header header" "...... footer";
+}
+
+.header-fixed.footer-fixed.header-fixed--left.footer-fixed--bottom.header-fixed--footer-dominant {
+  grid-template-columns: var(--header-fixed--size, 1fr) 1fr;
+  grid-template-rows: 1fr var(--footer-fixed--size, 1fr);
+  grid-template-areas: "header ......" "footer footer";
+}
+
+.header-fixed.footer-fixed.header-fixed--top.footer-fixed--right.header-fixed--footer-dominant {
+  grid-template-rows: var(--header-fixed--size, 1fr) 1fr;
+  grid-template-columns: 1fr var(--footer-fixed--size, 1fr);
+  grid-template-areas: "header footer" "...... footer";
+}

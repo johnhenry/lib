@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../blank-slate/0.0.0/index.css" />
+    <link rel="stylesheet" href="../../demo-block/0.0.0/index.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      .application {
+        height: 100%;
+        width: 100%;
+      }
+      .application > div {
+        display: inline-flex;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="application">
+      <h1>Flex Orientation Match</h1>
+      <p>
+        Use `flex-orientation-match` to match the a flex-container's direction
+        to that of the screen's orientation
+      </p>
+      <p>Note: display must be set to flex externally.</p>
+      <div class="flex-orientation-match">
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+      </div>
+      <p>
+        Use the `flex-orientation-{portrait,landscape}-match` class to only
+        change when orientation is matched specifically.
+      </p>
+      <div class="flex-orientation-portrait-match">
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+      </div>
+      <div
+        class="flex-orientation-landscape-match"
+        style="flex-direction: column"
+      >
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+      </div>
+      <p>
+        Mix and match classes `flex-orientation-{portrait, landscape}-{match,
+        revers, clockwise, counter}` for various effects.
+      </p>
+      <div
+        class="
+          flex-orientation-portrait-match flex-orientation-landscape-reverse
+        "
+      >
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+      </div>
+      <div
+        class="
+          flex-orientation-portrait-match flex-orientation-landscape-counter
+        "
+      >
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+        <div class="demo-block demo-block-autocolor"></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../blank-slate/0.0.0/index.css" />
+    <link rel="stylesheet" href="../../demo-block/0.0.0/index.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      .application {
+        height: 100%;
+        width: 100%;
+      }
+      .demo-block {
+        --demo-block-size: 100%;
+      }
+      .application > div {
+        min-height: 256px;
+      }
+    </style>
+    <script type="module">
+      const spiral = document.getElementById("spiral");
+      const spiral2 = document.getElementById("spiral-2");
+      const spiralT = document.getElementById("spiral-transpose");
+      let i = 0;
+      console.log({ spiral, spiralT });
+      const go = () => {
+        spiral.className = `spiral-scaling spiral-scaling-${(i % 8) + 1}`;
+        spiral2.className = `spiral-scaling spiral-scaling-${(i % 8) + 1}`;
+        spiralT.className = `spiral-scaling spiral-scaling-${
+          (i % 8) + 1
+        }-transpose`;
+        i++;
+        setTimeout(go, 2000);
+      };
+      go();
+    </script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="application">
+      <h1>Spiral Scaling</h1>
+      <p>
+        Apply the `spiral-scaling` and `spiral-scaling-{1-8} to create a layout
+        with 4 item spiral around a fifth.
+      </p>
+      <div id="spiral" class="spiral-scaling spiral-scaling-1">
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">b</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">d</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">e</span>
+      </div>
+      <p>
+        Add `-transpose` to the and of the class name to generate spirals in the
+        opposite direction.
+      </p>
+      <div
+        id="spiral-transpose"
+        class="spiral-scaling spiral-scaling-1-transpose"
+      >
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">b</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">d</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">e</span>
+      </div>
+      <p>
+        Apply the `--spiral-scaling-size-{top,bottom-left-right}` custom
+        properties to set fixed borders
+      </p>
+      <div
+        id="spiral-2"
+        class="spiral-scaling spiral-scaling-1-transpose"
+        style="
+          --spiral-scaling-size-top: 64px;
+          --spiral-scaling-size-bottom: 32px;
+          --spiral-scaling-size-left: 32px;
+          --spiral-scaling-size-right: 16px;
+        "
+      >
+        <span class="demo-block demo-block-full demo-block-autocolor">a</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">b</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">c</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">d</span>
+        <span class="demo-block demo-block-full demo-block-autocolor">e</span>
+      </div>
+    </div>
+  </body>
+</html>

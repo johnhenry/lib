@@ -1,0 +1,6 @@
+* {
+  outline-style: var(--debug-outline-style, dashed) !important;
+  outline-color: var(--debug-outline-color, var(--debug-color)) !important;
+  outline-width: var(--debug-outline-width, 1px) !important;
+  outline-offset: var(--debug-outline-offset, 0) !important;
+}

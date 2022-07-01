@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../blank-slate/0.0.0/index.css" />
+    <link rel="stylesheet" href="../../demo-block/0.0.0/index.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      .application {
+        height: 100%;
+        width: 100%;
+        --hide-and-show-display: inline-block;
+        --show-and-hide-display: inline-block;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="application">
+      <h1>Hide and show / show and hide</h1>
+      <p>
+        Apply the `hide-and-show` class to hide an element and show it under
+        certain conditions.
+      </p>
+      <p>
+        Apply the `show-and-hide` class to show an element and hide it under
+        certain conditions.
+      </p>
+      <p>
+        Apply the `hide-and-show-portrait` to a class with 'hide-and-show' to
+        show it in portrait mode.
+      </p>
+      <p>
+        Apply the `show-and-hide-landscape` to a class with 'show-and-hide' to
+        hide it in landscape mode
+      </p>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          hide-and-show hide-and-show-portrait
+        "
+      >
+        show portrait
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          show-and-hide show-and-hide-landscape
+        "
+      >
+        hide landscape
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          hide-and-show hide-and-show-landscape
+        "
+      >
+        show landscape
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          show-and-hide show-and-hide-portrait
+        "
+      >
+        hide portrait
+      </div>
+      <hr />
+      <div
+        class="
+          demo-block demo-block-autocolor
+          hide-and-show hide-and-show-width-0
+        "
+      >
+        0+
+      </div>
+      <p>
+        Apply the `hide-and-show-portrait-{stop1}-{stop2}` to a class with
+        'hide-and-show' to show it between stop1 and stop 2.
+        <ul>
+          <li>`-{stop}` works for everyting after to the stop</li>
+          <li>`--{stop}` works for everyting up to the stop</li>
+        </ul>
+        <p>Stops are 0, 256px, 512px, and 1024px pixels.</p>
+      </p>
+      <p>
+        Apply the `show-and-hide-portrait-{stop1}-{stop2}` to a class with
+        'show-and-hide' to hide it between stop1 and stop 2.
+      </p>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          hide-and-show hide-and-show-width-256px
+        "
+      >
+        256+
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          hide-and-show hide-and-show-width-512px
+        "
+      >
+        512+
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          hide-and-show hide-and-show-width-1024px
+        "
+      >
+        1024+
+      </div>
+      <hr />
+      <div
+        class="
+          demo-block demo-block-autocolor
+          show-and-hide show-and-hide-width-0
+        "
+      >
+        -0
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          show-and-hide show-and-hide-width-256px
+        "
+      >
+        -256
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          show-and-hide show-and-hide-width-512px
+        "
+      >
+        -512
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          show-and-hide show-and-hide-width-1024px
+        "
+      >
+        -1024
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          hide-and-show hide-and-show-width-256px-512px
+        "
+      >
+        +256-512
+      </div>
+      <div
+        class="
+          demo-block demo-block-autocolor
+          show-and-hide show-and-hide-width-256px-512px
+        "
+      >
+        -256-512
+      </div>
+    </div>
+  </body>
+</html>
