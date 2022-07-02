@@ -1,0 +1,13 @@
+.show-sibblings-with-check ~ * {
+  display: none;
+}
+.show-sibblings-with-check:has(input:checked) ~ * {
+  display: var(--check-display, block);
+}
+
+.hide-sibblings-with-check ~ * {
+  display: none;
+}
+.hide-sibblings-with-check:has(input:checked) ~ * {
+  display: var(--check-display, block);
+}

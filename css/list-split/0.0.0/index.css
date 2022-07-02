@@ -1,0 +1,31 @@
+.list-split {
+  display: flex;
+  list-style: none;
+  width: 100%;
+  padding: var(--outer-space, 1rem);
+  column-gap: var(--inner-space, 1rem);
+}
+.list-split > .list-splitter--before {
+  margin-left: auto;
+}
+.list-split > .list-splitter--on {
+  margin-right: auto;
+}
+
+.list-split.list-split--vertical {
+  display: inline-flex;
+  width: unset;
+  height: 100%;
+  flex-direction: column;
+  list-style: none;
+  column-gap: unset;
+  row-gap: var(--inner-space, 1rem);
+}
+.list-split.list-split--vertical > .list-splitter--before {
+  margin-left: unset;
+  margin-top: auto;
+}
+.list-split.list-split--vertical > .list-splitter--on {
+  margin-right: unset;
+  margin-bottom: auto;
+}

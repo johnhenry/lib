@@ -1,0 +1,26 @@
+.list-polar {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--outer-space, 1rem);
+}
+.list-polar > * {
+  display: inline-flex;
+  flex-direction: row;
+  column-gap: var(--inner-space, 1rem);
+}
+
+.list-polar.list-polar--vertical {
+  flex-direction: column;
+  width: unset;
+  height: 100%;
+  list-style: none;
+}
+.list-polar.list-polar--vertical > * {
+  display: inline-flex;
+  flex-direction: column;
+  column-gap: unset;
+  row-gap: var(--inner-space, 1rem);
+}
