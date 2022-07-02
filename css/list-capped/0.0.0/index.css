@@ -1,0 +1,13 @@
+.list-capped > *:first-child {
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+.list-capped > *:last-child {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.list-capped.list-capped--vertical > *:first-child {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+.list-capped.list-capped--vertical > *:last-child {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}

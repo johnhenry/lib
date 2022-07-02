@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="./index.css" />
     <style>
       .application {
-        --header-fixed--size: 64px;
-        --footer-fixed--size: 32px;
+        --header-fixed__size: 64px;
+        --footer-fixed__size: 32px;
         height: 100%;
         width: 100%;
         display: flex;
@@ -30,28 +30,28 @@
   <body>
     <div class="application">
       <h2>header (top) +</h2>
-      <div class="header-fixed header-fixed--top">
+      <div class="header-fixed header-fixed__top">
         <header></header>
         content
       </div>
       <h2>header (left) +</h2>
-      <div class="header-fixed header-fixed--left">
+      <div class="header-fixed header-fixed__left">
         <header></header>
         content
       </div>
       <h2>+ footer (bottom)</h2>
-      <div class="footer-fixed footer-fixed--bottom">
+      <div class="footer-fixed footer-fixed__bottom">
         content
         <footer></footer>
       </div>
       <h2>+ footer (right)</h2>
-      <div class="footer-fixed footer-fixed--right">
+      <div class="footer-fixed footer-fixed__right">
         content
         <footer></footer>
       </div>
       <h2>header (top) + footer (bottom)</h2>
       <div
-        class="header-fixed header-fixed--top footer-fixed footer-fixed--bottom"
+        class="header-fixed header-fixed__top footer-fixed footer-fixed__bottom"
       >
         <header></header>
         content
@@ -59,7 +59,7 @@
       </div>
       <h2>header (left) + footer (right)</h2>
       <div
-        class="header-fixed header-fixed--left footer-fixed footer-fixed--right"
+        class="header-fixed header-fixed__left footer-fixed footer-fixed__right"
       >
         <header></header>
         content
@@ -68,8 +68,8 @@
       <h2>header (left) + footer (bottom) {header dominant}</h2>
       <div
         class="
-          header-fixed header-fixed--left
-          footer-fixed footer-fixed--bottom
+          header-fixed header-fixed__left
+          footer-fixed footer-fixed__bottom
         "
       >
         <header></header>
@@ -78,7 +78,7 @@
       </div>
       <h2>header (top) + footer (right) {header dominant}</h2>
       <div
-        class="header-fixed header-fixed--top footer-fixed footer-fixed--right"
+        class="header-fixed header-fixed__top footer-fixed footer-fixed__right"
       >
         <header></header>
         content
@@ -87,9 +87,9 @@
       <h2>header (left) + footer (bottom) {footer dominant}</h2>
       <div
         class="
-          header-fixed header-fixed--left
-          footer-fixed footer-fixed--bottom
-          header-fixed--footer-dominant
+          header-fixed header-fixed__left
+          footer-fixed footer-fixed__bottom
+          header-fixed__footer-dominant
         "
       >
         <header></header>
@@ -99,9 +99,9 @@
       <h2>header (top) + footer (right) {footer dominant}</h2>
       <div
         class="
-          header-fixed header-fixed--top
-          footer-fixed footer-fixed--right
-          header-fixed--footer-dominant
+          header-fixed header-fixed__top
+          footer-fixed footer-fixed__right
+          header-fixed__footer-dominant
         "
       >
         <header></header>
@@ -110,13 +110,13 @@
       </div>
       <h2>header (top) [header(left) + footer(right)] footer (bottom)</h2>
       <div
-        class="header-fixed header-fixed--top footer-fixed footer-fixed--bottom"
+        class="header-fixed header-fixed__top footer-fixed footer-fixed__bottom"
       >
         <header></header>
         <div
           class="
-            header-fixed header-fixed--left
-            footer-fixed footer-fixed--right
+            header-fixed header-fixed__left
+            footer-fixed footer-fixed__right
           "
         >
           <header></header>
@@ -127,13 +127,13 @@
       </div>
       <h2>header (left) [header(top) + footer(bottom)] footer (right)</h2>
       <div
-        class="header-fixed header-fixed--left footer-fixed footer-fixed--right"
+        class="header-fixed header-fixed__left footer-fixed footer-fixed__right"
       >
         <header></header>
         <div
           class="
-            header-fixed header-fixed--top
-            footer-fixed footer-fixed--bottom
+            header-fixed header-fixed__top
+            footer-fixed footer-fixed__bottom
           "
         >
           <header></header>
