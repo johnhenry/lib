@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demo Page</title>
+    <script type="module" src="./index.mjs"></script>
+    <link rel="stylesheet" href="../../css/blank-slate/0.0.0/index.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/fixed-header-footer/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="../../css/list-polar/0.0.0/index.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <script type="module">
+      import createTabbedUI from "./create-tabbed-ui.mjs";
+      createTabbedUI(document.getElementById("tabbed-ui"), { last: true });
+    </script>
+  </head>
+  <body>
+    <div
+      id="application"
+      class="
+        application
+        header-fixed header-fixed__left
+        footer-fixed footer-fixed__bottom
+      "
+      style="--header-fixed__size: 256px; --footer-fixed__size: 128px"
+    >
+      <header>
+        <h1>🧱 Demo Page</h1>
+        <div id="demo-list" class="demo-list"></div>
+      </header>
+      <div
+        class="header-fixed header-fixed__top"
+        style="--header-fixed__size: 32px"
+      >
+        <header class="list-polar">
+          <span id="experiment-title"></span>
+          <ul>
+            <li>
+              <ul>
+                <li>🔘</li>
+                <li>🔘</li>
+                <li>🔘</li>
+              </ul>
+            </li>
+          </ul>
+        </header>
+        <div
+          id="tabbed-ui"
+          style="display: flex"
+          class="footer-fixed footer-fixed__right"
+          data-default-index="0"
+          data-display="block"
+        >
+          <div class="render-frame">
+            <iframe
+              id="render-frame"
+              title="rendered component"
+              data-display="block"
+              allowtransparency="true"
+            ></iframe>
+          </div>
+          <div
+            id="source"
+            class="source"
+            style="display: flex"
+            data-display="grid"
+          >
+            <div>
+              <pre id="source-pre">...</pre>
+              <pre id="source-main"></pre>
+              <pre id="source-post">...</pre>
+            </div>
+          </div>
+          <footer class="tabs">
+            <button>👓</button>
+            <button>≡</button>
+          </footer>
+        </div>
+      </div>
+      <footer id="controls" class="controls"></footer>
+    </div>
+  </body>
+</html>
