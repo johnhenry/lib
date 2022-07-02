@@ -1,19 +1,7 @@
-.list-wide-selection {
-  display: inline-flex;
-  width: 100%;
+.pop-out > * ~ * {
+  display: none;
 }
-.list-wide-selection * {
-  flex: 0 0;
-}
-.list-wide-selection .list-wide-selection--selected {
-  flex: 1 1;
-}
-.list-wide-selection *:last-child:not(.list-wide-selection--selected ~ *) {
-  flex: 1 1;
-}
-
-.list-wide-selection.list-wide-selection--vertical {
-  width: unset;
-  height: 100%;
-  flex-direction: column;
+.pop-out:focus-within > *,
+.pop-out:hover > * {
+  display: var(--popout-display, block);
 }

@@ -1,172 +1,194 @@
 .demo-block {
-  --demo-block-size: 128px;
+  --demo-block__size: 128px;
   display: inline-block;
-  width: var(--demo-block-size-width, var(--demo-block-size, 100%));
-  height: var(--demo-block-size-height, var(--demo-block-size, 100%));
+  width: var(--demo-block__size-width, var(--demo-block__size, 100%));
+  height: var(--demo-block__size-height, var(--demo-block__size, 100%));
+  /*
+  https://learnui.design/tools/data-color-picker.html#palette
+  */
+  /*
+  --demo-block__COLOR-1: indianred;
+  --demo-block__COLOR-2: goldenrod;
+  --demo-block__COLOR-3: yellow;
+  --demo-block__COLOR-4: lightseagreen;
+  --demo-block__COLOR-5: skyblue;
+  --demo-block__COLOR-6: lavender;
+  --demo-block__COLOR-7: plum;
+  --demo-block__COLOR-8: darkgray;
+  */
+
+  --demo-block__COLOR-1: #323362;
+  --demo-block__COLOR-2: #5e3973;
+  --demo-block__COLOR-3: #8b3c7a;
+  --demo-block__COLOR-4: #b74076;
+  --demo-block__COLOR-5: #db4a67;
+  --demo-block__COLOR-6: #f56152;
+  --demo-block__COLOR-7: #ff8135;
+  --demo-block__COLOR-8: #ffa600;
 }
-.demo-block.demo-block-golden {
+.demo-block.demo-block__golden {
   height: unset;
   aspect-ratio: 1.61803 / 1;
 }
-.demo-block.demo-block-golden-inverse {
+.demo-block.demo-block__golden-inverse {
   width: unset;
   aspect-ratio: calc(1 / 1.61803) / 1;
 }
 
-.demo-block.demo-block-0,
-.demo-block.demo-block-zero {
-  --demo-block-size: 0;
+.demo-block.demo-block__0,
+.demo-block.demo-block__zero {
+  --demo-block__size: 0;
 }
-.demo-block.demo-block-1,
-.demo-block.demo-block-pixel {
-  --demo-block-size: 1px;
+.demo-block.demo-block__1,
+.demo-block.demo-block__pixel {
+  --demo-block__size: 1px;
 }
-.demo-block.demo-block-2,
-.demo-block.demo-block-tiniest {
-  --demo-block-size: 2px;
+.demo-block.demo-block__2,
+.demo-block.demo-block__tiniest {
+  --demo-block__size: 2px;
 }
-.demo-block.demo-block-4,
-.demo-block.demo-block-tinier {
-  --demo-block-size: 4px;
+.demo-block.demo-block__4,
+.demo-block.demo-block__tinier {
+  --demo-block__size: 4px;
 }
-.demo-block.demo-block-8,
-.demo-block.demo-block-tiny {
-  --demo-block-size: 8px;
+.demo-block.demo-block__8,
+.demo-block.demo-block__tiny {
+  --demo-block__size: 8px;
 }
-.demo-block.demo-block-16,
-.demo-block.demo-block-smallest {
-  --demo-block-size: 16px;
-}
-
-.demo-block.demo-block-32,
-.demo-block.demo-block-smaller {
-  --demo-block-size: 32px;
+.demo-block.demo-block__16,
+.demo-block.demo-block__smallest {
+  --demo-block__size: 16px;
 }
 
-.demo-block.demo-block-64,
-.demo-block.demo-block-small {
-  --demo-block-size: 64px;
+.demo-block.demo-block__32,
+.demo-block.demo-block__smaller {
+  --demo-block__size: 32px;
 }
 
-.demo-block.demo-block-128,
-.demo-block.demo-block-a {
-  --demo-block-size: 128px;
+.demo-block.demo-block__64,
+.demo-block.demo-block__small {
+  --demo-block__size: 64px;
 }
 
-.demo-block.demo-block-256,
-.demo-block.demo-block-b {
-  --demo-block-size: 256px;
+.demo-block.demo-block__128,
+.demo-block.demo-block__a {
+  --demo-block__size: 128px;
 }
 
-.demo-block.demo-block-384,
-.demo-block.demo-block-c {
-  --demo-block-size: 384px;
+.demo-block.demo-block__256,
+.demo-block.demo-block__b {
+  --demo-block__size: 256px;
 }
 
-.demo-block.demo-block-512,
-.demo-block.demo-block-d {
-  --demo-block-size: 512px;
+.demo-block.demo-block__384,
+.demo-block.demo-block__c {
+  --demo-block__size: 384px;
 }
 
-.demo-block.demo-block-640,
-.demo-block.demo-block-e {
-  --demo-block-size: 640px;
+.demo-block.demo-block__512,
+.demo-block.demo-block__d {
+  --demo-block__size: 512px;
 }
 
-.demo-block.demo-block-768,
-.demo-block.demo-block-f {
-  --demo-block-size: 768px;
+.demo-block.demo-block__640,
+.demo-block.demo-block__e {
+  --demo-block__size: 640px;
 }
 
-.demo-block.demo-block-896,
-.demo-block.demo-block-g {
-  --demo-block-size: 896px;
+.demo-block.demo-block__768,
+.demo-block.demo-block__f {
+  --demo-block__size: 768px;
 }
 
-.demo-block.demo-block-1024,
-.demo-block.demo-block-h {
-  --demo-block-size: 1024px;
+.demo-block.demo-block__896,
+.demo-block.demo-block__g {
+  --demo-block__size: 896px;
 }
 
-.demo-block.demo-block-full {
-  --demo-block-size: 100%;
+.demo-block.demo-block__1024,
+.demo-block.demo-block__h {
+  --demo-block__size: 1024px;
 }
-.demo-block.demo-block-half {
-  --demo-block-size: 50%;
+
+.demo-block.demo-block__full {
+  --demo-block__size: 100%;
 }
-.demo-block.demo-block-quarter {
-  --demo-block-size: 25%;
+.demo-block.demo-block__half {
+  --demo-block__size: 50%;
 }
-.demo-block.demo-block-eighth {
-  --demo-block-size: 12.5%;
+.demo-block.demo-block__quarter {
+  --demo-block__size: 25%;
 }
-.demo-block.demo-block-horizontal {
+.demo-block.demo-block__eighth {
+  --demo-block__size: 12.5%;
+}
+.demo-block.demo-block__horizontal {
   width: 100%;
 }
-.demo-block.demo-block-vertical {
+.demo-block.demo-block__vertical {
   height: 100%;
 }
 
-.demo-block.demo-block-autocolor:nth-of-type(8n + 1) {
-  background-color: indianred;
+.demo-block.demo-block__autocolor:nth-of-type(8n + 1) {
+  background-color: var(--demo-block__COLOR-1);
 }
 
-.demo-block.demo-block-autocolor:nth-of-type(8n + 2) {
-  background-color: goldenrod;
+.demo-block.demo-block__autocolor:nth-of-type(8n + 2) {
+  background-color: var(--demo-block__COLOR-2);
 }
 
-.demo-block.demo-block-autocolor:nth-of-type(8n + 3) {
-  background-color: yellow;
+.demo-block.demo-block__autocolor:nth-of-type(8n + 3) {
+  background-color: var(--demo-block__COLOR-3);
 }
 
-.demo-block.demo-block-autocolor:nth-of-type(8n + 4) {
-  background-color: lightseagreen;
+.demo-block.demo-block__autocolor:nth-of-type(8n + 4) {
+  background-color: var(--demo-block__COLOR-4);
 }
 
-.demo-block.demo-block-autocolor:nth-of-type(8n + 5) {
-  background-color: skyblue;
+.demo-block.demo-block__autocolor:nth-of-type(8n + 5) {
+  background-color: var(--demo-block__COLOR-5);
 }
 
-.demo-block.demo-block-autocolor:nth-of-type(8n + 6) {
-  background-color: lavender;
+.demo-block.demo-block__autocolor:nth-of-type(8n + 6) {
+  background-color: var(--demo-block__COLOR-6);
 }
 
-.demo-block.demo-block-autocolor:nth-of-type(8n + 7) {
-  background-color: plum;
+.demo-block.demo-block__autocolor:nth-of-type(8n + 7) {
+  background-color: var(--demo-block__COLOR-7);
 }
 
-.demo-block.demo-block-autocolor:nth-of-type(8n + 8) {
-  background-color: darkgray;
+.demo-block.demo-block__autocolor:nth-of-type(8n + 8) {
+  background-color: var(--demo-block__COLOR-8);
 }
 
-.demo-block.demo-block-outline-autocolor:nth-of-type(8n + 1) {
-  outline: 1px dashed indianred;
+.demo-block.demo-block__outline-autocolor:nth-of-type(8n + 1) {
+  outline: 1px dashed var(--demo-block__COLOR-1);
 }
 
-.demo-block.demo-block-outline-autocolor:nth-of-type(8n + 2) {
-  outline: 1px dashed goldenrod;
+.demo-block.demo-block__outline-autocolor:nth-of-type(8n + 2) {
+  outline: 1px dashed var(--demo-block__COLOR-2);
 }
 
-.demo-block.demo-block-outline-autocolor:nth-of-type(8n + 3) {
-  outline: 1px dashed yellow;
+.demo-block.demo-block__outline-autocolor:nth-of-type(8n + 3) {
+  outline: 1px dashed var(--demo-block__COLOR-3);
 }
 
-.demo-block.demo-block-outline-autocolor:nth-of-type(8n + 4) {
-  outline: 1px dashed lightseagreen;
+.demo-block.demo-block__outline-autocolor:nth-of-type(8n + 4) {
+  outline: 1px dashed var(--demo-block__COLOR-4);
 }
 
-.demo-block.demo-block-outline-autocolor:nth-of-type(8n + 5) {
-  outline: 1px dashed skyblue;
+.demo-block.demo-block__outline-autocolor:nth-of-type(8n + 5) {
+  outline: 1px dashed var(--demo-block__COLOR-5);
 }
 
-.demo-block.demo-block-outline-autocolor:nth-of-type(8n + 6) {
-  outline: 1px dashed lavender;
+.demo-block.demo-block__outline-autocolor:nth-of-type(8n + 6) {
+  outline: 1px dashed var(--demo-block__COLOR-6);
 }
 
-.demo-block.demo-block-outline-autocolor:nth-of-type(8n + 7) {
-  outline: 1px dashed plum;
+.demo-block.demo-block__outline-autocolor:nth-of-type(8n + 7) {
+  outline: 1px dashed var(--demo-block__COLOR-7);
 }
 
-.demo-block.demo-block-outline-autocolor:nth-of-type(8n + 8) {
-  outline: 1px dashed darkgray;
+.demo-block.demo-block__outline-autocolor:nth-of-type(8n + 8) {
+  outline: 1px dashed var(--demo-block__COLOR-8);
 }
