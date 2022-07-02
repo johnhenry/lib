@@ -65,18 +65,17 @@ footer {
 .demo-list {
   padding: 8px;
 }
-.demo-list dl {
-  padding-left: 16px;
-}
-.demo-list dl > * {
+.demo-list h2 {
   padding-top: 8px;
 }
-.demo-list dt {
+
+.demo-list h3,
+.demo-list p {
+  padding: 4px;
   font-weight: bold;
   cursor: pointer;
 }
-.demo-list dd {
-  cursor: pointer;
+.demo-list p {
   font-size: 0.85rem;
 }
 .controls {
