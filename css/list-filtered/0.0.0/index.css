@@ -1,0 +1,3 @@
+.list-filtered:has([filtered]) > *:not([filtered]) {
+  display: none;
+}

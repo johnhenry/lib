@@ -78,7 +78,7 @@ export default `<div class="application">
     </div>`;
 
 export const style = `
-@import url('http://localhost:3001/css/demo-block/0.0.0/index.css');
+@import url('http://johnhenry.github.io/css/demo-block/0.0.0/index.css');
 .application{
   width: 100%;
   height: 100%;
