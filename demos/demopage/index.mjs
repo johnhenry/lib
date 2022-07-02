@@ -1,5 +1,5 @@
 import query from "https://johnhenry.github.io/lib/js/url-params/0.0.0/query.mjs";
-import hash, { currentHash } from "../../js/url-params/0.0.0/hash.mjs";
+import { currentHash } from "../../js/url-params/0.0.0/hash.mjs";
 import w3CodeColor from "./w3-code-color.mjs";
 const SETTINGS_LOCATION = query.settings
   ? decodeURIComponent(query.settings)
@@ -25,13 +25,15 @@ const sourceMain = document.querySelector("#source-main");
 const sourcePost = document.querySelector("#source-post");
 const handlers = {};
 const environments = {};
+
 const createMenu = async () => {
-  const output = [];
   let sectionCounter = 0;
+  let ele;
   for (const [sectionTitle, urls] of Object.entries(sections)) {
-    output.push(`<h2>${sectionTitle ?? `section:[${sectionCounter}]`}</h2>`);
+    ele = globalThis.document.createElement("h2");
+    ele.innerText = sectionTitle ?? `section:[${sectionCounter}]`;
+    demoList.appendChild(ele);
     let demoCounter = 0;
-    output.push(`<dl>`);
     for (const url of urls) {
       const gid = `${sectionCounter}-${demoCounter}`;
       const {
@@ -45,9 +47,10 @@ const createMenu = async () => {
         scripts = [],
         scriptsPost = [],
       } = await import(url);
-      output.push(`
-      <dt data-target="${gid}" >${demoTitle}</dt>
-      `);
+      ele = globalThis.document.createElement("h3");
+      ele.innerText = demoTitle;
+      ele.setAttribute("data-target", gid);
+      demoList.appendChild(ele);
       handlers[gid] = {
         template,
         title: demoTitle,
@@ -60,7 +63,6 @@ const createMenu = async () => {
         ...(variations?.default || {}),
       };
       environments[gid] = {};
-
       if (variations) {
         let variationCounter = 0;
         // if (!variations.default) {
@@ -75,7 +77,10 @@ const createMenu = async () => {
           const finalVariationTitle = `${demoTitle}: ${
             variationTitle ?? `variation: [${vid}]`
           }`;
-          output.push(`<dd data-target="${vid}">${finalVariationTitle}</dd>`);
+          ele = globalThis.document.createElement("p");
+          ele.innerText = finalVariationTitle;
+          ele.setAttribute("data-target", vid);
+          demoList.appendChild(ele);
           handlers[vid] = {
             template,
             title: finalVariationTitle,
@@ -90,13 +95,10 @@ const createMenu = async () => {
           variationCounter += 1;
         }
       }
-
       demoCounter += 1;
     }
-    output.push(`</dl>`);
     sectionCounter += 1;
   }
-  return output.join("\n");
 };
 const gen = (id, environment = environments[id]) => {
   if (!handlers[id]) {
@@ -115,8 +117,8 @@ const gen = (id, environment = environments[id]) => {
   } = handlers[id];
   const main =
     typeof template === "function"
-      ? template({ ...props, ...environment })
-      : template;
+      ? async () => template({ ...props, ...environment })
+      : async () => template;
   preMain.push(`<!DOCTYPE html>
       <html>
       <head>
@@ -202,33 +204,29 @@ const gen = (id, environment = environments[id]) => {
   const postMain = postWrap
     ? [postWrap, `</body>`, `</html>`]
     : [`</body>`, `</html>`];
-  const parts = [...preMain, main, ...postMain];
   return {
     title,
-    src:
-      "data:text/html;charset=utf-8," +
-      encodeURIComponent([...parts].join("\n")),
     preMain,
-    main: main.trim(),
+    main,
     postMain,
-    parts,
     controls: ctrls.join("\n"),
   };
 };
-const writeSource = (generated) => {
+const writeSource = async (generated) => {
+  sourcePre.title = generated.preMain.join("\n");
+  sourceMain.title = generated.title;
+  sourcePost.title = generated.postMain.join("\n");
+  document.getElementById("experiment-title").innerText = generated.title;
+  const src = await generated.main();
   if (generated.src !== renderFrame.src) {
-    renderFrame.src = generated.src;
-    sourcePre.title = generated.preMain.join("\n");
-    sourceMain.innerText = generated.main;
-    sourceMain.title = generated.main;
-    sourcePost.title = generated.postMain.join("\n");
+    renderFrame.src = `data:text/html;charset=utf-8,${encodeURIComponent(
+      [...generated.preMain, src.trim(), generated.postMain].join("\n")
+    )}`;
+    sourceMain.innerText = src.trim();
     w3CodeColor(sourceMain);
-
-    document.getElementById("experiment-title").innerText = generated.title;
   }
 };
-
-const selectDemo = function ({ target }) {
+const selectDemo = ({ target }) => {
   const id = target.dataset["target"];
   const generated = gen(id);
   if (generated) {
@@ -242,8 +240,7 @@ const setHash = function ({ target }) {
     globalThis.location.hash = `target=${id}`;
   }
 };
-
-const updateControls = function ({ target }) {
+const updateControls = ({ target }) => {
   const id = target.dataset.env;
   const environment = environments[id];
   environment[target.name] = target.value.trim();
@@ -252,16 +249,19 @@ const updateControls = function ({ target }) {
     writeSource(generated);
   }
 };
+const debounce =
+  (func, time = 100, timeout) =>
+  (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(func, time, ...args);
+  };
 const readHash = () => {
   selectDemo({
     target: { dataset: { target: currentHash().target || "0-0" } },
   });
 };
-
 demoList.addEventListener("click", setHash);
-controls.addEventListener("input", updateControls);
-demoList.innerHTML = await createMenu();
-
+controls.addEventListener("input", debounce(updateControls));
 globalThis.addEventListener("hashchange", readHash);
-
+await createMenu();
 readHash();

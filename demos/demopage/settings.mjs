@@ -1,7 +1,7 @@
 export const sections = {
   CSS: [
     "./examples/css/flex-box-example.mjs",
-    "./examples/css/demo-blocks-example.mjs",
+    "./examples/css/demo-blocks/index.mjs",
   ],
 };
 export const style = ``;
