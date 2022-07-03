@@ -3,28 +3,6 @@
   display: inline-block;
   width: var(--demo-block__size-width, var(--demo-block__size, 100%));
   height: var(--demo-block__size-height, var(--demo-block__size, 100%));
-  /*
-  https://learnui.design/tools/data-color-picker.html#palette
-  */
-  /*
-  --demo-block__COLOR-1: indianred;
-  --demo-block__COLOR-2: goldenrod;
-  --demo-block__COLOR-3: yellow;
-  --demo-block__COLOR-4: lightseagreen;
-  --demo-block__COLOR-5: skyblue;
-  --demo-block__COLOR-6: lavender;
-  --demo-block__COLOR-7: plum;
-  --demo-block__COLOR-8: darkgray;
-  */
-
-  --demo-block__COLOR-1: #323362;
-  --demo-block__COLOR-2: #5e3973;
-  --demo-block__COLOR-3: #8b3c7a;
-  --demo-block__COLOR-4: #b74076;
-  --demo-block__COLOR-5: #db4a67;
-  --demo-block__COLOR-6: #f56152;
-  --demo-block__COLOR-7: #ff8135;
-  --demo-block__COLOR-8: #ffa600;
 }
 .demo-block.demo-block__golden {
   height: unset;
@@ -127,6 +105,29 @@
 }
 .demo-block.demo-block__vertical {
   height: 100%;
+}
+
+.demo-block.demo-block__autocolor {
+  --demo-block__COLOR-1: indianred;
+  --demo-block__COLOR-2: goldenrod;
+  --demo-block__COLOR-3: yellow;
+  --demo-block__COLOR-4: lightseagreen;
+  --demo-block__COLOR-5: skyblue;
+  --demo-block__COLOR-6: lavender;
+  --demo-block__COLOR-7: plum;
+  --demo-block__COLOR-8: darkgray;
+
+  /*
+  https://learnui.design/tools/data-color-picker.html#palette
+  */
+  /* --demo-block__COLOR-1: #323362;
+  --demo-block__COLOR-2: #5e3973;
+  --demo-block__COLOR-3: #8b3c7a;
+  --demo-block__COLOR-4: #b74076;
+  --demo-block__COLOR-5: #db4a67;
+  --demo-block__COLOR-6: #f56152;
+  --demo-block__COLOR-7: #ff8135;
+  --demo-block__COLOR-8: #ffa600; */
 }
 
 .demo-block.demo-block__autocolor:nth-of-type(8n + 1) {

@@ -1,5 +1,5 @@
 export default ({ direction = "", gap = "1" }) =>
-  `<div style="display:flex;gap:${gap}px${
+  `<div style="display:flex;gap: ${gap}px${
     direction ? `;flex-direction:${direction}` : ""
   }">
     <span>This</span>

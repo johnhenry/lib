@@ -12,13 +12,13 @@
   column-gap: var(--inner-space, 1rem);
 }
 
-.list-polar.list-polar--vertical {
+.list-polar.list-polar__vertical {
   flex-direction: column;
   width: unset;
   height: 100%;
   list-style: none;
 }
-.list-polar.list-polar--vertical > * {
+.list-polar.list-polar__vertical > * {
   display: inline-flex;
   flex-direction: column;
   column-gap: unset;

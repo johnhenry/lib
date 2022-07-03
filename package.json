@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "prettier --write . ",
     "serve": "http-server . --port=3001 --cors -c-1",
-    "serve:live": "live-server . --port=3001 --cors --no-browser",
+    "serve:live": "live-server . --port=3001 --cors --no-browser --ignore='./.git'",
     "jest": "jest --config=./config/jest.config.js",
     "test:jest": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --verbose",
     "test:jest:watch": "node --experimental-vm-modules node_modules/.bin/jest --config=./config/jest.config.js --watchAll --verbose",

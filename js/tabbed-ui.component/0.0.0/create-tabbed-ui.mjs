@@ -1,9 +1,12 @@
-const tabTree = (element, last) => {
+const tabTree = (element) => {
   const panels = Array.prototype.filter.call(
     element.childNodes,
     (x) => x.nodeType === 1
   );
-  const tabBar = last ? panels.pop() : panels.shift();
+  let tabBarIndex = panels.findIndex((x) => x.hasAttribute("data-tab-bar"));
+  tabBarIndex = tabBarIndex === -1 ? 0 : tabBarIndex;
+  const tabBar = panels[tabBarIndex];
+  panels.splice(tabBarIndex, 1);
   const tabs = Array.prototype.filter.call(
     tabBar.childNodes,
     (x) => x.nodeType === 1
@@ -11,9 +14,9 @@ const tabTree = (element, last) => {
 
   return { tabs, panels, tabBar };
 };
-const createTabbedUI = (element, { last = false } = { last: false }) => {
+export const createTabbedUI = (element) => {
   const update = ({ target }) => {
-    const { tabs, panels, tabBar } = tabTree(element, last);
+    const { tabs, panels, tabBar } = tabTree(element);
     let i = 0;
     if (target === tabBar || !tabBar.contains(target)) {
       return;
@@ -34,7 +37,7 @@ const createTabbedUI = (element, { last = false } = { last: false }) => {
     }
   };
   element.addEventListener("click", update);
-  const { tabs } = tabTree(element, last);
+  const { tabs } = tabTree(element);
   const target = tabs[element.dataset.defaultIndex] || tabs[0];
   update({ target });
   return element;
