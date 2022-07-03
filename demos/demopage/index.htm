@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="../../css/list-polar/0.0.0/index.css" />
     <link rel="stylesheet" href="./index.css" />
     <script type="module">
-      import createTabbedUI from "./create-tabbed-ui.mjs";
-      createTabbedUI(document.getElementById("tabbed-ui"), { last: true });
+      import TabbedUI from "../../js/tabbed-ui.component/0.0.0/index.mjs";
+      import ColorCode from "../../js/color-code.component/0.0.0/index.mjs";
+      customElements.define("tabbed-ui", TabbedUI);
+      customElements.define("color-code", ColorCode);
     </script>
   </head>
   <body>
@@ -45,7 +47,7 @@
             </li>
           </ul>
         </header>
-        <div
+        <tabbed-ui
           id="tabbed-ui"
           style="display: flex"
           class="footer-fixed footer-fixed__right"
@@ -58,6 +60,7 @@
               title="rendered component"
               data-display="block"
               allowtransparency="true"
+              allow="camera self;microphone self"
             ></iframe>
           </div>
           <div
@@ -68,15 +71,15 @@
           >
             <div>
               <pre id="source-pre">...</pre>
-              <pre id="source-main"></pre>
+              <color-code id="source-main"></color-code>
               <pre id="source-post">...</pre>
             </div>
           </div>
-          <footer class="tabs">
+          <footer class="tabs" data-tab-bar>
             <button>👓</button>
             <button>≡</button>
           </footer>
-        </div>
+        </tabbed-ui>
       </div>
       <footer id="controls" class="controls"></footer>
     </div>

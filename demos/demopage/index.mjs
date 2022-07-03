@@ -1,10 +1,12 @@
-import query from "https://johnhenry.github.io/lib/js/url-params/0.0.0/query.mjs";
 import { currentHash } from "../../js/url-params/0.0.0/hash.mjs";
-import w3CodeColor from "./w3-code-color.mjs";
-const SETTINGS_LOCATION = query.settings
-  ? decodeURIComponent(query.settings)
-  : "./settings.mjs";
 
+let SETTINGS_LOCATION;
+try {
+  const ALT = await import("./settings-alt.mjs");
+  SETTINGS_LOCATION = ALT.default;
+} catch {
+  SETTINGS_LOCATION = "./settings.mjs";
+}
 const { sections, preWrap, postWrap, frameStyle } = await import(
   SETTINGS_LOCATION
 );
@@ -220,10 +222,9 @@ const writeSource = async (generated) => {
   const src = await generated.main();
   if (generated.src !== renderFrame.src) {
     renderFrame.src = `data:text/html;charset=utf-8,${encodeURIComponent(
-      [...generated.preMain, src.trim(), generated.postMain].join("\n")
+      [...generated.preMain, src.trim(), ...generated.postMain].join("\n")
     )}`;
     sourceMain.innerText = src.trim();
-    w3CodeColor(sourceMain);
   }
 };
 const selectDemo = ({ target }) => {

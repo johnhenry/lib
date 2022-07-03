@@ -5,11 +5,13 @@
   padding: var(--outer-space, 1rem);
   column-gap: var(--inner-space, 1rem);
 }
-.list-split > .list-splitter--before {
-  margin-left: auto;
-}
-.list-split > .list-splitter--on {
+
+.list-split > .list-splitter {
   margin-right: auto;
+}
+
+.list-split > .list-splitter__on {
+  margin-left: auto;
 }
 
 .list-split.list-split--vertical {
@@ -21,11 +23,11 @@
   column-gap: unset;
   row-gap: var(--inner-space, 1rem);
 }
-.list-split.list-split--vertical > .list-splitter--before {
+.list-split.list-split--vertical > .list-splitter__on {
   margin-left: unset;
   margin-top: auto;
 }
-.list-split.list-split--vertical > .list-splitter--on {
+.list-split.list-split--vertical > .list-splitter {
   margin-right: unset;
   margin-bottom: auto;
 }
