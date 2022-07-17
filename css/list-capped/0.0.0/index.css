@@ -11,3 +11,16 @@
 .list-capped.list-capped__vertical > *:last-child {
   border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
+
+.list-capped--horizontal > *:first-child {
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+.list-capped--horizontal > *:last-child {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+.list-capped--vertical > *:first-child {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+.list-capped0--vertical > *:last-child {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
