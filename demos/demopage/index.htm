@@ -11,10 +11,9 @@
     <link rel="stylesheet" href="../../css/list-polar/0.0.0/index.css" />
     <link rel="stylesheet" href="./index.css" />
     <script type="module">
-      import TabbedUI from "../../js/tabbed-ui.component/0.0.0/index.mjs";
-      import ColorCode from "../../js/color-code.component/0.0.0/index.mjs";
-      customElements.define("tabbed-ui", TabbedUI);
-      customElements.define("color-code", ColorCode);
+      import "../../js/tabbed-ui.component/0.0.0/global.mjs";
+      import "../../js/code-color.component/0.0.0/global.mjs";
+      import "../../js/style-headings.component/0.0.0/global.mjs";
     </script>
   </head>
   <body>
@@ -27,6 +26,25 @@
       "
       style="--header-fixed__size: 256px; --footer-fixed__size: 128px"
     >
+      <style-headings
+        attribute="font-size"
+        unit="rem"
+        min="1"
+        max="2"
+        limit="4"
+        common="padding-top: 8px;
+  padding-left: 4px;
+  font-weight: bold;
+  cursor: pointer;"
+      ></style-headings>
+      <style-headings
+        attribute="font-weight"
+        unit=""
+        min="400"
+        max="800"
+        spread="700"
+        limit="4"
+      ></style-headings>
       <header>
         <h1>🧱 Demo Page</h1>
         <div id="demo-list" class="demo-list"></div>
@@ -71,13 +89,15 @@
           >
             <div>
               <pre id="source-pre">...</pre>
-              <color-code id="source-main"></color-code>
+              <code-color id="source-main"></code-color>
               <pre id="source-post">...</pre>
             </div>
           </div>
-          <footer class="tabs" data-tab-bar>
+          <footer class="tabs" slot="tab-bar">
             <button>👓</button>
             <button>≡</button>
+            <!-- <div role="button">👓</div>
+            <div role="button">≡</div> -->
           </footer>
         </tabbed-ui>
       </div>

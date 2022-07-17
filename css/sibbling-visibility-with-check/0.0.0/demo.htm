@@ -7,21 +7,546 @@
     <link rel="stylesheet" href="../../demo-block/0.0.0/index.css" />
     <link rel="stylesheet" href="./index.css" />
     <style>
+      .no-has-warning:has(> *) {
+        display: none;
+      }
+    </style>
+    <style>
+      .card
+        > .show-sibblings-with-check
+        > input:is([type="checkbox"], [type="radio"]) {
+        display: none;
+      }
+    </style>
+    <style>
+      * {
+        font: inherit;
+      }
+      body,
+      html {
+        background-color: rgb(217, 54, 54);
+      }
+      :root {
+        font-size: 1px;
+      }
       .application {
+        font-size: 16rem;
+        background-attachment: fixed;
+        background-color: rgb(217, 54, 54);
         height: 100%;
         width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 100vh;
+        justify-items: center;
+        align-items: center;
+        font-family: Arial;
+        color: white;
+      }
+      .application > div {
+        width: 100%;
+      }
+      .local.card {
+        width: 256px;
+        background-color: white;
+        color: black;
+      }
+      .local.card > label {
+        display: block;
+        width: 100%;
+        color: white;
+        background-color: rebeccapurple;
+        padding: 8px;
+        cursor: pointer;
+      }
+      .local.card > label > input:is([type="checkbox"], [type="radio"]) {
+        display: none;
+      }
+      .local.card > label:has(:is([type="checkbox"], [type="radio"])):before {
+        content: "⥀ ";
+      }
+      .local.card
+        > label:has(:is([type="checkbox"], [type="radio"]):checked):before {
+        content: "⤿ ";
+      }
+
+      .local.card > :not(label) {
+        text-align: center;
+        padding: 8px;
+      }
+
+      .local.card p {
+        font-size: 12rem;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        align-self: center;
+        gap: 4px;
+      }
+      .fill-container-if-open {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 32px 0;
+      }
+      .fill-container-if-open > * {
+        flex: 0 0;
+      }
+      .fill-container-if-open
+        > :has(:is([type="checkbox"], [type="radio"]):is(:checked)) {
+        flex: 1 1;
+      }
+      .fill-container-if-open .local.card {
+        height: 100%;
+      }
+      .horizontal-list {
+        flex-direction: row;
+      }
+      .horizontal-list .local.card label {
+        width: unset;
+        writing-mode: vertical-rl;
+        height: 100%;
+        display: inline-block;
+      }
+      .horizontal-list .local.card {
+        --check-display: inline-block;
+        width: unset;
+        height: 256px;
+        display: flex;
+      }
+      .horizontal-list.fill-container-if-open {
+        display: flex;
+        width: 100%;
+        height: unset;
+      }
+      .tabbed-ui {
+        display: grid;
+        grid-template-rows: 32px 1fr;
+      }
+      .tabbed-ui > :nth-child(2n + 1) {
+        grid-row-start: 1;
+      }
+      .tabbed-ui > :nth-child(2n) {
+        grid-column: span 3;
+
+        /* grid-column-start: 0;
+        grid-column-end: content-end; */
+      }
+
+      .tabbed-ui.bottom {
+        grid-template-rows: 1fr 32px;
+      }
+      .tabbed-ui.bottom > :nth-child(2n + 1) {
+        grid-row-start: 2;
+      }
+
+      .tabbed-ui.left {
+        grid-auto-flow: column;
+        /* grid-row-start: 1; */
+        grid-template-rows: unset;
+        grid-template-columns: 1fr 1fr;
+      }
+      .tabbed-ui.left > :nth-child(2n + 1) {
+        grid-row-start: unset;
+        grid-column-start: 1;
+      }
+      .tabbed-ui.left > :nth-child(2n) {
+        grid-column: unset;
+        grid-row: span 3;
+      }
+
+      .tabbed-ui.right {
+        grid-auto-flow: column;
+        grid-template-rows: unset;
+        grid-template-columns: 1fr 1fr;
+      }
+      .tabbed-ui.right > :nth-child(2n + 1) {
+        grid-row-start: unset;
+        grid-column-start: 2;
+      }
+
+      .tabbed-ui.right > :nth-child(2n) {
+        grid-column: unset;
+        grid-row: span 3;
+      }
+
+      .tabbed-ui div {
+        background-color: red;
+        color: white;
       }
     </style>
     <title>Document</title>
   </head>
   <body>
     <div class="application">
-      <header class="show-sibblings-with-check">
-        <label>abc <input type="checkbox" /></label>
-      </header>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
+      <div
+        class="no-has-warning"
+        style="color: orange; padding: 32px; text-align: center"
+      >
+        <p>
+          ⚠️ Warning! This browser does not support
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has"
+            target="_blank"
+            >:has()</a
+          >.⚠️
+        </p>
+        <p>Examples on this page will not work properly.</p>
+      </div>
+      <ul>
+        <li><h1>Single selection</h1></li>
+        <li>
+          <div class="local card">
+            <label class="show-sibblings-with-check"
+              >Single 0 <input type="radio" name="radio"
+            /></label>
+            <div>
+              Close ⇃
+              <p>
+                This uses a hidden radio button. Click lables in other boxes to
+                close this card.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="local card">
+            <label class="show-sibblings-with-check"
+              >Single 1 <input type="radio" name="radio" checked
+            /></label>
+            <div>
+              Close ⥯
+              <p>
+                This uses a hidden radio button. Click lables in other boxes to
+                close this card.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="local card">
+            <label class="show-sibblings-with-check"
+              >Single 2 <input type="radio" name="radio"
+            /></label>
+            <div>
+              Close ↾
+              <p>
+                This uses a hidden radio button. Click lables in other boxes to
+                close this card.
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <!--  -->
+      <div>
+        <h1>Single selection</h1>
+        <ul class="horizontal-list">
+          <li>
+            <div class="local card">
+              <label class="show-sibblings-with-check"
+                >Single 0 <input type="radio" name="radio1"
+              /></label>
+              <div>
+                Close ⇁
+                <p>
+                  This uses a hidden radio button. Click lables in other boxes
+                  to close this card.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="local card">
+              <label class="show-sibblings-with-check"
+                >Single 1 <input type="radio" name="radio1" checked
+              /></label>
+              <div>
+                Close ⇋
+                <p>
+                  This uses a hidden radio button. Click lables in other boxes
+                  to close this card.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="local card">
+              <label class="show-sibblings-with-check"
+                >Single 2 <input type="radio" name="radio1"
+              /></label>
+              <div>
+                Close ↼
+                <p>
+                  This uses a hidden radio button. Click lables in other boxes
+                  to close this card.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <ul>
+        <li><h1>Multiple selection</h1></li>
+        <li>
+          <div class="local card">
+            <label class="show-sibblings-with-check"
+              >Multiple 0 <input type="checkbox" checked
+            /></label>
+            <div>
+              Open/Close ↥
+              <p>
+                This uses a hidden checkbox. Click the above label to freely
+                open and close the card.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="local card">
+            <label class="show-sibblings-with-check"
+              >Multiple 1 <input type="checkbox"
+            /></label>
+            <div>
+              Open/Close ↥
+              <p>
+                This uses a hidden checkbox. Click the above label to freely
+                open and close the card.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="local card">
+            <label class="show-sibblings-with-check"
+              >Multiple 2 <input type="checkbox" checked
+            /></label>
+            <div>
+              Open/Close ↥
+              <p>
+                This uses a hidden checkbox. Click the above label to freely
+                open and close the card.
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div>
+        <h1>Multiple selection</h1>
+        <ul class="horizontal-list">
+          <li>
+            <div class="local card">
+              <label class="show-sibblings-with-check"
+                >Multiple 0 <input type="checkbox" checked
+              /></label>
+              <div>
+                Open/Close ↤
+                <p>
+                  This uses a hidden checkbox. Click the above label to freely
+                  open and close the card.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="local card">
+              <label class="show-sibblings-with-check"
+                >Multiple 1 <input type="checkbox"
+              /></label>
+              <div>
+                Open/Close ↤
+                <p>
+                  This uses a hidden checkbox. Click the above label to freely
+                  open and close the card.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="local card">
+              <label class="show-sibblings-with-check"
+                >Multiple 2 <input type="checkbox" checked
+              /></label>
+              <div>
+                Open/Close ↤
+                <p>
+                  This uses a hidden checkbox. Click the above label to freely
+                  open and close the card.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!--  -->
+
+      <ul class="fill-container-if-open">
+        <li><h1>Multiple selection -- [Fill container if open]</h1></li>
+        <li>
+          <div class="local card">
+            <label class="show-sibblings-with-check"
+              >M 0 <input type="checkbox"
+            /></label>
+            <div>
+              Open/Close ↥
+              <p>
+                This uses a hidden checkbox. Click the above label to freely
+                open and close the card.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="local card">
+            <label class="show-sibblings-with-check"
+              >M 1 <input type="checkbox"
+            /></label>
+            <div>
+              Open/Close ↥
+              <p>
+                This uses a hidden checkbox. Click the above label to freely
+                open and close the card.
+              </p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="local card">
+            <label class="show-sibblings-with-check"
+              >M 2 <input type="checkbox" checked
+            /></label>
+            <div>
+              Open/Close ↥
+              <p>
+                This uses a hidden checkbox. Click the above label to freely
+                open and close the card.
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div>
+        <h1>Multiple selection -- [Fill container if open]</h1>
+        <ul class="fill-container-if-open horizontal-list">
+          <li>
+            <div class="local card">
+              <label class="show-sibblings-with-check"
+                >M 0 <input type="checkbox"
+              /></label>
+              <div>
+                Open/Close ↤
+                <p>
+                  This uses a hidden checkbox. Click the above label to freely
+                  open and close the card.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="local card">
+              <label class="show-sibblings-with-check"
+                >M 1 <input type="checkbox"
+              /></label>
+              <div>
+                Open/Close ↤
+                <p>
+                  This uses a hidden checkbox. Click the above label to freely
+                  open and close the card.
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="local card">
+              <label class="show-sibblings-with-check"
+                >M 2 <input type="checkbox" checked
+              /></label>
+              <div>
+                Open/Close ↤
+                <p>
+                  This uses a hidden checkbox. Click the above label to freely
+                  open and close the card.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h1>Tabs</h1>
+        <div class="tabbed-ui local card">
+          <label class="show-sibbling-with-check"
+            >tab1 <input type="radio" name="radio3" checked
+          /></label>
+          <div>div1</div>
+          <label class="show-sibbling-with-check"
+            >tab2 <input type="radio" name="radio3"
+          /></label>
+          <div>div2</div>
+          <label class="show-sibbling-with-check"
+            >tab3 <input type="radio" name="radio3"
+          /></label>
+          <div>div3</div>
+        </div>
+      </div>
+      <div>
+        <h1>Tabs Left</h1>
+        <div class="tabbed-ui left local card">
+          <label class="show-sibbling-with-check"
+            >tab1 <input type="radio" name="radio4" checked
+          /></label>
+          <div>div1</div>
+          <label class="show-sibbling-with-check"
+            >tab2 <input type="radio" name="radio4"
+          /></label>
+          <div>div2</div>
+          <label class="show-sibbling-with-check"
+            >tab3 <input type="radio" name="radio4"
+          /></label>
+          <div>div3</div>
+        </div>
+      </div>
+      <div>
+        <h1>Tabs Right</h1>
+        <div class="tabbed-ui right local card">
+          <label class="show-sibbling-with-check"
+            >tab1 <input type="radio" name="radio5" checked
+          /></label>
+          <div>div1</div>
+          <label class="show-sibbling-with-check"
+            >tab2 <input type="radio" name="radio5"
+          /></label>
+          <div>div2</div>
+          <label class="show-sibbling-with-check"
+            >tab3 <input type="radio" name="radio5"
+          /></label>
+          <div>div3</div>
+        </div>
+      </div>
+      <div>
+        <h1>Tabs Bottom</h1>
+        <div class="tabbed-ui bottom local card">
+          <label class="show-sibbling-with-check"
+            >tab1 <input type="radio" name="radio6" checked
+          /></label>
+          <div>div1</div>
+          <label class="show-sibbling-with-check"
+            >tab2 <input type="radio" name="radio6"
+          /></label>
+          <div>div2</div>
+          <label class="show-sibbling-with-check"
+            >tab3 <input type="radio" name="radio6"
+          /></label>
+          <div>div3</div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

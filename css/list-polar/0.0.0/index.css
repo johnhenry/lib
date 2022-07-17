@@ -24,3 +24,30 @@
   column-gap: unset;
   row-gap: var(--inner-space, 1rem);
 }
+
+.list-polar--horizontal {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--outer-space, 1rem);
+}
+.list-polar--horizontal > * {
+  display: inline-flex;
+  flex-direction: row;
+  column-gap: var(--inner-space, 1rem);
+}
+.list-polar--vertical {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: var(--outer-space, 1rem);
+}
+.list-polar--vertical > * {
+  display: inline-flex;
+  flex-direction: column;
+  row-gap: var(--inner-space, 1rem);
+}

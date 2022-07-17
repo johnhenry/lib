@@ -1,0 +1,46 @@
+/* Add custom Javascript directly relevant to your application here. */
+html {
+  font-size: var(--size-font-base);
+  background-color: var(--color-background);
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+#app {
+  width: 100%;
+  height: fit-content;
+  font-family: var(--font-family-roboto);
+  color: var(--color-text);
+  font-size: 1rem;
+}
+#app > :where(header, footer) {
+  width: 100%;
+  position: fixed;
+  background-color: var(--color-foreground);
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-foreground);
+}
+#app > header {
+  top: 0;
+  height: var(--size-header-height);
+}
+#app > footer {
+  bottom: 0;
+  height: var(--size-footer-height);
+}
+#app > section {
+  padding-top: var(--size-header-height);
+  padding-bottom: var(--size-footer-height);
+  min-height: 100vh;
+  width: var(--size-section-width);
+  margin-left: var(--size-section-margin);
+  margin-right: var(--size-section-margin);
+  padding-left: var(--size-section-padding);
+  padding-right: var(--size-section-padding);
+  /* width: 50%;
+  margin-left: auto;
+  margin-right: auto; */
+
+  /* padding-left: 4rem;
+  padding-right: 4rem; */
+}

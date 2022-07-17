@@ -1,4 +1,4 @@
-node_modules
+node_modules/
 .github/workflows/.secrets
 .DS_Store
 .env/
@@ -11,3 +11,4 @@ demos/index.html
 index.json
 search.html
 consistency.html
+playground/
