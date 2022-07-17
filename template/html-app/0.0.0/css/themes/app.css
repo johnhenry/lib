@@ -1,0 +1,22 @@
+/* assign semantic meaning to custom properties */
+:root {
+  /* colors */
+  --color-text: #dbc8ab;
+  --color-text-muted: #aaa192;
+  --color-text-highlight: #ffd152;
+  --color-text-highlight-alt: #70d5be;
+  --color-foreground: #584b4f;
+  --color-midground: #3d3a3a;
+  --color-background: #343233;
+  /* fonts*/
+  --font-family-roboto: "Roboto", sans-serif;
+  --font-family-arial: Arial, Helvetica, sans-serif;
+  /* sizes */
+  --size-font-base: 16px;
+  --size-header-height: 2rem;
+  --size-footer-height: var(--size-header-height);
+
+  --size-section-width: 100%;
+  --size-section-margin: 0;
+  --size-section-padding: 4rem;
+}

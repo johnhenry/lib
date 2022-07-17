@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body></body>
+</html>
+<h1 id="query-container-html-component">Query Container HTML Component</h1>
+<p>Containter that changes based on a given media query</p>
+<p>Inspired by: https://github.com/tabvengers/spicy-sections</p>
+<h2 id="example-usage-usage">Example usage Usage</h2>
+<p>Single query:</p>
+<p>This following will produce an ordered list with class name 'ordered' and blue text when the window's width is between 400px and 900px.</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span>
+<span class="ot">  type=</span><span class="st">&quot;module&quot;</span>
+<span class="ot">  src=</span><span class="st">&quot;https://johnhenry.github.io/lib/js/define-component.component/0.0.0/global.mjs&quot;</span>
+<span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;define-component</span><span class="ot"> name=</span><span class="st">&quot;query-component&quot;</span><span class="ot"> src=</span><span class="st">&quot;./index.mjs&quot;</span><span class="kw">&gt;&lt;/define-component&gt;</span>
+<span class="kw">&lt;query-component</span>
+<span class="ot">  default=</span><span class="st">&quot;ul&quot;</span>
+<span class="ot">  query=</span><span class="st">&quot;</span>
+<span class="st">    [(min-width:300px) and (max-width:1200px)] ol.ordered[style=color:blue];</span>
+<span class="st">    [(min-width:400px) and (max-width:600px)] ol.ordered[style=color:red];</span>
+<span class="st">    &quot;</span>
+<span class="kw">&gt;</span>
+  <span class="kw">&lt;li&gt;</span>a<span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;</span>b<span class="kw">&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;</span>c<span class="kw">&lt;/li&gt;</span>
+<span class="kw">&lt;/query-component&gt;</span></code></pre></div>
+  </body>
+</html>

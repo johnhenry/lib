@@ -1,13 +1,15 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+:root {
+  font-size: 16px;
 }
+
 .application {
   width: 100%;
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: "Roboto", sans-serif;
   color: midnightblue;
+  font-size: 1rem;
 }
 ul {
   list-style: none;
@@ -54,8 +56,9 @@ footer {
   cursor: pointer;
 }
 
-.tabs button {
+.tabs > * {
   width: 100%;
+  padding: 6px;
 }
 
 .tabs [selected]::before {
@@ -64,19 +67,6 @@ footer {
 
 .demo-list {
   padding: 8px;
-}
-.demo-list h2 {
-  padding-top: 8px;
-}
-
-.demo-list h3,
-.demo-list p {
-  padding: 4px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.demo-list p {
-  font-size: 0.85rem;
 }
 .controls {
   padding: 16px;

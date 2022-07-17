@@ -79,7 +79,7 @@ const createMenu = async () => {
           const finalVariationTitle = `${demoTitle}: ${
             variationTitle ?? `variation: [${vid}]`
           }`;
-          ele = globalThis.document.createElement("p");
+          ele = globalThis.document.createElement("h4");
           ele.innerText = finalVariationTitle;
           ele.setAttribute("data-target", vid);
           demoList.appendChild(ele);
@@ -142,9 +142,7 @@ const gen = (id, environment = environments[id]) => {
   if (preWrap) {
     preMain.push(preWrap);
   }
-  const ctrls = [
-    `<span>name</span><span>description</span><span>control</span>`,
-  ];
+  const ctrls = [];
   const env = `data-env="${id}"`;
   for (const [name, control] of Object.entries(controls)) {
     const value = environment[name] ?? control.default;
@@ -202,7 +200,7 @@ const gen = (id, environment = environments[id]) => {
       }
     }
   }
-  ctrls.push("</table>");
+
   const postMain = postWrap
     ? [postWrap, `</body>`, `</html>`]
     : [`</body>`, `</html>`];
@@ -211,7 +209,7 @@ const gen = (id, environment = environments[id]) => {
     preMain,
     main,
     postMain,
-    controls: ctrls.join("\n"),
+    controls: ctrls,
   };
 };
 const writeSource = async (generated) => {
@@ -231,7 +229,16 @@ const selectDemo = ({ target }) => {
   const id = target.dataset["target"];
   const generated = gen(id);
   if (generated) {
-    controls.innerHTML = generated.controls;
+    console.log();
+    if (generated.controls.length) {
+      controls.innerHTML = [
+        `<span>name</span><span>description</span><span>control</span>`,
+        ...generated.controls,
+      ].join("\n");
+    } else {
+      controls.innerHTML = "";
+    }
+
     writeSource(generated);
   }
 };

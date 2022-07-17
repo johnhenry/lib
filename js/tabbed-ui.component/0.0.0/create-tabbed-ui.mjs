@@ -3,7 +3,9 @@ const tabTree = (element) => {
     element.childNodes,
     (x) => x.nodeType === 1
   );
-  let tabBarIndex = panels.findIndex((x) => x.hasAttribute("data-tab-bar"));
+  let tabBarIndex = panels.findIndex(
+    (x) => x.getAttribute("slot") === "tab-bar"
+  );
   tabBarIndex = tabBarIndex === -1 ? 0 : tabBarIndex;
   const tabBar = panels[tabBarIndex];
   panels.splice(tabBarIndex, 1);

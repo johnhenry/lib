@@ -1,0 +1,9 @@
+@media (orientation: landscape) {
+  :root {
+    --size-section-width: 50%;
+    --size-section-margin: auto;
+    --size-section-padding: unset;
+  }
+}
+:root .display-landscape {
+}
