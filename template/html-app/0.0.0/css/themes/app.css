@@ -13,10 +13,12 @@
   --font-family-arial: Arial, Helvetica, sans-serif;
   /* sizes */
   --size-font-base: 16px;
-  --size-header-height: 2rem;
+  --size-header-height: 4rem;
   --size-footer-height: var(--size-header-height);
 
   --size-section-width: 100%;
   --size-section-margin: 0;
   --size-section-padding: 4rem;
+
+  --size-border-radius: 2rem;
 }
