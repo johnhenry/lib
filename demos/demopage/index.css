@@ -6,8 +6,8 @@
 .application {
   width: 100%;
   height: 100%;
-  /* font-family: Arial, Helvetica, sans-serif; */
   font-family: "Roboto", sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
   color: midnightblue;
   font-size: 1rem;
 }

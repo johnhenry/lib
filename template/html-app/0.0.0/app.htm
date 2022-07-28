@@ -15,23 +15,30 @@
   spread="700"
   limit="7"
 ></style-headings>
-<header>
-  <a href="#">0</a>
-  <a href="#one">1</a>
-  <a href="#two">2</a>
+<css-doodle>
+  @grid: 1 / 100vw 100vh; background-size: 83px 135px; background-color:
+  #D24B45; background-image: @doodle( @grid: 2 / 100%; background: @pn(#3C2B34,
+  #F7F0E9, #F7F0E9); transform-origin: @pn(100% 100%, 0 100%, 100% 0, 0 0);
+  transform: rotateX(45deg) skewY(@pn(34deg, -34deg, -34deg)); );</css-doodle
+>
+<header class="list-polar--horizontal">
+  <span> </span>
+  <span>
+    <a href="#">0</a>
+    <a href="#one">1</a>
+    <a href="#two">2</a>
+  </span>
 </header>
 <section>
   <a name="one"><h1>Create Web Platform App</h1></a>
-  <h1>h1</h1>
-  <h2>h2</h2>
-  <h3>h3</h3>
-  <h4>h4</h4>
-  <h5>h5</h5>
-  <h6>h6</h6>
   <p>regular</p>
+  <div id="menu">
+    <a href="#">blog</a>
+    <a href="#one">me</a>
+    <a href="#two">projects</a>
+  </div>
 </section>
 <section>
   <a name="two"><h1>Goodbye World</h1></a>
-  <h2>One</h2>
 </section>
-<footer></footer>
+<footer class="list-polar--horizontal"><span>C -- </span></footer>

@@ -1,5 +1,6 @@
 @media (orientation: landscape) {
   :root {
+    --size-header-height: 2rem;
     --size-section-width: 50%;
     --size-section-margin: auto;
     --size-section-padding: unset;

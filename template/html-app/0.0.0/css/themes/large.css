@@ -1,8 +1,6 @@
-@media (min-width: 1024px) {
+@media (min-width: 1500px), (min-height: 1500px) {
   :root {
-    --size-section-width: 50%;
-    --size-section-margin: auto;
-    --size-section-padding: unset;
+    --size-font-base: 32px;
   }
 }
 :root .display-large {
