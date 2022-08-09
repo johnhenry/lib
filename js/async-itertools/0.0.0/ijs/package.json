@@ -1,0 +1,24 @@
+{
+  "name": "ijs",
+  "version": "1.0.0",
+  "description": "IJS is an alternative syntax for javascript centerered around squential data processing.",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build:sample": "node ./cli/index.mjs -p sample -o dist.sample",
+    "run:sample": "node dist.sample/index.mjs",
+    "build:run:sample": "npm run build:sample -s && npm run run:sample -s"
+  },
+  "main": "./src/index.mjs",
+  "bin": {
+    "ijs": "./index.mjs"
+  },
+  "dependencies": {
+    "split-string": "^6.1.0",
+    "yargs": "^17.5.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
