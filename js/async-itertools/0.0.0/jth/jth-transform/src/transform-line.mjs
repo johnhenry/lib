@@ -4,6 +4,8 @@ const commentMatch = /^\/\//;
 const assignMatch = /^(.+)\s?->\s?(.+)$/;
 const doMatch = /^js\{(.+)}$/;
 import splitOnSpace from "./split-on-space.mjs";
+const DEFAULT_EXT = ".jth";
+const TARGET_EXT = ".mjs";
 
 const transformLine = async (l, process, tokenizer) => {
   const line = l.trim();
@@ -12,9 +14,9 @@ const transformLine = async (l, process, tokenizer) => {
     exportMatch.test(line) ||
     commentMatch.test(line)
   ) {
-    if (line.endsWith('.ijs"')) {
+    if (line.endsWith(`.${DEFAULT_EXT}`)) {
       return {
-        lineJS: line.replace(".ijs", ".mjs"),
+        lineJS: line.replace(`.${TARGET_EXT}`, `.${TARGET_EXT}`),
         vars: [],
       };
     }
@@ -54,4 +56,5 @@ const transformLine = async (l, process, tokenizer) => {
   }
   return { lineJS: split, vars: [] };
 };
+
 export default transformLine;

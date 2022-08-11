@@ -1,16 +1,8 @@
-# IJS
-
-IJS is an alternative syntax for javascript
-centerered around squential data processing.
-
-Because it compiles to javascript,
-it is compatibale with existing libraries.
-
 ## Syntax
 
 ### Stack
 
-IJS is similar to other languages like joy and forth,
+Jth is similar to other languages like joy and forth,
 in that the primary API is a stack.
 
 The following produces an stack holding the number 1.
@@ -102,63 +94,3 @@ start .! 4 5 6 end .!;
 ### Transduction
 
 Infinity iterateAsync transducer(filter, map, take) ! ! console.log map!
-
-2 4 6 (dupe \* compose!) !; // 2 4 32
-
-dupe \* compose ! -> [square];
-dupe + compose ! -> [double];
-
-2 4 6 square !; // [2 4 36]
-
-2 4 6 square ! square !; // [2 16 36]
-
-![1, 2, 3] square; // [4 16 36]
-
-2 -> two;
-
-1 2 3 + !2 -> sum --> [itrator1];// 1 5
-
-1 2 3
-
-const expand = function*(stack){
-const item = take(1)(stack);
-yield* item;
-yield stack;
-}
-
-1 2 3 4 5 2 take ! --> iterator2; // 4 5
-
-iterator1 . ! iterator2 . ! --> iterator3;
-
-iterator1 iterator2 sequence ! --> iterator3;
-
-iterator3 log !; // logs `1 5 4 5`
-
-keyboard.keys expand ! toUpperCase !! log !! --> iterator4
-
-compose -- sequeintaillay apply functions
-
-! -- apply last function to previous parameters
-may specify !n to use exactly n parameters
-
-f:iterator -> iterator;
-
-!! -- apply transformer to a parameters sequentially as they come in
-
-{iterator, otherthing} export !;
-
-5 10 fromTo ! -->; 5 6 7 8 9
-
-5 from ! -->; 5 6 7 8 9 ...
-
-```
-
-```
-
-```
-
-```
-
-```
-
-```

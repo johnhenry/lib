@@ -1,0 +1,16 @@
+{
+  "name": "jth-transform",
+  "version": "0.0.0",
+  "description": "jth is an alternative syntax for javascript centerered around squential data processing.",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {},
+  "main": "./index.mjs",
+  "dependencies": {
+    "split-string": "^6.1.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

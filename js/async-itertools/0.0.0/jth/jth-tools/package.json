@@ -1,0 +1,9 @@
+{
+  "name": "jth-tools",
+  "version": "0.0.0",
+  "description": "basic tools for jth",
+  "main": "./index.mjs",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

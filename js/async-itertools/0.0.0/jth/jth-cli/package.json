@@ -1,7 +1,7 @@
 {
-  "name": "ijs",
-  "version": "1.0.0",
-  "description": "IJS is an alternative syntax for javascript centerered around squential data processing.",
+  "name": "jth-cli",
+  "version": "0.0.0",
+  "description": "jth is an alternative syntax for javascript centerered around squential data processing.",
   "directories": {
     "lib": "lib"
   },
@@ -10,12 +10,10 @@
     "run:sample": "node dist.sample/index.mjs",
     "build:run:sample": "npm run build:sample -s && npm run run:sample -s"
   },
-  "main": "./src/index.mjs",
   "bin": {
-    "ijs": "./index.mjs"
+    "jth": "./index.mjs"
   },
   "dependencies": {
-    "split-string": "^6.1.0",
     "yargs": "^17.5.1"
   },
   "keywords": [],
