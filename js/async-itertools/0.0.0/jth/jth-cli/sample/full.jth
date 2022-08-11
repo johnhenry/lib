@@ -1,8 +1,12 @@
-import { reverse$, dupe$, mapAsync$, drop$, transduceSync$, transduceAsync$, collect$ } from "../lib/std.mjs";
-import { sum$, product$, mean$, count$, modes$, mode$, sort$ , sortD$, randmoize$, first$, last$, take$} from "../lib/stat.mjs";
-import { transducers } from "../../index.mjs";
+import { reverse$, dupe$, mapAsync$, drop$, first$, collect$, if$, and$, or$, filter$, map$, to$, fromTo$, toInc$, fromToInc$ } from "../src/index.mjs";
+import { sum$, product$, mean$, count$, modes$, mode$, sort$ , sortD$, randmoize$, populationStandardDeviation$, sampleStandardDeviation$, fiveNumberSummary$} from "../lib/stat.mjs";
 
-"hello world" @!; /* prints "hello world" */
+1 2 3 4 5 6 (stack=>stack.map(x=>x**x)) !! (stack=>stack.map(x=>x+1)) !! @!! -> x;
+
+1 2 3 4 5 fiveNumberSummary$ !! @!!;
+
+
+'hello world' @!; /* prints "hello world" */
 Math.random() @!;
 "" @!;
 1 2 3 4 5 6 randmoize$ -> r;
@@ -22,12 +26,11 @@ double$ square$ :!! -> [doublesquare$];
 4 3 doublesquare$!! @!!;
 
 "" @!;
-3 4 5 async(x)=>x**4 mapAsync$!! @!! -> carol;
+3 4 5 (async(x)=>x**4) mapAsync$!! @!! -> carol;
 1 2 3 dupe$!! @!! -> dave;
 [1 2 3] @!! -> eva;
 3 square$ !! @!! -> [fiona];
-"" @!;
-[1 2 3]. transducers.map(x=>x*x) transduceSync$ !! .! @!! -> [x] ;
+
 "" @!;
 1 2 3 -> start;
 7 8 9 -> end;
@@ -60,3 +63,21 @@ list .! mean$!! ->[mean];
 1 2 3 -> [a,b,c];
 
 c b a @!!;
+
+
+3 4 5 6 7 4 false if$ !! @!!;
+
+0 0 0 6 7 0 false or$ !! 12 3 @!!;
+
+3 4 5 6 7 4 (x=>x>5) mapAsync$ !! @!!;
+
+
+0 1 2 3 4 5 8 to$!! @!!;
+0 1 2 3 4 5 8 fromTo$!! @!!;
+0 1 2 3 4 5 8 toInc$!! @!!;
+0 1 2 3 4 5 8 fromToInc$!! @!!;
+
+5 -5 to$!! @!!;
+5 -5 fromTo$!! @!!;
+5 -5 toInc$!! @!!;
+5 -5 fromToInc$!! @!!;

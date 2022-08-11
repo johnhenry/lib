@@ -1,5 +1,4 @@
-export const print = console.log;
-export const process = async function (iterator) {
+export const process_ = async function (iterator) {
   const stack = [];
   for await (const item of iterator) {
     if (typeof item === "function") {
@@ -23,7 +22,7 @@ export const process = async function (iterator) {
   return stack;
 };
 
-export const apply = function (parity = null) {
+export const apply_ = function (parity = null) {
   const a = async function (args) {
     const stack = [];
     const fn = args.pop();
@@ -38,12 +37,12 @@ export const apply = function (parity = null) {
   return a;
 };
 
-export const peek = function (stack) {
+export const peek$ = function (stack) {
   console.log(...stack);
   return stack;
 };
 
-export const expand = function (stack) {
+export const expand$ = function (stack) {
   const newStack = [];
   for (const item of stack) {
     for (const i of item) {
@@ -53,7 +52,7 @@ export const expand = function (stack) {
   return newStack;
 };
 
-export const compose = function (funcs) {
+export const compose$ = function (funcs) {
   return [
     (stack) => {
       let newStack = stack;
