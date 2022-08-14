@@ -1,0 +1,27 @@
+{
+  "name": "jth-cli",
+  "version": "0.0.0",
+  "description": "jth is an alternative syntax for javascript centerered around squential data processing.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnhenry/jth.git"
+  },
+  "scripts": {
+    "jth": "./src/index.mjs",
+    "sample:run": "npm run -s jth -- run sample/index.jth",
+    "sample:build": "npm run -s jth -- compile sample dist.sample",
+    "sample:build:run": "npm run sample:build -s && node dist.sample/index.mjs",
+    "repl": "npm run -s jth -- repl",
+    "test": "node ./quiz.mjs"
+  },
+  "bin": {
+    "jth": "./src/index.mjs"
+  },
+  "dependencies": {
+    "pop-quiz": "^0.0.4",
+    "yargs": "^17.5.1"
+  },
+  "keywords": [],
+  "author": "John Henry",
+  "license": "ISC"
+}
