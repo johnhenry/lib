@@ -1,0 +1,15 @@
+{
+  "name": "jth-lang",
+  "version": "0.0.0",
+  "description": "jth-lang",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnhenry/jth.git"
+  },
+  "author": "John Henry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnhenry/jth/issues"
+  },
+  "homepage": "https://github.com/johnhenry/jth#readme"
+}
