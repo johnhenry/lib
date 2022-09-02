@@ -1,6 +1,6 @@
 {
   "name": "pop-quiz",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Modern Javascript that works in all enviornments with zero dependencies",
   "main": "./index.mjs",
   "homepage": "https://github.com/johnhenry/lib/tree/main/js/pop-quiz/0.0.4#readme",
@@ -8,7 +8,8 @@
   "exports": {
     ".": "./index.mjs",
     "./TAPRunner": "./TAPRunner.mjs",
-    "./assertions": "./assertions/index.mjs"
+    "./assertions": "./assertions/index.mjs",
+    "./unique": "./unique/index.mjs"
   },
   "directories": {
     "test": "tests"
