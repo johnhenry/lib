@@ -1,0 +1,23 @@
+{
+  "name": "async-itertools",
+  "type": "module",
+  "engines": {
+    "node": ">=13.3.0",
+    "npm": ">=6.12.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnhenry/async-itertools.git"
+  },
+  "version": "1.0.0-alpha",
+  "description": "",
+  "main": "./index.mjs",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {}
+}
