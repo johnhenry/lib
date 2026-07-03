@@ -1,0 +1,48 @@
+{
+  "name": "liedenticon",
+  "version": "1.0.1",
+  "description": "Transform a string into a unique identicon image, as an SVG or PNG data URI. A refinement of Identicon with separate SVG/PNG classes, flexible hex color support, and percentage padding.",
+  "type": "module",
+  "main": "./index.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.mjs"
+    },
+    "./svg": "./svg/index.mjs",
+    "./png": "./png/index.mjs",
+    "./graphic": "./graphic.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "index.d.ts",
+    "color-to-array.mjs",
+    "defaults.mjs",
+    "graphic.mjs",
+    "hsl2rgb.mjs",
+    "svg",
+    "png",
+    "readme.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publish": true,
+  "keywords": [
+    "identicon",
+    "avatar",
+    "svg",
+    "png",
+    "hash",
+    "image",
+    "data-uri"
+  ],
+  "author": "John Henry",
+  "license": "MIT",
+  "homepage": "https://github.com/johnhenry/liedenticon",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnhenry/liedenticon.git"
+  }
+}
