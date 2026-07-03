@@ -167,6 +167,7 @@ js/iterator-zip/index.html
 js/json-form.component/index.html
 js/liedenticon/0.0.4/index.html
 js/liedenticon/1.0.0/index.html
+js/liedenticon/1.0.1/index.html
 js/liedenticon/index.html
 js/linked-list/index.html
 js/live-query-selector/0.0.0/index.html
