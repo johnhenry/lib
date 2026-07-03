@@ -1,0 +1,58 @@
+{
+  "name": "async-itertools",
+  "version": "1.0.1",
+  "description": "Asynchronous iterator building blocks — transducers, channels, tee, zip, exhaust, and friends — forming an iterator algebra for JavaScript, inspired by Python's itertools.",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./tee": "./tee.mjs",
+    "./transduce": "./transduce.mjs",
+    "./transducers": "./transducers.mjs",
+    "./iterator-tools": "./iterator-tools.mjs",
+    "./empty-iterator": "./empty-iterator.mjs",
+    "./async-channel": "./async-channel.mjs",
+    "./channel-decorators": "./channel-decorators.mjs",
+    "./count": "./count.mjs",
+    "./reducer": "./reducer.mjs",
+    "./exhaust": "./exhaust.mjs",
+    "./is-iterator": "./is-iterator.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "tee.mjs",
+    "transduce.mjs",
+    "transducers.mjs",
+    "iterator-tools.mjs",
+    "empty-iterator.mjs",
+    "async-channel.mjs",
+    "channel-decorators.mjs",
+    "count.mjs",
+    "reducer.mjs",
+    "exhaust.mjs",
+    "is-iterator.mjs",
+    "readme.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publish": true,
+  "keywords": [
+    "async",
+    "iterator",
+    "iterable",
+    "itertools",
+    "transducer",
+    "channel",
+    "generator",
+    "tee",
+    "zip"
+  ],
+  "author": "John Henry",
+  "license": "MIT",
+  "homepage": "https://github.com/johnhenry/async-itertools",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnhenry/async-itertools.git"
+  }
+}

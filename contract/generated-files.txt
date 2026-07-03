@@ -81,6 +81,7 @@ js/assign-prototypes/0.0.0/index.html
 js/assign-prototypes/index.html
 js/async-channel/index.html
 js/async-itertools/1.0.0/index.html
+js/async-itertools/1.0.1/index.html
 js/async-itertools/index.html
 js/attribute-provider.component/0.0.0/index.html
 js/attribute-provider.component/index.html
