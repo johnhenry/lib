@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body></body>
+</html>
+<h1 id="polyfill-global">Polyfill Global</h1>
+<p>Polyfills a key on the global object.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="maunal">Maunal</h3>
+<p>Define class to be removed</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// file:///./custom-component.mjs</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">class</span> <span class="kw">extends</span> <span class="bu">HTMLElement</span> {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">///...</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> defineComponent <span class="im">from</span> <span class="st">&quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/index.mjs&quot;</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(<span class="st">&quot;define-component&quot;</span><span class="op">,</span> defineComponent)<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">define-component</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ot">  name=</span><span class="st">&quot;custom-component&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ot">  src=</span><span class="st">&quot;./custom-component.mjs&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">define-component</span><span class="dt">&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">custom-component</span><span class="dt">&gt;&lt;/</span><span class="kw">custom-component</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="automatic">Automatic</h3>
+<p>Use “global” import to automatically use component name
+“define-component”</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  type=</span><span class="st">&quot;module&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  src=</span><span class="st">&quot;https://johnhenry.github.io/lib/polyfill-global.component/0.0.0/global.mjs&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">polyfill-global</span> <span class="dt">&gt;</span>Hide me until window load<span class="dt">&lt;/</span><span class="kw">custom-component</span><span class="dt">&gt;</span></span></code></pre></div>
+  </body>
+</html>

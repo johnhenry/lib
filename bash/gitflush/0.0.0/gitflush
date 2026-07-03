@@ -1,0 +1,12 @@
+#! /bin/bash
+
+if [ $1 == "--help" ]; then
+  echo "run the following:"
+  echo "  git add ."
+  echo "  git commit -m <given args>"
+  echo "  git push"
+else
+  git add .
+  git commit -m "$*"
+  git push
+fi

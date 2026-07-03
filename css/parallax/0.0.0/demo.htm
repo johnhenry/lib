@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../blank-slate/0.0.0/index.css" />
+    <link rel="stylesheet" href="../../demo-block/0.0.0/index.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      .application {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        font-size: 16px;
+      }
+
+      /* Parallax base styles
+      --------------------------------------------- */
+
+      .parallax {
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -webkit-perspective: 1px;
+        perspective: 1px;
+      }
+
+      .parallax__layer {
+        --parallax--perspective: 1px;
+        --parallax--scale: calc(
+          1 + (var(--parallax--depth) * -1) / var(--parallax--perspective)
+        );
+
+        transform: translateZ(var(--parallax--depth))
+          scale(var(--parallax--scale));
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .parallax__layer--back {
+        --parallax--depth: -1px;
+        --parallax--scale: 1;
+      }
+
+      .parallax__layer--base {
+        --parallax--depth: 0;
+        --parallax--scale: 1;
+      }
+
+      /* demo styles
+      --------------------------------------------- */
+      /* add some padding to force scrollbars */
+      .parallax__layer {
+        padding: 100vh 0;
+      }
+
+      /* centre the content in the parallax layers */
+      .title {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* misc
+      --------------------------------------------- */
+      .demo__info {
+        position: absolute;
+        z-index: 100;
+        bottom: 1vh;
+        top: auto;
+        font-size: 80%;
+        text-align: center;
+        width: 100%;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="application">
+      <div class="parallax">
+        <div class="parallax__layer parallax__layer--back" style="">
+          <div class="title">Background</div>
+        </div>
+        <div class="parallax__layer parallax__layer--base" style="">
+          <div class="title">Foreground</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

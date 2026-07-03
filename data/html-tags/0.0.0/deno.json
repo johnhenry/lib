@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "refresh": "deno run --allow-read --allow-write  --allow-net ./_/refresh.mjs"
+  }
+}

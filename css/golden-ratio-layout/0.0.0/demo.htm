@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../blank-slate/0.0.0/index.css" />
+    <link rel="stylesheet" href="../../demo-block/0.0.0/index.css" />
+    <script
+      type="module"
+      src="https://johnhenry.github.io/lib/js/css-model-input/0.0.0/global.mjs"
+    ></script>
+
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      .application {
+        font-size: 16px;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background-color: brown;
+      }
+      .golden-ratio-layout {
+        background-color: rgba(250, 235, 215, 0.25);
+        color: black;
+        outline: 1px solid brown;
+        --height: 256px;
+        height: var(--height);
+      }
+      .application > .golden-ratio-layout {
+        transform-origin: bottom right;
+        --turns: var(--input-turns, 1);
+        transform: rotate(calc(-0.25turn * (var(--turns) - 1)))
+          scale(calc(var(--golden-i) * var(--golden) * (var(--turns))));
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="application">
+      <div class="golden-ratio-layout" style="">
+        <div>This is some 1.</div>
+        <div class="golden-ratio-layout">
+          <div>This is some 2.</div>
+          <div class="golden-ratio-layout">
+            <div>This is some 3.</div>
+            <div class="golden-ratio-layout"><div>This is some 4.</div></div>
+          </div>
+        </div>
+      </div>
+      <input
+        type="range"
+        value="1"
+        min="1"
+        max="10"
+        step="0.1"
+        data-custom-property="turns"
+      />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body></body>
+</html>
+<h1 id="mounts">Mounts</h1>
+<p>Using the body or its direct decendents as mount points is a common
+pattern in modern javascript applications (<a
+href="https://www.solidjs.com/">Solid</a>, <a
+href="https://vuejs.org/">Vue</a>, <a
+href="https://reactjs.org/">React</a>, etc.).</p>
+<p>We can declaratively abstract this away as imports.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="body">Body</h3>
+<p>Use body element as a mount point.</p>
+<p>Note: Some applications including react, warn against using the body
+element as a mount point. Use ‘first’ or ‘last’ instead.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { render } <span class="im">from</span> <span class="st">&quot;solid-js/web&quot;</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Application <span class="im">from</span> <span class="st">&quot;./Soild-Application&quot;</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> body <span class="im">from</span> <span class="st">&quot;mounts/body.mjs&quot;</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(() <span class="kw">=&gt;</span> <span class="op">&lt;</span>Application <span class="op">/&gt;,</span> body)<span class="op">;</span></span></code></pre></div>
+<h3 id="first">First</h3>
+<p>Use body’s first child as a mount point.</p>
+<p>Creates and prepends a new ‘div’ element if child is “unsuitable” or
+non-existent.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Application <span class="im">from</span> <span class="st">&quot;./Vue-Application&quot;</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> first <span class="im">from</span> <span class="st">&quot;mounts/first.mjs&quot;</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Application<span class="op">.</span><span class="fu">mount</span>(first)<span class="op">;</span></span></code></pre></div>
+<h3 id="last">Last</h3>
+<p>Use body’s last child as a mount point.</p>
+<p>Creates and appends a new ‘div’ element if child is “unsuitable” or
+non-existent.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createRoot } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Application <span class="im">from</span> <span class="st">&quot;./React-Application&quot;</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> last <span class="im">from</span> <span class="st">&quot;mounts/last.mjs&quot;</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> <span class="bu">root</span> <span class="op">=</span> <span class="fu">createRoot</span>(last)<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">root</span><span class="op">.</span><span class="fu">render</span>(Application)<span class="op">;</span></span></code></pre></div>
+<h3 id="unsuitable-elements">Unsuitable elements</h3>
+<p>The following elements are considered “unsuitable” for mounting:</p>
+<ul>
+<li>script</li>
+<li>style</li>
+<li>link</li>
+<li>noscript</li>
+</ul>
+  </body>
+</html>

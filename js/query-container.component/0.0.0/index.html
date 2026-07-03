@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body></body>
+</html>
+<h1 id="query-container-html-component">Query Container HTML
+Component</h1>
+<p>Containter that changes based on a given media query</p>
+<p>Inspired by: https://github.com/tabvengers/spicy-sections</p>
+<h2 id="example-usage-usage">Example usage Usage</h2>
+<p>Single query:</p>
+<p>This following will produce an ordered list with class name ‘ordered’
+and blue text when the window’s width is between 400px and 900px.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  type=</span><span class="st">&quot;module&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  src=</span><span class="st">&quot;https://johnhenry.github.io/lib/js/define-component.component/0.0.0/global.mjs&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">define-component</span> <span class="er">name</span><span class="ot">=</span><span class="st">&quot;query-component&quot;</span> <span class="er">src</span><span class="ot">=</span><span class="st">&quot;./index.mjs&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">define-component</span><span class="dt">&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">query-component</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ot">  default=</span><span class="st">&quot;ul&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ot">  query=</span><span class="st">&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">    [(min-width:300px) and (max-width:1200px)] ol.ordered[style=color:blue];</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">    [(min-width:400px) and (max-width:600px)] ol.ordered[style=color:red];</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">    &quot;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>a<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>b<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>c<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">query-component</span><span class="dt">&gt;</span></span></code></pre></div>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+/* https://codepen.io/stoumann/pen/oNwQyxd */
+/* https://dev.to/madsstoumann/build-a-css-ruler-2opn */
+.debug-ruler {
+  --debug-ruler-unit: 1px;
+  --debug-ruler-scale: 1;
+
+  --debug-ruler-minor-width: 1px;
+  --debug-ruler-minor-color: red;
+  --debug-ruler-minor-height: 8px;
+  --debug-ruler-minor-space: 8;
+
+  --debug-ruler-major-width: 1px;
+  --debug-ruler-major-color: green;
+  --debug-ruler-major-height: 20px;
+  --debug-ruler-major-space: 64;
+  inset-inline-start: 0;
+
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-image: linear-gradient(
+      90deg,
+      var(--debug-ruler-minor-color) 0 var(--debug-ruler-minor-width),
+      transparent 0
+    ),
+    linear-gradient(
+      90deg,
+      var(--debug-ruler-major-color) 0 var(--debug-ruler-major-width),
+      transparent 0
+    ),
+    linear-gradient(
+      0deg,
+      var(--debug-ruler-minor-color) 0 var(--debug-ruler-minor-width),
+      transparent 0
+    ),
+    linear-gradient(
+      0deg,
+      var(--debug-ruler-major-color) 0 var(--debug-ruler-major-width),
+      transparent 0
+    );
+  background-size: calc(
+        var(--debug-ruler-unit) * var(--debug-ruler-minor-space) *
+          var(--debug-ruler-scale)
+      )
+      var(--debug-ruler-minor-height),
+    calc(
+        var(--debug-ruler-unit) * var(--debug-ruler-major-space) *
+          var(--debug-ruler-scale)
+      )
+      var(--debug-ruler-major-height),
+    var(--debug-ruler-minor-height)
+      calc(
+        var(--debug-ruler-unit) * var(--debug-ruler-minor-space) *
+          var(--debug-ruler-scale)
+      ),
+    var(--debug-ruler-major-height)
+      calc(
+        var(--debug-ruler-unit) * var(--debug-ruler-major-space) *
+          var(--debug-ruler-scale)
+      );
+}
+
+.debug-ruler.debug-ruler-horizontal {
+  inset-block-start: 0;
+  background-repeat: repeat-x, repeat-x;
+  background-image: linear-gradient(
+      90deg,
+      var(--debug-ruler-minor-color) 0 var(--debug-ruler-minor-width),
+      transparent 0
+    ),
+    linear-gradient(
+      90deg,
+      var(--debug-ruler-major-color) 0 var(--debug-ruler-major-width),
+      transparent 0
+    );
+  background-size: calc(
+        var(--debug-ruler-unit) * var(--debug-ruler-minor-space) *
+          var(--debug-ruler-scale)
+      )
+      var(--debug-ruler-minor-height),
+    calc(
+        var(--debug-ruler-unit) * var(--debug-ruler-major-space) *
+          var(--debug-ruler-scale)
+      )
+      var(--debug-ruler-major-height);
+}
+.debug-ruler.debug-ruler-vertical {
+  inset-inline-start: 0;
+  background-repeat: repeat-y, repeat-y;
+  background-image: linear-gradient(
+      0deg,
+      var(--debug-ruler-minor-color) 0 var(--debug-ruler-minor-width),
+      transparent 0
+    ),
+    linear-gradient(
+      0deg,
+      var(--debug-ruler-major-color) 0 var(--debug-ruler-major-width),
+      transparent 0
+    );
+  background-size: var(--debug-ruler-minor-height)
+      calc(
+        var(--debug-ruler-unit) * var(--debug-ruler-minor-space) *
+          var(--debug-ruler-scale)
+      ),
+    var(--debug-ruler-major-height)
+      calc(
+        var(--debug-ruler-unit) * var(--debug-ruler-major-space) *
+          var(--debug-ruler-scale)
+      );
+}
+
+.debug-ruler.debug-ruler-alt {
+  background-position: bottom right;
+}
+
+.debug-ruler.debug-ruler-down {
+  background-position: bottom left;
+}
+
+.debug-ruler.debug-ruler-right {
+  background-position: top right;
+}
+
+.debug-ruler.debug-ruler-vertical.debug-ruler-alt {
+  background-position: top right;
+}
+
+.debug-ruler.debug-ruler-horizontal.debug-ruler-alt {
+  background-position: bottom left;
+}
+
+/**/
+body,
+html {
+  width: 100%;
+  height: 100%;
+  display: contents;
+}
+body > * {
+  width: 100%;
+  height: 100%;
+}

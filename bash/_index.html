@@ -1,0 +1,85 @@
+<style>
+  body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 7fr;
+  }
+  section {
+    display: grid;
+    gap: 4px;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+  }
+  section > * {
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 4px;
+  }
+
+  section > * > *:first-child,
+  section > * > a {
+    font-weight: bold;
+  }
+  section > * > *:first-child:after {
+    content: " -- ";
+  }
+  @media (orientation: landscape) {
+    section {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+</style>
+<section>
+  <header>Bash</header>
+  <div>
+    <span>explode@0.0.0</span>
+    Move items from child folder into current folder and delete child folder.
+    <a href="../bash/explode/0.0.0/explode" download="explode">(mac/linux)</a>
+  </div>
+  <div>
+    <span>implode@0.0.0</span>
+    Move file into folder of same name (minus the extension).
+    <a href="../bash/implode/0.0.0/implode.mac" download="implode">(mac)</a>
+    <a href="../bash/implode/0.0.0/implode.linux" download="implode">(linux)</a>
+  </div>
+  <div>
+    <span>codir@0.0.0</span>
+    Open directory in
+    <a href="https://code.visualstudio.com/" target="_blank"
+      >visual studio code</a
+    >. Create directory if it does not already exist.
+    <a href="../bash/codir/0.0.0/codir" download="codir">(mac/linux)</a>
+  </div>
+  <div>
+    <span>whichdir@0.0.0</span>
+    Get the parent directory of a given executable.
+    <a href="../bash/whichdir/0.0.0/whichdir" download="whichdir"
+      >(mac/linux)</a
+    >
+  </div>
+  <div>
+    <span>cat64@0.0.0</span>
+    Create and prefix base64 representation of a file.
+    <a href="../bash/cat64/0.0.0/cat64" download="cat64">(mac/linux)</a>
+  </div>
+  <div>
+    <span>gitflush@0.0.0</span>
+    <ul>
+      <li>git add .</li>
+      <li>git commit -m &lt;given args&gt;</li>
+      <li>git push</li>
+    </ul>
+    <a href="../bash/gitflush/0.0.0/gitflush" download="gitflush"
+      >(mac/linux)</a
+    >
+  </div>
+  <div>
+    <span>dobrew@0.0.0</span>
+    <ul>
+      <li>brew update</li>
+      <li>brew upgrade</li>
+      <li>brew upgrade --cask</li>
+    </ul>
+    <a href="../bash/dobrew/0.0.0/dobrew" download="dobrew">(mac/linux)</a>
+  </div>
+</section>

@@ -1,0 +1,7 @@
+@media (min-width: 1500px), (min-height: 1500px) {
+  :root {
+    --size-font-base: 32px;
+  }
+}
+:root .display-large {
+}

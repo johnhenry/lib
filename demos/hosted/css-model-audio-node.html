@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <script
+      type="module"
+      src="https://johnhenry.github.io/lib/js/css-model-window/0.0.0/global.mjs"
+    ></script>
+    <script
+      type="module"
+      src="https://johnhenry.github.io/lib/js/css-model-audio-node/0.0.0/mic.mjs"
+    ></script>
+    <!-- <script
+      type="module"
+      src="../../js/css-model-audio-node/0.0.0/mic.mjs"
+    ></script> -->
+    <script
+      type="module"
+      src="../../js/css-model-audio-node/0.0.0/mic-color.mjs"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-box-sizing/0.0.0/index.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-no-margins/0.0.0/index.css"
+    />
+    <style>
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        position: relative;
+      }
+      div {
+        position: absolute;
+      }
+      .frequency {
+        position: absolute;
+        display: block;
+        transition: height var(--speed) var(--transition-function);
+      }
+      .time {
+        position: absolute;
+        display: block;
+        transition: bottom var(--speed) var(--transition-function);
+      }
+    </style>
+    <script type="module">
+      import textToDOMNodes from "https://johnhenry.github.io/lib/js/text-to-DOM-nodes/0.0.0/index.mjs";
+      import randomBytes from "https://johnhenry.github.io/lib/js/random-bytes/0.0.0/index.mjs";
+      const SIZE = 128;
+      const width = `calc(1px * var(--window-width) / ${SIZE} )`;
+      const milliseconds = 16;
+      for (let i = 0; i < SIZE; i++) {
+        const color = randomBytes(4, "color32");
+
+        const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
+        document.body.prepend(
+          ...textToDOMNodes(`
+                <div
+        class="time"
+        data-id="${i}"
+        style="
+          --transition-function: ease-in-out;
+          --speed: ${milliseconds}ms;
+          background-color: ${color};
+          width: ${width};
+          height: 4px;
+          left:  ${x};
+          bottom:  calc(1px * var(--mic-td-${i})/256 * var(--window-height));;
+        "
+      ></div>`)
+        );
+      }
+
+      for (let i = 0; i < SIZE; i++) {
+        const color = randomBytes(4, "color32");
+        const x = `calc(${i}px * var(--window-width) / ${SIZE} )`;
+        document.body.prepend(
+          ...textToDOMNodes(`
+                <div
+        class="frequency"
+        data-id="${i}"
+        style="
+          --transition-function: ease-in-out;
+          --speed: ${milliseconds}ms;
+          background-color: var(--mic-f-color-${i});
+          width: ${width};
+          height: calc(1px * var(--mic-f-${i})/256 * var(--window-height));
+          left: ${x};
+          bottom: 0;
+        "
+      ></div>`)
+        );
+      }
+    </script>
+    <scirpt> </scirpt>
+  </head>
+  <body>
+    <section>
+      <h1>CSS Model: Audio Analysis -- Mic</h1>
+      <p>
+        This demo primarily uses
+        <a href="https://johnhenry.github.io/lib/js/css-model-audio-node/0.0.0/"
+          >CSS Model: Audio Node</a
+        >
+        to generate visualizations based on microphone data.
+      </p>
+    </section>
+  </body>
+</html>

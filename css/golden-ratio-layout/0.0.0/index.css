@@ -1,0 +1,18 @@
+.golden-ratio-layout {
+  --golden: 1.61803398874989;
+  --golden-i: calc(1 / var(--golden));
+
+  position: relative;
+  aspect-ratio: var(--golden) / 1;
+}
+.golden-ratio-layout > :first-child {
+  height: 100%;
+  aspect-ratio: 1;
+}
+.golden-ratio-layout > :nth-child(2) {
+  transform-origin: top left;
+  transform: scale(var(--golden-i)) rotate(0.25turn);
+  position: absolute;
+  top: 0;
+  right: -100%;
+}

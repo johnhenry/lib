@@ -1,0 +1,20 @@
+.list-stretch-selection {
+  display: inline-flex;
+  width: 100%;
+}
+.list-stretch-selection * {
+  flex: 0 0;
+}
+.list-stretch-selection .list-stretch-selection__selected {
+  flex: 1 1;
+}
+.list-stretch-selection
+  *:last-child:not(.list-stretch-selection__selected ~ *) {
+  flex: 1 1;
+}
+
+.list-stretch-selection.list-stretch-selection__vertical {
+  width: unset;
+  height: 100%;
+  flex-direction: column;
+}
