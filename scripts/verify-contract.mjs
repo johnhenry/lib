@@ -156,5 +156,7 @@ if (failures.length) {
   process.exit(1);
 }
 console.log(
-  `URL-contract verification passed: ${manifest.length} published paths intact, working tree clean, index.json valid.`
+  DEPLOY_FILTER
+    ? `URL-contract verification passed: ${manifest.length} published paths intact and none dropped by deploy filtering.`
+    : `URL-contract verification passed: ${manifest.length} published paths intact, working tree clean, index.json valid.`
 );
