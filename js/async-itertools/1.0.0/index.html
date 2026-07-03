@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="async-itertools">Async-Itertools</h1>
+<p>A collection of asynchronous (and synchronous) iterator building blocks
+inspired by constructs from
+<a href="https://docs.python.org/3/library/itertools.html">Python</a>, APL, Haskell,
+and SML — recast in a form suitable for JavaScript. Together they form an
+&quot;iterator algebra&quot; for constructing specialized, memory-efficient data
+pipelines in pure JavaScript with zero dependencies.</p>
+<h2 id="import-syntax">Import Syntax</h2>
+<p>Import directly from this site:</p>
+<pre><code class="language-javascript">import {
+  transduceAsync,
+  transducers,
+  number,
+} from &quot;https://johnhenry.github.io/lib/js/async-itertools/1.0.0/index.mjs&quot;;
+</code></pre>
+<p>or install via npm (<code>npm install async-itertools</code>) and import by name:</p>
+<pre><code class="language-javascript">import { transduceAsync, transducers, number } from &quot;async-itertools&quot;;
+</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="transducers">Transducers</h3>
+<p>Compose <code>map</code>, <code>filter</code>, <code>take</code>, <code>group</code>, and <code>accumulate</code> into a single
+pass over any (a)synchronous iterable with <code>transduceSync</code> /
+<code>transduceAsync</code>:</p>
+<pre><code class="language-javascript">import { transduceAsync, transducers, number } from &quot;async-itertools&quot;;
+const { map, filter, take } = transducers;
+
+const transform = transduceAsync(
+  filter((x) =&gt; x % 2),
+  map((x) =&gt; x + 1),
+  take(4)
+);
+for await (const result of transform(number.iterateAsync(Infinity))) {
+  console.log(result); // 2, 4, 6, 8
+}
+</code></pre>
+<h3 id="asynchronous-channels">Asynchronous Channels</h3>
+<p><code>AsyncChannel</code> is an async-iterable queue: <code>put</code> values on one side, <code>take</code>
+(or <code>for await</code>) them off the other. <code>break()</code> ends iteration; the
+<code>CHANNEL_END</code> sentinel marks the end of a channel.</p>
+<pre><code class="language-javascript">import { AsyncChannel } from &quot;async-itertools&quot;;
+
+const channel = new AsyncChannel();
+(async () =&gt; {
+  for await (const item of channel) {
+    console.log(item);
+  }
+})();
+await channel.put(&quot;hello&quot;);
+await channel.put(&quot;world&quot;);
+await channel.break();
+</code></pre>
+<p><code>channelDecorators</code> connects channels to event emitters (<code>withEmitter</code>) and
+websockets (<code>withWebSocket</code>); <code>teeAsync(n)</code> splits one async iterator into
+<code>n</code> channels.</p>
+<h3 id="iterator-tools">Iterator Tools</h3>
+<p><code>iterator-tools.mjs</code> provides the primitives: <code>concatSync</code> / <code>concatAsync</code>,
+<code>conjoinSync</code> / <code>conjoinAsync</code> (append items), <code>reduceSync</code> / <code>reduceAsync</code>,
+<code>zipSync</code>, <code>pause</code> (promise-based sleep), <code>run</code> (drain an iterator as a
+program), and the <code>HAULT</code> sentinel used by halting transducers such as
+<code>take</code>. <code>emptySync</code> / <code>emptyAsync</code> are &quot;the&quot; empty iterators, and
+<code>number.iterateSync</code> / <code>number.iterateAsync</code> generate numeric sequences.</p>
+<pre><code class="language-javascript">import { zipSync, number } from &quot;async-itertools&quot;;
+
+for (const pair of zipSync(number.iterateSync(3), &quot;abc&quot;)) {
+  console.log(pair); // [1, &quot;a&quot;], [2, &quot;b&quot;], [3, &quot;c&quot;]
+}
+</code></pre>
+<h2 id="documentation">Documentation</h2>
+<p>Extended tutorials, how-to guides, and discussion live in the
+<a href="../0.0.0/docs/readme.html">0.0.0 docs</a>; the API is unchanged in 1.0.0.</p>
+<h2 id="demonstration">Demonstration</h2>
+<p>See this module&#39;s test suite,
+<a href="./async-itertools.jest.test.mjs">async-itertools.jest.test.mjs</a>, for
+working examples of every export.</p>
+
+</body>
+</html>
