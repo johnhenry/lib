@@ -1,0 +1,12 @@
+{
+  "name": "@johnhenry/openai",
+  "version": "0.1.0",
+  "exports": {
+    ".": "./mod.ts",
+    "./cli": "./cli.ts"
+  },
+  "tasks": {
+    "check": "deno check mod.ts cli.ts mod.test.ts",
+    "test": "deno test"
+  }
+}
