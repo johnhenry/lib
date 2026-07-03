@@ -13,7 +13,15 @@
 //   3. Root index.json parses as an array of {title, url, content} records
 //      and every url resolves to a directory containing index.html.
 //
-// Usage: node scripts/verify-contract.mjs
+// Usage:
+//   node scripts/verify-contract.mjs                 (after build, before the
+//                                                     .publishignore -> .gitignore swap)
+//   node scripts/verify-contract.mjs --deploy-filter (after the swap: additionally
+//                                                     assert no published path is
+//                                                     ignored, i.e. would be dropped
+//                                                     by the deploy action; skips the
+//                                                     tree-clean check since the swap
+//                                                     legitimately modifies .gitignore)
 // Exits non-zero with a report on any violation.
 
 import { readFile, stat } from "node:fs/promises";
@@ -22,6 +30,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const DEPLOY_FILTER = process.argv.includes("--deploy-filter");
 
 // Paths are taken verbatim (no trimming): at least one published filename
 // ends with a space (js/liedenticon/0.0.4/.npmrc\x20).
@@ -60,18 +69,50 @@ if (missing.length) {
   );
 }
 
-// 2. Source immutability: the build may not modify tracked files.
-const dirty = execFileSync("git", ["diff", "--name-only"], {
-  cwd: ROOT,
-  encoding: "utf8",
-})
-  .split("\n")
-  .filter(Boolean);
-if (dirty.length) {
-  failures.push(
-    `build modified ${dirty.length} tracked file(s) (builds may only create untracked output):\n` +
-      dirty.map((p) => `  - ${p}`).join("\n")
-  );
+// 2a. Source immutability: the build may not modify tracked files.
+//     (Skipped under --deploy-filter, where the .gitignore swap has
+//     legitimately modified the tree.)
+if (!DEPLOY_FILTER) {
+  const dirty = execFileSync("git", ["diff", "--name-only"], {
+    cwd: ROOT,
+    encoding: "utf8",
+  })
+    .split("\n")
+    .filter(Boolean);
+  if (dirty.length) {
+    failures.push(
+      `build modified ${dirty.length} tracked file(s) (builds may only create untracked output):\n` +
+        dirty.map((p) => `  - ${p}`).join("\n")
+    );
+  }
+}
+
+// 2b. Deploy filtering: no published path may be gitignored, or the deploy
+//     action will silently drop it from the served branch. Run after the
+//     .publishignore -> .gitignore swap so git's real ignore semantics are
+//     checked against exactly what the deploy will see. (This caught
+//     templates/*.html being in .publishignore despite being published.)
+if (DEPLOY_FILTER) {
+  const input = manifest.map((p) => p + "\0").join("");
+  let ignoredOut = "";
+  try {
+    ignoredOut = execFileSync(
+      "git",
+      ["check-ignore", "-z", "--stdin", "--no-index"],
+      { cwd: ROOT, encoding: "utf8", input }
+    );
+  } catch (error) {
+    // check-ignore exits 1 when NO paths are ignored - that is success here.
+    if (error.status !== 1) throw error;
+    ignoredOut = error.stdout ?? "";
+  }
+  const ignored = ignoredOut.split("\0").filter(Boolean);
+  if (ignored.length) {
+    failures.push(
+      `${ignored.length} published path(s) would be dropped by deploy (gitignored):\n` +
+        ignored.map((p) => `  - ${p}`).join("\n")
+    );
+  }
 }
 
 // 3. Search index shape and referential integrity.

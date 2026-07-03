@@ -39,6 +39,9 @@ jobs:
       - name: Update Git Ignore 🏭
         run: cat .publishignore > .gitignore
 
+      - name: Verify deploy filtering 🔒
+        run: node scripts/verify-contract.mjs --deploy-filter
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
