@@ -66,6 +66,7 @@ Each assertion returns its message on success and a `TestError` on failure.
 | `equal(actual, expected, message?)`       | `actual === expected`                  |
 | `notequal(actual, unexpected, message?)`  | `actual !== unexpected`                |
 | `deepequal(actual, expected, message?)`   | `actual` deeply equals `expected`      |
+| `deepdeepequal(actual, expected, message?)` | `actual` deeply equals `expected`, including `Map`/`Set` contents and matching circular references (things plain `deepequal` can't see) |
 | `throws(fn, message?)`                    | calling (and awaiting) `fn` throws     |
 | `doesnotthrow(fn, message?)`              | calling (and awaiting) `fn` succeeds   |
 | `subtestpass(test, message?)`             | every assertion in `test` passes       |
