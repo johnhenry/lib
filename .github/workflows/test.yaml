@@ -15,10 +15,38 @@ jobs:
       - name: Setup node ⛺️
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 22
+          cache: npm
 
       - name: Install 🔧
         run: npm ci
 
       - name: Test 🧪
         run: npm test
+
+  url-contract:
+    name: URL contract
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup node ⛺️
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install 🔧
+        run: npm ci
+
+      - name: Build 🏭
+        run: npm run build
+
+      - name: Verify URL contract 🔒
+        run: node scripts/verify-contract.mjs
+
+      - name: Verify deploy filtering 🔒
+        run: |
+          cat .publishignore > .gitignore
+          node scripts/verify-contract.mjs --deploy-filter
