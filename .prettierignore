@@ -1,2 +1,24 @@
 vendor/*
 .devcontainer/*
+# Published module payloads: these directories are served byte-for-byte at
+# johnhenry.github.io/lib/ (see contract/dist-manifest.txt). Reformatting
+# them would change published bytes, so prettier must never touch them.
+js/
+css/
+html/
+bash/
+data/
+ts/
+demos/
+templates/
+contract/
+# Published legacy scripts (in the dist manifest; bytes must not change):
+scripts/
+!scripts/verify-contract.mjs
+# Published root files (hot-linked or embedded into generated pages):
+style.css
+_search.html
+origins.mjs
+*.md
+build.sh
+script.sh
