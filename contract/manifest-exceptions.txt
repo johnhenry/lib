@@ -1,0 +1,4 @@
+# Paths deliberately removed from the published URL contract.
+# One path per line. Each removal requires explicit owner sign-off;
+# record who approved it and when in a trailing comment on the same line.
+# Lines starting with # are ignored.
