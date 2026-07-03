@@ -1,0 +1,11 @@
+{
+  "name": "@johnhenry/serverless-workers",
+  "version": "0.1.0",
+  "exports": {
+    ".": "./mod.ts"
+  },
+  "tasks": {
+    "check": "deno check mod.ts mod.test.ts",
+    "test": "deno test"
+  }
+}

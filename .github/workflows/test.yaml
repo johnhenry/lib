@@ -24,6 +24,26 @@ jobs:
       - name: Test 🧪
         run: npm test
 
+  deno:
+    name: Deno modules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup deno 🦕
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      # Only the 0.1.0 module versions are checked/tested; older version
+      # directories are frozen published bytes targeting retired APIs.
+      - name: Type check 🧐
+        run: deno check ts/openai/0.1.0/*.ts ts/serverless-workers/0.1.0/*.ts ts/initiate-http/0.1.0/*.ts
+
+      - name: Test 🧪
+        run: deno test ts/openai/0.1.0/ ts/serverless-workers/0.1.0/ ts/initiate-http/0.1.0/
+
   url-contract:
     name: URL contract
     runs-on: ubuntu-latest
