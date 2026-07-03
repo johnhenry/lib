@@ -4,33 +4,46 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Deploy target branch (use dist-staging to rehearse; Pages only serves dist)"
+        default: "dist-staging"
+        required: true
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v4
+
+      - name: Setup node ⛺️
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
       - name: Install Pandoc 🔧
-        run: sudo apt-get install pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
 
       - name: Build Indicies 🏭
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run build
 
-      # - name: Setup deno ⛺️
-      # - uses: denoland/setup-deno@v1
-      #   with:
-      #     deno-version: v1.15
+      - name: Verify URL contract 🔒
+        run: node scripts/verify-contract.mjs
 
       - name: Update Git Ignore 🏭
         run: cat .publishignore > .gitignore
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.3
-        with:
-          branch: dist # The branch the action should deploy to.
-          folder: . # The folder the action should deploy.
+      - name: Verify deploy filtering 🔒
+        run: node scripts/verify-contract.mjs --deploy-filter
 
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: ${{ github.event_name == 'workflow_dispatch' && inputs.branch || 'dist' }}
+          folder: .
