@@ -201,6 +201,7 @@ js/polyfill-window.component/0.0.0/index.html
 js/polyfill-window.component/index.html
 js/pop-quiz/0.0.5/index.html
 js/pop-quiz/1.0.0/index.html
+js/pop-quiz/1.0.1/index.html
 js/pop-quiz/index.html
 js/prototypeChainWalker/index.html
 js/qbit/index.html
