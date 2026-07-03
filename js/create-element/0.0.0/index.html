@@ -24,191 +24,172 @@
     />
     <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
   </head>
-  <body></body>
-</html>
+  <body>
 <h1 id="createelement">CreateElement</h1>
-<p>An alternative to <a
-href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement"><code>document.createElement</code></a>.</p>
+<p>An alternative to <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement"><code>document.createElement</code></a>.</p>
 <p>Create an element with attributes and children all in one go.</p>
-<p>Similar to <a
-href="https://reactjs.org/docs/react-without-jsx.html">React’s JSX-less
-UI</a>.</p>
+<p>Similar to <a href="https://reactjs.org/docs/react-without-jsx.html">React&#39;s JSX-less UI</a>.</p>
 <h2 id="usage-api">Usage + API</h2>
 <h3 id="createelement-1">createElement</h3>
-<p>The main export (below named “createElement”) is analogous to
-<code>document.createElement</code> on the global object. When passed a
-single argument, they work similarly.</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> createElement <span class="im">from</span> <span class="st">&quot;./index.mjs&quot;</span><span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> div0 <span class="op">=</span> <span class="fu">createElement</span>(<span class="st">&quot;div&quot;</span>)<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> div1 <span class="op">=</span> <span class="bu">window</span><span class="op">.</span><span class="at">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">&quot;div&quot;</span><span class="op">,</span> { <span class="dt">class</span><span class="op">:</span> <span class="st">&quot;foo&quot;</span> })<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(div0<span class="op">.</span><span class="at">outerHTML</span>)<span class="op">;</span> <span class="co">// &lt;div&gt;&lt;/div&gt;;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(div1<span class="op">.</span><span class="at">outerHTML</span>)<span class="op">;</span> <span class="co">// &lt;div&gt;&lt;/div&gt;;</span></span></code></pre></div>
+<p>The main export (below named &quot;createElement&quot;) is analogous to <code>document.createElement</code> on the global object. When passed a single argument, they work similarly.</p>
+<pre><code class="language-javascript">import createElement from &quot;./index.mjs&quot;;
+const div0 = createElement(&quot;div&quot;);
+const div1 = window.document.createElement(&quot;div&quot;, { class: &quot;foo&quot; });
+console.log(div0.outerHTML); // &lt;div&gt;&lt;/div&gt;;
+console.log(div1.outerHTML); // &lt;div&gt;&lt;/div&gt;;
+</code></pre>
 <h3 id="attributes">Attributes</h3>
-<p>Pass a second argument to createElement to set the returned element’s
-attributes.</p>
-<p>Attributes are passed “as-is”, that is, no translation from<a
-href="https://en.wikipedia.org/wiki/Letter_case#Camel_case">“camelCase”</a>
-to <a
-href="https://en.wikipedia.org/wiki/Letter_case#Kebab_case">“kebab-case”</a>
-as with some libraries and frameworks.</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> div <span class="fu">createElement</span>(<span class="st">&quot;div&quot;</span><span class="op">,</span> { <span class="dt">id</span><span class="op">:</span> <span class="st">&quot;foo&quot;</span><span class="op">,</span> [<span class="st">&quot;data-bar&quot;</span>]<span class="op">:</span> <span class="st">&quot;baz&quot;</span> })<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(div<span class="op">.</span><span class="at">outerHTML</span>)<span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;div id=&quot;foo&quot; data-bar=&quot;baz&quot;&gt;&lt;/div&gt;</span></span></code></pre></div>
-<h4 id="class-attribute">“class” Attribute</h4>
-<p>The class key in the attributes argument can corespond to can be a
-strin g <em>or</em> an array of strings.</p>
-<p>In the latter case, each element of the array is added to the
-object’s classList.</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { DIV } <span class="im">from</span> <span class="st">&quot;./tags.mjs&quot;</span><span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="fu">DIV</span>({ <span class="dt">class</span><span class="op">:</span> [<span class="st">&quot;foo&quot;</span><span class="op">,</span> <span class="st">&quot;bar&quot;</span><span class="op">,</span> <span class="st">&quot;baz&quot;</span>] })<span class="op">.</span><span class="at">outerHTML</span>)<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;div class=&quot;foo bar baz&quot;&gt;&lt;/div&gt;</span></span></code></pre></div>
+<p>Pass a second argument to createElement to set the returned element&#39;s attributes.</p>
+<p>Attributes are passed &quot;as-is&quot;, that is, no translation from<a href="https://en.wikipedia.org/wiki/Letter_case#Camel_case">&quot;camelCase&quot;</a> to <a href="https://en.wikipedia.org/wiki/Letter_case#Kebab_case">&quot;kebab-case&quot;</a> as with some libraries and frameworks.</p>
+<pre><code class="language-javascript">const div createElement(&quot;div&quot;, { id: &quot;foo&quot;, [&quot;data-bar&quot;]: &quot;baz&quot; });
+console.log(div.outerHTML);
+// &lt;div id=&quot;foo&quot; data-bar=&quot;baz&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h4 id="class-attribute">&quot;class&quot; Attribute</h4>
+<p>The class key in the attributes argument
+can corespond to can be a strin
+g <em>or</em> an array of strings.</p>
+<p>In the latter case, each element of the array is added to the object&#39;s classList.</p>
+<pre><code class="language-javascript">import { DIV } from &quot;./tags.mjs&quot;;
+console.log(DIV({ class: [&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;] }).outerHTML);
+// &lt;div class=&quot;foo bar baz&quot;&gt;&lt;/div&gt;
+</code></pre>
 <h3 id="children">children</h3>
-<p>Add children at creation by passing instances of HTMLElement after
-the attributes object. Strings are converted into text nodes.</p>
-<p>Note: instances may be created through <code>createElement</code>,
-<code>document.createElement</code>, or any other means.</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> list <span class="op">=</span> <span class="fu">createElement</span>(<span class="st">&quot;ul&quot;</span><span class="op">,</span>{ <span class="dt">id</span><span class="op">:</span> <span class="st">&quot;foo&quot;</span> }<span class="op">,</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span><span class="op">,</span> { }<span class="op">,</span> <span class="st">&quot;bar),</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(list<span class="op">.</span><span class="at">outerHTML</span>)<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;ul id=&quot;foo&quot;&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;bar&lt;/li&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;/ul&gt;</span></span></code></pre></div>
+<p>Add children at creation by passing instances of HTMLElement after the attributes object. Strings are converted into text nodes.</p>
+<p>Note: instances may be created through <code>createElement</code>, <code>document.createElement</code>, or any other means.</p>
+<pre><code class="language-javascript">const list = createElement(&quot;ul&quot;,{ id: &quot;foo&quot; },
+  createElement(&quot;li&quot;, { }, &quot;bar),
+  document.createElement(&quot;li&quot;)
+);
+console.log(list.outerHTML);
+// &lt;ul id=&quot;foo&quot;&gt;
+//   &lt;li&gt;bar&lt;/li&gt;
+//   &lt;li&gt;&lt;/li&gt;
+// &lt;/ul&gt;
+</code></pre>
 <h4 id="attributes.children">attributes.children</h4>
-<p>Alternatively, pass a “children” array of HTMLElements to the
-attributes object. This will be prepended to rest of the children.</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> list <span class="op">=</span> <span class="fu">createElement</span>(<span class="st">&quot;ul&quot;</span><span class="op">,</span> { <span class="dt">id</span><span class="op">:</span><span class="st">&quot;foo&quot;</span><span class="op">,</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">children</span><span class="op">:</span> [</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span><span class="op">,</span> { }<span class="op">,</span> <span class="st">&quot;bar),</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>)] })<span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(list<span class="op">.</span><span class="at">outerHTML</span>)<span class="op">;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;ul id=&quot;foo&quot;&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;bar&lt;/li&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;/ul&gt;</span></span></code></pre></div>
-<p>This is done for compataibility with some libraries and
-frameworks.</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="er">//file:///tsconfig.json</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;compilerOptions&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;jsxInject&quot;</span><span class="fu">:</span> <span class="st">&quot;import createElement from &#39;??&quot;</span><span class="fu">,</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;jsxFactory&quot;</span><span class="fu">:</span> <span class="st">&quot;createElement&quot;</span><span class="fu">,</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;jsxFragment&quot;</span><span class="fu">:</span> <span class="st">&quot;&#39;&#39;&quot;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="er">export</span> <span class="er">const</span> <span class="er">jsxInject</span> <span class="er">=</span> <span class="er">`import</span> <span class="er">_jsx</span> <span class="er">from</span> <span class="er">&quot;https://johnhenry.github.io/lib/js/create-element/0.0.0/index.mjs&quot;;`;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="er">export</span> <span class="er">const</span> <span class="er">jsxFactory</span> <span class="er">=</span> <span class="er">&quot;_jsx&quot;;</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="er">export</span> <span class="er">const</span> <span class="er">jsxFragment</span> <span class="er">=</span> <span class="er">&quot;&#39;&#39;&quot;;</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">//file:///index.jsx</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> list <span class="op">=</span> (</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ul</span> <span class="ot">id</span><span class="op">=</span><span class="st">&quot;foo&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li&gt;</span>bar<span class="kw">&lt;/li&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ul&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(list<span class="op">.</span><span class="at">outerHTML</span>)<span class="op">;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;ul id=&quot;foo&quot;&gt;</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;bar&lt;/li&gt;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;/ul&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">//file:///index2.jsx</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">/** </span><span class="an">@jsx</span><span class="co"> ce */</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ce <span class="im">from</span> <span class="st">&quot;./createElement.mjs&quot;</span><span class="op">;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> list <span class="op">=</span> (</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;ul</span> <span class="ot">id</span><span class="op">=</span><span class="st">&quot;foo&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li&gt;</span>bar<span class="kw">&lt;/li&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">&lt;/ul&gt;</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">// const list = createElement(&quot;ul&quot;, { id: &quot;foo&quot; },</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">//   createElement(&quot;li&quot;, { }, &quot;bar),</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">//   document.createElement(&quot;li&quot;)</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">// );</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(list<span class="op">.</span><span class="at">outerHTML</span>)<span class="op">;</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;ul id=&quot;foo&quot;&gt;</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;bar&lt;/li&gt;</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;/ul&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">//file:///index2.js</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">/** </span><span class="an">@jsx</span><span class="co"> ce */</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ce <span class="im">from</span> <span class="st">&quot;./createElement.mjs&quot;</span><span class="op">;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> list <span class="op">=</span> <span class="fu">ce</span>(<span class="st">&quot;ul&quot;</span><span class="op">,</span> { <span class="dt">id</span><span class="op">:</span> <span class="st">&quot;foo&quot;</span> }<span class="op">,</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span><span class="op">,</span> { }<span class="op">,</span> <span class="st">&quot;bar),</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(list<span class="op">.</span><span class="at">outerHTML</span>)<span class="op">;</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;ul id=&quot;foo&quot;&gt;</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;bar&lt;/li&gt;</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;/ul&gt;</span></span></code></pre></div>
+<p>Alternatively, pass a &quot;children&quot; array of HTMLElements to the attributes object. This will be prepended to rest of the children.</p>
+<pre><code class="language-javascript">const list = createElement(&quot;ul&quot;, { id:&quot;foo&quot;,
+  children: [
+    createElement(&quot;li&quot;, { }, &quot;bar),
+    document.createElement(&quot;li&quot;)] });
+    console.log(list.outerHTML);
+// &lt;ul id=&quot;foo&quot;&gt;
+//   &lt;li&gt;bar&lt;/li&gt;
+//   &lt;li&gt;&lt;/li&gt;
+// &lt;/ul&gt;
+</code></pre>
+<p>This is done for compataibility with some libraries and frameworks.</p>
+<pre><code class="language-json">//file:///tsconfig.json
+{
+  &quot;compilerOptions&quot;: {
+    &quot;jsxInject&quot;: &quot;import createElement from &#39;??&quot;,
+    &quot;jsxFactory&quot;: &quot;createElement&quot;,
+    &quot;jsxFragment&quot;: &quot;&#39;&#39;&quot;
+
+  }
+}
+
+export const jsxInject = `import _jsx from &quot;https://johnhenry.github.io/lib/js/create-element/0.0.0/index.mjs&quot;;`;
+export const jsxFactory = &quot;_jsx&quot;;
+export const jsxFragment = &quot;&#39;&#39;&quot;;
+</code></pre>
+<pre><code class="language-jsx">//file:///index.jsx
+const list = (
+  &lt;ul id=&quot;foo&quot;&gt;
+    &lt;li&gt;bar&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+);
+console.log(list.outerHTML);
+// &lt;ul id=&quot;foo&quot;&gt;
+//   &lt;li&gt;bar&lt;/li&gt;
+//   &lt;li&gt;&lt;/li&gt;
+// &lt;/ul&gt;
+</code></pre>
+<pre><code class="language-jsx">//file:///index2.jsx
+/** @jsx ce */
+import ce from &quot;./createElement.mjs&quot;;
+const list = (
+  &lt;ul id=&quot;foo&quot;&gt;
+    &lt;li&gt;bar&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+);
+// const list = createElement(&quot;ul&quot;, { id: &quot;foo&quot; },
+//   createElement(&quot;li&quot;, { }, &quot;bar),
+//   document.createElement(&quot;li&quot;)
+// );
+console.log(list.outerHTML);
+// &lt;ul id=&quot;foo&quot;&gt;
+//   &lt;li&gt;bar&lt;/li&gt;
+//   &lt;li&gt;&lt;/li&gt;
+// &lt;/ul&gt;
+</code></pre>
+<pre><code class="language-jsx">//file:///index2.js
+/** @jsx ce */
+import ce from &quot;./createElement.mjs&quot;;
+const list = ce(&quot;ul&quot;, { id: &quot;foo&quot; },
+  createElement(&quot;li&quot;, { }, &quot;bar),
+  document.createElement(&quot;li&quot;)
+);
+console.log(list.outerHTML);
+// &lt;ul id=&quot;foo&quot;&gt;
+//   &lt;li&gt;bar&lt;/li&gt;
+//   &lt;li&gt;&lt;/li&gt;
+// &lt;/ul&gt;
+</code></pre>
 <h3 id="omission">Omission</h3>
 <p>The attributes object is optional.</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">createElement</span>(<span class="st">&quot;ul&quot;</span><span class="op">,</span> <span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>))<span class="op">;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;ul&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;/ul&gt;</span></span></code></pre></div>
-<p>The tagName is optional. If omitted, a DocumentFragment is
-returned.</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">createElement</span>(<span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>)<span class="op">,</span> <span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>)<span class="op">,</span> <span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>))<span class="op">;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;li&gt;&lt;/li&gt;</span></span></code></pre></div>
-<p>The library exports a shorthand, <code>_</code>, for crating
-fragments.</p>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { _ } <span class="im">from</span> <span class="st">&quot;./index.mjs&quot;</span><span class="op">;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">_</span>(<span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>)<span class="op">,</span> <span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>)<span class="op">,</span> <span class="fu">createElement</span>(<span class="st">&quot;li&quot;</span>))<span class="op">;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;li&gt;&lt;/li&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;li&gt;&lt;/li&gt;</span></span></code></pre></div>
+<pre><code class="language-javascript">createElement(&quot;ul&quot;, createElement(&quot;li&quot;));
+// &lt;ul&gt;
+//   &lt;li&gt;&lt;/li&gt;
+// &lt;/ul&gt;
+</code></pre>
+<p>The tagName is optional. If omitted, a DocumentFragment is returned.</p>
+<pre><code class="language-javascript">createElement(createElement(&quot;li&quot;), createElement(&quot;li&quot;), createElement(&quot;li&quot;));
+// &lt;li&gt;&lt;/li&gt;
+// &lt;li&gt;&lt;/li&gt;
+// &lt;li&gt;&lt;/li&gt;
+</code></pre>
+<p>The library exports a shorthand, <code>_</code>, for crating fragments.</p>
+<pre><code class="language-javascript">import { _ } from &quot;./index.mjs&quot;;
+_(createElement(&quot;li&quot;), createElement(&quot;li&quot;), createElement(&quot;li&quot;));
+// &lt;li&gt;&lt;/li&gt;
+// &lt;li&gt;&lt;/li&gt;
+// &lt;li&gt;&lt;/li&gt;
+</code></pre>
 <h3 id="html-elements">HTML Elements</h3>
-<p>The library exports a shorthand for every existing HTML and SVG
-tag.</p>
+<p>The library exports a shorthand for every existing HTML and SVG tag.</p>
 <ul>
-<li>Most tags are exported in lowercase (“div”, “span”, “textarea”,
-etc.),</li>
-<li>Some tags are exported uppercased (“Switch”, “Var”),</li>
-<li>Some (specifically SVG) tags – are exported as camelCase
-(“radialGradient”, “textArea”, etc.).</li>
+<li>Most tags are exported in lowercase (&quot;div&quot;, &quot;span&quot;, &quot;textarea&quot;, etc.),</li>
+<li>Some tags are exported uppercased (&quot;Switch&quot;, &quot;Var&quot;),</li>
+<li>Some (specifically SVG) tags -- are exported as camelCase (&quot;radialGradient&quot;, &quot;textArea&quot;, etc.).</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { html<span class="op">,</span> head<span class="op">,</span> title<span class="op">,</span> body } <span class="im">from</span> <span class="st">&quot;./index.mjs&quot;</span><span class="op">;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">lang</span><span class="op">:</span> <span class="st">&quot;en&quot;</span> }<span class="op">,</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>({}<span class="op">,</span> <span class="fu">title</span>({}<span class="op">,</span> <span class="st">&quot;Hello&quot;</span>))<span class="op">,</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">body</span>({ <span class="dt">id</span><span class="op">:</span> <span class="st">&quot;foo&quot;</span> }<span class="op">,</span> <span class="st">&quot;world&quot;</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;html lang=&quot;en&quot;&gt;</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;head&gt;</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">//     &lt;title&gt;Hello&lt;/title&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;/head&gt;</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;body id=&quot;foo&quot;&gt;world&lt;/body&gt;</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;/html&gt;</span></span></code></pre></div>
+<pre><code class="language-javascript">import { html, head, title, body } from &quot;./index.mjs&quot;;
+html(
+  { lang: &quot;en&quot; },
+  head({}, title({}, &quot;Hello&quot;)),
+  body({ id: &quot;foo&quot; }, &quot;world&quot;)
+);
+// &lt;html lang=&quot;en&quot;&gt;
+//   &lt;head&gt;
+//     &lt;title&gt;Hello&lt;/title&gt;
+//   &lt;/head&gt;
+//   &lt;body id=&quot;foo&quot;&gt;world&lt;/body&gt;
+// &lt;/html&gt;
+</code></pre>
 <h4 id="omission-1">Omission</h4>
 <p>The attributes object can be omitted here as well.</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { HTML<span class="op">,</span> HEAD<span class="op">,</span> TITLE<span class="op">,</span> BODY } <span class="im">from</span> <span class="st">&quot;./index.mjs&quot;</span><span class="op">;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span>(<span class="fu">head</span>(<span class="fu">title</span>(<span class="st">&quot;Hello&quot;</span>))<span class="op">,</span> <span class="fu">body</span>(<span class="st">&quot;world&quot;</span>))<span class="op">;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;html&gt;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;head&gt;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">//     &lt;title&gt;Hello&lt;/title&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;/head&gt;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">//   &lt;body&gt;world&lt;/body&gt;</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">// &lt;/html&gt;</span></span></code></pre></div>
-  </body>
+<pre><code class="language-javascript">import { HTML, HEAD, TITLE, BODY } from &quot;./index.mjs&quot;;
+html(head(title(&quot;Hello&quot;)), body(&quot;world&quot;));
+// &lt;html&gt;
+//   &lt;head&gt;
+//     &lt;title&gt;Hello&lt;/title&gt;
+//   &lt;/head&gt;
+//   &lt;body&gt;world&lt;/body&gt;
+// &lt;/html&gt;
+</code></pre>
+
+</body>
 </html>

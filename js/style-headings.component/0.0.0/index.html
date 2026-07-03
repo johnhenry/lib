@@ -24,39 +24,39 @@
     />
     <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
   </head>
-  <body></body>
-</html>
+  <body>
 <h1 id="define-component">Define Component</h1>
 <p>HTML Component to define HTML components.</p>
 <h2 id="usage">Usage</h2>
 <h3 id="maunal">Maunal</h3>
 <p>Define class to be removed</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// file:///./custom-component.mjs</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">class</span> <span class="kw">extends</span> <span class="bu">HTMLElement</span> {</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">///...</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> defineComponent <span class="im">from</span> <span class="st">&quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/index.mjs&quot;</span><span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  globalThis<span class="op">.</span><span class="at">customElements</span><span class="op">.</span><span class="fu">define</span>(<span class="st">&quot;define-component&quot;</span><span class="op">,</span> defineComponent)<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">define-component</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ot">  name=</span><span class="st">&quot;custom-component&quot;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ot">  src=</span><span class="st">&quot;./custom-component.mjs&quot;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">define-component</span><span class="dt">&gt;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">custom-component</span><span class="dt">&gt;&lt;/</span><span class="kw">custom-component</span><span class="dt">&gt;</span></span></code></pre></div>
+<pre><code class="language-js">// file:///./custom-component.mjs
+export default class extends HTMLElement {
+  ///...
+}
+</code></pre>
+<pre><code class="language-html">&lt;script&gt;
+  import defineComponent from &quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/index.mjs&quot;;
+  globalThis.customElements.define(&quot;define-component&quot;, defineComponent);
+&lt;/script&gt;
+&lt;define-component
+  name=&quot;custom-component&quot;
+  src=&quot;./custom-component.mjs&quot;
+&gt;&lt;/define-component&gt;
+&lt;custom-component&gt;&lt;/custom-component&gt;
+</code></pre>
 <h3 id="automatic">Automatic</h3>
-<p>Use “global” import to automatically use component name
-“define-component”</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">script</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  type=</span><span class="st">&quot;module&quot;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ot">  src=</span><span class="st">&quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/global.mjs&quot;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">define-component</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ot">  name=</span><span class="st">&quot;custom-component&quot;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ot">  src=</span><span class="st">&quot;./custom-component.mjs&quot;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&gt;&lt;/</span><span class="kw">define-component</span><span class="dt">&gt;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">custom-component</span><span class="dt">&gt;</span>I&#39;m a custom component!<span class="dt">&lt;/</span><span class="kw">custom-component</span><span class="dt">&gt;</span></span></code></pre></div>
-  </body>
+<p>Use &quot;global&quot; import to automatically use component name &quot;define-component&quot;</p>
+<pre><code class="language-html">&lt;script
+  type=&quot;module&quot;
+  src=&quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/global.mjs&quot;
+&gt;&lt;/script&gt;
+&lt;define-component
+  name=&quot;custom-component&quot;
+  src=&quot;./custom-component.mjs&quot;
+&gt;&lt;/define-component&gt;
+&lt;custom-component&gt;I&#39;m a custom component!&lt;/custom-component&gt;
+</code></pre>
+
+</body>
 </html>
