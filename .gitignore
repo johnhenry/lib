@@ -5,6 +5,7 @@ node_modules/
 **/index.html
 **/test.html
 **/index.json
+**/latest/
 search.html
 index.html
 demos/index.html
