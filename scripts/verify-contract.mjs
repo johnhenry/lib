@@ -53,9 +53,9 @@ const failures = [];
 // 1. Presence: published paths must still exist.
 const manifest = await readLines("contract/dist-manifest.txt");
 const exceptions = new Set(
-  (await readLines("contract/manifest-exceptions.txt")).map(
-    (line) => line.split("#")[0].trim()
-  )
+  (await readLines("contract/manifest-exceptions.txt")).map((line) =>
+    line.split("#")[0].trim(),
+  ),
 );
 const missing = [];
 for (const path of manifest) {
@@ -65,7 +65,7 @@ for (const path of manifest) {
 if (missing.length) {
   failures.push(
     `${missing.length} published path(s) missing after build:\n` +
-      missing.map((p) => `  - ${p}`).join("\n")
+      missing.map((p) => `  - ${p}`).join("\n"),
   );
 }
 
@@ -82,7 +82,7 @@ if (!DEPLOY_FILTER) {
   if (dirty.length) {
     failures.push(
       `build modified ${dirty.length} tracked file(s) (builds may only create untracked output):\n` +
-        dirty.map((p) => `  - ${p}`).join("\n")
+        dirty.map((p) => `  - ${p}`).join("\n"),
     );
   }
 }
@@ -99,7 +99,7 @@ if (DEPLOY_FILTER) {
     ignoredOut = execFileSync(
       "git",
       ["check-ignore", "-z", "--stdin", "--no-index"],
-      { cwd: ROOT, encoding: "utf8", input }
+      { cwd: ROOT, encoding: "utf8", input },
     );
   } catch (error) {
     // check-ignore exits 1 when NO paths are ignored - that is success here.
@@ -110,7 +110,7 @@ if (DEPLOY_FILTER) {
   if (ignored.length) {
     failures.push(
       `${ignored.length} published path(s) would be dropped by deploy (gitignored):\n` +
-        ignored.map((p) => `  - ${p}`).join("\n")
+        ignored.map((p) => `  - ${p}`).join("\n"),
     );
   }
 }
@@ -137,13 +137,13 @@ try {
   if (badRecords.length) {
     failures.push(
       `index.json has ${badRecords.length} record(s) without string title/url/content:\n` +
-        badRecords.map((r) => `  - ${r}`).join("\n")
+        badRecords.map((r) => `  - ${r}`).join("\n"),
     );
   }
   if (badUrls.length) {
     failures.push(
       `index.json has ${badUrls.length} url(s) with no index.html:\n` +
-        badUrls.map((u) => `  - ${u}`).join("\n")
+        badUrls.map((u) => `  - ${u}`).join("\n"),
     );
   }
 } catch (error) {
@@ -158,5 +158,5 @@ if (failures.length) {
 console.log(
   DEPLOY_FILTER
     ? `URL-contract verification passed: ${manifest.length} published paths intact and none dropped by deploy filtering.`
-    : `URL-contract verification passed: ${manifest.length} published paths intact, working tree clean, index.json valid.`
+    : `URL-contract verification passed: ${manifest.length} published paths intact, working tree clean, index.json valid.`,
 );

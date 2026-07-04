@@ -1,0 +1,6 @@
+.debug-background-color {
+  background-color: var(
+    --debug-background-color,
+    var(--debug-color)
+  ) !important;
+}

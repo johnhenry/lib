@@ -1,0 +1,9 @@
+#! /bin/bash
+if [ $1 == "--help" ]; then
+
+  echo "Get the parent directory of a given executable"
+  echo "usage:"
+  echo "  which <executable>"
+else
+  echo "$(dirname "$(which $1)")"
+fi

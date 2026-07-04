@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="timers">Timers</h1>
+<h2 id="setintervalwait">setIntervalWait</h2>
+<p><code>setIntervalWait</code> has a similar API to set the built-in <code>setInterval</code> function,
+but it waits for the previous instance callback to be completed before
+calling the next. Additonally <code>clearIntervalWait</code> returns true if the id exists,
+and false if it does not.</p>
+<pre><code class="language-javascript">import setInterval, {
+  clear as cleaIntervalWait,
+} from &quot;./set-interval-wait.mjs&quot;;
+const id = setInterval(() =&gt; {
+  /* function that must finish  */
+}, 100);
+setTimeout(() =&gt; clearIntervalWait(id), 2000);
+</code></pre>
+<h2 id="setretry">setRetry</h2>
+<p><code>setRetry</code> has a similar API to set the built-in <code>setTimeout</code> and <code>setInterval</code> functions.
+The difference is that it will retry the callback if it fails (throws an error) at constant intervals.</p>
+<pre><code class="language-javascript">import setRetry, { clear as clearRetry } from &quot;./set-retry.mjs&quot;;
+const id = setRetry(() =&gt; {
+  /* function that may throw an error */
+}, 100);
+</code></pre>
+<h2 id="setbackoff">setBackoff</h2>
+<p><code>setRetry</code> has a similar API <code>setRetry</code>.
+The difference is that it will retry the callback if it fails (throws an error) at exponentially increasing intervals intervals.</p>
+<pre><code class="language-javascript">import setBackoff, { clear as clearBackoff } from &quot;./set-retry.mjs&quot;;
+const id = setBackoff(() =&gt; {
+  /* function that may throw an error */
+}, 100);
+</code></pre>
+<h2 id="asynctimeout">asyncTimeout</h2>
+<pre><code class="language-javascript">import setTimeoutAsync from &quot;./set-timeout-async.mjs&quot;;
+const result = await setTimeoutAsync((arg) =&gt; arg, 100, &quot;hello&quot;);
+</code></pre>
+<h2 id="asyncretryasync">asyncRetryAsync</h2>
+<pre><code class="language-javascript">import setRetryAsync from &quot;./set-retry-async.mjs&quot;;
+const result = await setRetryAsync((arg) =&gt; arg, 100, &quot;hello&quot;);
+</code></pre>
+<h2 id="asyncbackoffasync">asyncBackoffAsync</h2>
+<pre><code class="language-javascript">import setBackoffAsync from &quot;./set-backoff-async.mjs&quot;;
+const result = await setBackoffAsync((arg) =&gt; arg, 100, &quot;hello&quot;);
+</code></pre>
+
+</body>
+</html>

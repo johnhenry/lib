@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="css-modelclick-cycle">CSS Model:Click Cycle</h1>
+<p>Attaching this to an element detects
+when children are clicked and cycels a variable
+through a series of values defined on them.</p>
+<h2 id="usage">Usage</h2>
+<p>Importing the global modules
+attaches it to the it to
+the HTML element with a default
+prefix of &quot;input&quot;.</p>
+<p>When clicked,
+if a child has the attribute &quot;data-custom-property&quot; defined,
+a custom property related to the attribute value
+cycles through the valued defined in the &quot;data-values&quot; property.</p>
+<pre><code class="language-html">&lt;html style=&quot;--input-PROPERTYNAME-str:0;&quot;&gt;
+  &lt;script type=&quot;module&quot; src=&quot;./global.mjs&quot;&gt;&lt;/script&gt;
+  &lt;style&gt;
+    button::before {
+      content: var(--input-PROPERTYNAME-str);
+    }
+  &lt;/style&gt;
+  &lt;button
+    data-custom-property=&quot;PROPERTYNAME&quot;
+    data-custom-property-values=&quot;0;1;2&quot;
+  &gt;&lt;/button&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Note that the custom property must be initialized on the target element</p>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<p>Import the constructor to limit the scope of the property or change the prefix.</p>
+<pre><code class="language-html">&lt;script type=&quot;module&quot;&gt;
+  import CSSModelClickCycle from &quot;./index.mjs&quot;;
+  new CSSModelClickCycle(document.querySelector(&quot;button&quot;), &quot;clicked-var&quot;);
+&lt;/script&gt;
+&lt;style&gt;
+  button::before {
+    content: var(--input-clicked-var-str);
+  }
+&lt;/style&gt;
+&lt;button
+  data-custom-property=&quot;clicked-var&quot;
+  data-custom-property-values=&quot;0;1;2&quot;
+  style=&quot;--input-clicked-var-str:0;&quot;
+&gt;&lt;/button&gt;
+</code></pre>
+<h2 id="demos">Demos</h2>
+<p><a href="./demo.html">demo</a></p>
+
+</body>
+</html>

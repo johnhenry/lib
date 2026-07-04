@@ -1,0 +1,23 @@
+@keyframes skeleton-background-color {
+  to {
+    background-color: grey;
+  }
+}
+@keyframes skeleton-color {
+  to {
+    color: grey;
+  }
+}
+
+.skeleton .skeleton-text {
+  /* text-overflow: ellipsis; */
+  overflow: hidden;
+}
+
+.skeleton .skeleton-text::before {
+  content: "████████████████";
+  animation: skeleton-color 2s infinite alternate;
+}
+.skeleton .skeleton-background {
+  animation: skeleton-background-color 2s infinite alternate;
+}

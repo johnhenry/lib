@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h2 id="setintervalpatient">setIntervalPatient</h2>
+<p><code>setIntervalPatient</code> has a similar API to set the built-in <code>setIntervalPatient</code> function,
+but it waits for the previous instance callback to be completed before
+calling the next.</p>
+<p>Additonally <code>clearIntervalPatient</code> returns true if the id exists,
+and false if it does not.</p>
+<pre><code class="language-javascript">import setIntervalPatient, { clear as clearIntervalPatient } from &quot;..&quot;;
+const id = setIntervalPatient(() =&gt; {
+  /* function that must finish  */
+}, 100);
+setTimeout(() =&gt; clearIntervalPatient(id), 2000);
+</code></pre>
+
+</body>
+</html>

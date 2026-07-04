@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <style>
+      @import "./index.css";
+      body {
+        --frame-current: 0;
+        position: relative;
+        margin: 0px;
+        padding: 0px;
+      }
+      .controls::before {
+        counter-reset: c var(--frame-current);
+        content: counter(c) " is the current frame.";
+      }
+      .var--in-frame-range {
+        position: absolute;
+        --top: calc(var(--not-in-frame-range) * 100vh);
+        top: calc(var(--top) + 1rem);
+        opacity: var(--in-frame-range);
+        transition: opacity 0.25s, top 0.25s;
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      }
+      .var--in-frame-range::after {
+        counter-reset: a var(--frame-min) b var(--frame-max);
+        content: " appears in frames " counter(a) " through " counter(b);
+        font-size: 0.5rem;
+        color: gray;
+      }
+      .frame-0 {
+        --frame-min: 0;
+        --frame-max: 4;
+      }
+      .frame-1 {
+        --frame-min: 5;
+        --frame-max: 8;
+      }
+      .frame-1a {
+        top: calc(var(--top) + 2rem);
+        --frame-min: 7;
+        --frame-max: 8;
+      }
+    </style>
+    <script>
+      window.down = () => {
+        const current = Number(
+          document.body.style.getPropertyValue("--frame-current")
+        );
+        document.body.style.setProperty("--frame-current", current - 1);
+      };
+      window.up = () => {
+        const current = Number(
+          document.body.style.getPropertyValue("--frame-current")
+        );
+        document.body.style.setProperty("--frame-current", current + 1);
+      };
+    </script>
+  </head>
+  <body>
+    <div class="controls">
+      <a href="#" onclick="down(event)">&lt;</a>
+      <a href="#" onclick="up(event)">&gt;</a>
+    </div>
+    <div class="var--in-frame-range frame-0">1st</div>
+    <div class="var--in-frame-range frame-1">2nd!</div>
+    <div class="var--in-frame-range frame-1a">2.5nd!</div>
+  </body>
+</html>

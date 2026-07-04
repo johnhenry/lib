@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="query-container-html-component">Query Container HTML Component</h1>
+<p>Containter that changes based on a given media query</p>
+<p>Inspired by: <a href="https://github.com/tabvengers/spicy-sections">https://github.com/tabvengers/spicy-sections</a></p>
+<h2 id="example-usage-usage">Example usage Usage</h2>
+<p>Single query:</p>
+<p>This following will produce an ordered list
+with class name &#39;ordered&#39; and blue text
+when the window&#39;s width is between 400px and 900px.</p>
+<pre><code class="language-html">&lt;script
+  type=&quot;module&quot;
+  src=&quot;https://johnhenry.github.io/lib/js/define-component.component/0.0.0/global.mjs&quot;
+&gt;&lt;/script&gt;
+&lt;define-component name=&quot;query-component&quot; src=&quot;./index.mjs&quot;&gt;&lt;/define-component&gt;
+&lt;query-component
+  default=&quot;ul&quot;
+  query=&quot;
+    [(min-width:300px) and (max-width:1200px)] ol.ordered[style=color:blue];
+    [(min-width:400px) and (max-width:600px)] ol.ordered[style=color:red];
+    &quot;
+&gt;
+  &lt;li&gt;a&lt;/li&gt;
+  &lt;li&gt;b&lt;/li&gt;
+  &lt;li&gt;c&lt;/li&gt;
+&lt;/query-component&gt;
+</code></pre>
+
+</body>
+</html>

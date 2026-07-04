@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="polyfill-global">Polyfill Global</h1>
+<p>Polyfills a key on the global object.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="maunal">Maunal</h3>
+<p>Define class to be removed</p>
+<pre><code class="language-js">// file:///./custom-component.mjs
+export default class extends HTMLElement {
+  ///...
+}
+</code></pre>
+<pre><code class="language-html">&lt;script&gt;
+  import defineComponent from &quot;https://johnhenry.github.io/lib/define-component.component/0.0.0/index.mjs&quot;;
+  globalThis.customElements.define(&quot;define-component&quot;, defineComponent);
+&lt;/script&gt;
+&lt;define-component
+  name=&quot;custom-component&quot;
+  src=&quot;./custom-component.mjs&quot;
+&gt;&lt;/define-component&gt;
+&lt;custom-component&gt;&lt;/custom-component&gt;
+</code></pre>
+<h3 id="automatic">Automatic</h3>
+<p>Use &quot;global&quot; import to automatically use component name &quot;define-component&quot;</p>
+<pre><code class="language-html">&lt;script
+  type=&quot;module&quot;
+  src=&quot;https://johnhenry.github.io/lib/polyfill-global.component/0.0.0/global.mjs&quot;
+&gt;&lt;/script&gt;
+
+&lt;polyfill-global &gt;Hide me until window load&lt;/custom-component&gt;
+</code></pre>
+
+</body>
+</html>

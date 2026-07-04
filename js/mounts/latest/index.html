@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="mounts">Mounts</h1>
+<p>Using the body or its direct decendents
+as mount points is a common pattern
+in modern javascript applications (<a href="https://www.solidjs.com/">Solid</a>, <a href="https://vuejs.org/">Vue</a>, <a href="https://reactjs.org/">React</a>, etc.).</p>
+<p>We can declaratively abstract this away as imports.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="body">Body</h3>
+<p>Use body element as a mount point.</p>
+<p>Note: Some applications including react, warn against using the body element as a mount point.
+Use &#39;first&#39; or &#39;last&#39; instead.</p>
+<pre><code class="language-javascript">import { render } from &quot;solid-js/web&quot;;
+import Application from &quot;./Soild-Application&quot;;
+import body from &quot;mounts/body.mjs&quot;;
+render(() =&gt; &lt;Application /&gt;, body);
+</code></pre>
+<h3 id="first">First</h3>
+<p>Use body&#39;s first child as a mount point.</p>
+<p>Creates and prepends a new &#39;div&#39; element
+if child is &quot;unsuitable&quot; or non-existent.</p>
+<pre><code class="language-javascript">import Application from &quot;./Vue-Application&quot;;
+import first from &quot;mounts/first.mjs&quot;;
+Application.mount(first);
+</code></pre>
+<h3 id="last">Last</h3>
+<p>Use body&#39;s last child as a mount point.</p>
+<p>Creates and appends a new &#39;div&#39; element
+if child is &quot;unsuitable&quot; or non-existent.</p>
+<pre><code class="language-javascript">import { createRoot } from &quot;react&quot;;
+import Application from &quot;./React-Application&quot;;
+import last from &quot;mounts/last.mjs&quot;;
+const root = createRoot(last);
+root.render(Application);
+</code></pre>
+<h3 id="unsuitable-elements">Unsuitable elements</h3>
+<p>The following elements are considered &quot;unsuitable&quot; for mounting:</p>
+<ul>
+<li>script</li>
+<li>style</li>
+<li>link</li>
+<li>noscript</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="pop-quiz">Pop-Quiz</h1>
+<p>A context-independent, zero-dependency testing framework inspired by
+<a href="https://github.com/substack/tape">tape</a>. Tests run in the same context as
+your application — Node, Deno, or the browser — with no binaries or
+transformations, and report using the
+<a href="https://testanything.org/">Test Anything Protocol</a>.</p>
+<h2 id="import-syntax">Import Syntax</h2>
+<p>Import directly from this site:</p>
+<pre><code class="language-javascript">import quiz, {
+  ok,
+  equal,
+} from &quot;https://johnhenry.github.io/lib/js/pop-quiz/1.0.0/index.mjs&quot;;
+</code></pre>
+<p>or install via npm (<code>npm install pop-quiz</code>) and import by name:</p>
+<pre><code class="language-javascript">import quiz, { ok, equal } from &quot;pop-quiz&quot;;
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>The default export — the &quot;quiz&quot; function — runs a group of assertions.
+It takes a title and a (possibly asynchronous) generator, called a &quot;test&quot;.
+Assertion results are yielded from within the body of the test.</p>
+<pre><code class="language-javascript">import quiz, { ok, notok, equal, deepequal } from &quot;pop-quiz&quot;;
+
+await quiz(&quot;basic arithmetic&quot;, function* () {
+  yield ok(1 + 1, &quot;sums should be truthy&quot;);
+  yield notok(1 - 1, &quot;differences should be falsy&quot;);
+  yield equal(2 + 2, 4);
+  yield deepequal({ a: 1, b: 2 }, { b: 2, a: 1 });
+});
+</code></pre>
+<p>The title may be omitted; passing just a test works too:</p>
+<pre><code class="language-javascript">await quiz(function* () {
+  yield ok(true);
+});
+</code></pre>
+<h3 id="included-assertions">Included Assertions</h3>
+<p>Each assertion returns its message on success and a <code>TestError</code> on failure.</p>
+<table>
+<thead>
+<tr>
+<th>assertion</th>
+<th>passes when</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pass(message?)</code></td>
+<td>always</td>
+</tr>
+<tr>
+<td><code>fail(message?)</code></td>
+<td>never</td>
+</tr>
+<tr>
+<td><code>ok(actual, message?)</code></td>
+<td><code>actual</code> is truthy</td>
+</tr>
+<tr>
+<td><code>notok(actual, message?)</code></td>
+<td><code>actual</code> is falsy</td>
+</tr>
+<tr>
+<td><code>equal(actual, expected, message?)</code></td>
+<td><code>actual === expected</code></td>
+</tr>
+<tr>
+<td><code>notequal(actual, unexpected, message?)</code></td>
+<td><code>actual !== unexpected</code></td>
+</tr>
+<tr>
+<td><code>deepequal(actual, expected, message?)</code></td>
+<td><code>actual</code> deeply equals <code>expected</code></td>
+</tr>
+<tr>
+<td><code>throws(fn, message?)</code></td>
+<td>calling (and awaiting) <code>fn</code> throws</td>
+</tr>
+<tr>
+<td><code>doesnotthrow(fn, message?)</code></td>
+<td>calling (and awaiting) <code>fn</code> succeeds</td>
+</tr>
+<tr>
+<td><code>subtestpass(test, message?)</code></td>
+<td>every assertion in <code>test</code> passes</td>
+</tr>
+<tr>
+<td><code>subtestfail(test, message?)</code></td>
+<td>every assertion in <code>test</code> fails</td>
+</tr>
+</tbody></table>
+<p>Writing your own assertion is easy: return a message on success and a
+<code>TestError</code> (importable from <code>./testerror.mjs</code>) on failure.</p>
+<h3 id="lower-level-api">Lower-level API</h3>
+<p><code>TAPRunner.mjs</code> exports the underlying machinery — most notably
+<code>run(test, title?, ...formatters)</code>, an async generator yielding raw results,
+and <code>print(test, title?)</code>, which logs TAP-formatted output.</p>
+<pre><code class="language-javascript">import { run } from &quot;https://johnhenry.github.io/lib/js/pop-quiz/1.0.0/TAPRunner.mjs&quot;;
+
+for await (const result of run(function* () {
+  yield ok(true);
+})) {
+  console.log(result);
+}
+</code></pre>
+<p><code>unique/index.mjs</code> exports a <code>unique</code> generator for producing unique
+numbers, strings, bigints, or symbols — handy for generating test fixtures.</p>
+<h2 id="demonstration">Demonstration</h2>
+<p>See this module&#39;s own test suite,
+<a href="./popquiz.jest.test.mjs">popquiz.jest.test.mjs</a>, for a complete tour of the
+API.</p>
+
+</body>
+</html>

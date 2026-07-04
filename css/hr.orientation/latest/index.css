@@ -1,0 +1,26 @@
+hr.orientation-vertical {
+  width: 1px;
+  height: 100%;
+}
+
+@media (orientation: landscape) {
+  hr.orientation-match {
+    height: 1px;
+    width: 100%;
+  }
+  hr.orientation-mismatch {
+    width: 1px;
+    height: 100%;
+  }
+}
+
+@media (orientation: portrait) {
+  hr.orientation-match {
+    width: 1px;
+    height: 100%;
+  }
+  hr.orientation-mismatch {
+    height: 1px;
+    width: 100%;
+  }
+}

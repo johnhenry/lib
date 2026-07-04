@@ -1,0 +1,130 @@
+.spiral-scaling {
+  display: grid;
+  grid-template-rows:
+    var(--spiral-scaling-size-top, 1fr)
+    1fr
+    var(--spiral-scaling-size-bottom, var(--spiral-scaling-size-top, 1fr));
+  grid-template-columns:
+    var(--spiral-scaling-size-left, 1fr)
+    1fr
+    var(--spiral-scaling-size-right, var(--spiral-scaling-size-left, 1fr));
+}
+
+.spiral-scaling.spiral-scaling-1 {
+  grid-template-areas:
+    "a a b"
+    "d . b"
+    "d c c";
+}
+
+.spiral-scaling.spiral-scaling-2 {
+  grid-template-areas:
+    "d a a"
+    "d . b"
+    "c c b";
+}
+
+.spiral-scaling.spiral-scaling-3 {
+  grid-template-areas:
+    "d d a"
+    "c . a"
+    "c b b";
+}
+
+.spiral-scaling.spiral-scaling-4 {
+  grid-template-areas:
+    "c d d"
+    "c . a"
+    "b b a";
+}
+
+.spiral-scaling.spiral-scaling-5 {
+  grid-template-areas:
+    "c c d"
+    "b . d"
+    "b a a";
+}
+
+.spiral-scaling.spiral-scaling-6 {
+  grid-template-areas:
+    "b c c"
+    "b . d"
+    "a a d";
+}
+
+.spiral-scaling.spiral-scaling-7 {
+  grid-template-areas:
+    "b b c"
+    "a . c"
+    "a d d";
+}
+
+.spiral-scaling.spiral-scaling-8 {
+  grid-template-areas:
+    "a b b"
+    "a . c"
+    "d d c";
+}
+
+.spiral-scaling.spiral-scaling-1-transpose {
+  grid-template-areas:
+    "a d d"
+    "a . c"
+    "b b c";
+}
+.spiral-scaling.spiral-scaling-2-transpose {
+  grid-template-areas:
+    "d d c"
+    "a . c"
+    "a b b";
+}
+.spiral-scaling.spiral-scaling-3-transpose {
+  grid-template-areas:
+    "d c c"
+    "d . b"
+    "a a b";
+}
+.spiral-scaling.spiral-scaling-4-transpose {
+  grid-template-areas:
+    "c c b"
+    "d . b"
+    "d a a";
+}
+.spiral-scaling.spiral-scaling-5-transpose {
+  grid-template-areas:
+    "c b b"
+    "c . a"
+    "d d a";
+}
+.spiral-scaling.spiral-scaling-6-transpose {
+  grid-template-areas:
+    "b b a"
+    "c . a"
+    "c d d";
+}
+.spiral-scaling.spiral-scaling-7-transpose {
+  grid-template-areas:
+    "b a a"
+    "b . d"
+    "c c d";
+}
+
+.spiral-scaling.spiral-scaling-8-transpose {
+  grid-template-areas:
+    "a a d"
+    "b . d"
+    "b c c";
+}
+
+.spiral-scaling > *:nth-child(1) {
+  grid-area: a;
+}
+.spiral-scaling > *:nth-child(2) {
+  grid-area: b;
+}
+.spiral-scaling > *:nth-child(3) {
+  grid-area: c;
+}
+.spiral-scaling > *:nth-child(4) {
+  grid-area: d;
+}

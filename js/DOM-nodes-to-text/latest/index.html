@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="dom-nodes-to-text">Dom Nodes to text</h1>
+<p>Transform dom nodes into text.</p>
+<p>This is extremely useful when logging DOM nodes as they are often logged &quot;live&quot;
+meaning that when you look at the console, you will see the latest state;
+not the state at the time of logging.</p>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-html">&lt;ul id=&quot;list&quot;&gt;
+  &lt;li&gt;one&lt;/li&gt;
+  &lt;li&gt;two&lt;/li&gt;
+  &lt;li&gt;three&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;module&quot;&gt;
+  import domNodesToText from &quot;..&quot;;
+  console.log(domNodesToText(document.querySelector(&quot;#list&quot;)));
+  /* logs
+  &lt;ul id=&quot;li&quot;&gt;
+    &lt;li&gt;one&lt;/li&gt;
+    &lt;li&gt;two&lt;/li&gt;
+    &lt;li&gt;three&lt;/li&gt;
+  &lt;/ul&gt;
+  */
+&lt;/script&gt;
+</code></pre>
+<h3 id="multiple-nodes">Multiple Nodes</h3>
+<p>Use the spread operatore to turn lists of nodes into text</p>
+<pre><code class="language-javascript">console.log(domNodesToText(...document.querySelectorAll(&quot;li&quot;)));
+/* logs
+  &lt;li&gt;one&lt;/li&gt;
+  &lt;li&gt;two&lt;/li&gt;
+  &lt;li&gt;three&lt;/li&gt;
+  */
+</code></pre>
+
+</body>
+</html>
