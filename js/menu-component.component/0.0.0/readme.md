@@ -1,5 +1,8 @@
 # Menu Component
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/menu-component.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 A keyboard-navigable, stateful menu/wizard element: children become
 selectable items (arrow keys to move focus, enter/space to activate), and
 activating one "pushes" its content (from a nested `<template>`) into view,

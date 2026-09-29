@@ -1,5 +1,8 @@
 # Define Component By Content
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/define-component-by-content.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 Defines a new custom element whose markup comes from an HTML string given
 directly as an attribute, rather than from a separate module file (compare
 [define-component.component](../../define-component.component/0.0.0/readme.md),

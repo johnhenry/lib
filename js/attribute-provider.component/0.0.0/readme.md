@@ -1,5 +1,8 @@
 # Attribute Provider
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/attribute-provider.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 Applies classes, inline styles, and/or attributes to an element's
 immediate children based on media queries (screen width, orientation,
 etc.) — re-evaluated on every matching query change.

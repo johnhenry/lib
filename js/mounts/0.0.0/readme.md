@@ -1,5 +1,8 @@
 # Mounts
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/mounts`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 Using the body or its direct decendents
 as mount points is a common pattern
 in modern javascript applications ([Solid](https://www.solidjs.com/), [Vue](https://vuejs.org/), [React](https://reactjs.org/), etc.).

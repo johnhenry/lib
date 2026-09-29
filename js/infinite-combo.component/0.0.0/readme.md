@@ -1,5 +1,8 @@
 # Infinite Combo
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/infinite-combo.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 A combo-box/autocomplete element that loads more options on demand — as
 the user types or scrolls near the end of the list, `onsearch` is called
 to fetch and append more `<option>` markup, for effectively unbounded

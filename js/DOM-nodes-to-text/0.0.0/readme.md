@@ -1,5 +1,8 @@
 # Dom Nodes to text
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/DOM-nodes-to-text`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 Transform dom nodes into text. The inverse of
 [text-to-DOM-nodes](../../text-to-DOM-nodes/0.0.0/readme.md).
 

@@ -1,5 +1,8 @@
 # Define Component
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/define-component.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 Dynamically loads a module by URL and registers its export as a custom
 element — the generic "define a component from a URL" pattern referenced
 by [query-container.component](../../query-container.component/0.0.0/readme.md),

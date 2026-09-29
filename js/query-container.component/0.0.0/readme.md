@@ -1,5 +1,8 @@
 # Query Container HTML Component
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/query-container.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 Containter that changes based on a given media query
 
 Inspired by: https://github.com/tabvengers/spicy-sections

@@ -1,5 +1,8 @@
 # Hotkey Modal Dialog
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/hotkey-modal.dialog.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 A `<dialog is="hotkey-modal">` that opens/closes via a configurable
 keyboard shortcut, built on the native `<dialog>` element (`showModal()`/
 `close()`).

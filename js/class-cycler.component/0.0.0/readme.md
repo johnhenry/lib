@@ -1,5 +1,8 @@
 # Class Cycler
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/class-cycler.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 Exposes a [localstorage-class-cycler](../../localstorage-class-cycler/0.0.0/readme.md)
 instance as a named global function, so it can be called from anywhere
 (e.g. a plain `<button onclick="...">`). Container/global variant — see

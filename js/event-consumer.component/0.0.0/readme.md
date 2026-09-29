@@ -1,5 +1,8 @@
 # Event Consumer
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/event-consumer.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 A `display:contents` wrapper element for declaratively wiring event
 listeners onto its children/self, without writing JavaScript setup code.
 Listens for the `events` attribute's comma-delimited event names and runs

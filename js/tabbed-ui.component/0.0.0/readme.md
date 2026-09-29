@@ -1,5 +1,8 @@
 # Tabbed UI
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/tabbed-ui.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 A tabs/panels custom element. One child (marked `slot="tab-bar"`, or the
 first child by default) holds the clickable tabs; each of its own children
 corresponds, by position, to one of the element's remaining children as

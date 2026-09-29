@@ -1,5 +1,8 @@
 # Polyfill Window
 
+> **This module now also lives at [`@johnhenry/domkit`](https://github.com/johnhenry/domkit)** (`@johnhenry/domkit/polyfill-window.component`), where active development continues. This copy is a frozen, working snapshot -- it stays published at this URL (per this repo's own no-deletion policy) but won't receive future fixes.
+
+
 Dynamically imports a module and assigns its export to a key on
 `globalThis` -- for loading a global polyfill declaratively from HTML,
 rather than registering a custom element (compare
