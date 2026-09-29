@@ -1,41 +1,30 @@
-# Polyfill Global
+# Polyfill Window
 
-Polyfills a key on the global object.
+Dynamically imports a module and assigns its export to a key on
+`globalThis` -- for loading a global polyfill declaratively from HTML,
+rather than registering a custom element (compare
+[define-component.component](../../define-component.component/0.0.0/readme.md),
+which this module's own `demo.html` uses to bootstrap itself and which
+solves the related "register a custom element from a URL" problem).
+
+## Attributes
+
+| Attribute | Description |
+|---|---|
+| `name` | Global key to assign the import to (required) |
+| `src` | URL of the module to import, resolved relative to the current document (required) |
+| `import` | Named export to assign. Defaults to the module's default export |
+| `force` | If present, re-imports and re-assigns even if `globalThis[name]` is already set |
+| `no-import` | If present, the module is imported (for its side effects) but nothing is assigned to `globalThis` |
 
 ## Usage
-
-### Maunal
-
-Define class to be removed
-
-```js
-// file:///./custom-component.mjs
-export default class extends HTMLElement {
-  ///...
-}
-```
-
-```html
-<script>
-  import defineComponent from "https://johnhenry.github.io/lib/define-component.component/0.0.0/index.mjs";
-  globalThis.customElements.define("define-component", defineComponent);
-</script>
-<define-component
-  name="custom-component"
-  src="./custom-component.mjs"
-></define-component>
-<custom-component></custom-component>
-```
-
-### Automatic
-
-Use "global" import to automatically use component name "define-component"
 
 ```html
 <script
   type="module"
-  src="https://johnhenry.github.io/lib/polyfill-global.component/0.0.0/global.mjs"
+  src="https://johnhenry.github.io/lib/js/define-component.component/0.0.0/global.mjs"
 ></script>
+<define-component name="polyfill-window" src="./index.mjs"></define-component>
 
-<polyfill-global >Hide me until window load</custom-component>
+<polyfill-window name="shout" src="./shout-polyfill.mjs"></polyfill-window>
 ```

@@ -77,6 +77,15 @@ Renders like:
 <div>I'm dynamic content</div>
 ```
 
+### Composing content in an open shadow root, with no styling
+
+For the common case of wrapping content in a shadow root with no other
+markup, skip the wrapper element entirely:
+
+```javascript
+globalThis.customElements.define("plain-shadow", shadowOpen`<slot />`);
+```
+
 ### Named Slots
 
 Used named slots to place multiple pieces content within an element.

@@ -1,6 +1,6 @@
 import createElement, { _ } from "../../create-element/0.0.0/index.mjs";
 const REACT_FRAGMENT_SYMBOL = Symbol.for("react.fragment");
-const reactToDom = ({ $$typeof = REACT_FRAGMENT_SYMBOL, props = {} }) => {
+const reactToDom = ({ $$typeof = REACT_FRAGMENT_SYMBOL, type, props = {} }) => {
   if ($$typeof === REACT_FRAGMENT_SYMBOL) {
     const { children } = props;
     return _(...children.map(reactToDom));
@@ -11,6 +11,6 @@ const reactToDom = ({ $$typeof = REACT_FRAGMENT_SYMBOL, props = {} }) => {
         ? props.children
         : [props.children]
       : [];
-  return createElement(react.type, { ...react.props, children });
+  return createElement(type, { ...props, children });
 };
 export default reactToDom;

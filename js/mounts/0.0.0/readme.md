@@ -58,3 +58,8 @@ The following elements are considered "unsuitable" for mounting:
 - style
 - link
 - noscript
+
+## See also
+
+- [dom-to-React](../../dom-to-React/0.0.0/readme.md) / [react-to-dom](../../react-to-dom/0.0.0/readme.md) — converting between real DOM and React-element-shaped objects
+- [hydratable](../../hydratable/0.0.0/readme.md) — a generic hydration mixin

@@ -1,3 +1,5 @@
 export default class extends HTMLElement {
-  constructor() {}
+  constructor() {
+    super();
+  }
 }

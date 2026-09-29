@@ -1,8 +1,5 @@
-export default class extends globalThis.HTMLElement {
-  constructor() {
-    super();
-    this.slotted = globalThis.document.createElement("slot");
-    const shadow = this.attachShadow({ mode: "open" });
-    shadow.append(this.slotted);
-  }
-}
+// Thin deprecated alias -- this is a strict subset of what simple-element's
+// shadowOpen already does. See simple-element/0.0.0/readme.md, "Composing
+// content in an open shadow root".
+import { shadowOpen } from "../../simple-element/0.0.0/index.mjs";
+export default shadowOpen`<slot />`;

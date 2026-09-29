@@ -21,6 +21,7 @@ export default class extends HTMLElement {
   disconnectedCallback() {
     this.break = true;
     this.suspended = true;
+    this.slotted.removeEventListener("slotchange", this.slotChange);
   }
   slotChange() {
     this.fps = Number(this.getAttribute("fps") || 60);
@@ -48,9 +49,5 @@ export default class extends HTMLElement {
         }
         break;
     }
-  }
-  disconnectedCallBack() {
-    this.pause();
-    this.slotted.removeEventListener("slotchange", this.slotChange);
   }
 }

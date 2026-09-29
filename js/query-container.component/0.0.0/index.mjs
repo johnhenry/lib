@@ -1,7 +1,10 @@
 import { tokenize } from "../../../vendor/js/parsel/index.js";
-// HTML Details, Select, Input[type=radio]
 /*
-  <phantom-component tag="ul" queries="media and screen (rotation: portrait) div#id.class[style='style']; media and screen (rotation: landscape)"></phantom-component>
+  <query-component
+    default="ul"
+    query="[(min-width:300px) and (max-width:1200px)] ol.ordered[style=color:blue];"
+  ></query-component>
+  -- see readme.md for the full example.
 */
 const exp = /\[(.+)\](.+)/;
 const elementFromSelector = (selector = "") => {
@@ -72,7 +75,6 @@ export default class extends HTMLElement {
       .map((x) => x.trim())
       .filter((x) => x)) {
       const [, query, selector] = exp.exec(mediaQuery);
-      console.log({ query, selector, mediaQuery });
       firstSelector = firstSelector || selector;
       this.#queries.set(
         globalThis.matchMedia(query),
@@ -99,7 +101,7 @@ export default class extends HTMLElement {
       }
     }
     if (this.contains(this.#content)) {
-      if (element !== this.content) {
+      if (element !== this.#content) {
         element.append(...this.#content.childNodes);
         this.removeChild(this.#content);
         this.#content = element;

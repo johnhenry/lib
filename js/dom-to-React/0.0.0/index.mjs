@@ -2,6 +2,7 @@ const $$typeof = Symbol.for("react.element");
 const REACT_FRAGMENT_SYMBOL = Symbol.for("react.fragment");
 const domToReact = (dom) => {
   if (dom instanceof DocumentFragment) {
+    const children = [];
     for (const child of dom.childNodes) {
       children.push(domToReact(child));
     }
@@ -20,17 +21,13 @@ const domToReact = (dom) => {
     const element = dom.tagName.toLowerCase();
     const props = {};
     const children = [];
-    for (const [key, value] of Object.entries(dom.attributes)) {
-      switch (key) {
+    for (const attr of dom.attributes) {
+      switch (attr.name) {
         case "class":
-          if (Array.isArray(value)) {
-            props.className = value.join(" ");
-          } else {
-            props.className = value;
-          }
+          props.className = attr.value;
           break;
         default:
-          props[key] = value;
+          props[attr.name] = attr.value;
       }
     }
     for (const child of dom.childNodes) {

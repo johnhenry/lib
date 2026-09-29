@@ -1,6 +1,11 @@
 # Shadow Dom Element
 
-Creates html disconnecte from the rest of the dom.
+> **Deprecated alias.** This is a strict subset of
+> [simple-element](../../simple-element/0.0.0/readme.md)'s `shadowOpen` —
+> see its readme's "Composing content in an open shadow root" section.
+> Kept for backward compatibility; prefer `shadowOpen` directly in new code.
+
+Wraps its content in an open shadow root containing a single `<slot>`.
 
 ```html
 <shadow-dom>

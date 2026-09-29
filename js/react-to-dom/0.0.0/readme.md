@@ -1,3 +1,4 @@
 # react-to-DOM
 
-Convert objects created via React.createElement to DOM elements.
+Convert objects created via React.createElement to DOM elements. The
+reverse of [dom-to-React](../../dom-to-React/0.0.0/readme.md).

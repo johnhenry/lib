@@ -1,6 +1,7 @@
 # Dom Nodes to text
 
-Transform dom nodes into text.
+Transform dom nodes into text. The inverse of
+[text-to-DOM-nodes](../../text-to-DOM-nodes/0.0.0/readme.md).
 
 This is extremely useful when logging DOM nodes as they are often logged "live"
 meaning that when you look at the console, you will see the latest state;

@@ -1,19 +1,4 @@
 import w3CodeColor from "./w3-code-color.mjs";
-// const update = (element) => {
-//   const handler = () => {
-//     w3CodeColor(element);
-//     element.addEventListener("DOMSubtreeModified", handler, { once: true });
-//   };
-//   element.addEventListener("DOMSubtreeModified", handler, { once: true });
-// };
-// export default class extends HTMLElement {
-//   constructor() {
-//     super();
-//   }
-//   connectedCallback() {
-//     update(this);
-//   }
-// }
 export default class extends HTMLElement {
   #observer;
   constructor() {
