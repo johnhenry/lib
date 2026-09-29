@@ -97,8 +97,9 @@ export default class extends HTMLElement {
     this.#observer.observe(this, { childList: true });
   }
   disconnectedCallback() {
-    this.removeEventListener("click", this.#onClickBound);
-    this.removeEventListener("keydown", this.#onKeyDownBound);
+    this.removeEventListener("click", this.#onClickBound, true);
+    this.removeEventListener("keydown", this.#onKeyDownBound, true);
+    this.#observer.disconnect();
   }
   static get observedAttributes() {
     return ["size"];

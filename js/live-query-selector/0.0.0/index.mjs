@@ -19,6 +19,13 @@ const liveQuerySelector = (
   });
   // Set up observer.
   observer.observe(element, { childList: true, subtree: true });
+  // Non-enumerable so it doesn't show up in for...of/spread/JSON over the
+  // returned array/MutableNodeList -- there was previously no way at all
+  // to stop the observer short of the whole document being torn down.
+  Object.defineProperty(result, "stop", {
+    value: () => observer.disconnect(),
+    enumerable: false,
+  });
   return result;
 };
 

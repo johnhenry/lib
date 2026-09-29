@@ -12,3 +12,14 @@ No `global.mjs` yet — register the tag name yourself:
 import MenuComponent from "../../menu-component.component/0.0.0/index.mjs";
 customElements.define("menu-component", MenuComponent);
 ```
+
+## hash.mjs
+
+```javascript
+import { attach, detach } from "../../menu-component.component/0.0.0/hash.mjs";
+
+const menu = document.getElementById("menu");
+attach(menu); // connects pushed/popped to location.hash
+// ...later, to disconnect:
+detach(menu);
+```

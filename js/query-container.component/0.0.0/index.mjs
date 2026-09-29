@@ -56,6 +56,11 @@ export default class extends HTMLElement {
   }
   disconnectedCallback() {
     this.#observer.disconnect();
+    if (this.#queries) {
+      for (const query of this.#queries.keys()) {
+        query.onchange = null;
+      }
+    }
   }
   static get observedAttributes() {
     return ["default", "query"];

@@ -31,6 +31,11 @@ export default class extends HTMLElement {
   connectedCallback() {}
   disconnectedCallback() {
     this.#observer.disconnect();
+    for (const mediaMatches of Object.values(this.#mediaMatches)) {
+      for (const m of mediaMatches) {
+        m.onchange = null;
+      }
+    }
   }
   static get observedAttributes() {
     return ["classes", "styles", "attributes"];
