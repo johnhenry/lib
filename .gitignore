@@ -5,6 +5,12 @@ node_modules/
 **/index.html
 **/test.html
 **/index.json
+# generated <module>/latest/ aliases (build.mjs buildLatestAlias); scoped to the
+# built sections so checked-in data/*/latest/ sources stay trackable
+/js/*/latest/
+/css/*/latest/
+/html/*/latest/
+/bash/*/latest/
 search.html
 index.html
 demos/index.html
