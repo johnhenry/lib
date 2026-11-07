@@ -1,0 +1,9 @@
+#!/bin/bash
+IGNORE_FILE_NAME=.cpignore
+SOURCE=$1
+[[ "${SOURCE}" != */ ]] && SOURCE="${SOURCE}/"
+if test -f $SOURCE$IGNORE_FILE_NAME; then
+  rsync -avz --quiet --exclude-from $SOURCE$IGNORE_FILE_NAME $SOURCE $2;
+else
+  rsync --archive --quiet $SOURCE $2
+fi

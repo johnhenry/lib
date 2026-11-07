@@ -1,0 +1,7 @@
+.pop-out > * ~ * {
+  display: none;
+}
+.pop-out:focus-within > *,
+.pop-out:hover > * {
+  display: var(--popout-display, block);
+}

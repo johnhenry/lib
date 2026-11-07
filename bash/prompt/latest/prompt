@@ -1,0 +1,5 @@
+#! /bin/bash
+
+# https://linuxhint.com/prompt-for-input-bash/
+read -p "$*" -e
+echo $REPLY

@@ -1,0 +1,11 @@
+{
+  "name": "create-element-jsx-demo",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "esbuild ./index.jsx --outfile=./index.jsx.mjs --banner:js=\"import _createElement from 'https://johnhenry.github.io/lib/js/create-element/0.0.0/index.mjs'; \" --jsx-factory=_createElement --jsx-fragment=\"''\""
+  },
+  "dependencies": {
+    "esbuild": "^0.14.39"
+  }
+}

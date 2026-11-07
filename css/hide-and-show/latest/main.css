@@ -1,0 +1,6 @@
+.hide-and-show {
+  display: none;
+}
+.show-and-hide {
+  display: var(--hide-and-show-display, block);
+}

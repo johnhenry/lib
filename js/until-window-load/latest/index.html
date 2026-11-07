@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="until-window-load">Until Window Load</h1>
+<p>Declarative import to remove loading classes once the window has loaded.</p>
+<p>Useful for to avoid content flash for custom components that
+arrange content after loading.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="maunal">Maunal</h3>
+<p>Define class to be removed</p>
+<pre><code class="language-js">import removeLoadingClasses from &quot;https://johnhenry.github.io/lib/until-window-load/0.0.0/index.mjs&quot;;
+removeLoadingClasses(&quot;custom-loading-class&quot;);
+</code></pre>
+<pre><code class="language-css">.custom-loading-class {
+  visibility: hidden;
+}
+</code></pre>
+<pre><code class="language-html">&lt;custom-component class=&quot;custom-loading-class&quot;
+  &gt;Hide me until window load&lt;/custom-component
+&gt;
+</code></pre>
+<h3 id="automatic">Automatic</h3>
+<p>Use &quot;global&quot; import to automatically use class name &quot;until-window-load&quot;</p>
+<pre><code class="language-html">&lt;script
+  type=&quot;module&quot;
+  src=&quot;https://johnhenry.github.io/lib/remove-loading-classes/0.0.0/global.mjs&quot;
+&gt;&lt;/script&gt;
+&lt;style&gt;
+  .until-window-load {
+    visibility: hidden;
+  }
+&lt;/style&gt;
+&lt;custom-component class=&quot;until-window-load&quot;
+  &gt;Hide me until window load&lt;/custom-component
+&gt;
+</code></pre>
+
+</body>
+</html>

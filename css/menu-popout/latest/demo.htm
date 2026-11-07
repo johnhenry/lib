@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../blank-slate/0.0.0/index.css" />
+    <link rel="stylesheet" href="../../demo-block/0.0.0/index.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      .application {
+        height: 100%;
+        width: 100%;
+      }
+      .pop-out {
+        display: flex;
+        flex-direction: column;
+      }
+      .pop-out .pop-out {
+        flex-direction: row;
+        gap: 8px;
+      }
+      .pop-out .pop-out .pop-out {
+        gap: 0px;
+        flex-direction: column;
+        position: absolute;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="application">
+      <div class="pop-out">
+        <span><a href="#">menu</a></span>
+        <span>
+          <div class="pop-out">
+            <span><a href="#">menu</a></span>
+            <span><a href="#">item</a></span>
+            <span>
+              <div class="pop-out">
+                <span><a href="#">menu</a></span>
+                <span><a href="#">item</a></span>
+                <span><a href="#">item</a></span>
+              </div>
+            </span>
+          </div>
+        </span>
+        <span><a href="#">itenm</a></span>
+      </div>
+    </div>
+  </body>
+</html>

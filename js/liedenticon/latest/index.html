@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="liedenticon">Liedenticon</h1>
+<p>Transform a string into a unique image.</p>
+<p>Liedenticon is a refinement of
+<a href="https://github.com/stewartlord/identicon.js">Identicon</a> that separates
+image generation into two classes — one for SVGs and one for PNGs — with
+flexible hex color support and percentage padding. Ships as plain ES
+modules with zero dependencies; works in Node and the browser.</p>
+<h2 id="import-syntax">Import Syntax</h2>
+<p>Import directly from this site:</p>
+<pre><code class="language-javascript">import {
+  SVG,
+  PNG,
+} from &quot;https://johnhenry.github.io/lib/js/liedenticon/1.0.0/index.mjs&quot;;
+</code></pre>
+<p>or install via npm (<code>npm install liedenticon</code>) and import by name:</p>
+<pre><code class="language-javascript">import { SVG, PNG } from &quot;liedenticon&quot;;
+</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="svg">SVG</h3>
+<p>By default the SVG class generates an svg string to be embedded in a
+document.</p>
+<pre><code class="language-javascript">console.log(String(new SVG(&quot;efb8c90a13f7a1fdc4910&quot;))); // &quot;&lt;svg ...&quot;
+</code></pre>
+<p>Passing a truthy parameter to the <code>toString</code> method creates a string that
+can be used directly as the source attribute of an image.</p>
+<pre><code class="language-javascript">new SVG(&quot;efb8c90a13f7a1fdc4910&quot;).toString(true); // &quot;data:image/svg+xml;utf8,&lt;svg ...&quot;
+</code></pre>
+<p>Passing a second truthy parameter returns the base64-encoded string.</p>
+<pre><code class="language-javascript">new SVG(&quot;efb8c90a13f7a1fdc4910&quot;).toString(true, true); // &quot;data:image/svg+xml;base64,...&quot;
+</code></pre>
+<h3 id="png">PNG</h3>
+<p>The PNG class generates a base64 string, by default with a data-URI
+preamble attached — usable directly as an image source.</p>
+<pre><code class="language-javascript">const img = document.createElement(&quot;img&quot;);
+img.src = new PNG(&quot;efb8c90a13f7a1fdc4910&quot;);
+document.body.appendChild(img);
+</code></pre>
+<p>Passing a falsy parameter to <code>toString</code> drops the preamble.</p>
+<pre><code class="language-javascript">new PNG(&quot;efb8c90a13f7a1fdc4910&quot;).toString(false); // raw base64
+</code></pre>
+<h3 id="options">Options</h3>
+<p>Both classes take an options object as a second argument:</p>
+<pre><code class="language-javascript">new SVG(&quot;efb8c90a13f7a1fdc4910&quot;, {
+  size: 128, // width/height in pixels (default 64)
+  padding: &quot;20%&quot;, // padding — number, numeric string, or percentage
+  saturation: 0.75, // derived-foreground saturation
+  brightness: 0.5, // derived-foreground brightness
+  background: [0, 0, 0, 0], // background color (default transparent)
+  foreground: &quot;#36c&quot;, // foreground color (default derived from hash)
+});
+</code></pre>
+<h4 id="color-support">Color Support</h4>
+<p>In addition to <code>[r, g, b]</code> / <code>[r, g, b, a]</code> arrays, colors may be given as
+1, 2, 3, 4, 6, or 8 digit hex codes (with or without a leading <code>#</code>); 2, 4,
+and 8 digit codes carry an alpha channel.</p>
+<h4 id="padding-vs-margin">Padding vs Margin</h4>
+<p>Liedenticon replaces Identicon&#39;s &quot;margin&quot; option with &quot;padding&quot;, matching
+the <a href="https://www.w3schools.com/cSS/css_padding.asp">CSS definition</a> most
+web developers expect; percentage strings such as <code>&quot;20%&quot;</code> are supported.</p>
+<h3 id="extending">Extending</h3>
+<p>Both classes inherit from an internal <code>Graphic</code> class. Support other
+formats by extending it and implementing <code>renderImage</code> and <code>toString</code>:</p>
+<pre><code class="language-javascript">import Graphic from &quot;liedenticon/graphic&quot;;
+
+class NewFormat extends Graphic {
+  renderImage(hash, size, padding, background, foreground) {
+    // ...
+  }
+  toString() {
+    // ...
+  }
+}
+</code></pre>
+<h2 id="demonstration">Demonstration</h2>
+<p>See this module&#39;s test suite,
+<a href="./liedenticon.jest.test.mjs">liedenticon.jest.test.mjs</a>, for working
+examples, and the <a href="../0.0.4/index.html">0.0.4 demo</a> for an in-browser
+demonstration.</p>
+
+</body>
+</html>

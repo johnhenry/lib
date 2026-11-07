@@ -1,0 +1,19 @@
+<form is="json-form">
+  <input name="name.first" />
+  <input name="name.last" />
+  <input name="age" type="number" />
+</form>
+<!--
+  {
+    "name": {
+      "first": "",
+      "last": ""
+    }
+    "age": 0
+  }
+-->
+
+<form is="real-time-form" action="ws://..." autostart sample="60">
+  <input is="input-controller" name="player" controller="1" />
+  <input is="input-mouse" lock="form|screen" />
+</form>

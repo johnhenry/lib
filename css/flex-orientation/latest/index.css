@@ -1,0 +1,44 @@
+.flex-orientation-match {
+  flex-direction: var(--flex-orientation-direction) !important;
+}
+
+@media (orientation: portrait) {
+  .flex-orientation-match {
+    flex-direction: column !important;
+  }
+}
+
+@media (orientation: landscape) {
+  .flex-orientation-match {
+    flex-direction: row !important;
+  }
+}
+
+@media (orientation: portrait) {
+  .flex-orientation-portrait-match {
+    flex-direction: column !important;
+  }
+  .flex-orientation-portrait-reverse {
+    flex-direction: column-reverse !important;
+  }
+  .flex-orientation-portrait-clockwise {
+    flex-direction: row !important;
+  }
+  .flex-orientation-portrait-counter {
+    flex-direction: row-reverse !important;
+  }
+}
+@media (orientation: landscape) {
+  .flex-orientation-landscape-match {
+    flex-direction: row !important;
+  }
+  .flex-orientation-landscape-reverse {
+    flex-direction: row-reverse !important;
+  }
+  .flex-orientation-landscape-clockwise {
+    flex-direction: column !important;
+  }
+  .flex-orientation-landscape-counter {
+    flex-direction: column-reverse !important;
+  }
+}

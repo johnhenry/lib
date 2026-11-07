@@ -1,0 +1,25 @@
+.show-sibblings-with-check ~ * {
+  display: none;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.show-sibblings-with-check:has(input:checked) ~ * {
+  display: var(--check-display, block);
+  width: unset;
+  height: unset;
+  opacity: unset;
+}
+
+.show-sibbling-with-check + * {
+  display: none;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.show-sibbling-with-check:has(input:checked) + * {
+  display: var(--check-display, block);
+  width: unset;
+  height: unset;
+  opacity: unset;
+}

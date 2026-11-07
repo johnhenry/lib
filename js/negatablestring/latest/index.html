@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="negatable-strings">Negatable Strings</h1>
+<p>Ever wanted to literally subtract a string from another in your code?
+Eh,... didn&#39;t thinks so...</p>
+<p>But here&#39;s library that let&#39;s do that and then some!</p>
+<h2 id="api">API</h2>
+<h3 id="string.prototype">String.prototype;</h3>
+<p>Import the string polyfill to use library with regular strings.</p>
+<pre><code class="language-javascript">import &quot;./string-prototype.mjs&quot;;
+</code></pre>
+<h3 id="scale">scale;</h3>
+<pre><code class="language-javascript">import { scale } from &quot;./index.mjs&quot;;
+</code></pre>
+<p>The <em>scale</em> function transfroms a string into a negatable string object.</p>
+<p>By default, the string representations are the same.</p>
+<pre><code class="language-javascript">&quot;string&quot; === scale(&quot;string&quot;).toString();
+</code></pre>
+<p>Negative one (-1) can be passed as a second parameter to get a negated version of the given string&quot;</p>
+<pre><code class="language-javascript">&quot;string&quot; === scale(&quot;string&quot;, -1).toString().split(&quot;&quot;).reverse().join(&quot;&quot;);
+</code></pre>
+<h3 id="negatablestring.prototype.tostring">NegatableString.prototype.toString();</h3>
+<p>By default, the string representation is simply
+the representation of the given string backwards.</p>
+<pre><code class="language-javascript">console.log(scale(&quot;string&quot;, -1).toString()); // logs &quot;rts&quot;
+</code></pre>
+<p>But this is not the full story.
+Negative characters chan be highlighted
+by passing a prefix parameter to <em>toString</em> method</p>
+<pre><code class="language-javascript">console.log(scale(&quot;string&quot;, -1).toString(&quot;~&quot;)); // logs &quot;~r~t~s&quot;
+</code></pre>
+<p>Prefixes and suffixes can be added for both &quot;negative&quot; and &quot;positive&quot; characters</p>
+<pre><code class="language-javascript">const nPrefix =  &#39;&lt;span class=&quot;positive&quot;&gt;&#39;:
+const pPrefix =  &#39;&lt;span class=&quot;negative&quot;&gt;&#39;:
+const suffix =  &#39;&lt;/span&gt;&#39;:
+
+console(scale(&quot;string&quot;, -1).toString(nPrefix, suffix, pPrefix, suffix));
+// logs &quot;&lt;span class=&quot;negative&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;negative&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;negative&quot;&gt;s&lt;/span&gt;&quot;
+</code></pre>
+<h3 id="negatablestring.prototype.consoleiterator">NegatableString.prototype.consoleIterator();</h3>
+<p>Some consoles (Chrome, Deno, but not currently node)
+have log methods that allow styling accepting as their
+first argument a specifically formatted string;
+and as their subsequent arguements, style parameters.</p>
+<p>The &quot;consoleIterator&quot; method takes advantage of this. It produces an object that can be destructured into a call to console.log that will produced a result with characters
+colored according to their parity.</p>
+<pre><code class="language-javascript">console.log(...scale(&quot;rts&quot;, -1).consoleIterator(&quot;red&quot;));
+// logs red &quot;rts&quot; on chrome and deno
+// logs unformatted &quot;rts&quot; on  node
+</code></pre>
+<p>Complex example multipe strings with consoleIterator;</p>
+<pre><code class="language-javascript">const HELLO = &quot;HELLO&quot;;
+const GOODBYE = scale(&quot;HELLO&quot;, -1);
+const COMBO = concat(HELLO, GOODBYE);
+const [string0, ...colors0] = HELLO.consoleIterator();
+const [string1, ...colors1] = GOODBYE.consoleIterator();
+const [string2, ...colors2] = COMBO.consoleIterator();
+
+console.log(...HELLO.consoleIterator());
+console.log(...GOODBYE.consoleIterator());
+console.log(...COMBO.consoleIterator());
+console.log(
+  `(&quot;${string0}&quot; + &quot;${string1}&quot;) = &quot;${string2}&quot;`,
+  ...colors0,
+  ...colors1,
+  ...colors2
+); // logs &quot;
+</code></pre>
+<h3 id="concat">concat</h3>
+<p>Concatenating string with negative characters is where the magic happens.</p>
+<pre><code class="language-javascript">import { concat } from &quot;./index.mjs&quot;;
+</code></pre>
+<pre><code class="language-javascript">console.log(concat(&quot;hello&quot;, scale(&quot;hello&quot;, -1)).toString());
+//logs &quot;&quot;
+console.log(
+  concat(scale(&quot;http://&quot;, -1), &quot;https://iamjohnhenry.com&quot;).toString()
+);
+//logs &quot;https://iamjohnhenry.com&quot;
+</code></pre>
+<h3 id="negater">negater</h3>
+<p>You may want to construct string where not all characters are negative or positive.</p>
+<pre><code class="language-javascript">import { negater } from &quot;./index.mjs&quot;;
+</code></pre>
+<pre><code class="language-javascript">console.log(negater(&quot;mi~ss~issippi&quot;).toString(&quot;~&quot;));
+//logs &quot;mssippi&quot;. Note the ~s cancelled out the s and then the i cancelled the ~i
+</code></pre>
+<pre><code class="language-javascript">console.log(negater(&quot;mi~ss~issippi&quot;).toString(&quot;~&quot;));
+//logs &quot;mssippi&quot;. Note the ~s cancelled out the s and then the i cancelled the ~i
+</code></pre>
+<h3 id="equals">equals</h3>
+<p>Test if two strings represent the exact same charcters,
+in the same order,
+with the same parity</p>
+<pre><code class="language-javascript">import { equal } from &quot;./index.mjs&quot;;
+</code></pre>
+<pre><code class="language-javascript">console.log(equal(&quot;alpha&quot;, scale(&quot;alpha&quot;))); // true
+console.log(equal(&quot;beta&quot;, scale(&quot;beta&quot;, -1))); //false
+</code></pre>
+
+</body>
+</html>

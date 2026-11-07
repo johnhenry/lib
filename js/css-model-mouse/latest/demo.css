@@ -1,0 +1,6 @@
+.x::before {
+  content: var(--mouse-x-str);
+}
+.y::before {
+  content: var(--mouse-y-str);
+}

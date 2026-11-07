@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h1 id="random-generators">Random Generators</h1>
+<p>These are methods of generating a sample, <em>x</em>, for a given random variable, <em>X</em>.</p>
+<p><strong>No guarantees are made as to the distribution of the random variable.</strong></p>
+<h2 id="float">Float</h2>
+<h3 id="x-0-1">X := [ 0, 1 )</h3>
+<pre><code class="language-javascript">() =&gt; Math.random(); // R
+</code></pre>
+<h3 id="x-0-1-1">X := ( 0, 1 ]</h3>
+<pre><code class="language-javascript">() =&gt; -(Math.random() - 1); // -(R-1)
+</code></pre>
+<h3 id="x-0-n">X := [ 0, N )</h3>
+<pre><code class="language-javascript">(N) =&gt; Math.random() * N; // R*N
+</code></pre>
+<h3 id="x-m-n">X := [ M, N )</h3>
+<pre><code class="language-javascript">(M, N) =&gt; Math.random() * (N - M) + M; // R*(N-M)+M
+</code></pre>
+<h3 id="x-1-infinity">X := [ 1, Infinity )</h3>
+<pre><code class="language-javascript">() =&gt; -1 / (Math.random() - 1); // -1/(R-1)
+</code></pre>
+<h3 id="x-1-infinity-1">X := ( 1, Infinity ]</h3>
+<pre><code class="language-javascript">() =&gt; Math.random() ** (-1 / Math.random()); // R^(-1/R)
+</code></pre>
+<h2 id="integer">Integer</h2>
+<h3 id="x-1-n">X := [ 1, N ]</h3>
+<pre><code class="language-javascript">(N) =&gt; Math.ceil(Math.random() * N); // ⌈R*N⌉
+</code></pre>
+<h3 id="x-0-n-1">X := [ 0, N ]</h3>
+<pre><code class="language-javascript">(N) =&gt; Math.floor(Math.random() * N + 1); // ⌊R*N+1⌋
+</code></pre>
+<h3 id="x-m-n-1">X := [ M, N ]</h3>
+<pre><code class="language-javascript">(M, N) =&gt; Math.floor(Math.random() * (N - M + 1) + M); // ⌊R*(N-M)+N⌋
+</code></pre>
+<h2 id="boolean">Boolean</h2>
+<h3 id="x-true-false">X := { true, false }</h3>
+<pre><code class="language-javascript">() =&gt; Math.random() &lt; 0.5; // R&lt;0.5
+</code></pre>
+<h2 id="multiset-array">Multiset (Array)</h2>
+<h3 id="x-array-any">X := []:Array&lt; any &gt;</h3>
+<pre><code class="language-javascript">(...A) =&gt; A[Math.floor(Math.random() * A.length)]; // A[⌊R*|A|⌋]
+</code></pre>
+<h2 id="bytes">Bytes</h2>
+<h3 id="x-typedarray-number-n">X := TypedArray&lt; number &gt;(N)</h3>
+<pre><code class="language-javascript">(N) =&gt; globalThis.crypto.getRandomValues(new Uint8ClampedArray(N)); // g(N)
+</code></pre>
+
+</body>
+</html>

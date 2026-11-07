@@ -1,0 +1,6 @@
+.width::before {
+  content: var(--window-width-str);
+}
+.height::before {
+  content: var(--window-height-str);
+}

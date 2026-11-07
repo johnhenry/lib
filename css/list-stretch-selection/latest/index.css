@@ -1,0 +1,15 @@
+.list-stretch-selection {
+  display: inline-flex;
+}
+
+.list-stretch-selection > * {
+  flex: 1 1;
+}
+
+.list-stretch-selection:has([selected]) > *:not([selected]) {
+  flex: 0 0;
+}
+
+.list-stretch-selection.list-stretch-selection__vertical {
+  flex-direction: column;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>John Henry</title>
+    <link rel="canonical" href="https://johnhenry.github.io/" />
+    <meta name="description" content="John Henry's Person Portfolio and Blog" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#343233" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta
+      name="keywords"
+      content="fun,math,engineering,science,experiments,programming"
+    />
+    <meta name="author" content="John Henry" />
+    <link
+      rel="icon"
+      href="https://johnhenry.github.io/image/iajh.png"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://johnhenry.github.io/lib/css/universal-unstyled-links/0.0.0/index.css"
+    />
+    <link rel="stylesheet" href="https://johnhenry.github.io/lib/style.css" />
+  </head>
+  <body>
+<h2 id="returntimeout">returnTimeout</h2>
+<p><code>returnTimeout</code> has a similar API to set the built-in <code>setTimeout</code> function.
+Instead of returning and ID of a timeout, it returns a promise fulfilled with
+the value of the function when called.</p>
+<p>Note: there is currently no official way to cancel a promise in javascript.</p>
+<pre><code class="language-javascript">import returnTimeout from &quot;..&quot;;
+const joinStrs = (...str) =&gt; str.join(&quot; &quot;);
+console.log(await returnTimeout(joinStrs, 4500, &quot;hello&quot;, &quot;world&quot;));
+// logs hello world after 4.5 seconds
+</code></pre>
+
+</body>
+</html>

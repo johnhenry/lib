@@ -1,0 +1,12 @@
+#! /bin/bash
+if [ $1 == "--help" ]; then
+  echo "Move items from child folder into current folder and delete child
+        folder."
+  echo "Warning: unxpected behavior if files already exist in current folder"
+  echo "usage:"
+  echo "  explode <folder>"
+else
+  mv $1/* ./
+  mv $1/.* ./  > /dev/null 2>&1 # will produce error about . and .. directories
+  rmdir $1
+fi

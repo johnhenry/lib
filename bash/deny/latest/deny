@@ -1,0 +1,10 @@
+#! /bin/bash
+
+# https://unix.stackexchange.com/questions/197792/joining-bash-arguments-into-single-string-with-spaces
+read -p "$* (n/y)" -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Nn]$ ]]
+then
+    exit 1
+fi
+exit 0
